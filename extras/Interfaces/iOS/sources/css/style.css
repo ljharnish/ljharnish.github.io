@@ -1,0 +1,141 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+	font-family: 'SF Pro Display';
+}
+
+body {
+	width: 100vw;
+	height: 100vh;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+body.showBoxes div#iosHolder {
+	background: red !important;
+}
+
+body.showBoxes div#ios18 {
+	background: gold !important;
+}
+
+div#iphoneOverlay {
+	z-index: 9999;
+	pointer-events: none;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background-image: url(../image/iphoneoverlay.png);
+	background-size: contain;
+	height: 1000px;
+	aspect-ratio: 1/2;
+	/* filter: drop-shadow(0px 0px 3px black); */
+}
+
+div#iosHolder {
+	padding: 32px;
+	padding-right: 36px;
+	height: 1000px;
+	aspect-ratio: 1/2;
+}
+
+
+div#ios18 {
+	overflow: hidden;
+	position: relative;
+	border-radius: 50px;
+	width: 100%;
+	height: 100%;
+}
+
+div#topBar {
+	position: absolute;
+	color: white;
+	font-size: 0.75vw;
+	width: 100%;
+	height: 70px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+div#topBar sf-symbol {
+	display: block;
+	margin: 0px 2px;
+	height: 20px;
+}
+
+div#topBar > div {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+div.topBar-time {
+	color: white;
+	font-size: 20px;
+}
+
+div#homeScreen {
+	display: flex;
+  	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	background: url(../image/iOS-17-wallpaper-light.webp);
+	background-size: cover;
+}
+
+div#HS_Icons {
+	padding-top: 70px;
+	display: grid;
+	grid-template-columns: repeat(4, 100px);
+	grid-template-rows: repeat(7, 100px);
+}
+
+div.homeIcon {
+	display: flex;
+	aspect-ratio: 1;
+	width: 100px;
+}
+
+div.homeIcon img {
+	width: 100%;
+}
+
+div#HS_Icons div.widgetSmall {
+	overflow: hidden;
+	border-radius: 20px;
+	background: linear-gradient(to bottom, rgb(37, 45, 88), rgb(0, 0, 0)), url(../image/widget-small.png);
+	margin: 10px;
+	grid-column: span 2;
+	grid-row: span 2;
+}
+
+div#HS_Dock {
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+div#HS_dockInner {
+	box-sizing: content-box;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: row;
+	border-radius: 35px;
+	width: 100%;
+	height: 100px;
+	padding: 5px;
+	width: auto;
+	background: rgba(255, 255, 255, 0.6);
+}
