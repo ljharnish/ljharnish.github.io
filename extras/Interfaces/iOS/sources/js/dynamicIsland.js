@@ -6,6 +6,7 @@ let service = document.getElementById('tB_service');
 let internet = document.getElementById('tB_internet');
 let battery = document.getElementById('tB_battery');
 
+
 setTimeout(() => {
     service.style.width = service.scrollWidth + 'px';
     internet.style.width = internet.scrollWidth + 'px';
@@ -83,10 +84,48 @@ function DynamicIslandInteract(type) {
     }
 }
 
+function DynamicIslandClose() {
+    DynamicIslandSetup({ type: 'Empty' });
+    switch(island.classList[0]) {
+        case 'DYNAMIC_fullwidth_fat_open':
+            DynamicIslandInteract('close-full-width-fat');
+            break;
+
+        case 'DYNAMIC_fullwidth_thin_open':
+            DynamicIslandInteract('close-full-width-thin');
+            break;
+        
+        default:
+            DynamicIslandInteract('close-popup');
+            break;
+    }
+}
+
 function DynamicIslandSetup(information) {
     switch(information.type) {
         case 'Empty':
             island.innerHTML = ``;
+            break;
+
+        case 'NewNotification':
+            island.innerHTML = `<div id="di_left">
+								${information.leftHTML}
+							</div>
+							<div id="di_right">
+								${information.rightHTML}
+							</div>`;
+            break;
+
+        case 'Charging':
+            island.innerHTML = `<div id="DYNAMIC_fullwidththin_items">
+								<p id="DYNAMIC_fullwidththin_text">Charging</p>
+								<div id="DYNAMIC_fullwidththin_icon">
+									${information.chargePercent}%
+									<div id="DYNAMIC_fullwidththin_icon_battery">
+										<div style="width: ${information.chargePercent}%;"></div>
+									</div>
+								</div>
+							</div>`;
             break;
 
         case 'NewCall':
@@ -104,5 +143,30 @@ function DynamicIslandSetup(information) {
 								</button>
 							</div>`
             break;
+    }
+}
+
+function DynamicIslandShowcase(type) {
+    DynamicIslandClose();
+    switch(type) {
+        case 'Empty':
+            DynamicIslandSetup({ type: 'Empty' });
+            break;
+
+        case 'NewNotification':
+            DynamicIslandSetup({ type: 'NewNotification', leftHTML: '<img src="./sources/image/App Icons/music.png" alt="Apple Music">', rightHTML: '<sf-symbol glyph="waveform" color="white"></sf-symbol>'});
+            DynamicIslandInteract('new-popup')
+            break;
+
+        case 'Charging':
+            DynamicIslandSetup({ type: 'Charging', chargePercent: 50 });
+            DynamicIslandInteract('full-width-thin');
+            break;
+
+        case 'NewCall':
+            DynamicIslandSetup({ type: 'NewCall' });
+            DynamicIslandInteract('full-width-fat');
+            break;
+
     }
 }

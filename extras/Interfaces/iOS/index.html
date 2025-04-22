@@ -32,16 +32,15 @@
         <!--? Debug Stuff -->
 
         <div id="debugOptions">
-			<h1>Debug Controls</h1>
+			<h1>Dynamic Island Controls</h1>
 			<div class="sides">
-				<button style="width: 90px;" onclick="DynamicIslandInteract('new-popup')">DI Popup</button>
-				<button style="width: 90px;" onclick="DynamicIslandInteract('close-popup')">Close DI Popup</button>
+				<button style="width: 90px;" onclick="DynamicIslandShowcase('NewNotification')">Music Popup</button>
 	
-				<button style="width: 90px;" onclick="DynamicIslandInteract('full-width-thin')">DI Full-Width Thin</button>
-				<button style="width: 90px;" onclick="DynamicIslandInteract('close-full-width-thin')">Close FWT DI</button>
+				<button style="width: 90px;" onclick="DynamicIslandShowcase('Charging')">Charge Popup</button>
 				
-				<button style="width: 90px;" onclick="DynamicIslandInteract('full-width-fat')">DI Call (FullWidthFat)</button>
-				<button style="width: 90px;" onclick="DynamicIslandInteract('close-full-width-fat')">Close FWF DI</button>
+				<button style="width: 90px;" onclick="DynamicIslandShowcase('NewCall')">Call Popup</button>
+
+				<button style="width: 90px;" onclick="DynamicIslandShowcase('Empty')">Close Popup</button>
 			</div>
         </div>
 
@@ -64,12 +63,6 @@
 
 					<div id="dynamicIslandSpace">
 						<div id="dynamicIsland">
-							<div id="di_left">
-								<img src="./sources/image/App Icons/music.png" alt="Apple Music">
-							</div>
-							<div id="di_right">
-								<sf-symbol glyph="waveform" color="white"></sf-symbol>
-							</div>
 						</div>
 					</div>
 

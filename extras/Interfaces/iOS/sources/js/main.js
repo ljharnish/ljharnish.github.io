@@ -1,3 +1,8 @@
+document.querySelectorAll('img').forEach((el) => {
+    el.draggable = false;
+    el.style.pointerEvents = 'none';
+});
+
 class SFSymbol extends HTMLElement {
     static observedAttributes = ['glyph', 'color'];
 

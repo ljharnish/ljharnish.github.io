@@ -9,6 +9,7 @@ div#topBar > div#dynamicIslandSpace {
 }
 
 div#dynamicIsland {
+    overflow: hidden;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -25,6 +26,14 @@ div#di_left, div#di_right {
     transition: 0.5s opacity ease-in-out;
     aspect-ratio: 1;
     padding: 5px;
+}
+
+div#di_left {
+    padding-left: 8px;
+}
+
+div#di_right {
+    padding-right: 8px;
 }
 
 div#di_left img, div#di_right img,
@@ -108,4 +117,59 @@ div#DYNAMIC_call_buttons button#DYNAMIC_call_decline sf-symbol {
 
 div#DYNAMIC_call_buttons button#DYNAMIC_call_accept sf-symbol {
     scale: 1.4;
+}
+
+div#DYNAMIC_fullwidththin_items {
+    width: 100%;
+    height: 100%;
+    
+    display: flex;
+    padding: 0 14px;
+    align-items: center;
+    font-size: 18px;
+}
+
+div#DYNAMIC_fullwidththin_items p {
+    flex: 1 1 auto;
+}
+
+div#DYNAMIC_fullwidththin_icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    aspect-ratio: 1;
+    border-radius: 100%;
+    color: #bbffb4;
+}
+
+div#DYNAMIC_fullwidththin_icon_battery {
+    background: #42743c;
+    margin: 0 5px;
+    width: 40px;
+    border-radius: 9px;
+    height: 25px;
+    position: relative;
+}
+
+div#DYNAMIC_fullwidththin_icon_battery::before {
+    position: absolute;
+    content: '';
+    background: #42743c;
+    width: 3px;
+    height: 10px;
+    
+    border-top-right-radius: 9px;
+    border-bottom-right-radius: 9px;
+
+    top: 50%;
+    transform: translate(0, -50%);
+    right: -5px;
+}
+
+div#DYNAMIC_fullwidththin_icon_battery div {
+    border-top-left-radius: 9px;
+    border-bottom-left-radius: 9px;
+    background: #bbffb4;
+    height: 100%;
 }
