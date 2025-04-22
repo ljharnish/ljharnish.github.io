@@ -5,12 +5,6 @@
 	font-family: 'SF Pro Display';
 }
 
-@media (orientation: portrait) {
-	  body {
-	    	scale: 0.6;
-	  }
-}
-
 body {
 	width: 100vw;
 	height: 100vh;
