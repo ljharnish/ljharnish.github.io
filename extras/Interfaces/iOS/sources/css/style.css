@@ -48,51 +48,6 @@ div#iphoneOverlay, div#iphoneDynamicIslandOverlay {
 	aspect-ratio: 1/2;
 }
 
-div#iphoneDynamicIslandOverlay {
-    z-index: 10000;
-	background-image: url(../image/dynamicislandoverlay.png);
-}
-
-div#dynamicIsland {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    left: 50%;
-    top: 12px;
-    z-index: 9999;
-	pointer-events: none;
-	position: absolute;
-    background: black;
-	background-size: contain;
-    border-radius: 999px;
-	height: 41px;
-	width: 142px;
-    transform: translate(-50%, 0%);
-
-    transition: width 1s cubic-bezier(.68,-0.55,.27,1.55);
-}
-
-div#dynamicIsland.open {
-    width: 205px;
-}
-
-div#di_left, div#di_right {
-    opacity: 0;
-    transition: 0.5s opacity ease-in-out;
-    aspect-ratio: 1;
-    padding: 5px;
-}
-
-div#di_left img, div#di_right img {
-    height: 100%;
-}
-
-div#dynamicIsland.open div#di_left,
-div#dynamicIsland.open div#di_right {
-    opacity: 1;
-    transition: 1.3s opacity ease-in-out;
-}
-
 div#iosHolder {
 	padding: 32px;
 	padding-right: 36px;
@@ -114,7 +69,7 @@ div#topBar {
 	color: white;
 	font-size: 0.75vw;
 	width: 100%;
-	height: 70px;
+	height: 68px;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -170,7 +125,7 @@ div.homeIcon img {
 div#HS_Icons div.widgetSmall {
 	overflow: hidden;
 	border-radius: 20px;
-	background: linear-gradient(to bottom, rgb(37, 45, 88), rgb(0, 0, 0)), url(../image/widget-small.png);
+	background: linear-gradient(to bottom, rgb(37, 45, 88), rgb(0, 0, 0));
 	margin: 10px;
 	grid-column: span 2;
 	grid-row: span 2;

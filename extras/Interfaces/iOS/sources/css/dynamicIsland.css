@@ -1,0 +1,111 @@
+div#iphoneDynamicIslandOverlay {
+    z-index: 10000;
+	background-image: url(../image/dynamicislandoverlay.png);
+}
+
+div#topBar > div#dynamicIslandSpace {
+    height: 42px;
+    align-items: baseline;
+}
+
+div#dynamicIsland {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background: black;
+	background-size: contain;
+    border-radius: 999px;
+	height: 42px;
+	width: 142px;
+    transition: width 1s cubic-bezier(.68,-0.55,.27,1.55), height 1s cubic-bezier(.68,-0.55,.27,1.55);
+}
+
+div#di_left, div#di_right {
+    opacity: 0;
+    transition: 0.5s opacity ease-in-out;
+    aspect-ratio: 1;
+    padding: 5px;
+}
+
+div#di_left img, div#di_right img,
+div#di_left sf-symbol, div#di_right sf-symbol {
+    height: 100%;
+}
+
+div.topBar-time, div.topBar-right {
+    transition: 0.5s opacity ease-in-out, 0.5s width ease-in-out;
+}
+
+div.topBar-right div {
+    display: flex;
+    width: initial;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s opacity ease-in-out, 0.5s width ease-in-out;
+}
+
+div#dynamicIsland.DYNAMIC_newpopup_open {
+    width: 220px;
+}
+
+div#dynamicIsland.DYNAMIC_newpopup_open div#di_left,
+div#dynamicIsland.DYNAMIC_newpopup_open div#di_right {
+    opacity: 1;
+    transition: 1.3s opacity ease-in-out;
+}
+
+div#dynamicIsland.DYNAMIC_fullwidth_thin_open {
+    width: 380px;
+}
+
+div#dynamicIsland.DYNAMIC_fullwidth_fat_open {
+    height: 90px;
+    width: 400px;
+    padding: 19px;
+}
+
+div#DYNAMIC_call_iconname, div#DYNAMIC_call_buttons {
+    display: flex;
+    align-items: center;
+}
+
+div#DYNAMIC_call_iconname img {
+    margin-right: 10px;
+    height: 100%;
+    aspect-ratio: 1;
+    border-radius: 100%;
+}
+
+div#DYNAMIC_call_iconname p {
+    margin-top: 5px;
+    font-size: 16px;
+}
+
+div#DYNAMIC_call_buttons button {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    aspect-ratio: 1;
+    border-radius: 100%;
+    border: none;
+}
+
+div#DYNAMIC_call_buttons button#DYNAMIC_call_decline {
+    background: #e22b28;
+    margin-right: 5px;
+}
+
+div#DYNAMIC_call_buttons button#DYNAMIC_call_accept {
+    background: #13dd00;
+    margin-right: 5px;
+}
+
+div#DYNAMIC_call_buttons button#DYNAMIC_call_decline sf-symbol {
+    scale: 0.8;
+}
+
+div#DYNAMIC_call_buttons button#DYNAMIC_call_accept sf-symbol {
+    scale: 1.4;
+}

@@ -8,6 +8,8 @@
 		<!-- CSS -->
 	
 		<link rel="stylesheet" href="./sources/css/style.css">
+		<link rel="stylesheet" href="./sources/css/debugOptions.css">
+		<link rel="stylesheet" href="./sources/css/dynamicIsland.css">
 		<link rel="stylesheet" href="./sources/fonts/sf-pro-display.css">
 
 		<link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon.png">
@@ -29,9 +31,18 @@
 	<body class="">
         <!--? Debug Stuff -->
 
-        <div id="debugOptions" style="z-index:10001;position: absolute;left: 0;bottom: 0;width: 80%;">
-            <button style="width: 90px;" onclick="document.getElementById('dynamicIsland').classList.add('open')">Open DI</button>
-            <button style="width: 90px;" onclick="document.getElementById('dynamicIsland').classList.remove('open')">Close DI</button>
+        <div id="debugOptions">
+			<h1>Debug Controls</h1>
+			<div class="sides">
+				<button style="width: 90px;" onclick="DynamicIslandInteract('new-popup')">DI Popup</button>
+				<button style="width: 90px;" onclick="DynamicIslandInteract('close-popup')">Close DI Popup</button>
+	
+				<button style="width: 90px;" onclick="DynamicIslandInteract('full-width-thin')">DI Full-Width Thin</button>
+				<button style="width: 90px;" onclick="DynamicIslandInteract('close-full-width-thin')">Close FWT DI</button>
+				
+				<button style="width: 90px;" onclick="DynamicIslandInteract('full-width-fat')">DI Call (FullWidthFat)</button>
+				<button style="width: 90px;" onclick="DynamicIslandInteract('close-full-width-fat')">Close FWF DI</button>
+			</div>
         </div>
 
 		<div id="iphoneScreenshots" style="position: absolute;left: 0;top: 0;width: 30%;">
@@ -46,29 +57,30 @@
 
 		<div id="iosHolder">
 			<div id="ios18">
-                <div id="dynamicIsland" class="open">
-                    <div id="di_left">
-                        <img src="./sources/image/App Icons/music.png" alt="Apple Music">
-                    </div>
-                    <div id="di_right">
-                        <sf-symbol glyph="waveform" color="white"></sf-symbol>
-                    </div>
-                </div>
-
 				<div id="topBar">
-					<!--TODO format these correctly -->
 					<div class="topBar-time">
 						<p id="topBarTimeP">2:27</p>
 					</div>
-					<div id="dynamicIslandSpace"></div>
+
+					<div id="dynamicIslandSpace">
+						<div id="dynamicIsland">
+							<div id="di_left">
+								<img src="./sources/image/App Icons/music.png" alt="Apple Music">
+							</div>
+							<div id="di_right">
+								<sf-symbol glyph="waveform" color="white"></sf-symbol>
+							</div>
+						</div>
+					</div>
+
 					<div class="topBar-right">
-						<div class="service">
+						<div id="tB_service">
 							<sf-symbol glyph="chart.bar.fill" color="white"></sf-symbol>
 						</div>
-						<div class="internet">
+						<div id="tB_internet">
 							<sf-symbol glyph="wifi" color="white"></sf-symbol>
 						</div>
-						<div class="battery">
+						<div id="tB_battery">
 							<sf-symbol glyph="battery.100" color="white"></sf-symbol>
 						</div>
 					</div>
@@ -134,4 +146,5 @@
 	<!-- JS -->
 
 	<script src="./sources/js/main.js"></script>
+	<script src="./sources/js/dynamicIsland.js"></script>
 </html>

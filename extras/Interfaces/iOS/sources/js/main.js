@@ -3,13 +3,7 @@ class SFSymbol extends HTMLElement {
 
     constructor() {
         super();
-    }
-
-    attributeChangedCallback(name, oldValue, newValue) {
-        console.log(
-            `Attribute ${name} has changed from ${oldValue} to ${newValue}.`,
-        );
-    }
+    }WS
 
     connectedCallback() {
         const shadow = this.attachShadow({ mode: "open" });
@@ -21,8 +15,6 @@ class SFSymbol extends HTMLElement {
         } else {
             glyph = './sources/sf-symbols/glyphs_white/' + this.getAttribute("glyph") + '.png';
         }
-
-        console.log(glyph);
 
         const showGlyph = document.createElement("img");
         showGlyph.src = glyph;

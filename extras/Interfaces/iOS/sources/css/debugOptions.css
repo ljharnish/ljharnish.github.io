@@ -1,0 +1,29 @@
+div#debugOptions {
+    z-index: 10001;
+    position: absolute;
+    left: 10px;
+    bottom: 50%;
+    transform: translate(0, 50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: aqua;
+    padding: 15px;
+    border-radius:10px;
+}
+
+div#debugOptions > div.sides {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+}
+
+
+div#debugOptions button {
+    cursor: pointer;
+   padding: 5px;
+   margin: 5px;
+}
