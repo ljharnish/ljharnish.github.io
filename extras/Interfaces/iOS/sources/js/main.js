@@ -33,3 +33,10 @@ class SFSymbol extends HTMLElement {
 }
 
 customElements.define('sf-symbol', SFSymbol);
+
+
+document.querySelectorAll('div.homeIcon').forEach((el) => { 
+    el.addEventListener('click', () => {
+        console.log(el.children[0].alt)
+    })
+})
