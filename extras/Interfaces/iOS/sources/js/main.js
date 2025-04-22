@@ -40,3 +40,10 @@ document.querySelectorAll('div.homeIcon').forEach((el) => {
         console.log(el.children[0].alt)
     })
 })
+
+let details = navigator.userAgent; 
+let regexp = /android|iphone|kindle|ipad/i; 
+let isMobileDevice = regexp.test(details); 
+if (isMobileDevice) { 
+    document.body.scale = '0.6';
+}
