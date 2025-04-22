@@ -45,15 +45,16 @@ let details = navigator.userAgent;
 let regexp = /android|iphone|kindle|ipad/i; 
 let isMobileDevice = regexp.test(details); 
 if (isMobileDevice) { 
-    document.body.style.scale = '0.6';
+    document.body.classList.add('mobile')
 }
 
 function setTime() {
     let time = new Date(Date.now());
 
     let hours = time.getHours();
+    hours = hours % 12;
     let mins = time.getMinutes();
-    if(mins < 10) mins = 0 + mins;
+    if(mins < 10) mins = '0' + mins;
 
     const timeStr = hours + ":" + mins;
 
