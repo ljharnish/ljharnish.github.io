@@ -27,9 +27,19 @@
 
 	<!--? style="showBoxes" For showing layout. -->
 	<body class="">
+        <!--? Debug Stuff -->
+
+        <div id="debugOptions" style="position: absolute;left: 0;bottom: 0;width: 80%;">
+            <button style="width: 90px;" onclick="document.getElementById('dynamicIsland').classList.add('open')">Open DI</button>
+            <button style="width: 90px;" onclick="document.getElementById('dynamicIsland').classList.remove('open')">Close DI</button>
+        </div>
+
 		<div id="iphoneScreenshots" style="position: absolute;left: 0;top: 0;width: 30%;">
 			<img src="./sources/image/phg5rn01.bmp" alt="" style="width: 100%;height: 100%;">
 		</div>
+
+
+        <!--? Actual Stuff -->
 
 		<div id="iphoneOverlay"></div>
 		<div id="iphoneDynamicIslandOverlay"></div>

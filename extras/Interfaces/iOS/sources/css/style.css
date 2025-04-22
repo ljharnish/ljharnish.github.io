@@ -51,10 +51,6 @@ div#iphoneDynamicIslandOverlay {
 	background-image: url(../image/dynamicislandoverlay.png);
 }
 
-div#dynamicIsland.open {
-    width: 205px;
-}
-
 div#dynamicIsland {
     display: flex;
     flex-direction: row;
@@ -74,13 +70,25 @@ div#dynamicIsland {
     transition: width 1s cubic-bezier(.68,-0.55,.27,1.55);
 }
 
+div#dynamicIsland.open {
+    width: 205px;
+}
+
 div#di_left, div#di_right {
+    opacity: 0;
+    transition: 0.5s opacity ease-in-out;
     aspect-ratio: 1;
     padding: 5px;
 }
 
 div#di_left img, div#di_right img {
     height: 100%;
+}
+
+div#dynamicIsland.open div#di_left,
+div#dynamicIsland.open div#di_right {
+    opacity: 1;
+    transition: 1.3s opacity ease-in-out;
 }
 
 div#iosHolder {
