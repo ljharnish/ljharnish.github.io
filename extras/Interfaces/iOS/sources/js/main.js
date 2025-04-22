@@ -47,3 +47,17 @@ let isMobileDevice = regexp.test(details);
 if (isMobileDevice) { 
     document.body.style.scale = '0.6';
 }
+
+function setTime() {
+    let time = new Date(Date.now());
+
+    let hours = time.getHours();
+    let mins = time.getMinutes();
+    if(mins < 10) mins = 0 + mins;
+
+    const timeStr = hours + ":" + mins;
+
+    return timeStr;
+}
+
+const timeInterval = setInterval(() => { document.getElementById('topBarTimeP').innerText = setTime() })
