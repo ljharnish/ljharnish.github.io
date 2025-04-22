@@ -45,5 +45,5 @@ let details = navigator.userAgent;
 let regexp = /android|iphone|kindle|ipad/i; 
 let isMobileDevice = regexp.test(details); 
 if (isMobileDevice) { 
-    document.body.scale = '0.6';
+    document.body.style.scale = '0.6';
 }
