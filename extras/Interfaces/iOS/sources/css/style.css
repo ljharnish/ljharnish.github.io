@@ -25,7 +25,8 @@ body.mobile div#iosHolder {
 }
 
 body.mobile div#iosHolder div#ios18 {
-    width	
+    width: 100%;	
+	height: 
     border-radius: 0 !important;
 }
 
