@@ -25,21 +25,46 @@
         <!--? Debug Stuff -->
 
         <div id="debugOptions">
-			<h1>Debug Controls</h1>
 			<div class="sides">
-				<button onclick="document.getElementById('debugOptions').remove();document.getElementById('iphoneScreenshots').remove();">Close Extras</button>
-
-				<button onclick="document.body.classList.toggle('showBoxes')">Toggle Layout Boxes</button>
+				<p style="color:#188ef0;text-align:center;font-weight:900;">Show<br>Layout</p>
 				
-                <button onclick="DynamicIslandShowcase('NewNotification')">Music Popup</button>
+				<button onclick="document.body.classList.toggle('showBoxes')">
+					<sf-symbol glyph="rectangle.3.offgrid.fill" color="white"></sf-symbol>
+				</button>
+
+				<p style="color:#188ef0;text-align:center;font-weight:900;margin-top:30px;">Dynamic<br>Island</p>
+				
+                <button onclick="DynamicIslandShowcase('NewNotification')">
+					<sf-symbol glyph="play.rectangle.fill" color="white"></sf-symbol>
+				</button>
 	
-				<button onclick="DynamicIslandShowcase('Charging')">Charge Popup</button>
+				<button onclick="DynamicIslandShowcase('Charging')">
+					<sf-symbol glyph="checkmark.rectangle.fill" color="white"></sf-symbol>
+				</button>
 				
-				<button onclick="DynamicIslandShowcase('NewCall')">Call Popup</button>
+				<button onclick="DynamicIslandShowcase('NewCall')">
+					<sf-symbol glyph="person.crop.rectangle.fill" color="white"></sf-symbol>
+				</button>
 
-				<button onclick="DynamicIslandShowcase('Empty')">Close Popup</button>
+				<button onclick="DynamicIslandShowcase('Empty')">
+					<sf-symbol glyph="xmark.rectangle.fill" color="white"></sf-symbol>
+				</button>
 
-				<button onclick="closeApp()">Close App</button>
+				<p style="color:#188ef0;text-align:center;font-weight:900;margin-top:30px;">Close<br>Extras</p>
+
+				<button onclick="document.getElementById('debugOptions').remove();">
+					<sf-symbol glyph="chevron.left.square" color="white"></sf-symbol>
+				</button>
+
+				<button onclick="document.getElementById('iphoneScreenshots').remove();">
+					<sf-symbol glyph="photo" color="white"></sf-symbol>
+				</button>
+
+				<p style="color:#188ef0;text-align:center;font-weight:900;margin-top:30px;">Exit<br>App</p>
+
+				<button onclick="closeApp()">
+					<sf-symbol glyph="xmark.square.fill" color="white"></sf-symbol>
+				</button>
 			</div>
         </div>
 

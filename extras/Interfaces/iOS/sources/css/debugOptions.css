@@ -60,13 +60,12 @@ div#debugOptions {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: aqua;
+    background: #464646;
     padding: 15px;
     border-radius:10px;
 }
 
 div#debugOptions > div.sides {
-    margin-top: 15px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -75,7 +74,18 @@ div#debugOptions > div.sides {
 
 
 div#debugOptions button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    left: 5px;
+    bottom: 5px;
+    padding: 10px;
+    border: none;
+    background: #188ef0;
+    border-radius: 10px;
     cursor: pointer;
-   padding: 5px;
-   margin: 5px;
+    padding: 15px;
+    margin: 5px;
 }
