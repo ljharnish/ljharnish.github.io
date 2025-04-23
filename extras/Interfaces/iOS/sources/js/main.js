@@ -33,7 +33,7 @@ customElements.define('sf-symbol', SFSymbol);
 
 
 document.querySelectorAll('div.homeIcon').forEach((el) => { 
-    el.addEventListener('click', () => {
+    el.children[0].addEventListener('click', () => {
         el.classList.add('homeIconClick');
 
         let newApp = document.createElement('div');
@@ -43,6 +43,10 @@ document.querySelectorAll('div.homeIcon').forEach((el) => {
         newApp.style.left = el.offsetLeft + 'px';
     
         el.appendChild(newApp);
+
+        setTimeout(() => {
+            openNewApp('./sources/html/' + el.getAttribute('app') + 'App.html');
+        }, 500)
 
         setTimeout(() => {
             newApp.remove();
@@ -70,4 +74,36 @@ function setTime() {
     return timeStr;
 }
 
-const timeInterval = setInterval(() => { document.getElementById('topBarTimeP').innerText = setTime() })
+const timeInterval = setInterval(() => { document.getElementById('topBarTimeP').innerText = setTime() });
+
+
+function openNewApp(link) {
+    let currentApp = document.getElementById('currentApp');
+    if(currentApp.classList.contains('noApp')) currentApp.classList.remove('noApp');
+    currentApp.children[0].src = link;
+
+    currentApp.children[0].onload = () => {
+        let theme = currentApp.children[0].contentDocument.querySelector('meta[theme]').getAttribute('theme')
+
+        if(theme == 'light') {
+            document.getElementById('topBarTimeP').style.color = 'black';
+            document.querySelectorAll('.topBar-right > div').forEach((el) => {
+                el.style.filter = 'invert(1)';
+            });
+
+        } else {
+            document.getElementById('topBarTimeP').style.color = 'white';
+        }
+    };
+}
+
+function closeApp() {
+    let currentApp = document.getElementById('currentApp');
+    currentApp.classList.add('noApp');
+    currentApp.children[0].src = '';
+
+    document.getElementById('topBarTimeP').style.color = '';
+    document.querySelectorAll('.topBar-right > div').forEach((el) => {
+        el.style.filter = '';
+    });
+}

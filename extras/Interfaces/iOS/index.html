@@ -34,13 +34,15 @@
         <div id="debugOptions">
 			<h1>Dynamic Island Controls</h1>
 			<div class="sides">
-				<button style="width: 90px;" onclick="DynamicIslandShowcase('NewNotification')">Music Popup</button>
+				<button onclick="DynamicIslandShowcase('NewNotification')">Music Popup</button>
 	
-				<button style="width: 90px;" onclick="DynamicIslandShowcase('Charging')">Charge Popup</button>
+				<button onclick="DynamicIslandShowcase('Charging')">Charge Popup</button>
 				
-				<button style="width: 90px;" onclick="DynamicIslandShowcase('NewCall')">Call Popup</button>
+				<button onclick="DynamicIslandShowcase('NewCall')">Call Popup</button>
 
-				<button style="width: 90px;" onclick="DynamicIslandShowcase('Empty')">Close Popup</button>
+				<button onclick="DynamicIslandShowcase('Empty')">Close Popup</button>
+
+				<button onclick="closeApp()">Close App</button>
 			</div>
         </div>
 
@@ -100,7 +102,7 @@
 						<div class="homeIcon">
 							<img src="./sources/image/App Icons/photos.webp" alt="Photos">
 						</div>
-						<div class="homeIcon">
+						<div class="homeIcon" app="Settings">
 							<img src="./sources/image/App Icons/settings.webp" alt="Settings">
 						</div>
 						<div class="homeIcon">
@@ -132,6 +134,10 @@
 					</div>
 					
 					<!--! etc -->
+				</div>
+				
+				<div id="currentApp" class="">
+					<iframe src="./sources/html/SettingsApp.html" frameborder="0"></iframe>
 				</div>
 			</div>
 		</div>

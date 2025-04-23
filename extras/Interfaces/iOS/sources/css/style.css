@@ -65,6 +65,7 @@ div#ios18 {
 }
 
 div#topBar {
+	z-index: 9999;
 	position: absolute;
 	color: white;
 	font-size: 0.75vw;
@@ -120,6 +121,7 @@ div.homeIcon {
 }
 
 div.homeIcon img {
+	pointer-events: all !important;
 	width: 100%;
 	user-select: none;
 }
@@ -170,4 +172,23 @@ div.homeIconShow {
 		transform: translate(-50%, -50%) scale(7, 12);
 		filter: contrast(0) brightness(2);
 	}
+}
+
+#currentApp {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 40;
+}
+
+#currentApp.noApp {
+	pointer-events: none;
+	display: none;
+}
+
+#currentApp iframe {
+	width: 100%;
+	height: 100%;
 }
