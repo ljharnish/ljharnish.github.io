@@ -9,6 +9,7 @@ div#topBar > div#dynamicIslandSpace {
 }
 
 div#dynamicIsland {
+    z-index: 9999;
     overflow: hidden;
     display: flex;
     flex-direction: row;

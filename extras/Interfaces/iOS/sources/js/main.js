@@ -34,8 +34,20 @@ customElements.define('sf-symbol', SFSymbol);
 
 document.querySelectorAll('div.homeIcon').forEach((el) => { 
     el.addEventListener('click', () => {
-        console.log(el.children[0].alt)
-    })
+        el.classList.add('homeIconClick');
+
+        let newApp = document.createElement('div');
+        newApp.classList.add('homeIconShow');
+        newApp.innerHTML = `<img src="${el.querySelector('img').src}" alt="">`;
+        newApp.style.top = el.offsetTop + 'px';
+        newApp.style.left = el.offsetLeft + 'px';
+    
+        el.appendChild(newApp);
+
+        setTimeout(() => {
+            newApp.remove();
+        }, 600);
+    });
 })
 
 let details = navigator.userAgent; 

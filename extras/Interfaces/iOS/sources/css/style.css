@@ -82,6 +82,7 @@ div#topBar sf-symbol {
 }
 
 div#topBar > div {
+	user-select: none;
 	width: 100%;
 	display: flex;
 	flex-direction: row;
@@ -120,6 +121,7 @@ div.homeIcon {
 
 div.homeIcon img {
 	width: 100%;
+	user-select: none;
 }
 
 div#HS_Icons div.widgetSmall {
@@ -150,4 +152,22 @@ div#HS_dockInner {
 	padding: 5px;
 	width: auto;
 	background: rgba(255, 255, 255, 0.6);
+}
+
+div.homeIconShow {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100px;
+	height: 100px;
+	animation: openApp 0.5s ease-in-out 1 forwards;
+}
+
+@keyframes openApp {
+	100% {
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%) scale(7, 12);
+		filter: contrast(0) brightness(2);
+	}
 }
