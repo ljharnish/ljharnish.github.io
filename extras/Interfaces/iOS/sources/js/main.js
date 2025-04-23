@@ -61,7 +61,7 @@ function openNewApp(link) {
     });
 
     setTimeout(()=> { 
-        if(currentApp.children[0].contentDocument.body.innerText.includes('Cannot GET')) {
+        if(currentApp.children[0].contentDocument.body.innerText.includes('Cannot GET') || currentApp.children[0].contentDocument.body.innerText.includes('404')) {
             closeApp();
         } 
     }, 300)
