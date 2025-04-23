@@ -23,6 +23,7 @@ div#dynamicIsland {
 }
 
 div#di_left, div#di_right {
+    height: 100%;
     opacity: 0;
     transition: 0.5s opacity ease-in-out;
     aspect-ratio: 1;
@@ -69,14 +70,22 @@ div#dynamicIsland.DYNAMIC_fullwidth_thin_open {
 }
 
 div#dynamicIsland.DYNAMIC_fullwidth_fat_open {
+    display: flex;
+    justify-content: space-between;
     height: 90px;
     width: 400px;
     padding: 19px;
 }
 
 div#DYNAMIC_call_iconname, div#DYNAMIC_call_buttons {
+    height: 100%;
     display: flex;
     align-items: center;
+    width: 50%;
+}
+
+div#DYNAMIC_call_buttons {
+    justify-content: right;
 }
 
 div#DYNAMIC_call_iconname img {
