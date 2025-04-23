@@ -1,3 +1,55 @@
+
+body.showBoxes div#iosHolder {
+	background: red !important;
+}
+
+body.showBoxes div#topBar {
+	background: rgb(0, 255, 221) !important;
+}
+
+body.showBoxes div.topBar-time,
+body.showBoxes div#dynamicIslandSpace,
+body.showBoxes div.topBar-right {
+	background: rgb(29, 102, 92) !important;
+}
+
+body.showBoxes div.topBar-time p,
+body.showBoxes div.topBar-right div {
+	background: rgb(121, 187, 0) !important;
+}
+
+body.showBoxes div#dynamicIsland {
+	background: rgb(98, 0, 255) !important;
+}
+
+body.showBoxes div#ios18 {
+	background: gold !important;
+}
+
+body.showBoxes div.homeIcon {
+    background: greenyellow !important;
+}
+
+body.showBoxes div.homeIconShow {
+    background: rgb(61, 47, 255) !important;
+}
+
+body.showBoxes div.widgetSmall {
+    background: rgb(255, 47, 168) !important;
+}
+
+body.showBoxes div#homeScreen {
+    background: rgb(126, 88, 31) !important;
+}
+
+body.showBoxes div#HS_Icons {
+    background: rgb(255, 153, 0) !important;
+}
+
+body.showBoxes div#HS_Dock {
+    background: magenta !important;
+}
+
 div#debugOptions {
     z-index: 10001;
     position: absolute;

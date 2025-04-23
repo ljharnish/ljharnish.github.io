@@ -18,23 +18,18 @@
 	        <link rel="manifest" href="/site.webmanifest">
 	</head>
 
-	<!--TODO: Fonts & Icons -->
 	<!--TODO: Unlock & Relock -->
 	<!--TODO: Clickable Side Buttons -->
-	<!--TODO: Smooth Animations -->
-	
-	<!--! TODO: DYNAMIC ISLAND. -->
-	<!--! TODO: THAT WILL SUCK. -->
-	<!--! TODO: GOOD LUCK BRO.. -->
 
-	<!--? style="showBoxes" For showing layout. -->
 	<body class="">
         <!--? Debug Stuff -->
 
         <div id="debugOptions">
-			<h1>Dynamic Island Controls</h1>
+			<h1>Debug Controls</h1>
 			<div class="sides">
-				<button onclick="DynamicIslandShowcase('NewNotification')">Music Popup</button>
+				<button onclick="document.body.classList.toggle('showBoxes')">Toggle Layout Boxes</button>
+				
+                <button onclick="DynamicIslandShowcase('NewNotification')">Music Popup</button>
 	
 				<button onclick="DynamicIslandShowcase('Charging')">Charge Popup</button>
 				
@@ -136,8 +131,8 @@
 					<!--! etc -->
 				</div>
 				
-				<div id="currentApp" class="">
-					<iframe src="./sources/html/SettingsApp.html" frameborder="0"></iframe>
+				<div id="currentApp" class="noApp">
+					<iframe src="" frameborder="0"></iframe>
 				</div>
 			</div>
 		</div>

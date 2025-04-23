@@ -11,7 +11,7 @@ setTimeout(() => {
     service.style.width = service.scrollWidth + 'px';
     internet.style.width = internet.scrollWidth + 'px';
     battery.style.width = battery.scrollWidth + 'px';
-}, 200);
+}, 300);
 
 function DynamicIslandInteract(type) {
     function hideAndSizeElement(el, hide) {

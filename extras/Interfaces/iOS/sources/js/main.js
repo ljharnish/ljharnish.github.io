@@ -23,13 +23,6 @@ document.querySelectorAll('div.homeIcon').forEach((el) => {
     });
 })
 
-let details = navigator.userAgent; 
-let regexp = /android|iphone|kindle|ipad/i; 
-let isMobileDevice = regexp.test(details); 
-if (isMobileDevice) { 
-    document.body.classList.add('mobile')
-}
-
 function setTime() {
     let time = new Date(Date.now());
 
@@ -52,8 +45,10 @@ function openNewApp(link) {
     if(currentApp.classList.contains('noApp')) currentApp.classList.remove('noApp');
 
     currentApp.children[0].addEventListener('load', () => {
-        let theme = currentApp.children[0].contentDocument.querySelector('meta[theme]').getAttribute('theme')
-
+        if(document.getElementById('currentApp').children[0].attributes.src.value == '') return;
+        
+        let theme = currentApp.children[0].contentDocument.head.querySelector('meta[theme]').getAttribute('theme')
+        
         if(theme == 'light') {
             document.getElementById('topBarTimeP').style.color = 'black';
             document.querySelectorAll('.topBar-right > div').forEach((el) => {
@@ -64,6 +59,12 @@ function openNewApp(link) {
             document.getElementById('topBarTimeP').style.color = 'white';
         }
     });
+
+    setTimeout(()=> { 
+        if(currentApp.children[0].contentDocument.body.innerText.includes('Cannot GET')) {
+            closeApp();
+        } 
+    }, 300)
 }
 
 function closeApp() {
