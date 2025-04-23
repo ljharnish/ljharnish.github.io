@@ -7,6 +7,16 @@
         <meta theme="light">
 
         <style>
+            :root {
+                --red: #f00;
+                --orange: #ff9400;
+                --yellow: #ff0;
+                --green: #34c659;
+                --blue: #0079ff;
+                --grey: #87878c;
+            }
+
+
             body {
                 background: #f2f2f7;
                 display: block;
@@ -85,6 +95,87 @@
                 background: none;
             }
 
+            div.settingsCategory {
+                margin: 30px 0;
+                background: white;
+                border-radius: 10px;
+                overflow: hidden;
+            }
+
+            div.setting {
+                width: 100%;
+                height: 50px;
+                background: white;
+                display: flex;
+                padding: 0 15px;
+                flex-direction: row;
+            }
+
+            div.setting div.iconSide {
+                display: flex;
+                align-items: center;
+                height: 100%;
+                padding: 8px 0;
+            }
+
+            div.setting div.iconSide div.icon {
+                height: 100%;
+                aspect-ratio: 1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 7px;
+                padding: 6px;
+                margin-right: 15px;
+            }
+
+            div.setting div.iconSide div.icon sf-symbol {
+                height: 100%;
+                aspect-ratio: 1;
+            }
+
+            div.setting div.textAndMore {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                flex: 1 1 auto;
+                font-size: 20px;
+                border-bottom: 1px solid #eee;
+            }
+
+            div.setting:last-of-type div.textAndMore {
+                border-bottom: none;
+            }
+
+            div.setting div.textAndMore div.textArrow {
+                display: flex;
+                align-items: center;
+                color: #87878c;
+            }
+
+            div.setting div.textAndMore div.textArrow sf-symbol {
+                height: 20px;
+                margin-left: 10px;
+                filter: brightness(0.5);
+            }
+
+            .orange-icon {
+                background: var(--orange);
+            }
+            
+            .green-icon {
+                background: var(--green);
+            }
+
+            .blue-icon {
+                background: var(--blue);
+            }
+
+            .grey-icon {
+                background: var(--grey);
+            }
+
         </style>
     </head>
     <body>
@@ -107,6 +198,37 @@
                 <sf-symbol style="display:block;height:20px;filter:invert(1) brightness(0.5)" glyph="chevron.right" color="black"></sf-symbol>
             </button>
         </div>
+
+        <div class="settingsCategory">
+            <div class="setting">
+                <div class="iconSide">
+                    <div class="icon orange-icon">
+                        <sf-symbol glyph="airplane" color="white"></sf-symbol>
+                    </div>
+                </div>
+
+                <div class="textAndMore">
+                    <p>Airplane Mode</p>
+                    <input type="checkbox" name="" id="">
+                </div>
+            </div>
+            <div class="setting">
+                <div class="iconSide">
+                    <div class="icon blue-icon">
+                        <sf-symbol glyph="wifi" color="white"></sf-symbol>
+                    </div>
+                </div>
+
+                <div class="textAndMore">
+                    <p>Wi-Fi</p>
+                    <div class="textArrow">
+                        <p>HomeNet</p>
+                        <sf-symbol glyph="chevron.right" color="white"></sf-symbol>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
-	<script src="./global-js/customElements.js"></script>
+	<script src="./all-js/customElements.js"></script>
+	<script src="./all-js/settingsLoader.js"></script>
 </html>
