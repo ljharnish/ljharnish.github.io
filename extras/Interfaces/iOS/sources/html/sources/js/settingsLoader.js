@@ -1,0 +1,388 @@
+const settingsTable = {
+    categories: [
+        [
+            {  
+                name: "Airplane Mode", 
+                icon: {
+                    color: 'orange',
+                    glyph: 'airplane'
+                },
+                right: {
+                    type: 'switch',
+                    onChange: function (value) {
+                        console.log("Airplane Mode toggled to: " + value);
+                    }
+                }
+            },
+            {  
+                name: "Wi-Fi", 
+                icon: {
+                    color: 'blue',
+                    glyph: 'wifi'
+                },
+                right: {
+                    text: "Network",
+                    type: 'arrow'
+                }
+            },
+            {  
+                name: "Bluetooth", 
+                icon: {
+                    color: 'blue',
+                    glyph: 'bluetooth'
+                },
+                right: {
+                    text: "On",
+                    type: 'arrow'
+                }
+            },
+            {  
+                name: "Cellular", 
+                icon: {
+                    color: 'green',
+                    glyph: 'antenna.radiowaves.left.and.right'
+                },
+                right: {
+                    type: 'arrow'
+                }
+            },
+            {  
+                name: "Personal Hotspot", 
+                icon: {
+                    fixedHeight: '75',
+                    color: 'green',
+                    glyph: 'personalhotspot'
+                },
+                right: {
+                    type: 'arrow'
+                }
+            },
+            {  
+                name: "Battery", 
+                icon: {
+                    fixedHeight: '75',
+                    color: 'green',
+                    glyph: 'battery.100'
+                },
+                right: {
+                    type: 'arrow'
+                }
+            }
+        ],
+        [
+            {  
+                name: "General", 
+                icon: {
+                    color: 'grey',
+                    glyph: 'gear'
+                },
+                right: {
+                    type: 'arrow'
+                }
+            },
+            {  
+                name: "Accessibility", 
+                icon: {
+                    color: 'blue',
+                    glyph: 'person.circle'
+                },
+                right: {
+                    type: 'arrow'
+                }
+            },
+            {  
+                name: "Camera", 
+                icon: {
+                    color: 'grey',
+                    glyph: 'camera.fill'
+                },
+                right: {
+                    type: 'arrow'
+                }
+            },
+            {  
+                name: "Control Center", 
+                icon: {
+                    color: 'grey',
+                    glyph: 'control.center'
+                },
+                right: {
+                    type: 'arrow'
+                }
+            },
+            {  
+                name: "Display & Brightness", 
+                icon: {
+                    color: 'blue',
+                    glyph: 'sun.max.fill'
+                },
+                right: {
+                    type: 'arrow'
+                }
+            },
+            {  
+                name: "Home Screen & App Library", 
+                icon: {
+                    color: 'blue',
+                    glyph: 'app.badge.fill'
+                },
+                right: {
+                    type: 'arrow'
+                }
+            },
+            {  
+                name: "Search", 
+                icon: {
+                    color: 'grey',
+                    glyph: 'magnifyingglass'
+                },
+                right: {
+                    type: 'arrow'
+                }
+            },
+            {  
+                name: "Siri", 
+                icon: {
+                    image: '../image/Siri-Square.jpg',
+                },
+                right: {
+                    type: 'arrow'
+                }
+            },
+            {
+                name: "Wallpaper",
+                icon: {
+                    color: 'light-blue',
+                    glyph: 'wand.and.rays.inverse'
+                },
+                right: {
+                    type: 'arrow'
+                }
+            }
+        ],
+        [
+            {  
+                name: "Notifications",
+
+                icon: {
+                    color: 'red',
+                    glyph: 'bell.fill'
+                },
+                right: {
+                    type: 'arrow'
+                }
+            },
+            {  
+                name: "Sounds & Haptics",
+
+                icon: {
+                    fixedHeight: '75',
+                    color: 'pink',
+                    glyph: 'speaker.3.fill'
+                },
+                right: {
+                    type: 'arrow'
+                }
+            },
+            {  
+                name: "Focus",
+
+                icon: {
+                    color: 'purple',
+                    glyph: 'moon.fill'
+                },
+                right: {
+                    type: 'arrow'
+                }
+            },
+            {  
+                name: "Screen Time",
+
+                icon: {
+                    color: 'purple',
+                    glyph: 'hourglass'
+                },
+                right: {
+                    type: 'arrow'
+                }
+            }
+        ],
+        [
+            {  
+                name: "Face ID & Passcode",
+
+                icon: {
+                    color: 'green',
+                    glyph: 'faceid'
+                },
+                right: {
+                    type: 'arrow'
+                }
+            },
+            {  
+                name: "Emergency SOS",
+
+                icon: {
+                    color: 'red',
+                    glyph: 'staroflife.fill'
+                },
+                right: {
+                    type: 'arrow'
+                }
+            },
+            {  
+                name: "Privacy & Security",
+
+                icon: {
+                    color: 'blue',
+                    glyph: 'hand.raised.fill'
+                },
+                right: {
+                    type: 'arrow'
+                }
+            }
+        ],
+        [
+            {  
+                name: "Assets by Apple",
+
+                icon: {
+                    color: 'grey',
+                    glyph: 'camera.fill'
+                },
+                right: {
+                    type: 'arrow'
+                }
+            },
+            {  
+                name: "Code by ljharnish",
+
+                icon: {
+                    color: 'grey',
+                    glyph: 'command'
+                },
+                right: {
+                    type: 'arrow'
+                }
+            },
+            {  
+                name: "Thanks for coming!",
+
+                icon: {
+                    color: 'grey',
+                    glyph: 'heart.circle.fill'
+                },
+                right: {
+                    type: 'arrow'
+                }
+            }
+        ]
+    ]
+};
+
+
+
+const settingsHolder = document.getElementById("settingsHolder");
+
+function loadSettings() {
+    console.log("Loading settings...");
+
+    let settingNum = 0;
+
+    settingsTable.categories.forEach(category => {
+        if(category.length == 0) return; // Skip empty categories
+        console.log(category)
+
+        const categoryDiv = document.createElement("div");
+        categoryDiv.className = "settingsCategory";
+        
+        
+        category.forEach(setting => {
+            const settingDiv = document.createElement("div");
+            settingDiv.className = "setting";
+            
+            const iconSide = document.createElement("div");
+            iconSide.className = "iconSide";
+
+            
+            const iconInner = document.createElement("div");
+            iconInner.className = "icon " + setting.icon.color + "-icon";
+
+            if(!setting.icon.image) { 
+
+                const iconSymbol = document.createElement("sf-symbol");
+                if(setting.icon.fixedHeight) iconSymbol.style.height = setting.icon.fixedHeight + "%";
+                iconSymbol.setAttribute("glyph", setting.icon.glyph);
+                iconSymbol.setAttribute("color", "white");
+                iconInner.appendChild(iconSymbol);
+
+            } else {
+                iconInner.style.backgroundImage = `url(${setting.icon.image})`;
+            }
+
+            iconSide.appendChild(iconInner);
+
+            settingDiv.appendChild(iconSide);
+
+            const textAndMore = document.createElement("div");
+            textAndMore.className = "textAndMore";
+            textAndMore.innerHTML = `<p>${setting.name}</p>`;
+
+            if(setting.right) {
+                if (setting.right.type === "switch") {
+                    const appleSlider = document.createElement("div");
+                    appleSlider.className = "appleSlider";
+                    appleSlider.addEventListener('click', () => settingToggle(appleSlider));
+
+                    const appleSliderInner = document.createElement("div");
+                    appleSliderInner.className = "appleSliderInner";
+
+                    const appleSliderValue = document.createElement("div");
+                    appleSliderValue.className = "appleSliderValue";
+
+                    appleSliderInner.appendChild(appleSliderValue);
+                    appleSlider.appendChild(appleSliderInner);
+                    textAndMore.appendChild(appleSlider);
+
+                    const switchInput = document.createElement("input");
+                    switchInput.type = "checkbox";
+                    textAndMore.appendChild(switchInput);
+
+                } else if (setting.right.type === "arrow") {
+                    const rightDiv = document.createElement("div");
+                    rightDiv.className = "rightSide";
+
+                    const textArrow = document.createElement("div");
+                    textArrow.className = "textArrow";
+                    if(setting.right.text) textArrow.innerHTML = `<p>${setting.right.text}</p>`;
+                    const arrowIcon = document.createElement("sf-symbol");
+                    arrowIcon.setAttribute("glyph", "chevron.right");
+                    arrowIcon.setAttribute("color", "white");
+                    textArrow.appendChild(arrowIcon);
+                    rightDiv.appendChild(textArrow);
+                    textAndMore.appendChild(rightDiv);
+
+                }
+            }
+
+            settingDiv.appendChild(textAndMore);
+
+            if(settingNum % 2 == 0) { settingDiv.classList.add("even"); }
+
+            setTimeout(() => { categoryDiv.appendChild(settingDiv); }, 150 * settingNum++);
+        });
+
+        settingsHolder.appendChild(categoryDiv);
+    });
+}
+
+function settingToggle(slider) {
+    slider.parentElement.querySelector("input").checked = !slider.parentElement.querySelector("input").checked;
+
+    if(slider.parentElement.querySelector("input").checked) {
+        slider.classList.add("active");
+        return;
+    }
+
+    slider.classList.remove("active");
+}
