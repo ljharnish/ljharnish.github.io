@@ -20,13 +20,44 @@
                 color: #000000;
                 text-align: left;
                 margin-top: 20px;
+                margin-bottom: 20px;
+            }
+
+            #search {
+                width: 100%;
+                background: #e3e3e8;
+                border-radius: 10px;
+                height: 40px;
+                display: flex;
+            }
+
+            #search sf-symbol {
+                display: block;
+                margin: 5px;
+                filter: brightness(0.5);
+            }
+
+            #search #settingsSearch {
+                flex: 1 1 auto;
+                background: none;
+                border: none;
+                font-size: 20px;
+                color: white;
+                filter: brightness(0.5);
+                outline: none;
+            }
+
+            #search #settingsSearch::placeholder {
+                font-weight: 100;
             }
         </style>
     </head>
     <body>
         <h1>Settings</h1>
         <div id="search">
-            <sf-symbol glyph="magnifyingglass" color="black"></sf-symbol>
+            <sf-symbol glyph="magnifyingglass" color="white"></sf-symbol>
+            <input id="settingsSearch" type="text" placeholder="Search">
+            <sf-symbol glyph="mic.fill" color="white"></sf-symbol>
         </div>
     </body>
 	<script src="./global-js/customElements.js"></script>

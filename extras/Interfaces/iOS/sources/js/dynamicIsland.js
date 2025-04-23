@@ -130,8 +130,8 @@ function DynamicIslandSetup(information) {
 
         case 'NewCall':
             island.innerHTML = `<div id="DYNAMIC_call_iconname">
-								<img src="./sources/image/Profile Pictures/Pwq-1eJc_400x400.jpg" alt="">
-								<p>Tim Cook</p>
+								<img src="./sources/image/Profile Pictures/ThugBob.webp" alt="">
+								<p>ThugBob CripPants</p>
 							</div>
 
 							<div id="DYNAMIC_call_buttons">

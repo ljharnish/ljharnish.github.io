@@ -15,13 +15,11 @@ document.querySelectorAll('div.homeIcon').forEach((el) => {
     
         el.appendChild(newApp);
 
-        setTimeout(() => {
-            openNewApp('./sources/html/' + el.getAttribute('app') + 'App.html');
-        }, 500)
+        openNewApp('./sources/html/' + el.getAttribute('app') + 'App.html');
 
         setTimeout(() => {
             newApp.remove();
-        }, 600);
+        }, 1000);
     });
 })
 
@@ -50,8 +48,8 @@ const timeInterval = setInterval(() => { document.getElementById('topBarTimeP').
 
 function openNewApp(link) {
     let currentApp = document.getElementById('currentApp');
-    if(currentApp.classList.contains('noApp')) currentApp.classList.remove('noApp');
     currentApp.children[0].src = link;
+    if(currentApp.classList.contains('noApp')) currentApp.classList.remove('noApp');
 
     currentApp.children[0].onload = () => {
         let theme = currentApp.children[0].contentDocument.querySelector('meta[theme]').getAttribute('theme')
@@ -71,7 +69,7 @@ function openNewApp(link) {
 function closeApp() {
     let currentApp = document.getElementById('currentApp');
     currentApp.classList.add('noApp');
-    currentApp.children[0].src = '';
+    setTimeout(() => { currentApp.children[0].src = ''; }, 450);
 
     document.getElementById('topBarTimeP').style.color = '';
     document.querySelectorAll('.topBar-right > div').forEach((el) => {
