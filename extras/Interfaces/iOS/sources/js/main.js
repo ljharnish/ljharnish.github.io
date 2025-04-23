@@ -3,35 +3,6 @@ document.querySelectorAll('img').forEach((el) => {
     el.style.pointerEvents = 'none';
 });
 
-class SFSymbol extends HTMLElement {
-    static observedAttributes = ['glyph', 'color'];
-
-    constructor() {
-        super();
-    }WS
-
-    connectedCallback() {
-        const shadow = this.attachShadow({ mode: "open" });
-        const color = this.getAttribute("color") || "black";
-        let glyph = this.getAttribute("glyph");
-
-        if(color == 'black') {
-            glyph = './sources/sf-symbols/glyphs/' + this.getAttribute("glyph") + '.png';
-        } else {
-            glyph = './sources/sf-symbols/glyphs_white/' + this.getAttribute("glyph") + '.png';
-        }
-
-        const showGlyph = document.createElement("img");
-        showGlyph.src = glyph;
-        showGlyph.style.height = "100%";
-
-        shadow.appendChild(showGlyph);
-    }
-}
-
-customElements.define('sf-symbol', SFSymbol);
-
-
 document.querySelectorAll('div.homeIcon').forEach((el) => { 
     el.children[0].addEventListener('click', () => {
         el.classList.add('homeIconClick');
