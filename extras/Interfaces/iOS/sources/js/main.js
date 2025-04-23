@@ -51,7 +51,7 @@ function openNewApp(link) {
     currentApp.children[0].src = link;
     if(currentApp.classList.contains('noApp')) currentApp.classList.remove('noApp');
 
-    currentApp.children[0].onload = () => {
+    currentApp.children[0].addEventListener('load', () => {
         let theme = currentApp.children[0].contentDocument.querySelector('meta[theme]').getAttribute('theme')
 
         if(theme == 'light') {
@@ -63,7 +63,7 @@ function openNewApp(link) {
         } else {
             document.getElementById('topBarTimeP').style.color = 'white';
         }
-    };
+    });
 }
 
 function closeApp() {
