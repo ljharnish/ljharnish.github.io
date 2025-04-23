@@ -21,7 +21,7 @@ const settingsTable = {
                     glyph: 'wifi'
                 },
                 right: {
-                    text: "Network",
+                    text: "GeniusBar-Guest",
                     type: 'arrow'
                 }
             },
@@ -65,6 +65,17 @@ const settingsTable = {
                     glyph: 'battery.100'
                 },
                 right: {
+                    type: 'arrow'
+                }
+            },
+            {  
+                name: "VPN", 
+                icon: {
+                    color: 'blue',
+                    glyph: 'globe'
+                },
+                right: {
+                    text: 'Not Connected',
                     type: 'arrow'
                 }
             }
@@ -369,7 +380,7 @@ function loadSettings() {
 
             if(settingNum % 2 == 0) { settingDiv.classList.add("even"); }
 
-            setTimeout(() => { categoryDiv.appendChild(settingDiv); }, 150 * settingNum++);
+            setTimeout(() => { categoryDiv.appendChild(settingDiv); }, 75 * settingNum++);
         });
 
         settingsHolder.appendChild(categoryDiv);

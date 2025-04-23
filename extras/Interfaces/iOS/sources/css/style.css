@@ -154,7 +154,7 @@ div.homeIconShow {
 	top: 0;
 	width: 100px;
 	height: 100px;
-	animation: openApp 0.5s ease-in-out 1 forwards;
+	animation: openApp 0.25s ease-in-out 1 forwards;
 }
 
 @keyframes openApp {
@@ -174,7 +174,7 @@ div.homeIconShow {
 	height: 100%;
 	z-index: 40;
     opacity: 1;
-    transition: 1s opacity ease-in-out;
+    transition: 0.5s opacity ease-in-out;
 }
 
 #currentApp.noApp {

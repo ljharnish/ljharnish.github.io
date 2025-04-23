@@ -9,16 +9,16 @@
         <script>
             function scrollCheck() {
                 if(window.scrollY > 102) {
-                    document.getElementById('scrollTitle').style.display = 'flex';
+                    document.getElementById('scrollTitle').style.opacity = '1';
                 } else {
-                    document.getElementById('scrollTitle').style.display = 'none';
+                    document.getElementById('scrollTitle').style.opacity = '0';
                 }
             }
         </script>
 
     </head>
     <body onload="loadSettings()" onscroll="scrollCheck()">
-        <div id="scrollTitle" style="display: none;">
+        <div id="scrollTitle" style="opacity: 0;">
             <p>Settings</p>
         </div>
 
@@ -31,10 +31,10 @@
         
         <div id="userProfile">
             <div class="picture">
-                <img src="../image/Profile Pictures/ThugBob.webp" alt="">
+                <img src="../image/Profile Pictures/Pwq-1eJc_400x400.jpg" alt="">
             </div>
             <div class="text">
-                <h1>ThugBob</h1>
+                <h1>Tim Cook</h1>
                 <p>Apple Account, iCloud, and more</p>
             </div>
             <button>

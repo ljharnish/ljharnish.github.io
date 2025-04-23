@@ -19,7 +19,7 @@ document.querySelectorAll('div.homeIcon').forEach((el) => {
 
         setTimeout(() => {
             newApp.remove();
-        }, 1000);
+        }, 500);
     });
 })
 
@@ -49,6 +49,8 @@ function openNewApp(link) {
         
         let theme = currentApp.children[0].contentDocument.head.querySelector('meta[theme]').getAttribute('theme')
         
+        currentApp.style.background = currentApp.children[0].contentWindow.getComputedStyle(currentApp.children[0].contentDocument.body).background;
+
         if(theme == 'light') {
             document.getElementById('topBarTimeP').style.color = 'black';
             document.querySelectorAll('.topBar-right > div').forEach((el) => {
@@ -72,6 +74,7 @@ function closeApp() {
     currentApp.classList.add('noApp');
     setTimeout(() => { currentApp.children[0].src = ''; }, 450);
 
+    currentApp.style.background = 'transparent';
     document.getElementById('topBarTimeP').style.color = '';
     document.querySelectorAll('.topBar-right > div').forEach((el) => {
         el.style.filter = '';

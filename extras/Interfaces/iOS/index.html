@@ -27,6 +27,8 @@
         <div id="debugOptions">
 			<h1>Debug Controls</h1>
 			<div class="sides">
+				<button onclick="document.getElementById('debugOptions').remove();document.getElementById('iphoneScreenshots').remove();">Close Extras</button>
+
 				<button onclick="document.body.classList.toggle('showBoxes')">Toggle Layout Boxes</button>
 				
                 <button onclick="DynamicIslandShowcase('NewNotification')">Music Popup</button>
@@ -130,9 +132,9 @@
 					
 					<!--! etc -->
 				</div>
-				
-				<div id="currentApp" class="">
-					<iframe src="./sources/html/SettingsApp.html" frameborder="0"></iframe>
+
+				<div id="currentApp" class="noApp">
+					<iframe src="" frameborder="0"></iframe>
 				</div>
 			</div>
 		</div>
@@ -142,4 +144,10 @@
 	<script src="./sources/js/main.js"></script>
 	<script src="./sources/js/customElements.js"></script>
 	<script src="./sources/js/dynamicIsland.js"></script>
+				
+	<script defer>
+		//<!--? Use this for Debugging
+
+		//openNewApp('./sources/html/SettingsApp.html');
+	</script>
 </html>
