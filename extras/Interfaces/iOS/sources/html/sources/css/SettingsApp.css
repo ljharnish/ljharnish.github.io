@@ -324,6 +324,7 @@ div.appleSlider.active div.appleSliderValue {
 }
 
 div.categoryInner {
+	z-index: 101;
     position: absolute;
     top: 0;
     left: 100%;
