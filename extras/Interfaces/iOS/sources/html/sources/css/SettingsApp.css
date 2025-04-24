@@ -5,6 +5,15 @@
 	font-family: 'SF Pro Display';
 }
 
+html,
+div.categoryInner {
+	scrollbar-width: none;
+}
+
+::-webkit-scrollbar {
+	display: none;
+}
+
 :root {
     --red: #ff4032;
     --pink: #ff3466;
