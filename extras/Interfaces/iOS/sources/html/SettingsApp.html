@@ -44,8 +44,58 @@
 
         <div id="settingsHolder">
         </div>
+
+        <div class="categoryInner open">
+            <div class="scrollTitleCategory">
+                <div class="backButton">
+                    <button onclick="document.querySelector('.categoryInner.open').classList.remove('open');">
+                        <sf-symbol glyph="chevron.left"></sf-symbol>
+                        Settings
+                    </button>
+                </div>
+                <div>
+                    <p>Display & Brightness</p>
+                </div>
+                <div class="spacer"></div>
+            </div>
+
+            <div class="categoryInnerElements">
+                <div class="settingsCategory">
+                    <div class="setting" id="undefined">
+                        <div class="iconSide">
+                            <div class="icon grey-icon">
+                                <sf-symbol glyph="plus.square.fill" color="white"></sf-symbol>
+                            </div>
+                        </div>
+                        <div class="textAndMore">
+                            <p>Add Big Header</p>
+                        </div>
+                    </div>
+                    <div class="setting even" id="undefined">
+                        <div class="iconSide">
+                            <div class="icon grey-icon">
+                                <sf-symbol glyph="command" color="white"></sf-symbol>
+                            </div>
+                            </div>
+                            <div class="textAndMore">
+                                <p>Make Openable</p>
+                            </div>
+                        </div>
+                        <div class="setting" id="undefined">
+                            <div class="iconSide">
+                                <div class="icon grey-icon">
+                                    <sf-symbol glyph="heart.circle.fill" color="white"></sf-symbol>
+                                </div>
+                            </div>
+                            <div class="textAndMore">
+                                <p>Have fun!</p>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
     </body>
-    
+
     <script src="./sources/js/global-js-connections.js"></script>
 
 	<script src="./sources/js/customElements.js"></script>
