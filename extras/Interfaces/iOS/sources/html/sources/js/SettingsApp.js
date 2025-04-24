@@ -130,22 +130,26 @@ const settingsTable = {
                         glyph: 'gear'
                     }
                 },
-                innerSettings: [
-                    {  
-                        name: "About",
-                        id: "general-about",
-                        data: {
-                            enabled: false
-                        },
-                        icon: {
-                            color: 'grey',
-                            glyph: 'sun.max'
-                        },
-                        right: {
-                            type: 'arrow'
-                        }
-                    }
-                ]
+                innerSettings: {
+                    categories: [
+                        [
+                            {  
+                                name: "About",
+                                id: "general-about",
+                                data: {
+                                    enabled: false
+                                },
+                                icon: {
+                                    color: 'grey',
+                                    glyph: 'sun.max'
+                                },
+                                right: {
+                                    type: 'arrow'
+                                }
+                            }
+                        ]
+                    ]
+                }
             },
             {  
                 name: "Accessibility", 
@@ -352,8 +356,6 @@ const settingsHolder = document.getElementById("settingsHolder");
 function loadSettings() {
     console.log("Loading settings...");
 
-    let settingNum = 0;
-
     settingsTable.categories.forEach(category => {
         if(category.length == 0) return; // Skip empty categories
         console.log(category)
@@ -445,9 +447,7 @@ function loadSettings() {
             
             settingDiv.appendChild(textAndMore);
 
-            if(settingNum % 2 == 0) { settingDiv.classList.add("even"); }
-
-            setTimeout(() => { categoryDiv.appendChild(settingDiv); }, 75 * settingNum++);
+            categoryDiv.appendChild(settingDiv);
         });
 
         settingsHolder.appendChild(categoryDiv);
@@ -536,17 +536,105 @@ function handleNewCategory(setting, categoryInner) {
 
     innerElements.appendChild(categoryHeader);
 
-    /*categoryInner.innerHTML = `
-    <div class="categoryHeader">
-        <div class="icon ${setting.icon.color}-icon">
-            <sf-symbol glyph="${setting.icon.glyph}" color="white"></sf-symbol>
-        </div>
-        <h1>${setting.name}</h1>
-        <p>${setting.description}</p>
-    </div>`*/
+    console.log(setting.innerSettings);
 
-    //categoryInner.innerText = JSON.stringify(setting);
-    
+    setting.innerSettings.categories.forEach(category => {
+        if(category.length == 0) return; // Skip empty categories
+        console.log(category)
+
+        const categoryDiv = document.createElement("div");
+        categoryDiv.className = "settingsCategory";
+        
+        category.forEach(setting => {
+            const settingDiv = document.createElement("div");
+            settingDiv.className = "setting";
+            settingDiv.id = setting.id;
+            
+            const iconSide = document.createElement("div");
+            iconSide.className = "iconSide";
+
+            const categoryInner = document.createElement('div');
+            
+            /*if(setting.innerSettings) {
+                handleNewCategory(setting, categoryInner);
+            }*/
+            
+            const iconInner = document.createElement("div");
+            iconInner.className = "icon " + setting.icon.color + "-icon";
+
+            if(!setting.icon.image) { 
+
+                const iconSymbol = document.createElement("sf-symbol");
+                if(setting.icon.fixedHeight) iconSymbol.style.height = setting.icon.fixedHeight + "%";
+                iconSymbol.setAttribute("glyph", setting.icon.glyph);
+                iconSymbol.setAttribute("color", "white");
+                iconInner.appendChild(iconSymbol);
+
+            } else {
+                iconInner.style.backgroundImage = `url(${setting.icon.image})`;
+            }
+
+            iconSide.appendChild(iconInner);
+
+            settingDiv.appendChild(iconSide);
+
+            const textAndMore = document.createElement("div");
+            textAndMore.className = "textAndMore";
+            textAndMore.innerHTML = `<p>${setting.name}</p>`;
+
+            if(setting.right) {
+                if (setting.right.type === "switch") {
+                    const appleSlider = document.createElement("div");
+                    appleSlider.className = "appleSlider";
+                    appleSlider.addEventListener('click', () => settingToggle(appleSlider, setting, setting.right.toggleData));
+
+                    const appleSliderInner = document.createElement("div");
+                    appleSliderInner.className = "appleSliderInner";
+
+                    const appleSliderValue = document.createElement("div");
+                    appleSliderValue.className = "appleSliderValue";
+
+                    appleSliderInner.appendChild(appleSliderValue);
+                    appleSlider.appendChild(appleSliderInner);
+                    textAndMore.appendChild(appleSlider);
+
+                    const switchInput = document.createElement("input");
+                    switchInput.type = "checkbox";
+                    textAndMore.appendChild(switchInput);
+
+                    setTimeout(() => { setSlider(appleSlider, window.CONNECTIONVARIABLES.settings[setting.id], setting.right.toggleData) }, 10);
+
+                } else if (setting.right.type === "arrow") {
+                    
+                    const rightDiv = document.createElement("div");
+                    rightDiv.className = "rightSide";
+
+                    const textArrow = document.createElement("div");
+                    textArrow.className = "textArrow";
+                    if(setting.right.text) textArrow.innerHTML = `<p>${setting.right.text}</p>`;
+                    const arrowIcon = document.createElement("sf-symbol");
+                    arrowIcon.setAttribute("glyph", "chevron.right");
+                    arrowIcon.setAttribute("color", "white");
+                    textArrow.appendChild(arrowIcon);
+                    rightDiv.appendChild(textArrow);
+                    textAndMore.appendChild(rightDiv);
+
+                    /*settingDiv.addEventListener('click', () => {
+                        categoryInner.classList.add('open');
+                    });*/
+                    
+                }
+            }
+
+            
+            settingDiv.appendChild(textAndMore);
+
+            categoryDiv.appendChild(settingDiv);
+        });
+
+        innerElements.appendChild(categoryDiv);
+    });
+
     categoryInner.appendChild(innerElements);
 
     document.body.appendChild(categoryInner);
