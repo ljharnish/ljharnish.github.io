@@ -197,9 +197,9 @@ div.homeIconShow {
 	position: absolute;
 	bottom: 0;
 	height: 30px;
-	left: 100px;
-	right: 100px;
-
+	left: 20%;
+	right: 20%;
+	width: 60%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
