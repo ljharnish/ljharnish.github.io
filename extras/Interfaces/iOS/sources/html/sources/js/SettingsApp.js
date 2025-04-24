@@ -155,13 +155,37 @@ const settingsTable = {
             },
             {  
                 name: "Display & Brightness", 
+                description: "Manage your theme and brightness levels.",
                 icon: {
                     color: 'blue',
                     glyph: 'sun.max.fill'
                 },
                 right: {
                     type: 'arrow'
-                }
+                },
+                categoryHeader: {
+                    icon: {
+                        color: 'blue',
+                        glyph: 'sun.max.fill'
+                    }
+                },
+                innerSettings: [
+                    {  
+                        name: "Theme",
+                        id: "display&brightness-theme",
+                        data: {
+                            enabled: false
+                        },
+                        icon: {
+                            color: 'black',
+                            glyph: 'sun.max'
+                        },
+                        right: {
+                            type: 'switch',
+                            toggleData: 'enabled'
+                        }
+                    }
+                ]
             },
             {  
                 name: "Home Screen & App Library", 
