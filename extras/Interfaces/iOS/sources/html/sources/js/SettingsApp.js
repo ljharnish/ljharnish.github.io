@@ -419,7 +419,9 @@ function loadSettings() {
                     setTimeout(() => { setSlider(appleSlider, window.CONNECTIONVARIABLES.settings[setting.id], setting.right.toggleData) }, 10);
 
                 } else if (setting.right.type === "arrow") {
-                    settingDiv.onclick = openCategory(setting);
+                    settingDiv.addEventListener('click', () => {
+                        openCategory(setting);
+                    });
                     
                     const rightDiv = document.createElement("div");
                     rightDiv.className = "rightSide";
