@@ -371,10 +371,7 @@ function loadSettings() {
             const categoryInner = document.createElement('div');
             
             if(setting.innerSettings) {
-                categoryInner.classList.add('categoryInner');
-                categoryInner.id = 'category-' + setting.id;
-                categoryInner.innerText = JSON.stringify(setting);
-                document.body.appendChild(categoryInner);
+                handleNewCategory(setting, categoryInner);
             }
             
             const iconInner = document.createElement("div");
@@ -484,4 +481,72 @@ function settingToggle(slider, setting, toggleData) {
     }
 
     slider.classList.remove("active");
+}
+
+function handleNewCategory(setting, categoryInner) {
+    categoryInner.classList.add('categoryInner');
+    categoryInner.id = 'category-' + setting.id;
+
+    const titleBar = document.createElement('div');
+    titleBar.classList.add('scrollTitleCategory');
+
+    const backButton = document.createElement('div');
+    backButton.classList.add('backButton');
+
+    const backButtonButton = document.createElement('button');
+    backButtonButton.addEventListener('click', () => {
+        categoryInner.classList.remove('open');
+    });
+    backButtonButton.innerHTML = `<sf-symbol glyph='chevron.left'></sf-symbol>Settings`;
+
+    backButton.appendChild(backButtonButton);
+    titleBar.appendChild(backButton);
+
+    const titleText = document.createElement('div');
+    titleText.innerHTML = `<p>${setting.name}</p>`;
+    titleBar.appendChild(titleText);
+
+    const titleSpace = document.createElement('div');
+    titleSpace.classList.add('spacer');
+    titleBar.appendChild(titleSpace);
+    categoryInner.appendChild(titleBar);
+
+    const innerElements = document.createElement('div');
+    innerElements.classList.add('categoryInnerElements');
+    categoryInner.appendChild(innerElements);
+
+    const categoryHeader = document.createElement('div');
+    categoryHeader.classList.add('categoryHeader');
+
+    const categoryHeaderIcon = document.createElement('div');
+    categoryHeaderIcon.classList.add('icon');
+    categoryHeaderIcon.classList.add(setting.icon.color + '-icon');
+    categoryHeaderIcon.innerHTML = `<sf-symbol glyph="${setting.icon.glyph}" color="white"></sf-symbol>`
+
+    const headerTitle = document.createElement('h1');
+    headerTitle.innerText = setting.name;
+
+    const headerDesc = document.createElement('p');
+    headerDesc.innerText = setting.description;
+
+    categoryHeader.appendChild(categoryHeaderIcon);
+    categoryHeader.appendChild(headerTitle);
+    categoryHeader.appendChild(headerDesc);
+
+    innerElements.appendChild(categoryHeader);
+
+    /*categoryInner.innerHTML = `
+    <div class="categoryHeader">
+        <div class="icon ${setting.icon.color}-icon">
+            <sf-symbol glyph="${setting.icon.glyph}" color="white"></sf-symbol>
+        </div>
+        <h1>${setting.name}</h1>
+        <p>${setting.description}</p>
+    </div>`*/
+
+    //categoryInner.innerText = JSON.stringify(setting);
+    
+    categoryInner.appendChild(innerElements);
+
+    document.body.appendChild(categoryInner);
 }

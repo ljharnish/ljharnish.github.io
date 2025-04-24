@@ -45,7 +45,7 @@
         <div id="settingsHolder">
         </div>
 
-        <div class="categoryInner">
+        <div class="categoryInner open">
             <div class="scrollTitleCategory">
                 <div class="backButton">
                     <button onclick="document.querySelector('.categoryInner.open').classList.remove('open');">
@@ -54,12 +54,19 @@
                     </button>
                 </div>
                 <div>
-                    <p>Display & Brightness</p>
+                    <p>General</p>
                 </div>
                 <div class="spacer"></div>
             </div>
 
             <div class="categoryInnerElements">
+                <div class="categoryHeader">
+                    <div class="icon grey-icon">
+                        <sf-symbol glyph="gear" color="white"></sf-symbol>
+                    </div>
+                    <h1>General</h1>
+                    <p>Manage your overall setup and preferences for iPhone, such as software updates, device language, CarPlay, AirDrop, and more.</p>
+                </div>
                 <div class="settingsCategory">
                     <div class="setting" id="undefined">
                         <div class="iconSide">
