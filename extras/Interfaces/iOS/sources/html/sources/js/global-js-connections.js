@@ -1,4 +1,13 @@
 window.CONNECTIONVARIABLES = {
+    debug: {
+        showDebug: {
+            enabled: false
+        },
+        showDebugScreenshots: {
+            enabled: false
+        }
+    },
+
     battery: {
         charging: false,
         level: 100,

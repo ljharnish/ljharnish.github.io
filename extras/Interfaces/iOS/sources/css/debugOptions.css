@@ -50,6 +50,10 @@ body.showBoxes div#HS_Dock {
     background: magenta !important;
 }
 
+*.hidden {
+    display: none !important;
+}
+
 div#debugOptions {
     z-index: 10001;
     position: absolute;

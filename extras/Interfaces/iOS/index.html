@@ -24,7 +24,7 @@
 	<body class="">
         <!--? Debug Stuff -->
 
-        <div id="debugOptions">
+        <div id="debugOptions" class="hidden">
 			<div class="sides">
 				<p style="color:#188ef0;text-align:center;font-weight:900;">Show<br>Layout</p>
 
@@ -68,7 +68,7 @@
 			</div>
         </div>
 
-		<div id="iphoneScreenshots" style="position: absolute;left: 0;top: 0;width: 30%;">
+		<div id="iphoneScreenshots" class="hidden" style="position: absolute;left: 0;top: 0;width: 30%;">
 			<img src="./sources/image/phg5rn01.bmp" alt="" style="width: 100%;height: 100%;">
 		</div>
 
@@ -124,14 +124,14 @@
 						<div class="homeIcon">
 							<img src="./sources/image/App Icons/photos.webp" alt="Photos">
 						</div>
-						<div class="homeIcon" app="Settings">
-							<img src="./sources/image/App Icons/settings.webp" alt="Settings">
+						<div class="homeIcon">
+							<img src="./sources/image/App Icons/mail.webp" alt="Mail">
 						</div>
 						<div class="homeIcon">
 							<img src="./sources/image/App Icons/home.webp" alt="Home">
 						</div>
-						<div class="homeIcon">
-							<img src="./sources/image/App Icons/mail.webp" alt="Mail">
+						<div class="homeIcon" app="Settings">
+							<img src="./sources/image/App Icons/settings.webp" alt="Settings">
 						</div>
 						<div class="homeIcon" app="DevPanel">
 							<img src="./sources/image/App Icons/apple-developer.webp" alt="Developer Panel">
@@ -180,6 +180,6 @@
 	<script defer>
 		//<!--? Use this for Debugging
 
-		openNewApp('./sources/html/SettingsApp.html');
+		//openNewApp('./sources/html/DevPanelApp.html');
 	</script>
 </html>
