@@ -27,7 +27,7 @@
         <div id="debugOptions">
 			<div class="sides">
 				<p style="color:#188ef0;text-align:center;font-weight:900;">Show<br>Layout</p>
-				
+
 				<button onclick="document.body.classList.toggle('showBoxes')">
 					<sf-symbol glyph="rectangle.3.offgrid.fill" color="white"></sf-symbol>
 				</button>
@@ -133,6 +133,9 @@
 						<div class="homeIcon">
 							<img src="./sources/image/App Icons/mail.webp" alt="Mail">
 						</div>
+						<div class="homeIcon" app="DevPanel">
+							<img src="./sources/image/App Icons/apple-developer.webp" alt="Developer Panel">
+						</div>
 					</div>
 
 					<div id="HS_Dock">
@@ -158,6 +161,8 @@
 					<!--! etc -->
 				</div>
 
+				<button id="appClose" onclick="closeApp()"></button>
+
 				<div id="currentApp" class="noApp">
 					<iframe src="" frameborder="0"></iframe>
 				</div>
@@ -166,13 +171,15 @@
 	</body>
 	<!-- JS -->
 
+	<script src="./sources/js/apps.js"></script>
 	<script src="./sources/js/main.js"></script>
+	<script src="./sources/html/sources/js/global-js-connections.js"></script>
 	<script src="./sources/js/customElements.js"></script>
 	<script src="./sources/js/dynamicIsland.js"></script>
 				
 	<script defer>
 		//<!--? Use this for Debugging
 
-		//openNewApp('./sources/html/SettingsApp.html');
+		openNewApp('./sources/html/SettingsApp.html');
 	</script>
 </html>

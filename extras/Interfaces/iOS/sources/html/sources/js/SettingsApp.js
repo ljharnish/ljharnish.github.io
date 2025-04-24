@@ -2,31 +2,47 @@ const settingsTable = {
     categories: [
         [
             {  
-                name: "Airplane Mode", 
+                name: "Airplane Mode",
+                id: "airplaneMode",
+                data: {
+                    enabled: false
+                },
                 icon: {
                     color: 'orange',
                     glyph: 'airplane'
                 },
                 right: {
                     type: 'switch',
-                    onChange: function (value) {
-                        console.log("Airplane Mode toggled to: " + value);
-                    }
+                    //? Toggle the data[toggleData] value if a boolean
+                    toggleData: 'enabled'
                 }
             },
             {  
                 name: "Wi-Fi", 
+                id: "wifi",
+                data: {
+                    enabled: false,
+                    connected: false,
+                    ssid: ''
+                },
                 icon: {
                     color: 'blue',
                     glyph: 'wifi'
                 },
                 right: {
+            enabled: false,
                     text: "GeniusBar-Guest",
                     type: 'arrow'
                 }
             },
             {  
-                name: "Bluetooth", 
+                name: "Bluetooth",
+                id: "bluetooth",
+                data: {
+                    enabled: false,
+                    connected: false,
+                    name: ''
+                },
                 icon: {
                     color: 'blue',
                     glyph: 'bluetooth'
@@ -37,7 +53,13 @@ const settingsTable = {
                 }
             },
             {  
-                name: "Cellular", 
+                name: "Cellular",
+                id: "cellular",
+                data: {
+                    enabled: false,
+                    connected: false,
+                    carrier: ''
+                },
                 icon: {
                     color: 'green',
                     glyph: 'antenna.radiowaves.left.and.right'
@@ -48,6 +70,11 @@ const settingsTable = {
             },
             {  
                 name: "Personal Hotspot", 
+                id: "hotspot",
+                data: {
+                    enabled: false,
+                    ssid: ''
+                },
                 icon: {
                     fixedHeight: '75',
                     color: 'green',
@@ -70,6 +97,11 @@ const settingsTable = {
             },
             {  
                 name: "VPN", 
+                id: "vpn",
+                data: {
+                    connected: false,
+                    name: ''
+                },
                 icon: {
                     color: 'blue',
                     glyph: 'globe'
@@ -311,6 +343,7 @@ function loadSettings() {
         category.forEach(setting => {
             const settingDiv = document.createElement("div");
             settingDiv.className = "setting";
+            settingDiv.id = setting.id;
             
             const iconSide = document.createElement("div");
             iconSide.className = "iconSide";
@@ -343,7 +376,7 @@ function loadSettings() {
                 if (setting.right.type === "switch") {
                     const appleSlider = document.createElement("div");
                     appleSlider.className = "appleSlider";
-                    appleSlider.addEventListener('click', () => settingToggle(appleSlider));
+                    appleSlider.addEventListener('click', () => settingToggle(appleSlider, setting, setting.right.toggleData));
 
                     const appleSliderInner = document.createElement("div");
                     appleSliderInner.className = "appleSliderInner";
@@ -358,6 +391,8 @@ function loadSettings() {
                     const switchInput = document.createElement("input");
                     switchInput.type = "checkbox";
                     textAndMore.appendChild(switchInput);
+
+                    setTimeout(() => { setSlider(appleSlider, window.CONNECTIONVARIABLES.settings[setting.id], setting.right.toggleData) }, 10);
 
                 } else if (setting.right.type === "arrow") {
                     const rightDiv = document.createElement("div");
@@ -387,8 +422,27 @@ function loadSettings() {
     });
 }
 
-function settingToggle(slider) {
+function setSlider(slider, set, toggleData) {
+    console.log(slider)
+
+    slider.parentElement.querySelector("input").checked = set[toggleData];
+    console.log(set[toggleData])
+    
+    if(slider.parentElement.querySelector("input").checked) {
+        slider.classList.add("active");
+        return;
+    }
+
+    slider.classList.remove("active");
+}
+
+function settingToggle(slider, setting, toggleData) {
+    console.log("Toggling setting: " + setting.id + " to " + !slider.parentElement.querySelector("input").checked);
+
     slider.parentElement.querySelector("input").checked = !slider.parentElement.querySelector("input").checked;
+
+    setting.data[toggleData] = slider.parentElement.querySelector("input").checked;
+    window.CONNECTIONVARIABLES.settings[setting.id] = setting.data;
 
     if(slider.parentElement.querySelector("input").checked) {
         slider.classList.add("active");
