@@ -28,6 +28,7 @@ function setTime() {
 
     let hours = time.getHours();
     hours = hours % 12;
+    if(hours == 0) hours = 12;
     let mins = time.getMinutes();
     if(mins < 10) mins = '0' + mins;
 
