@@ -30,7 +30,7 @@ const settingsTable = {
                     glyph: 'wifi'
                 },
                 right: {
-            enabled: false,
+                    enabled: false,
                     text: "GeniusBar-Guest",
                     type: 'arrow'
                 }
@@ -346,8 +346,6 @@ const settingsTable = {
     ]
 };
 
-
-
 const settingsHolder = document.getElementById("settingsHolder");
 
 function loadSettings() {
@@ -370,9 +368,11 @@ function loadSettings() {
             const iconSide = document.createElement("div");
             iconSide.className = "iconSide";
 
+            const categoryInner = document.createElement('div');
+            
             if(setting.innerSettings) {
-                const categoryInner = document.createElement('div');
                 categoryInner.classList.add('categoryInner');
+                categoryInner.id = 'category-' + setting.id;
                 categoryInner.innerText = JSON.stringify(setting.innerSettings);
                 document.body.appendChild(categoryInner);
             }
@@ -440,6 +440,10 @@ function loadSettings() {
                     rightDiv.appendChild(textArrow);
                     textAndMore.appendChild(rightDiv);
 
+                    settingDiv.addEventListener('click', () => {
+                        categoryInner.classList.add('open');
+                    });
+                    
                 }
             }
 
