@@ -114,14 +114,37 @@ const settingsTable = {
         ],
         [
             {  
-                name: "General", 
+                name: "General",
+                description: "Manage your overall setup and preferences for iPhone, such as software updates, device language, CarPlay, AirDrop, and more.",
                 icon: {
                     color: 'grey',
                     glyph: 'gear'
                 },
                 right: {
                     type: 'arrow'
-                }
+                },
+                categoryHeader: {
+                    icon: {
+                        color: 'grey',
+                        glyph: 'gear'
+                    }
+                },
+                innerSettings: [
+                    {  
+                        name: "About",
+                        id: "general-about",
+                        data: {
+                            enabled: false
+                        },
+                        icon: {
+                            color: 'grey',
+                            glyph: 'sun.max'
+                        },
+                        right: {
+                            type: 'arrow'
+                        }
+                    }
+                ]
             },
             {  
                 name: "Accessibility", 
@@ -155,37 +178,13 @@ const settingsTable = {
             },
             {  
                 name: "Display & Brightness", 
-                description: "Manage your theme and brightness levels.",
                 icon: {
                     color: 'blue',
                     glyph: 'sun.max.fill'
                 },
                 right: {
                     type: 'arrow'
-                },
-                categoryHeader: {
-                    icon: {
-                        color: 'blue',
-                        glyph: 'sun.max.fill'
-                    }
-                },
-                innerSettings: [
-                    {  
-                        name: "Theme",
-                        id: "display&brightness-theme",
-                        data: {
-                            enabled: false
-                        },
-                        icon: {
-                            color: 'black',
-                            glyph: 'sun.max'
-                        },
-                        right: {
-                            type: 'switch',
-                            toggleData: 'enabled'
-                        }
-                    }
-                ]
+                }
             },
             {  
                 name: "Home Screen & App Library", 
@@ -363,7 +362,6 @@ function loadSettings() {
         const categoryDiv = document.createElement("div");
         categoryDiv.className = "settingsCategory";
         
-        
         category.forEach(setting => {
             const settingDiv = document.createElement("div");
             settingDiv.className = "setting";
@@ -372,6 +370,12 @@ function loadSettings() {
             const iconSide = document.createElement("div");
             iconSide.className = "iconSide";
 
+            if(setting.innerSettings) {
+                const categoryInner = document.createElement('div');
+                categoryInner.classList.add('categoryInner');
+                categoryInner.innerText = JSON.stringify(setting.innerSettings);
+                document.body.appendChild(categoryInner);
+            }
             
             const iconInner = document.createElement("div");
             iconInner.className = "icon " + setting.icon.color + "-icon";
@@ -439,6 +443,7 @@ function loadSettings() {
                 }
             }
 
+            
             settingDiv.appendChild(textAndMore);
 
             if(settingNum % 2 == 0) { settingDiv.classList.add("even"); }
@@ -454,6 +459,7 @@ function openCategory(category) {
     const categoryInner = document.createElement('div');
     categoryInner.classList.add('categoryInner');
 
+    
     console.log(category);
     
     document.body.appendChild(categoryInner);
