@@ -373,7 +373,7 @@ function loadSettings() {
             if(setting.innerSettings) {
                 categoryInner.classList.add('categoryInner');
                 categoryInner.id = 'category-' + setting.id;
-                categoryInner.innerText = JSON.stringify(setting.innerSettings);
+                categoryInner.innerText = JSON.stringify(setting);
                 document.body.appendChild(categoryInner);
             }
             
