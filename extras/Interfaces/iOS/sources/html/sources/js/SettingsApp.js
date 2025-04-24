@@ -423,9 +423,6 @@ function loadSettings() {
                     setTimeout(() => { setSlider(appleSlider, window.CONNECTIONVARIABLES.settings[setting.id], setting.right.toggleData) }, 10);
 
                 } else if (setting.right.type === "arrow") {
-                    settingDiv.addEventListener('click', () => {
-                        openCategory(setting);
-                    });
                     
                     const rightDiv = document.createElement("div");
                     rightDiv.className = "rightSide";
@@ -457,17 +454,6 @@ function loadSettings() {
 
         settingsHolder.appendChild(categoryDiv);
     });
-}
-
-function openCategory(category) {
-    const categoryInner = document.createElement('div');
-    categoryInner.classList.add('categoryInner');
-
-    
-    console.log(category);
-    
-    document.body.appendChild(categoryInner);
-    setTimeout(() => { categoryInner.classList.add('open'); }, 500);
 }
 
 function setSlider(slider, set, toggleData) {
