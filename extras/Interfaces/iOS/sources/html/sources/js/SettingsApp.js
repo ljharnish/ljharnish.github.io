@@ -116,6 +116,7 @@ const settingsTable = {
             {  
                 name: "General",
                 description: "Manage your overall setup and preferences for iPhone, such as software updates, device language, CarPlay, AirDrop, and more.",
+                id: "general",
                 icon: {
                     color: 'grey',
                     glyph: 'gear'
