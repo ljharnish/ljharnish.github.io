@@ -21,10 +21,34 @@ body {
 
 div.numbers {
     width: 100%;
+    color: white;
     flex: 1 1 auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: end;
 }
 
-div.buttons {
+div.numbers p {
+    color: grey;
+    font-weight: 400;
+    font-size: 40px;
+    display: flex;
+}
+
+div.numbers p sf-symbol {
+    aspect-ratio: 1;
+    height: 25px;
+    filter: brightness(0.5);
+}
+
+div.numbers h1 {
+    font-size: 80px !important;
+    font-weight: 400;
+}
+
+div#buttons {
     width: 100%;
     padding: 10px;
     display: grid;
@@ -45,6 +69,11 @@ div.button {
     align-items: center;
     font-size: 40px;
     font-weight: 400;
+}
+
+div.button sf-symbol {
+    aspect-ratio: 1;
+    height: 40px;
 }
 
 div.button:nth-child(1), 
