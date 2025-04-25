@@ -37,7 +37,7 @@ const settingsTable = {
     ]
 };
 
-
+function appSpecificFunction() { return; }
 
 const settingsHolder = document.getElementById("settingsHolder");
 

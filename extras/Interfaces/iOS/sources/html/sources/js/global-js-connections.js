@@ -22,15 +22,14 @@ window.CONNECTIONVARIABLES = {
         airplaneMode: { 
             enabled: false
         },
-        wifi: {
-            enabled: true,
-            connected: true,
-            ssid: 'GeniusBar-Guest'
+        battery_lpm: {
+            enabled: false
         },
-        bluetooth: {
+        battery_percentage: {
+            enabled: false
+        },
+        bluetooth_setting: {
             enabled: false,
-            connected: false,
-            name: ''
         },
         cellular: {
             enabled: false,
@@ -44,6 +43,9 @@ window.CONNECTIONVARIABLES = {
         vpn: {
             connected: false,
             name: ''
+        },
+        wifi_setting: {
+            enabled: true,
         },
     }
 }

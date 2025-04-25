@@ -10,6 +10,10 @@ div.categoryInner {
 	scrollbar-width: none;
 }
 
+sf-symbol {
+    display: flex;
+}
+
 ::-webkit-scrollbar {
 	display: none;
 }
@@ -26,6 +30,15 @@ div.categoryInner {
     --grey: #87878c;
 
     --slider-grey: #e9e9ea;
+}
+
+.black-icon {
+    background: #000;
+}
+
+.white-icon {
+    background: #fff;
+    border: 1px solid #eee;
 }
 
 .red-icon {
@@ -82,6 +95,7 @@ h1 {
     text-align: left;
     margin-top: 20px;
     margin-bottom: 15px;
+    font-weight: 600;
 }
 
 div#scrollTitle {
@@ -90,7 +104,7 @@ div#scrollTitle {
     left: 0;
     position: fixed;
     height: 100px;
-    background: #0006;
+    background: #0003;
     backdrop-filter: blur(10px);
     width: 100%;
 
@@ -101,7 +115,7 @@ div#scrollTitle {
     font-size: 20px;
     padding-bottom: 10px;
     color: white;
-    font-weight: 900;
+    font-weight: 600;
 
     transition: 0.2s opacity ease-in-out;
 }
@@ -131,7 +145,7 @@ div#scrollTitle {
 }
 
 #search #settingsSearch::placeholder {
-    font-weight: 100;
+    font-weight: 400;
 }
 
 #userProfile {
@@ -160,7 +174,12 @@ div#scrollTitle {
 
 #userProfile div.text h1 {
     font-size: 24px;
+    font-weight: 700;
     margin: 0;
+}
+
+#userProfile div.text p {
+    font-weight: 500;
 }
 
 #userProfile button {
@@ -179,7 +198,7 @@ div.settingsCategory {
 }
 
 div.setting {
-    animation: 0.5s showSetting cubic-bezier(.68,-0.55,.11,1.29) forwards 1;
+    /* animation: 0.5s showSetting cubic-bezier(.68,-0.55,.11,1.29) forwards 1; */
     width: 100%;
     height: 50px;
     background: white;
@@ -188,9 +207,13 @@ div.setting {
     flex-direction: row;
 }
 
-div.setting.even {
-    animation: 0.5s showSettingEven cubic-bezier(.68,-0.55,.11,1.29) forwards 1;
+div.setting:not(:has(div.appleSlider)) {
+    cursor: pointer;
 }
+
+ /*div.setting.even {
+    animation: 0.5s showSettingEven cubic-bezier(.68,-0.55,.11,1.29) forwards 1;
+} */
 
 div.setting:first-of-type {
     border-top-left-radius: 10px;
@@ -198,6 +221,11 @@ div.setting:first-of-type {
 }
 
 div.setting:last-of-type {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+div.setting:has(+ div.subtitle) {
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 }
@@ -255,6 +283,7 @@ div.setting div.iconSide div.icon sf-symbol {
 }
 
 div.setting div.textAndMore {
+    font-weight: 400;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -265,6 +294,10 @@ div.setting div.textAndMore {
 }
 
 div.setting:last-of-type div.textAndMore {
+    border-bottom: none;
+}
+
+div.setting:has(+ div.subtitle) div.textAndMore {
     border-bottom: none;
 }
 
@@ -365,7 +398,7 @@ div.scrollTitleCategory {
     left: 0;
     position: sticky;
     height: 100px;
-    background: #0006;
+    background: #0003;
     backdrop-filter: blur(10px);
     width: 100%;
 
@@ -374,7 +407,7 @@ div.scrollTitleCategory {
     font-size: 20px;
     padding-bottom: 10px;
     color: white;
-    font-weight: 900;
+    font-weight: 600;
 
     transition: 0.2s opacity ease-in-out;
 }
@@ -404,7 +437,7 @@ div.categoryInnerElements {
 }
 
 div.categoryHeader {
-    padding: 20px 30px;
+    padding: 20px;
     background: white;
     border-radius: 10px;
 
@@ -413,6 +446,12 @@ div.categoryHeader {
     justify-content: center;
     align-items: center;
     text-align: center;
+}
+
+div.categoryHeader:has(+ div.setting) {
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    border-bottom: 1px solid #eee;
 }
 
 div.categoryHeader div.icon {
@@ -427,7 +466,14 @@ div.categoryHeader div.icon {
 
 div.categoryHeader div.icon sf-symbol {
     width: 100%;
+    justify-content: center;
+    align-items: center;
+    scale: 1.2;
+}
+
+div.categoryHeader div.icon sf-symbol[glyph="bluetooth"] {
     height: 100%;
+    scale: 1;
 }
 
 div.categoryHeader h1 {
@@ -436,6 +482,134 @@ div.categoryHeader h1 {
 }
 
 div.categoryHeader p {
+    font-weight: 600;
     line-height: 24px;
     font-size: 16px;
+}
+
+p.title {
+    font-size: 18px;
+    text-transform: uppercase;
+    color: #777;
+    font-weight: 400;
+    padding: 10px 15px;
+}
+
+p.subtitle {
+    color: #777;
+    font-weight: 400;
+    padding: 10px 30px 0px 15px;
+}
+
+/*? Display & Brightness > Appearance */
+
+div.display_appearance {
+    cursor: default !important;
+    height: unset;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+div.appearanceSelector {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+div.appearanceChoice {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+div.appearanceChoice img {
+    height: 240px;
+}
+
+div.appearanceChoice p {
+    margin: 5px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+div.appearanceChoice input[type='checkbox'] {
+    display: none;
+}
+
+div.settingsCheckCircle {
+    position: relative;
+    cursor: pointer;
+}
+
+div.settingsCheckCircle sf-symbol {
+    filter: invert(1) brightness(0.6);
+}
+
+div.settingsCheckCircle.checked div.settingsCheckedCircle {
+    display: block;
+}
+
+div.settingsCheckedCircle {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+div.settingsCheckedCircle sf-symbol {
+    filter: invert(40%) sepia(94%) saturate(3539%) hue-rotate(196deg) brightness(103%) contrast(102%)
+}
+
+div#display_brightness_slider {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+div#display_brightness_slider div.sunicon {
+    padding: 5px;
+    filter: brightness(0.5);
+    scale: 0.8;
+}
+
+div#display_brightness_slider div.brightness_slider {
+    flex: 1 1 auto;
+    margin: 0 25px;
+    position: relative;
+}
+
+div#display_brightness_slider div.brightness_slider div.bar {
+    height: 5px;
+    width: 100%;
+    background: #aaa;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+div#display_brightness_slider div.brightness_slider div.bar div.barFill {
+    height: 100%;
+    width: 70%;
+
+    background: var(--blue);
+}
+
+div#display_brightness_slider div.brightness_slider div.circle {
+    height: 30px;
+    width: 30px;
+    background: white;
+    border-radius: 100%;
+    position: absolute;
+    box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.25);
+
+    top: 50%;
+    left: calc(70% - 20px);
+    transform: translateY(-50%);
 }
