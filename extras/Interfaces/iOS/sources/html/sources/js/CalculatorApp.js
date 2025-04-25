@@ -22,8 +22,6 @@ Array.from(buttons.children).forEach((child) => {
             bigTextEl.innerText += '.';
         }
 
-        if()
-
         if(buttonWhat == 'equals') {
             smallTextEl.innerText = bigTextEl.innerText;
             bigTextEl.innerText = eval(bigTextEl.innerText);
