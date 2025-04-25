@@ -58,6 +58,7 @@ div#buttons {
 }
 
 div.button {
+	cursor: pointer;
     overflow: hidden;
     width: 100%;
     aspect-ratio: 1;
