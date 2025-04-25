@@ -1,0 +1,7 @@
+Airplane Mode ✅
+Wi-Fi ⚠️ (Didn't make network selector)
+Bluetooth ⚠️ (Didn't make device selector)
+General ✅
+Accessibility ✅
+Camera ✅
+Display & Brightness ✅
