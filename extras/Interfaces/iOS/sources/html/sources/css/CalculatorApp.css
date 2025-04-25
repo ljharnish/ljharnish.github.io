@@ -1,0 +1,62 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+	font-family: 'SF Pro Display';
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+
+    background: black;
+
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    padding: 70px 0 40px 0;
+
+    flex-direction: column;
+}
+
+div.numbers {
+    width: 100%;
+    flex: 1 1 auto;
+}
+
+div.buttons {
+    width: 100%;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 10px;
+}
+
+div.button {
+    overflow: hidden;
+    width: 100%;
+    aspect-ratio: 1;
+    color: white;
+    background: #2a2a2c;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    font-weight: 400;
+}
+
+div.button:nth-child(1), 
+div.button:nth-child(2), 
+div.button:nth-child(3) {
+    background: #5c5c5f;
+} 
+
+div.button:nth-child(4), 
+div.button:nth-child(8), 
+div.button:nth-child(12),
+div.button:nth-child(16),
+div.button:nth-child(20) {
+    background: #ff9f0a;
+} 
