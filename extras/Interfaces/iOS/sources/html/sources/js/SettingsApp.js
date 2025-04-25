@@ -868,7 +868,7 @@ const settingsTable = {
                                 }
                             },
                             {  
-                                name: "Mirro Front Camera",
+                                name: "Mirror Front Camera",
                                 id: 'camera_comp_mirror_front',
                                 data: {
                                     enabled: true
