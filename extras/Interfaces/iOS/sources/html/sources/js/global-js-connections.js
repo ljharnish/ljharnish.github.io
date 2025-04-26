@@ -47,5 +47,14 @@ window.CONNECTIONVARIABLES = {
         wifi_setting: {
             enabled: true,
         },
+    },
+
+    media: {
+        audio: {
+            playing: true
+        },
+        video: {
+            playing: false
+        }
     }
 }

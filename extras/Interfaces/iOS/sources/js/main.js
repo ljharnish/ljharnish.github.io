@@ -56,7 +56,7 @@ function iframeLoad() {
     } else {
         document.getElementById('topBarTimeP').style.color = 'white';
     }
-
+        
     //? Creates a custom event that can sync all global variables to the main window when the app is clicked,
     //? Check `syncVars.js` for more info.
 
@@ -88,13 +88,22 @@ function openNewApp(link) {
 
 function closeApp() {
     let currentApp = document.getElementById('currentApp');
-    currentApp.children[0].removeEventListener('load', iframeLoad, true);
+    let iframe = currentApp.children[0];
+    iframe.removeEventListener('load', iframeLoad, true);
     currentApp.classList.add('noApp');
-    setTimeout(() => { currentApp.children[0].src = ''; }, 450);
 
     currentApp.style.background = 'transparent';
     document.getElementById('topBarTimeP').style.color = '';
     document.querySelectorAll('.topBar-right > div').forEach((el) => {
         el.style.filter = '';
     });
+
+    if(iframe.src.includes('AppleMusic')) {
+        if(CONNECTIONVARIABLES.media.audio.playing) {
+            DynamicIslandShowcase('NewNotification');
+            setTimeout(() => { DynamicIslandShowcase('Empty'); }, 5000);
+        }
+    }
+
+    setTimeout(() => { iframe.src = ''; }, 450);
 }

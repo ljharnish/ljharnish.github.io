@@ -35,15 +35,15 @@
 				<p style="color:#188ef0;text-align:center;font-weight:900;margin-top:30px;">Dynamic<br>Island</p>
 				
                 <button onclick="DynamicIslandShowcase('NewNotification')">
-					<sf-symbol glyph="play.rectangle.fill" color="white"></sf-symbol>
+					<sf-symbol glyph="waveform.rectangle.fill" color="white"></sf-symbol>
 				</button>
 	
 				<button onclick="DynamicIslandShowcase('Charging')">
-					<sf-symbol glyph="checkmark.rectangle.fill" color="white"></sf-symbol>
+					<sf-symbol glyph="battery.rectangle.fill" color="white"></sf-symbol>
 				</button>
 				
 				<button onclick="DynamicIslandShowcase('NewCall')">
-					<sf-symbol glyph="person.crop.rectangle.fill" color="white"></sf-symbol>
+					<sf-symbol glyph="phone.rectangle.fill" color="white"></sf-symbol>
 				</button>
 
 				<button onclick="DynamicIslandShowcase('Empty')">
@@ -58,8 +58,13 @@
 			</div>
         </div>
 
-		<div id="iphoneScreenshots" class="hidden" style="position: absolute;left: 0;top: 0;width: 30%;">
+		<div id="iphoneScreenshots" class="hidden" style="display:flex;position: absolute;left: 0;top: 0;width: 100%;">
 			<img src="./sources/image/phg5rn01.bmp" alt="" style="width: 100%;height: 100%;">
+			<img src="./sources/image/73d00f66eec8f52643b91563bfacf7f3.png" alt="" style="width: 100%;height: 100%;">
+			<img src="./sources/image/apple-music-slow-streaming-issue-fix.jpg" alt="" style="width: 100%;height: 100%;">
+			<img src="./sources/image/Dark-Mode.jpg" alt="" style="width: 100%;height: 100%;">
+			<img src="./sources/image/f0950e0740c5a4522b68c5f0d5a5802c.png" alt="" style="width: 100%;height: 100%;">
+			<img src="./sources/image/f2879765ab153bf235cef67ccb65ba92.png" alt="" style="width: 100%;height: 100%;">
 		</div>
 
 
@@ -97,7 +102,7 @@
 						<div class="homeIcon">
 							<img src="./sources/image/App Icons/app-store.png" alt="App Store">
 						</div>
-						<div class="homeIcon">
+						<div class="homeIcon" app="AppleMusic">
 							<img src="./sources/image/App Icons/music.png" alt="Apple Music">
 						</div>
 						<div class="widgetSmall">
@@ -172,6 +177,6 @@
 	<script defer>
 		//<!--? Use this for Debugging
 
-		openNewApp('./sources/html/CalculatorApp.html');
+		//openNewApp('./sources/html/AppleMusicApp.html');
 	</script>
 </html>

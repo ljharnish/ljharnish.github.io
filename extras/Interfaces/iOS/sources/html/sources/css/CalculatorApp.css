@@ -31,21 +31,48 @@ div.numbers {
 }
 
 div.numbers p {
+    width: 100%;
     color: grey;
     font-weight: 400;
     font-size: 40px;
     display: flex;
+    justify-content: right;
+    align-items: center;
 }
 
 div.numbers p sf-symbol {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     aspect-ratio: 1;
     height: 25px;
     filter: brightness(0.5);
 }
 
 div.numbers h1 {
+    width: 100%;
     font-size: 80px !important;
     font-weight: 400;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+div.numbers h1 sf-symbol {
+    display: flex;
+    height: 50px;
+}
+
+div.numbers h1 sf-symbol[glyph='multiply'] {
+    height: 40px;
+}
+
+div.numbers h1 sf-symbol[glyph='minus'] {
+    height: 10px;
+}
+
+div.numbers p sf-symbol[glyph='minus'] {
+    height: 7px;
 }
 
 div#buttons {
@@ -57,7 +84,9 @@ div#buttons {
     gap: 10px;
 }
 
-div.button {
+button.button {
+    border: none;
+    user-select: none;
 	cursor: pointer;
     overflow: hidden;
     width: 100%;
@@ -70,23 +99,73 @@ div.button {
     align-items: center;
     font-size: 40px;
     font-weight: 400;
+    transition: 0.5s ease-in-out aspect-ratio, 0.5s ease-in-out font-size, 0.5s ease-in-out border-radius;
 }
 
-div.button sf-symbol {
+button.button sf-symbol {
     aspect-ratio: 1;
     height: 40px;
 }
 
-div.button:nth-child(1), 
-div.button:nth-child(2), 
-div.button:nth-child(3) {
+button.button:nth-child(1), 
+button.button:nth-child(2), 
+button.button:nth-child(3) {
     background: #5c5c5f;
 } 
 
-div.button:nth-child(4), 
-div.button:nth-child(8), 
-div.button:nth-child(12),
-div.button:nth-child(16),
-div.button:nth-child(20) {
+button.button:nth-child(4), 
+button.button:nth-child(8), 
+button.button:nth-child(12),
+button.button:nth-child(16),
+button.button:nth-child(20) {
     background: #ff9f0a;
 } 
+
+/*! bazinga! */
+
+body.scientific div#buttons button.button {
+    border-radius: 999px;
+    font-size: 30px;
+    aspect-ratio: 1.75 / 1 !important;
+}
+
+body.scientific div#buttons button.button sf-symbol {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+}
+
+div#scientificButtons {
+    width: 100%;
+    padding: 10px;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    gap: 10px;
+    display: none;
+}
+
+body.scientific div#scientificButtons {
+    display: grid;
+}
+
+body.scientific div#scientificButtons button.button {
+    background: #1c1c1e;
+    border-radius: 999px;
+    font-size: 20px;
+    aspect-ratio: 1.2 / 1 !important;
+}
+
+body.scientific div#scientificButtons button.button sf-symbol {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+}
+
+body.scientific div#scientificButtons button.button sup {
+    margin-bottom: 10px;
+}
+body.scientific div#scientificButtons button.button sub {
+    margin-top: 10px;
+}

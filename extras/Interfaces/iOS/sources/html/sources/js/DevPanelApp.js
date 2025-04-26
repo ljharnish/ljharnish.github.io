@@ -32,6 +32,22 @@ const settingsTable = {
                     //? Toggle the data[toggleData] value if a boolean
                     toggleData: 'enabled'
                 }
+            },
+            {  
+                name: "Enable Dark Mode (Experimental)",
+                id: "experiment_darkmode",
+                data: {
+                    enabled: false
+                },
+                icon: {
+                    color: 'black',
+                    glyph: 'circle.lefthalf.fill'
+                },
+                right: {
+                    type: 'switch',
+                    //? Toggle the data[toggleData] value if a boolean
+                    toggleData: 'enabled'
+                }
             }
         ]
     ]

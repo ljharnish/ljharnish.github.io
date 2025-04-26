@@ -1200,6 +1200,10 @@ function loadSettings(table, outputdiv) {
             if(setting.type == 'appearance_selector') {
                 settingDiv.classList.add('display_appearance');
 
+                const themeCheckbox = document.createElement('input');
+                themeCheckbox.id = setting.id + '-switch';
+                themeCheckbox.type = 'checkbox';
+
                 const appearanceSelector = document.createElement('div');
                 appearanceSelector.classList.add('appearanceSelector');
 
@@ -1221,14 +1225,10 @@ function loadSettings(table, outputdiv) {
                                     <div class="settingsCheckedCircle">
                                         <sf-symbol glyph="checkmark.circle.fill"></sf-symbol>
                                     </div>`;
-                                    
-                const lightCheckBox = document.createElement('input');
-                lightCheckBox.type = 'checkbox';
 
                 lightChoice.appendChild(lightImage);
                 lightChoice.appendChild(lightText);
                 lightChoice.appendChild(lightCheckCircle);
-                lightChoice.appendChild(lightCheckBox);
 
                 const darkChoice = document.createElement('div');
                 darkChoice.classList.add('appearanceChoice');
@@ -1246,14 +1246,24 @@ function loadSettings(table, outputdiv) {
                                     <div class="settingsCheckedCircle">
                                         <sf-symbol glyph="checkmark.circle.fill"></sf-symbol>
                                     </div>`;
-                                    
-                const darkCheckBox = document.createElement('input');
-                darkCheckBox.type = 'checkbox';
                 
                 darkChoice.appendChild(darkImage);
                 darkChoice.appendChild(darkText);
                 darkChoice.appendChild(darkCheckCircle);
-                darkChoice.appendChild(darkCheckBox);
+
+                lightChoice.addEventListener('click', () => {
+                    document.querySelectorAll('.settingsCheckCircle')[0].classList.add('checked');
+                    document.querySelectorAll('.settingsCheckCircle')[1].classList.remove('checked');
+                    window.CONNECTIONVARIABLES.settings['appearance_selector'] = 'light';
+                    document.body.classList.remove('dark');
+                });
+
+                darkChoice.addEventListener('click', () => {
+                    document.querySelectorAll('.settingsCheckCircle')[1].classList.add('checked');
+                    document.querySelectorAll('.settingsCheckCircle')[0].classList.remove('checked');
+                    window.CONNECTIONVARIABLES.settings[setting.id] = 'dark';
+                    document.body.classList.add('dark');
+                });
 
                 appearanceSelector.appendChild(lightChoice);
                 appearanceSelector.appendChild(darkChoice);
@@ -1373,14 +1383,29 @@ function loadSettings(table, outputdiv) {
 
 function appSpecificFunction() {
     for (const [key, value] of Object.entries(CONNECTIONVARIABLES.settings)) {
+        console.log(key)
         if(value.enabled) {
             let checkbox = document.getElementById(key + '-switch');
             let slider = checkbox.parentElement.querySelector('.appleSlider');
 
             checkbox.checked = value.enabled;
 
-            if(checkbox.checked) {
+            if(slider && checkbox.checked) {
                 slider.classList.add("active");
+            }
+        }
+
+        if(key == 'display_brightness_appearance') {
+            if(value == 'light') {
+                document.querySelectorAll('.settingsCheckCircle')[0].classList.add('checked');
+                document.querySelectorAll('.settingsCheckCircle')[1].classList.remove('checked');
+                window.CONNECTIONVARIABLES.settings['appearance_selector'] = 'light';
+                document.body.classList.remove('dark');
+            } else {
+                document.querySelectorAll('.settingsCheckCircle')[1].classList.add('checked');
+                document.querySelectorAll('.settingsCheckCircle')[0].classList.remove('checked');
+                window.CONNECTIONVARIABLES.settings['appearance_selector'] = 'dark';
+                document.body.classList.add('dark');
             }
         }
     }

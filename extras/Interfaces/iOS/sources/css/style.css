@@ -12,6 +12,12 @@ overflow: hidden;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	background: white;
+	transition: 0.3s ease-in-out background;
+}
+
+body.dark {
+	background: #111 !important;
 }
 
 body.mobile div#iphoneOverlay {
@@ -84,6 +90,7 @@ div#topBar > div {
 }
 
 div.topBar-time {
+	font-weight: 500;
 	color: white;
 	font-size: 20px;
 }
@@ -107,9 +114,22 @@ div#HS_Icons {
 }
 
 div.homeIcon {
+	cursor: pointer;
 	display: flex;
 	aspect-ratio: 1;
 	width: 100px;
+}
+
+div.homeIcon:not([app]) {
+	pointer-events: none !important;
+	cursor: not-allowed;
+	scale: 0.9;
+	opacity: 0.5;
+	filter: grayscale(1) brightness(0.5);
+}
+
+div.homeIcon:not([app]) img {
+	pointer-events: none !important;
 }
 
 div.homeIcon img {
@@ -149,6 +169,7 @@ div#HS_dockInner {
 }
 
 div.homeIconShow {
+	z-index: 2;
 	position: absolute;
 	left: 0;
 	top: 0;

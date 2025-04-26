@@ -91,6 +91,10 @@ div#debugOptions button {
     background: #188ef0;
     border-radius: 10px;
     cursor: pointer;
-    padding: 15px;
+    padding: 10px;
     margin: 5px;
+}
+
+div#debugOptions button sf-symbol {
+    height: 100%;
 }

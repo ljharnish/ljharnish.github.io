@@ -32,6 +32,35 @@ sf-symbol {
     --slider-grey: #e9e9ea;
 }
 
+body.dark {
+    background: #222;
+}
+
+body.dark,
+body.dark h1 {
+    color: white;
+}
+
+body.dark #search {
+    background: #444;
+}
+
+body.dark #userProfile,
+body.dark div.setting,
+body.dark div.categoryHeader {
+    background: #333;
+}
+
+body.dark div.setting div.textAndMore {
+    border-color: #666;
+}
+
+body.dark div.appleSliderInner,
+body.dark div.categoryInner,
+body.dark div.categoryInnerElements {
+    background: #222;
+}
+
 .black-icon {
     background: #000;
 }
@@ -320,7 +349,7 @@ div.setting div.textAndMore input[type="checkbox"] {
 
 div.appleSlider {
     cursor: pointer;
-    width: 60px;
+    min-width: 60px;
     height: 100%;
     padding: 6px 0;
 }

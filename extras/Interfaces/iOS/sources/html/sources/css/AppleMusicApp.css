@@ -1,0 +1,365 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+	font-family: 'SF Pro Display';
+	scrollbar-width: none;
+}
+
+::-webkit-scrollbar {
+	display: none;
+}
+
+body {
+    background: white;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+div#scrollTitle {
+    z-index: 100;
+    top: 0;
+    left: 0;
+    position: fixed;
+    height: 70px;
+    background: #0003;
+    backdrop-filter: blur(10px);
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: end;
+
+    font-size: 20px;
+    padding-bottom: 10px;
+    color: white;
+    font-weight: 600;
+
+    transition: 0.1s opacity ease-in-out;
+}
+
+div#bottomUI {
+    z-index: 20;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 140px;
+}
+
+div#bottomUI div.background {
+    z-index: 20;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff5;
+    mask: linear-gradient( to bottom, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 25%);
+    backdrop-filter: blur(50px);
+}
+
+div#bottomUI div.navigation {
+    position: absolute;
+    z-index: 21;
+    width: 100%;
+    height: 140px;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: end;
+    padding-bottom: 30px;
+}
+
+div#bottomUI div.navigation button.navButton {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    border: none;
+    width: 50px;
+    height: 60px;
+    color: #666;
+}
+
+div#bottomUI div.navigation button.navButton sf-symbol {
+    height: 30px;
+    margin-bottom: 2px;
+    filter: invert(1) brightness(0.4);
+}
+
+div#bottomUI div.navigation button.navButton.selected {
+    color: #fa233b;
+}
+
+div#bottomUI div.navigation button.navButton.selected sf-symbol {
+    filter: invert(24%) sepia(92%) saturate(5242%) hue-rotate(344deg) brightness(112%) contrast(96%);
+}
+
+div.bottomNowPlaying {
+    position: absolute;
+    z-index: 22;
+    box-shadow: 0px 0px 15px #0005;
+    border-radius: 15px;
+    padding: 10px;
+    top: -20px;
+    left: 20px;
+    right: 20px;
+    height: 65px;
+    background: white;
+    display: flex;
+    align-items: center;
+}
+
+div.bottomNowPlaying div.bottomNowPlayingImage {
+    height: 100%;
+    aspect-ratio: 1;
+}
+
+div.bottomNowPlaying img {
+    border-radius: 10px;
+    height: 100%;
+    aspect-ratio: 1;
+}
+
+div.bottomNowPlaying div.bottomNowPlayingText {
+    font-weight: 500;
+    margin-left: 10px;
+    flex: 1 1 auto;
+}
+
+div.bottomNowPlaying div.bottomNowPlayingControls {
+    height: 60%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+div.bottomNowPlaying div.bottomNowPlayingControls button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background: none;
+    border: none;
+    width: 50px;
+}
+
+div.bottomNowPlaying div.bottomNowPlayingControls button sf-symbol {
+    display: block;
+    height: 100%;
+}
+
+/*! Home */
+
+div#homePage {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    z-index: 1;
+}
+
+/*! New */
+
+div#newPage {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    z-index: 2;
+}
+
+/*! Radio */
+
+div#radioPage {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    z-index: 3;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*! Library */
+
+div#libraryPage {
+    position: absolute;
+    z-index: 4;
+    top: 120px;
+    left: 20px;
+    right: 20px;
+    padding-bottom: 220px;
+}
+
+div#libraryPage div.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+div#libraryPage div.header div.userIcon {
+    height: 70%;
+    aspect-ratio: 1;
+    border-radius: 100%;
+    overflow: hidden;
+}
+
+div#libraryPage div.header div.userIcon img {
+    height: 100%;
+}
+
+div.sortingCategories {
+    width: 100%;
+}
+
+div.sortCategory {
+    cursor: pointer;
+    height: 55px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+}
+
+div.sortIcon {
+    padding: 12px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 40px !important;
+}
+
+div.sortIcon sf-symbol {
+    display: block;
+    height: 100%;
+    filter: invert(24%) sepia(92%) saturate(5242%) hue-rotate(344deg) brightness(112%) contrast(96%);
+}
+
+div.sortRightSide {
+    height: 55px;
+    margin-left: 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #eee;
+}
+
+div.sortRightSide p {
+    font-weight: 400;
+    font-size: 24px;
+}
+
+div.sortCatArrow {
+    height: 100%;
+    filter: invert(1) brightness(0.75);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.sortCatArrow sf-symbol {
+    height: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.recentlyAdded {
+    margin-top: 20px;
+}
+
+div.recentlyAdded div.header h2 {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+div.recentlyAddedMusic {
+    width: 100%;
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px 10px;
+}
+
+div.recentlyAddedIcon {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+div.recentlyAddedIcon.doubleSpace {
+    grid-column: span 2;
+    display: flex;
+    flex-direction: column;
+}
+
+div.recentlyAddedIcon.doubleSpace div.addIcon {
+    background: #bbb;
+    aspect-ratio: 2 / 1;
+    border-radius: 10px;
+    width: 100%;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.recentlyAddedIcon.doubleSpace div.addIcon sf-symbol {
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60%;
+}
+
+div.recentlyAddedIcon img {
+    aspect-ratio: 1;
+    border-radius: 10px;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+div.recentlyAddedIcon p.title {
+    font-weight: 600;
+}
+div.recentlyAddedIcon p.artist {
+    font-weight: 400;
+    color: #aaa;
+}
+
+
+
+
+
+
+
+
+/*! Search */
+
+div#searchPage {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    z-index: 5;
+}

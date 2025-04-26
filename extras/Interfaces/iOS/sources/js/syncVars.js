@@ -32,4 +32,10 @@ function handleNewVariables() {
     } else {
         if(!document.getElementById('iphoneScreenshots').classList.contains('hidden')) document.getElementById('iphoneScreenshots').classList.add('hidden');
     }
+
+    if(!window.CONNECTIONVARIABLES.debug.experiment_darkmode.enabled) {
+        document.body.classList.remove('dark');
+    } else {
+        if(!document.getElementById('iphoneScreenshots').classList.contains('dark')) document.body.classList.add('dark');
+    }
 }
