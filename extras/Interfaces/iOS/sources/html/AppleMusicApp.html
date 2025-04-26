@@ -7,8 +7,6 @@
         <meta theme="light">
 
         <script>
-            function appSpecificFunction(params) { return ;}
-
             function scrollCheck() {
                 if(window.scrollY > 80) {
                     document.getElementById('scrollTitle').style.opacity = '1';
@@ -23,12 +21,12 @@
         <div id="scrollTitle" style="opacity: 0;"></div>
 
         <div id="bottomUI">
-            <div class="bottomNowPlaying">
+            <div id="bottomNowPlaying">
                 <div class="bottomNowPlayingImage">
-                    <img src="../image/Profile Pictures/ThugBob.webp" alt="">
+                    <img id="bottomNowPlayingImg" src="../image/Profile Pictures/ThugBob.webp" alt="">
                 </div>
                 <div class="bottomNowPlayingText">
-                    <p>ThugBob CripPants</p>
+                    <p id="bottomNowPlayingP">ThugBob CripPants</p>
                 </div>
                 <div class="bottomNowPlayingControls">
                     <button>
@@ -139,22 +137,25 @@
                 </div>
 
                 <div class="recentlyAddedMusic">
-                    <div class="recentlyAddedIcon doubleSpace">
-                        <div class="addIcon">
-                            <sf-symbol glyph="square.and.arrow.up.fill.hd" color="white"></sf-symbol>
-                        </div>
+                    <div class="recentlyAddedIcon" onclick="document.getElementById('musicUploadInput').click()">
+                        <img src="../image/unknown-file.png" alt="">
                         <p class="title">Upload</p>
                         <p class="artist">Play a song from your files.</p>
+
+                        <input type="file" name="" id="musicUploadInput" style="display: none;" accept="audio/mpeg">
                     </div>
 
-                    <!--<div class="recentlyAddedIcon">
+                    <div class="recentlyAddedIcon">
                         <img src="../image/Profile Pictures/ljharnish.png" alt="">
                         <p class="title">What Now</p>
                         <p class="artist">Brittany Howard</p>
-                    </div>-->
+                    </div>
                 </div>
             </div>
         </div>
+	    <script src="./sources/js/jsmediatags.min.js"></script>
+        
+	    <script src="./sources/js/AppleMusicApp.js"></script>
 	    <script src="./sources/js/customElements.js"></script>
     </body>
 </html>

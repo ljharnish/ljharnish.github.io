@@ -101,13 +101,28 @@ function DynamicIslandClose() {
     }
 }
 
+function createMusicCover() {
+    let data = window.CONNECTIONVARIABLES.media.audio.data;
+
+    if(data.tags.picture) {
+        let imageData = data.tags.picture.data;
+        var base64String = "";
+        for (var i = 0; i < imageData.length; i++) {
+            base64String += String.fromCharCode(imageData[i]);
+        }
+        return "data:" + data.tags.picture.format + ";base64," + window.btoa(base64String);
+    } else {
+        return './sources/image/unknown-file.png'
+    }
+}
+
 function DynamicIslandSetup(information) {
     switch(information.type) {
         case 'Empty':
             island.innerHTML = ``;
             break;
 
-        case 'NewNotification':
+        case 'MusicNotification':
             island.innerHTML = `<div id="di_left">
 								${information.leftHTML}
 							</div>
@@ -153,8 +168,8 @@ function DynamicIslandShowcase(type) {
             DynamicIslandSetup({ type: 'Empty' });
             break;
 
-        case 'NewNotification':
-            DynamicIslandSetup({ type: 'NewNotification', leftHTML: '<img src="./sources/image/App Icons/music.png" alt="Apple Music">', rightHTML: '<sf-symbol glyph="waveform" color="white"></sf-symbol>'});
+        case 'MusicNotification':
+            DynamicIslandSetup({ type: 'MusicNotification', leftHTML: `<img style='border-radius:10px' src="${createMusicCover()}" alt="Apple Music">`, rightHTML: '<sf-symbol glyph="waveform" color="white"></sf-symbol>'});
             DynamicIslandInteract('new-popup')
             break;
 

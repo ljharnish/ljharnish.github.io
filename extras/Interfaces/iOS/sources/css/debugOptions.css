@@ -42,7 +42,7 @@ body.showBoxes div#homeScreen {
     background: rgb(126, 88, 31) !important;
 }
 
-body.showBoxes div#HS_Icons {
+body.showBoxes div.HS_Icons {
     background: rgb(255, 153, 0) !important;
 }
 

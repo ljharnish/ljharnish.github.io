@@ -98,39 +98,54 @@ div#bottomUI div.navigation button.navButton.selected sf-symbol {
     filter: invert(24%) sepia(92%) saturate(5242%) hue-rotate(344deg) brightness(112%) contrast(96%);
 }
 
-div.bottomNowPlaying {
+div#bottomNowPlaying {
     position: absolute;
     z-index: 22;
     box-shadow: 0px 0px 15px #0005;
     border-radius: 15px;
     padding: 10px;
-    top: -20px;
+    top: 20px;
+    opacity: 0;
     left: 20px;
     right: 20px;
     height: 65px;
     background: white;
     display: flex;
     align-items: center;
+    transition: 0.5s ease opacity, 0.5s ease top;
 }
 
-div.bottomNowPlaying div.bottomNowPlayingImage {
+div#bottomNowPlaying.open {
+    top: -20px;
+    opacity: 1;
+}
+
+div#bottomNowPlaying div.bottomNowPlayingImage {
     height: 100%;
     aspect-ratio: 1;
 }
 
-div.bottomNowPlaying img {
+div#bottomNowPlaying img {
     border-radius: 10px;
     height: 100%;
     aspect-ratio: 1;
 }
 
-div.bottomNowPlaying div.bottomNowPlayingText {
+div#bottomNowPlaying div.bottomNowPlayingText {
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-weight: 500;
     margin-left: 10px;
     flex: 1 1 auto;
 }
 
-div.bottomNowPlaying div.bottomNowPlayingControls {
+div#bottomNowPlaying div.bottomNowPlayingText p {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+div#bottomNowPlaying div.bottomNowPlayingControls {
     height: 60%;
     display: flex;
     flex-direction: row;
@@ -138,7 +153,7 @@ div.bottomNowPlaying div.bottomNowPlayingControls {
     align-items: center;
 }
 
-div.bottomNowPlaying div.bottomNowPlayingControls button {
+div#bottomNowPlaying div.bottomNowPlayingControls button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -148,7 +163,7 @@ div.bottomNowPlaying div.bottomNowPlayingControls button {
     width: 50px;
 }
 
-div.bottomNowPlaying div.bottomNowPlayingControls button sf-symbol {
+div#bottomNowPlaying div.bottomNowPlayingControls button sf-symbol {
     display: block;
     height: 100%;
 }
@@ -314,31 +329,17 @@ div.recentlyAddedIcon.doubleSpace {
     flex-direction: column;
 }
 
-div.recentlyAddedIcon.doubleSpace div.addIcon {
-    background: #bbb;
-    aspect-ratio: 2 / 1;
-    border-radius: 10px;
-    width: 100%;
-    margin-bottom: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-div.recentlyAddedIcon.doubleSpace div.addIcon sf-symbol {
-    aspect-ratio: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 60%;
-}
-
 div.recentlyAddedIcon img {
     aspect-ratio: 1;
     border-radius: 10px;
     width: 100%;
     margin-bottom: 5px;
 }
+
+div.recentlyAddedIcon.doubleSpace img {
+    aspect-ratio: 2;
+    object-fit: cover;
+} 
 
 div.recentlyAddedIcon p.title {
     font-weight: 600;

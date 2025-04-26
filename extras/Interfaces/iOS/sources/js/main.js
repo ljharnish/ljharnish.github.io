@@ -1,3 +1,5 @@
+document.querySelector('#HS_Pages').scrollTo(0, 0)
+
 document.querySelectorAll('img').forEach((el) => {
     el.draggable = false;
     el.style.pointerEvents = 'none';
@@ -98,12 +100,96 @@ function closeApp() {
         el.style.filter = '';
     });
 
+
+
+
+
     if(iframe.src.includes('AppleMusic')) {
         if(CONNECTIONVARIABLES.media.audio.playing) {
-            DynamicIslandShowcase('NewNotification');
-            setTimeout(() => { DynamicIslandShowcase('Empty'); }, 5000);
+            DynamicIslandShowcase('MusicNotification');
+            //setTimeout(() => { DynamicIslandShowcase('Empty'); }, 5000);
         }
     }
 
+
+
+
+
     setTimeout(() => { iframe.src = ''; }, 450);
+}
+
+//! HomeScreen Scrolling
+
+let HS_page = 0;
+
+document.getElementById('HS_Pages').addEventListener('wheel', (e) => {
+    e.preventDefault()
+});
+
+document.getElementById('HS_Pages').addEventListener('scroll', (e) => {
+    e.preventDefault()
+});
+
+let mouseDown = false;
+let directionL = false; //Right
+let startX, scrollLeft;
+const HomeScreen = document.querySelector('#HS_Pages');
+
+const startDragging = (e) => {
+    mouseDown = true;
+    startX = e.pageX - HomeScreen.offsetLeft;
+    scrollLeft = HomeScreen.scrollLeft;
+}
+
+const stopDragging = (e) => {
+    if(!mouseDown) return;
+    mouseDown = false;
+
+    if(directionL) {
+        if(HomeScreen.scrollLeft < (216 * HS_page)) {
+            HS_page -= 1;
+            fixHSScroll();
+        } else {
+            fixHSScroll();
+        }
+    } else {
+        if(HomeScreen.scrollLeft > (216 * (HS_page + 1))) {
+            HS_page += 1;
+            fixHSScroll();
+        } else {
+            fixHSScroll();
+        }
+    }
+}
+
+const move = (e) => {
+    e.preventDefault();
+    if(!mouseDown) { return; }
+    const x = e.pageX - HomeScreen.offsetLeft;
+    const scroll = x - startX;
+    HomeScreen.scrollLeft = scrollLeft - scroll;
+
+    if(scroll > 0) {
+        directionL = true;
+    } else {
+        directionL = false;
+    }
+}
+
+HomeScreen.addEventListener('pointermove', move, false);
+HomeScreen.addEventListener('pointerdown', startDragging, false);
+HomeScreen.addEventListener('pointerup', stopDragging, false);
+HomeScreen.addEventListener('pointerleave', stopDragging, false);
+
+
+function fixHSScroll() {
+    document.querySelector('#HS_Pages').scrollTo({
+        top: 0,
+        left: HS_page * 432,
+        behavior: "smooth",
+    });
+
+    document.querySelector('div.pageSelection.active').classList.remove('active');
+
+    document.querySelector(`div.pageSelection[data-page='${HS_page}']`).classList.add('active');
 }

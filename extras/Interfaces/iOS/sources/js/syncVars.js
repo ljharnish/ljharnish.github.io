@@ -17,6 +17,7 @@ function syncVariables(variables) {
     
     console.log('Variables synced:', window.CONNECTIONVARIABLES);
 
+    if(window.CONNECTIONVARIABLES.media.audio.playing) handleAudioPlaying(window.CONNECTIONVARIABLES.media.audio);
     handleNewVariables();
 }
 
@@ -38,4 +39,16 @@ function handleNewVariables() {
     } else {
         if(!document.getElementById('iphoneScreenshots').classList.contains('dark')) document.body.classList.add('dark');
     }
+}
+
+let playingAudio = {src:''};
+
+function handleAudioPlaying(audioData) {
+    if(playingAudio.src == audioData.url) return;
+    playingAudio = new Audio(audioData.url);
+    playingAudio.controls = false;
+
+    playingAudio.play().catch(error => {
+        console.error('Error playing the audio:', error);
+    });
 }

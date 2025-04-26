@@ -48,7 +48,8 @@ div#iphoneOverlay, div#iphoneDynamicIslandOverlay {
 
 div#iosHolder {
 	padding: 32px;
-	padding-right: 35px;
+	padding-right: 36px;
+	width: 500px;
 	height: 1000px;
 	aspect-ratio: 1/2;
 }
@@ -99,18 +100,56 @@ div#homeScreen {
 	display: flex;
   	flex-direction: column;
 	justify-content: center;
-	align-items: center;
+	align-items: start;
 	width: 100%;
 	height: 100%;
 	background: url(../image/iOS-17-wallpaper-light.webp);
 	background-size: cover;
 }
 
-div#HS_Icons {
-	padding-top: 70px;
+div#HS_Pages {
+	width: 100%;
+	margin-top: 70px;
+	display: flex;
+	overflow-x: scroll;
+	min-height: 700px;
+	max-height: 700px;
+	scrollbar-width: none;
+	user-select: none;
+	touch-action: none;
+}
+
+div#HS_Pages ::-webkit-scrollbar {
+	display: none;
+}
+
+div.HS_Icons {
 	display: grid;
 	grid-template-columns: repeat(4, 100px);
 	grid-template-rows: repeat(7, 100px);
+}
+
+div#pageSelector {
+	display: flex;
+	flex-direction: row;
+	position: absolute;
+	bottom: 160px;
+	left: 50%;
+	transform: translate(-50%, 0);
+}
+
+div.pageSelection {
+	margin: 0 5px;
+	width: 10px;
+	height: 10px;
+	background: white;
+	box-shadow: 0px 0px 3px white;
+	opacity: 0.6;
+	border-radius: 100%;
+}
+
+div.pageSelection.active {
+	opacity: 0.9;
 }
 
 div.homeIcon {
@@ -138,7 +177,7 @@ div.homeIcon img {
 	user-select: none;
 }
 
-div#HS_Icons div.widgetSmall {
+div.HS_Icons div.widgetSmall {
 	overflow: hidden;
 	border-radius: 20px;
 	background: linear-gradient(to bottom, rgb(37, 45, 88), rgb(0, 0, 0));
@@ -147,7 +186,14 @@ div#HS_Icons div.widgetSmall {
 	grid-row: span 2;
 }
 
+div.HS_Page {
+	height: 100%;
+	width: 100%;
+	margin: 0 16px;
+}
+
 div#HS_Dock {
+	margin: auto;
 	height: 100%;
 	display: flex;
 	justify-content: center;

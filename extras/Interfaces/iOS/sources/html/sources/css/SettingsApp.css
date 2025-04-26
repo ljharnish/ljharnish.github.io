@@ -33,7 +33,7 @@ sf-symbol {
 }
 
 body.dark {
-    background: #222;
+    background: black;
 }
 
 body.dark,
@@ -42,23 +42,23 @@ body.dark h1 {
 }
 
 body.dark #search {
-    background: #444;
+    background: #1c1c1e;
 }
 
 body.dark #userProfile,
 body.dark div.setting,
 body.dark div.categoryHeader {
-    background: #333;
+    background: #1c1c1e;
 }
 
 body.dark div.setting div.textAndMore {
-    border-color: #666;
+    border-color: #333;
 }
 
 body.dark div.appleSliderInner,
 body.dark div.categoryInner,
 body.dark div.categoryInnerElements {
-    background: #222;
+    background: #444;
 }
 
 .black-icon {

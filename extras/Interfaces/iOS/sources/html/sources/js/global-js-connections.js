@@ -5,6 +5,9 @@ window.CONNECTIONVARIABLES = {
         },
         showDebugScreenshots: {
             enabled: false
+        },
+        experiment_darkmode: {
+            enabled: false
         }
     },
 
@@ -51,7 +54,7 @@ window.CONNECTIONVARIABLES = {
 
     media: {
         audio: {
-            playing: true
+            playing: false
         },
         video: {
             playing: false
