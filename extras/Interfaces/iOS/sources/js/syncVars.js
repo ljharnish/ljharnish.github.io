@@ -22,24 +22,25 @@ function syncVariables(variables) {
 }
 
 function handleNewVariables() {
-    switchHSIcons();
+    switchAppearance();
 
     if(window.CONNECTIONVARIABLES.debug.showDebug.enabled) {
         document.getElementById('debugOptions').classList.remove('hidden');
     } else {
         if(!document.getElementById('debugOptions').classList.contains('hidden')) document.getElementById('debugOptions').classList.add('hidden');
     }
+
+    if(window.CONNECTIONVARIABLES.debug.showInvalidIcons.enabled) {
+        document.body.classList.add('showInvalidIcons');
+    } else {
+        if(document.body.classList.contains('showInvalidIcons')) document.body.classList.remove('showInvalidIcons');
+    }
+    
     
     if(window.CONNECTIONVARIABLES.debug.showDebugScreenshots.enabled) {
         document.getElementById('iphoneScreenshots').classList.remove('hidden');
     } else {
         if(!document.getElementById('iphoneScreenshots').classList.contains('hidden')) document.getElementById('iphoneScreenshots').classList.add('hidden');
-    }
-
-    if(!window.CONNECTIONVARIABLES.debug.experiment_darkmode.enabled) {
-        document.body.classList.remove('dark');
-    } else {
-        if(!document.getElementById('iphoneScreenshots').classList.contains('dark')) document.body.classList.add('dark');
     }
 }
 

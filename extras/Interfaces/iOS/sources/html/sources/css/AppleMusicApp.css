@@ -19,6 +19,10 @@ body {
 	justify-content: center;
 }
 
+body.dark {
+    background: black;
+}
+
 div#scrollTitle {
     z-index: 100;
     top: 0;
@@ -58,6 +62,10 @@ div#bottomUI div.background {
     background: #fff5;
     mask: linear-gradient( to bottom, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 25%);
     backdrop-filter: blur(50px);
+}
+
+body.dark div#bottomUI div.background {
+    background: #26262654;
 }
 
 div#bottomUI div.navigation {
@@ -115,6 +123,11 @@ div#bottomNowPlaying {
     transition: 0.5s ease opacity, 0.5s ease top;
 }
 
+body.dark div#bottomNowPlaying {
+    background: black;
+    color: white;
+}
+
 div#bottomNowPlaying.open {
     top: -20px;
     opacity: 1;
@@ -166,6 +179,10 @@ div#bottomNowPlaying div.bottomNowPlayingControls button {
 div#bottomNowPlaying div.bottomNowPlayingControls button sf-symbol {
     display: block;
     height: 100%;
+}
+
+body.dark div#bottomNowPlaying div.bottomNowPlayingControls button sf-symbol {
+    filter: invert(1);
 }
 
 /*! Home */
@@ -230,6 +247,10 @@ div#libraryPage div.header {
     margin-bottom: 10px;
 }
 
+body.dark div#libraryPage div.header {
+    color: white;
+}
+
 div#libraryPage div.header div.userIcon {
     height: 70%;
     aspect-ratio: 1;
@@ -280,9 +301,18 @@ div.sortRightSide {
     border-bottom: 1px solid #eee;
 }
 
+body.dark div.sortRightSide {
+    border-bottom: 1px solid #333;
+}
+
+
 div.sortRightSide p {
     font-weight: 400;
     font-size: 24px;
+}
+
+body.dark div.sortRightSide p {
+    color: white;
 }
 
 div.sortCatArrow {
@@ -291,6 +321,10 @@ div.sortCatArrow {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+body.dark div.sortCatArrow {
+    filter: invert(1) brightness(0.2) !important;
 }
 
 div.sortCatArrow sf-symbol {
@@ -307,6 +341,10 @@ div.recentlyAdded {
 div.recentlyAdded div.header h2 {
     font-size: 24px;
     font-weight: 600;
+}
+
+body.dark div.recentlyAdded div.header h2 {
+    color: white;
 }
 
 div.recentlyAddedMusic {
@@ -338,12 +376,17 @@ div.recentlyAddedIcon img {
 
 div.recentlyAddedIcon.doubleSpace img {
     aspect-ratio: 2;
-    object-fit: cover;
+    object-fit: cover; 
 } 
 
 div.recentlyAddedIcon p.title {
     font-weight: 600;
 }
+
+body.dark div.recentlyAddedIcon p.title {
+    color: white;
+}
+
 div.recentlyAddedIcon p.artist {
     font-weight: 400;
     color: #aaa;

@@ -1,5 +1,10 @@
 document.querySelector('#HS_Pages').scrollTo(0, 0)
 
+document.addEventListener('keyup', (key) => {
+    if(key.key == 'Escape') closeApp();
+    return;
+});
+
 document.querySelectorAll('img').forEach((el) => {
     el.draggable = false;
     el.style.pointerEvents = 'none';
@@ -119,7 +124,7 @@ function closeApp() {
 }
 
 
-function switchHSIcons() {
+function switchAppearance() {
     if(!window.CONNECTIONVARIABLES.settings.display_brightness_appearance) return;
 
     let darkVariantIcons = [];
@@ -134,10 +139,14 @@ function switchHSIcons() {
     });
 
     if(window.CONNECTIONVARIABLES.settings.display_brightness_appearance == 'dark') {
+        document.body.classList.add('dark');
+
         darkVariantIcons.forEach((icon) => {
             icon.src = icon.src.replace('DarkLight/', 'DarkLight/DarkMode/').replace('DarkMode/DarkMode/', 'DarkMode/');
         });
     } else {
+        document.body.classList.remove('dark');
+
         darkVariantIcons.forEach((icon) => {
             icon.src = icon.src.replace('DarkLight/DarkMode/', 'DarkLight/');
         });
@@ -208,6 +217,14 @@ HomeScreen.addEventListener('pointerdown', startDragging, false);
 HomeScreen.addEventListener('pointerup', stopDragging, false);
 HomeScreen.addEventListener('pointerleave', stopDragging, false);
 
+document.querySelectorAll('div.pageSelection').forEach((pageSel) => {
+    pageSel.addEventListener('click', () => {
+        document.querySelectorAll('div.pageSelection').forEach((e) => { e.classList.remove('active')});
+        document.querySelector(`div.pageSelection[data-page="${pageSel.dataset.page}"]`).classList.add('active');
+        HS_page = pageSel.dataset.page;
+        fixHSScroll()
+    });
+});
 
 function fixHSScroll() {
     document.querySelector('#HS_Pages').scrollTo({

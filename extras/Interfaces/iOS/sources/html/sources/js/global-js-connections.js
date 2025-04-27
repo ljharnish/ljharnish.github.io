@@ -3,6 +3,9 @@ window.CONNECTIONVARIABLES = {
         showDebug: {
             enabled: false
         },
+        showInvalidIcons: {
+            enabled: false
+        },
         showDebugScreenshots: {
             enabled: false
         },

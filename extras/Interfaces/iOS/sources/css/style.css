@@ -106,6 +106,10 @@ div#homeScreen {
 	background-size: cover;
 }
 
+body.dark div#homeScreen {
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)) ,url(../image/iOS-17-wallpaper-light.webp);
+}
+
 div#HS_Pages {
 	width: 100%;
 	margin-top: 70px;
@@ -160,16 +164,21 @@ div.homeIcon {
 	width: 100px;
 }
 
-div.homeIcon:not([app]) {
-	pointer-events: none !important;
+div.homeIcon:not([app]),
+div.homeIcon:not([app]) img {
 	cursor: not-allowed;
+}
+
+div.homeIcon:not([app]):active,
+div.homeIcon:not([app]) img:active {
+	cursor: not-allowed;
+	pointer-events: none !important;
+}
+
+body:not(.showInvalidIcons) div.homeIcon:not([app]) {
 	scale: 0.9;
 	opacity: 0.5;
 	filter: grayscale(1) brightness(0.5);
-}
-
-div.homeIcon:not([app]) img {
-	pointer-events: none !important;
 }
 
 div.homeIcon > img {
@@ -213,6 +222,10 @@ div#HS_dockInner {
 	padding: 5px;
 	width: auto;
 	background: rgba(255, 255, 255, 0.6);
+}
+
+body.dark div#HS_dockInner {
+	background: rgba(0, 0, 0, 0.3);
 }
 
 div.homeIconShow {

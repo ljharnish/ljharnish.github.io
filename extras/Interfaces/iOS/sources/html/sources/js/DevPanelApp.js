@@ -1,6 +1,9 @@
 const settingsTable = {
     categories: [
         [
+            {
+                title: "Testing and Layouts"
+            },
             {  
                 name: "Show Debug Options",
                 id: "showDebug",
@@ -33,8 +36,15 @@ const settingsTable = {
                     toggleData: 'enabled'
                 }
             },
+
+        ],
+        [
+            {
+                title: "Experiments"
+            },
             {  
-                name: "Enable Dark Mode (Experimental)",
+                disabled: true,
+                name: "Enable Dark Mode",
                 id: "experiment_darkmode",
                 data: {
                     enabled: false
@@ -49,28 +59,88 @@ const settingsTable = {
                     toggleData: 'enabled'
                 }
             }
+        ],
+        [
+            {
+                title: "Home Screen"
+            },
+            {  
+                name: "Show Invalid Icons",
+                id: "showInvalidIcons",
+                data: {
+                    enabled: false
+                },
+                icon: {
+                    color: 'orange',
+                    glyph: 'app.gift.fill'
+                },
+                right: {
+                    type: 'switch',
+                    //? Toggle the data[toggleData] value if a boolean
+                    toggleData: 'enabled'
+                }
+            },
+            {
+                subtitle: "Shows Icons on the Home Screen regardless of whether they do or do not yet have an app layout associated with them.\n\nThese icons will still be non-interactable and on non-mobile devices, a denial cursor will show."
+            }
         ]
     ]
 };
 
-function appSpecificFunction() { return; }
+function appSpecificFunction() {
+    for (const [key, value] of Object.entries(CONNECTIONVARIABLES.debug)) {
+        console.log(key)
+        if(value.enabled) {
+            let checkbox = document.getElementById(key + '-switch');
+            let slider = checkbox.parentElement.querySelector('.appleSlider');
 
+            checkbox.checked = value.enabled;
+
+            if(slider && checkbox.checked) {
+                slider.classList.add("active");
+            }
+        }
+    }
+    
+    if(CONNECTIONVARIABLES.settings.display_brightness_appearance) {
+        if(CONNECTIONVARIABLES.settings.display_brightness_appearance == 'light') {
+            document.body.classList.remove('dark');
+        } else {
+            document.body.classList.add('dark');
+        }
+    }
+}
 const settingsHolder = document.getElementById("settingsHolder");
 
-function loadSettings() {
+loadSettings(settingsTable, settingsHolder);
+
+function loadSettings(table, outputdiv) {
     console.log("Loading settings...");
 
-    let settingNum = 0;
-
-    settingsTable.categories.forEach(category => {
+    table.categories.forEach(category => {
         if(category.length == 0) return; // Skip empty categories
         console.log(category)
 
         const categoryDiv = document.createElement("div");
         categoryDiv.className = "settingsCategory";
         
-        
         category.forEach(setting => {
+            if(setting.subtitle) {
+                const subtitle = document.createElement('p');
+                subtitle.className = 'subtitle';
+                subtitle.innerText = setting.subtitle;
+                categoryDiv.appendChild(subtitle);
+                return;
+            }
+
+            if(setting.title) {
+                const title = document.createElement('p');
+                title.className = 'title';
+                title.innerText = setting.title;
+                categoryDiv.appendChild(title);
+                return;
+            }
+
             const settingDiv = document.createElement("div");
             settingDiv.className = "setting";
             settingDiv.id = setting.id;
@@ -78,23 +148,35 @@ function loadSettings() {
             const iconSide = document.createElement("div");
             iconSide.className = "iconSide";
 
-            
-            const iconInner = document.createElement("div");
-            iconInner.className = "icon " + setting.icon.color + "-icon";
+            const categoryInner = document.createElement('div');
 
-            if(!setting.icon.image) { 
-
-                const iconSymbol = document.createElement("sf-symbol");
-                if(setting.icon.fixedHeight) iconSymbol.style.height = setting.icon.fixedHeight + "%";
-                iconSymbol.setAttribute("glyph", setting.icon.glyph);
-                iconSymbol.setAttribute("color", "white");
-                iconInner.appendChild(iconSymbol);
-
-            } else {
-                iconInner.style.backgroundImage = `url(${setting.icon.image})`;
+            if(setting.innerSettings) {
+                handleNewCategory(setting, categoryInner);
             }
+            
+            if(setting.icon) {
+                const iconInner = document.createElement("div");
+                iconInner.className = "icon " + setting.icon.color + "-icon";
 
-            iconSide.appendChild(iconInner);
+                if(!setting.icon.image) { 
+
+                    const iconSymbol = document.createElement("sf-symbol");
+                    if(setting.icon.fixedHeight) iconSymbol.style.height = setting.icon.fixedHeight + "%";
+                    iconSymbol.setAttribute("glyph", setting.icon.glyph);
+                    iconSymbol.setAttribute("color", "white");
+
+                    if(setting.icon.filter) {
+                        iconSymbol.style.filter = setting.icon.filter;
+                    }
+
+                    iconInner.appendChild(iconSymbol);
+
+                } else {
+                    iconInner.style.backgroundImage = `url(${setting.icon.image})`;
+                }
+
+                iconSide.appendChild(iconInner);
+            }
 
             settingDiv.appendChild(iconSide);
 
@@ -120,11 +202,15 @@ function loadSettings() {
 
                     const switchInput = document.createElement("input");
                     switchInput.type = "checkbox";
+                    switchInput.id = setting.id + "-switch";
                     textAndMore.appendChild(switchInput);
 
-                    setTimeout(() => { setSlider(appleSlider, window.CONNECTIONVARIABLES.debug[setting.id], setting.right.toggleData) }, 10);
+                    if(setting.disabled) {
+                        appleSlider.style.pointerEvents = 'none';
+                    }
 
                 } else if (setting.right.type === "arrow") {
+                    
                     const rightDiv = document.createElement("div");
                     rightDiv.className = "rightSide";
 
@@ -138,17 +224,24 @@ function loadSettings() {
                     rightDiv.appendChild(textArrow);
                     textAndMore.appendChild(rightDiv);
 
+                    settingDiv.addEventListener('click', () => {
+                        categoryInner.classList.add('open');
+                    });
+                    
                 }
             }
 
+            if(setting.disabled) {
+                settingDiv.style.opacity = '0.5';
+                settingDiv.style.cursor = 'not-allowed';
+            }
+            
             settingDiv.appendChild(textAndMore);
 
-            if(settingNum % 2 == 0) { settingDiv.classList.add("even"); }
-
-            setTimeout(() => { categoryDiv.appendChild(settingDiv); }, 75 * settingNum++);
+            categoryDiv.appendChild(settingDiv);
         });
 
-        settingsHolder.appendChild(categoryDiv);
+        outputdiv.appendChild(categoryDiv);
     });
 }
 

@@ -1349,6 +1349,10 @@ function loadSettings(table, outputdiv) {
                     switchInput.id = setting.id + "-switch";
                     textAndMore.appendChild(switchInput);
 
+                    if(setting.disabled) {
+                        appleSlider.style.pointerEvents = 'none';
+                    }
+
                 } else if (setting.right.type === "arrow") {
                     
                     const rightDiv = document.createElement("div");
@@ -1371,7 +1375,11 @@ function loadSettings(table, outputdiv) {
                 }
             }
 
-            
+            if(setting.disabled) {
+                settingDiv.style.opacity = '0.5';
+                settingDiv.style.cursor = 'not-allowed';
+            }
+
             settingDiv.appendChild(textAndMore);
 
             categoryDiv.appendChild(settingDiv);

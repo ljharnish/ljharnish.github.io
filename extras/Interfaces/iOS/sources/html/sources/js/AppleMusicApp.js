@@ -1,8 +1,4 @@
 function appSpecificFunction() { 
-    //CONNECTIONVARIABLES.media.audio.playing = true;
-    //CONNECTIONVARIABLES.media.audio.url = audioURL;
-    //CONNECTIONVARIABLES.media.audio.data = tagData;
-
     if(CONNECTIONVARIABLES.media.audio.playing) {
         var imageData = CONNECTIONVARIABLES.media.audio.data.tags.picture.data;
         var base64String = "";
@@ -14,6 +10,14 @@ function appSpecificFunction() {
         document.getElementById('bottomNowPlayingP').innerText = CONNECTIONVARIABLES.media.audio.data.tags.title;
 
         document.getElementById('bottomNowPlaying').classList.add('open');
+    }
+
+    if(CONNECTIONVARIABLES.settings.display_brightness_appearance) {
+        if(CONNECTIONVARIABLES.settings.display_brightness_appearance == 'light') {
+            document.body.classList.remove('dark');
+        } else {
+            document.body.classList.add('dark');
+        }
     }
 }
 
