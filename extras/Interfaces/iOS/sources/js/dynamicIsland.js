@@ -85,14 +85,14 @@ function DynamicIslandStyle(type) {
 
         case 'new-popup':
             hideAndSizeElement(service, true);
-            island.classList.add('DYNAMIC_newpopup_open');
+            island.className = 'DYNAMIC_newpopup_open';
             break;
 
         case 'close-popup':
             hideAndSizeElement(service, false);
             hideAndSizeElement(internet, false);
             hideAndSizeElement(battery, false);
-            island.classList.remove('DYNAMIC_newpopup_open');
+            island.className = '';
             break;
     }
 }

@@ -32,7 +32,9 @@ sf-symbol {
     --slider-grey: #e9e9ea;
 }
 
-body.dark {
+body.dark,
+body.dark div.categoryInner,
+body.dark div.categoryInnerElements {
     background: black;
 }
 
@@ -51,13 +53,12 @@ body.dark div.categoryHeader {
     background: #1c1c1e;
 }
 
-body.dark div.setting div.textAndMore {
-    border-color: #333;
+body.dark div.setting div.textAndMore,
+div.display_appearance {
+    border-color: #333 !important;
 }
 
-body.dark div.appleSliderInner,
-body.dark div.categoryInner,
-body.dark div.categoryInnerElements {
+body.dark div.appleSliderInner {
     background: #444;
 }
 

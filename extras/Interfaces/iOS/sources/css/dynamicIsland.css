@@ -19,9 +19,22 @@ div#dynamicIsland {
     border-radius: 50px;
 	height: 42px;
 	width: 142px;
+}
+
+div#dynamicIsland.DYNAMIC_fullwidth_open_open,
+div#dynamicIsland.DYNAMIC_fullwidth_fat_open,
+div#dynamicIsland.DYNAMIC_fullwidth_thin_open {
     transition: 
         width 1s cubic-bezier(.68,-0.55,.11,1.29),
         height 1s cubic-bezier(.68,-0.55,.11,1.29);
+}
+
+/* ! Open & Close Fix */
+
+div#dynamicIsland.DYNAMIC_newpopup_open {
+    transition: 
+        width 0.5s ease,
+        height 0.2s ease;
 }
 
 div#di_left, div#di_right {
@@ -63,6 +76,7 @@ div#dynamicIsland.DYNAMIC_newpopup_open {
 
 div#dynamicIsland.DYNAMIC_newpopup_open div#di_left,
 div#dynamicIsland.DYNAMIC_newpopup_open div#di_right {
+    height: 42px;
     opacity: 1;
     transition: 1.3s opacity ease-in-out;
 }

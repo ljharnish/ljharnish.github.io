@@ -154,6 +154,8 @@ div.pageSelection.active {
 div.homeIcon {
 	cursor: pointer;
 	display: flex;
+	align-items: center;
+	justify-content: center;
 	aspect-ratio: 1;
 	width: 100px;
 }
@@ -170,9 +172,9 @@ div.homeIcon:not([app]) img {
 	pointer-events: none !important;
 }
 
-div.homeIcon img {
+div.homeIcon > img {
 	pointer-events: all !important;
-	width: 100%;
+	width: 80%;
 	user-select: none;
 }
 
@@ -222,6 +224,12 @@ div.homeIconShow {
 	height: 100px;
 	animation: openApp 0.25s ease-in-out 1 forwards;
 }
+
+div.homeIconShow img {
+	width: 100%;
+	height: 100%;
+}
+
 
 @keyframes openApp {
 	100% {

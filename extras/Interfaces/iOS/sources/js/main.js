@@ -118,6 +118,33 @@ function closeApp() {
     setTimeout(() => { iframe.src = ''; }, 450);
 }
 
+
+function switchHSIcons() {
+    if(!window.CONNECTIONVARIABLES.settings.display_brightness_appearance) return;
+
+    let darkVariantIcons = [];
+
+    document.querySelectorAll('div.homeIcon > img').forEach((el) => {
+        if(el.src.includes('DarkLight/')) {
+            console.log(`${el.alt} has a dark variant.`);
+            darkVariantIcons.push(el);
+        } else {
+            console.log(`${el.alt} does not have a dark variant.`);
+        }
+    });
+
+    if(window.CONNECTIONVARIABLES.settings.display_brightness_appearance == 'dark') {
+        darkVariantIcons.forEach((icon) => {
+            icon.src = icon.src.replace('DarkLight/', 'DarkLight/DarkMode/').replace('DarkMode/DarkMode/', 'DarkMode/');
+        });
+    } else {
+        darkVariantIcons.forEach((icon) => {
+            icon.src = icon.src.replace('DarkLight/DarkMode/', 'DarkLight/');
+        });
+    }
+}
+
+
 //! HomeScreen Scrolling
 
 let HS_page = 0;

@@ -22,6 +22,8 @@ function syncVariables(variables) {
 }
 
 function handleNewVariables() {
+    switchHSIcons();
+
     if(window.CONNECTIONVARIABLES.debug.showDebug.enabled) {
         document.getElementById('debugOptions').classList.remove('hidden');
     } else {

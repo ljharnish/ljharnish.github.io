@@ -1254,7 +1254,7 @@ function loadSettings(table, outputdiv) {
                 lightChoice.addEventListener('click', () => {
                     document.querySelectorAll('.settingsCheckCircle')[0].classList.add('checked');
                     document.querySelectorAll('.settingsCheckCircle')[1].classList.remove('checked');
-                    window.CONNECTIONVARIABLES.settings['appearance_selector'] = 'light';
+                    window.CONNECTIONVARIABLES.settings[setting.id] = 'light';
                     document.body.classList.remove('dark');
                 });
 
@@ -1399,12 +1399,10 @@ function appSpecificFunction() {
             if(value == 'light') {
                 document.querySelectorAll('.settingsCheckCircle')[0].classList.add('checked');
                 document.querySelectorAll('.settingsCheckCircle')[1].classList.remove('checked');
-                window.CONNECTIONVARIABLES.settings['appearance_selector'] = 'light';
                 document.body.classList.remove('dark');
             } else {
                 document.querySelectorAll('.settingsCheckCircle')[1].classList.add('checked');
                 document.querySelectorAll('.settingsCheckCircle')[0].classList.remove('checked');
-                window.CONNECTIONVARIABLES.settings['appearance_selector'] = 'dark';
                 document.body.classList.add('dark');
             }
         }
