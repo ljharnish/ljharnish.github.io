@@ -16,10 +16,12 @@ div#dynamicIsland {
     justify-content: space-between;
     background: black;
 	background-size: contain;
-    border-radius: 999px;
+    border-radius: 50px;
 	height: 42px;
 	width: 142px;
-    transition: width 1s cubic-bezier(.68,-0.55,.11,1.29), height 1s cubic-bezier(.68,-0.55,.11,1.29);
+    transition: 
+        width 1s cubic-bezier(.68,-0.55,.11,1.29),
+        height 1s cubic-bezier(.68,-0.55,.11,1.29);
 }
 
 div#di_left, div#di_right {
@@ -181,5 +183,131 @@ div#DYNAMIC_fullwidththin_icon_battery div {
     border-top-left-radius: 9px;
     border-bottom-left-radius: 9px;
     background: #bbffb4;
+    height: 100%;
+}
+
+div#dynamicIsland.DYNAMIC_fullwidth_open_open {
+    display: flex;
+    flex-direction: column;
+    height: 230px;
+    width: 400px;
+    padding: 30px;
+}
+
+div#dynamicIsland.DYNAMIC_fullwidth_open_open div.dynamicIsland_musicTop {
+    width: 100%;
+    height: 70px;
+
+    display: flex;
+    flex-direction: row;
+}
+
+div#dynamicIsland.DYNAMIC_fullwidth_open_open div.dynamicIsland_musicTop div.dynamic_musicInfo {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex: 1 1 auto;
+}
+
+div#dynamicIsland.DYNAMIC_fullwidth_open_open div.dynamicIsland_musicTop div.dynamic_musicInfo img {
+    height: 100%;
+    aspect-ratio: 1;
+    border-radius: 15px;
+    margin-right: 15px;
+}
+
+div#dynamicIsland.DYNAMIC_fullwidth_open_open div.dynamicIsland_musicTop div.dynamic_musicInfo div.dynamic_musicText {
+    font-size: 18px;
+}
+
+div#dynamicIsland.DYNAMIC_fullwidth_open_open div.dynamicIsland_musicTop div.dynamic_musicInfo div.dynamic_musicText p:nth-of-type(1) {
+    font-weight: 600;
+}
+
+div#dynamicIsland.DYNAMIC_fullwidth_open_open div.dynamicIsland_musicTop div.dynamic_musicInfo div.dynamic_musicText p:nth-of-type(2) {
+    color: grey;
+    font-weight: 400;
+}
+
+div#dynamicIsland.DYNAMIC_fullwidth_open_open div.dynamicIsland_musicTop div.dynamicIsland_musicWaves {
+    aspect-ratio: 1;
+    height: 100%;
+
+    display: flex;
+    justify-content: end;
+    align-items: baseline;
+}
+
+div#dynamicIsland.DYNAMIC_fullwidth_open_open div.dynamicIsland_musicTop div.dynamicIsland_musicWaves sf-symbol {
+    aspect-ratio: 1;
+    height: 50%;
+}
+
+div#dynamicIsland.DYNAMIC_fullwidth_open_open div.dynamicIsland_musicProgress {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    color: #a0a0a0;
+    font-weight: 500;
+}
+
+div#dynamicIsland.DYNAMIC_fullwidth_open_open div.dynamicIsland_musicProgress div.dynamicIsland_musicProgressBarOuter {
+    width: 100%;
+    height: 10px;
+    margin: 0 10px;
+
+    background: #3a3a3a;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+div#dynamicIsland.DYNAMIC_fullwidth_open_open div.dynamicIsland_musicProgress div.dynamicIsland_musicProgressBarOuter div.dynamicIsland_musicProgressBarInner {
+    width: 75%;
+    height: 100%;
+
+    background: #ffffff;
+    border-radius: 999px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    overflow: hidden;
+}
+
+div#dynamicIsland.DYNAMIC_fullwidth_open_open div.dynamicIsland_musicControls {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+div#dynamicIsland.DYNAMIC_fullwidth_open_open div.dynamicIsland_musicControls button,
+div#dynamicIsland.DYNAMIC_fullwidth_open_open div.dynamicIsland_musicControls div.spacer {
+    background: none;
+    border: none;
+    width: 60px;
+    height: 40px;
+}
+
+div#dynamicIsland.DYNAMIC_fullwidth_open_open div.dynamicIsland_musicControls button:nth-of-type(2) {
+    margin: 0 20px;
+}
+
+div#dynamicIsland.DYNAMIC_fullwidth_open_open div.dynamicIsland_musicControls button:nth-of-type(1),
+div#dynamicIsland.DYNAMIC_fullwidth_open_open div.dynamicIsland_musicControls button:nth-of-type(3) {
+    width: auto;
+    height: 30px;
+}
+
+div#dynamicIsland.DYNAMIC_fullwidth_open_open div.dynamicIsland_musicControls button:nth-of-type(4) {
+    padding: 5px 2px;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: end;
+}
+
+div#dynamicIsland.DYNAMIC_fullwidth_open_open div.dynamicIsland_musicControls button sf-symbol {
     height: 100%;
 }

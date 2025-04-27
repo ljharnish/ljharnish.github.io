@@ -13,7 +13,7 @@ setTimeout(() => {
     battery.style.width = battery.scrollWidth + 'px';
 }, 300);
 
-function DynamicIslandInteract(type) {
+function DynamicIslandStyle(type) {
     function hideAndSizeElement(el, hide) {
         if(el.style.display === 'none' && !hide) {
             el.style.display = 'flex';
@@ -40,8 +40,21 @@ function DynamicIslandInteract(type) {
     }
 
     switch(type) {
+        case 'full-width-open':
+            island.className = 'DYNAMIC_fullwidth_open_open';
+            hideWhole(topLeft, true);
+            hideWhole(topRight, true);
+            break;
+
+        case 'close-full-width-open':
+            hideWhole(topLeft, false);
+            hideWhole(topRight, false);
+            island.className = '';
+            break;
+    
+
         case 'full-width-fat':
-            island.classList.add('DYNAMIC_fullwidth_fat_open');
+            island.className = 'DYNAMIC_fullwidth_fat_open';
             hideWhole(topLeft, true);
             hideWhole(topRight, true);
             break;
@@ -49,13 +62,13 @@ function DynamicIslandInteract(type) {
         case 'close-full-width-fat':
             hideWhole(topLeft, false);
             hideWhole(topRight, false);
-            island.classList.remove('DYNAMIC_fullwidth_fat_open');
+            island.className = '';
             break;
 
 
 
         case 'full-width-thin':
-            island.classList.add('DYNAMIC_fullwidth_thin_open');
+            island.className = 'DYNAMIC_fullwidth_thin_open';
             hideWhole(topLeft, true);
             hideWhole(topRight, true);
             break;
@@ -63,7 +76,7 @@ function DynamicIslandInteract(type) {
         case 'close-full-width-thin':
             hideWhole(topLeft, false);
             hideWhole(topRight, false);
-            island.classList.remove('DYNAMIC_fullwidth_thin_open');
+            island.className = '';
             break;
 
 
@@ -88,20 +101,26 @@ function DynamicIslandClose() {
     DynamicIslandSetup({ type: 'Empty' });
     switch(island.classList[0]) {
         case 'DYNAMIC_fullwidth_fat_open':
-            DynamicIslandInteract('close-full-width-fat');
+            DynamicIslandStyle('close-full-width-fat');
             break;
 
         case 'DYNAMIC_fullwidth_thin_open':
-            DynamicIslandInteract('close-full-width-thin');
+            DynamicIslandStyle('close-full-width-thin');
+            break;
+
+        case 'DYNAMIC_fullwidth_open_open':
+            DynamicIslandStyle('close-full-width-open');
             break;
         
         default:
-            DynamicIslandInteract('close-popup');
+            DynamicIslandStyle('close-popup');
             break;
     }
 }
 
 function createMusicCover() {
+    if(!window.CONNECTIONVARIABLES.media.audio.data) return './sources/image/unknown-file.png'
+
     let data = window.CONNECTIONVARIABLES.media.audio.data;
 
     if(data.tags.picture) {
@@ -113,6 +132,18 @@ function createMusicCover() {
         return "data:" + data.tags.picture.format + ";base64," + window.btoa(base64String);
     } else {
         return './sources/image/unknown-file.png'
+    }
+}
+
+function getMusicData() {
+    if(!window.CONNECTIONVARIABLES.media.audio.data) return;
+
+    let data = window.CONNECTIONVARIABLES.media.audio.data.tags;
+
+    return {
+        title: data.title,
+        cover: createMusicCover(),
+        artist: data.artist || "Unknown"
     }
 }
 
@@ -129,6 +160,43 @@ function DynamicIslandSetup(information) {
 							<div id="di_right">
 								${information.rightHTML}
 							</div>`;
+            break;
+
+        case 'MusicNotificationFull':
+            island.innerHTML = `
+							<div class="dynamicIsland_musicTop">
+								<div class="dynamic_musicInfo">
+									<img src="${information.data.cover}" alt="" draggable="false" style="pointer-events: none;">
+									<div class="dynamic_musicText">
+										<p>${information.data.title}</p>
+										<p>${information.data.artist}</p>
+									</div>
+								</div>
+								<div class="dynamicIsland_musicWaves">
+									<sf-symbol glyph="waveform" color="white"></sf-symbol>
+								</div>
+							</div>
+							<div class="dynamicIsland_musicProgress">
+								<p id="dynamicIsland_musicProgress_current">
+									1:20
+								</p>
+								<div class="dynamicIsland_musicProgressBarOuter">
+									<div class="dynamicIsland_musicProgressBarInner">
+										
+									</div>
+								</div>
+								<p id="dynamicIsland_musicProgress_end">
+									-0:15
+								</p>
+							</div>
+							<div class="dynamicIsland_musicControls">
+								<div class="spacer"></div>
+								<button><sf-symbol glyph="backward.fill" color="white"></sf-symbol></button>
+								<button><sf-symbol glyph="pause.fill" color="white"></sf-symbol></button>
+								<button><sf-symbol glyph="forward.fill" color="white"></sf-symbol></button>
+								<button><sf-symbol glyph="airplayaudio" color="white"></sf-symbol></button>
+							</div>
+						`
             break;
 
         case 'Charging':
@@ -170,18 +238,38 @@ function DynamicIslandShowcase(type) {
 
         case 'MusicNotification':
             DynamicIslandSetup({ type: 'MusicNotification', leftHTML: `<img style='border-radius:10px' src="${createMusicCover()}" alt="Apple Music">`, rightHTML: '<sf-symbol glyph="waveform" color="white"></sf-symbol>'});
-            DynamicIslandInteract('new-popup')
+            DynamicIslandStyle('new-popup')
             break;
 
         case 'Charging':
             DynamicIslandSetup({ type: 'Charging', chargePercent: 50 });
-            DynamicIslandInteract('full-width-thin');
+            DynamicIslandStyle('full-width-thin');
             break;
 
         case 'NewCall':
             DynamicIslandSetup({ type: 'NewCall' });
-            DynamicIslandInteract('full-width-fat');
+            DynamicIslandStyle('full-width-fat');
             break;
 
     }
 }
+
+document.getElementById('dynamicIsland').addEventListener('click', () => {
+    let dynamic = document.getElementById('dynamicIsland');
+    if(dynamic.innerHTML.trim() == '') return;
+
+    DynamicIslandSetup({
+        type: 'MusicNotificationFull',
+        data: getMusicData()
+    });
+
+    DynamicIslandStyle('full-width-open');
+
+    function disableOnOutClick(e) {
+        if(e.target == document.getElementById('dynamicIsland')) return
+        DynamicIslandShowcase('MusicNotification');
+        document.removeEventListener('click', disableOnOutClick, true);
+    }
+
+    document.addEventListener('click', disableOnOutClick, true);
+});
