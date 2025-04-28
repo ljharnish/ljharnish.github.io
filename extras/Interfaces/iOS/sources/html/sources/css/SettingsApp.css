@@ -54,7 +54,7 @@ body.dark div.categoryHeader {
 }
 
 body.dark div.setting div.textAndMore,
-div.display_appearance {
+body.dark div.display_appearance {
     border-color: #333 !important;
 }
 
