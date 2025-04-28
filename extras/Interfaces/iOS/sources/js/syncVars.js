@@ -5,7 +5,6 @@
 //?     - If they are different, it will update the main window variables.
 //?     - Thus (HOPEFULLY) allowing the app to work with the main window variables.
 
-
 function syncVariables(variables) {
     let appVariables = variables;
     

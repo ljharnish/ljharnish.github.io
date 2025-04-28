@@ -19,6 +19,7 @@ class SFSymbol extends HTMLElement {
         const showGlyph = document.createElement("img");
         showGlyph.src = glyph;
         showGlyph.style.height = "100%";
+        showGlyph.draggable = false;
 
         shadow.appendChild(showGlyph);
     }

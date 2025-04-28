@@ -21,7 +21,7 @@
 	<!--TODO: Unlock & Relock -->
 	<!--TODO: Clickable Side Buttons -->
 
-	<body class="">
+	<body onload="handleNewVariables();">
         <!--? Debug Stuff -->
 
         <div id="debugOptions" class="hidden">
@@ -128,11 +128,11 @@
 							<sf-symbol glyph="battery.100" color="white"></sf-symbol>
 						</div>
 					</div>
+					
+					<button id="controlCenterBar">
+						Open CC
+					</button>	
 				</div>
-
-                <button id="controlCenterBar" onclick="document.getElementById('controlCenter').classList.add('open')"></button>
-                <button id="controlCenterBar2" onclick="document.getElementById('controlCenter').classList.remove('open')"></button>
-
                 <div id="controlCenter">
                     
                 </div>

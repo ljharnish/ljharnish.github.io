@@ -10,7 +10,7 @@ window.CONNECTIONVARIABLES = {
             enabled: false
         },
         experiment_controlCenter: {
-            enabled: false
+            enabled: true
         },
         showInvalidIcons: {
             enabled: false

@@ -304,3 +304,23 @@ function fixHSScroll() {
 
     document.querySelector(`div.pageSelection[data-page='${HS_page}']`).classList.add('active');
 }
+
+
+//! Control Center
+
+const CC_Bar = document.getElementById('controlCenterBar');
+
+let ccOpen = false;
+
+CC_Bar.addEventListener('click', () => {
+    ccOpen = !ccOpen;
+
+    if(ccOpen) document.getElementById('controlCenter').classList.add('open'); 
+    if(!ccOpen) document.getElementById('controlCenter').classList.remove('open'); 
+
+    if(ccOpen) CC_Bar.innerText = 'Close CC';
+    if(!ccOpen) CC_Bar.innerText = 'Open CC';
+
+    if(ccOpen) document.getElementById('topBar').classList.add('ccOpen');
+    if(!ccOpen) document.getElementById('topBar').classList.remove('ccOpen');
+});
