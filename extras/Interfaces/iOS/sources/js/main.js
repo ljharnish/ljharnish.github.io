@@ -218,6 +218,21 @@ document.getElementById('HS_Pages').addEventListener('scroll', (e) => {
     e.preventDefault()
 });
 
+document.addEventListener('keydown', (e) => {
+    if (e.key === "ArrowLeft") {
+        HS_page -= 1;
+        if(HS_page < 0) HS_page = 0;
+        fixHSScroll();
+        e.preventDefault();
+    } else if(e.key === 'ArrowRight') {
+        HS_page += 1;
+        if(HS_page > (document.querySelectorAll('.HS_Page').length - 1)) HS_page = (document.querySelectorAll('.HS_Page').length - 1);
+        fixHSScroll();
+        e.preventDefault();
+    }
+    return;
+});
+
 let mouseDown = false;
 let directionL = false; //Right
 let startX, scrollLeft;

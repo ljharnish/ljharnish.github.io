@@ -9,6 +9,9 @@ window.CONNECTIONVARIABLES = {
         experiment_darkmode: {
             enabled: false
         },
+        experiment_controlCenter: {
+            enabled: false
+        },
         showInvalidIcons: {
             enabled: false
         },

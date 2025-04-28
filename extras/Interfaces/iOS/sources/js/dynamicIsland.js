@@ -7,12 +7,6 @@ let internet = document.getElementById('tB_internet');
 let battery = document.getElementById('tB_battery');
 
 
-setTimeout(() => {
-    service.style.width = service.scrollWidth + 'px';
-    internet.style.width = internet.scrollWidth + 'px';
-    battery.style.width = battery.scrollWidth + 'px';
-}, 500);
-
 function DynamicIslandStyle(type) {
     function hideAndSizeElement(el, hide) {
         if(el.style.display === 'none' && !hide) {

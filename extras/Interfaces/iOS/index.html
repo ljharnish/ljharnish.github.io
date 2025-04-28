@@ -130,7 +130,14 @@
 					</div>
 				</div>
 
-				<div id="lockScreen">
+                <button id="controlCenterBar" onclick="document.getElementById('controlCenter').classList.add('open')"></button>
+                <button id="controlCenterBar2" onclick="document.getElementById('controlCenter').classList.remove('open')"></button>
+
+                <div id="controlCenter">
+                    
+                </div>
+
+				<div id="lockScreen" class="closed">
 					<div class="lockTime">
 						<p id="lockDate">Monday, June 6</p>
 						<h1 id="lockTime">9:41</h1>

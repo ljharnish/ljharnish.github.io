@@ -58,6 +58,22 @@ const settingsTable = {
                     //? Toggle the data[toggleData] value if a boolean
                     toggleData: 'enabled'
                 }
+            },
+            {
+                name: "Show Control Center Buttons",
+                id: "experiment_controlCenter",
+                data: {
+                    enabled: false
+                },
+                icon: {
+                    color: 'black',
+                    glyph: 'control.center'
+                },
+                right: {
+                    type: 'switch',
+                    //? Toggle the data[toggleData] value if a boolean
+                    toggleData: 'enabled'
+                }
             }
         ],
         [

@@ -36,6 +36,12 @@ function handleNewVariables() {
         if(!document.getElementById('iphoneScreenshots').classList.contains('hidden')) document.getElementById('iphoneScreenshots').classList.add('hidden');
     }
 
+    if(window.CONNECTIONVARIABLES.debug.experiment_controlCenter.enabled) {
+        document.body.classList.add('showControlBtns');
+    } else {
+        if(document.body.classList.contains('showControlBtns')) document.body.classList.remove('showControlBtns');
+    }
+
     if(window.CONNECTIONVARIABLES.debug.showInvalidIcons.enabled) {
         document.body.classList.add('showInvalidIcons');
     } else {
