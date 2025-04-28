@@ -1034,6 +1034,15 @@ const settingsTable = {
                 },
                 right: {
                     type: 'arrow'
+                },
+                innerSettings: {
+                    categories: [
+                        [
+                            {
+                                type: 'wallpaper_customization'
+                            }
+                        ],
+                    ]
                 }
             }
         ],
@@ -1197,6 +1206,8 @@ function loadSettings(table, outputdiv) {
 
             const categoryInner = document.createElement('div');
 
+            //! Special Types
+
             if(setting.type == 'appearance_selector') {
                 settingDiv.classList.add('display_appearance');
 
@@ -1290,6 +1301,9 @@ function loadSettings(table, outputdiv) {
                 settingDiv.appendChild(sunMax);
 
                 categoryDiv.appendChild(settingDiv);
+
+                return;
+            } else if(setting.type == 'wallpaper_customization') {
 
                 return;
             }

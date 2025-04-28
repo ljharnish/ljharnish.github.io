@@ -129,6 +129,31 @@
 						</div>
 					</div>
 				</div>
+
+				<div id="lockScreen">
+					<div class="lockTime">
+						<p id="lockDate">Monday, June 6</p>
+						<h1 id="lockTime">9:41</h1>
+					</div>
+
+					<div class="lockBottomPart">
+						<div class="otherButtons">
+							<button>
+								<sf-symbol glyph="flashlight.on.fill" color="white"></sf-symbol>
+							</button>
+
+							<button>
+								<sf-symbol glyph="camera.fill" color="white"></sf-symbol>
+							</button>
+						</div>
+
+						<button class="appClose" onclick="document.getElementById('lockScreen').classList.add('closed');">
+							<div class="appCloseBar"></div>
+						</button>
+					</div>
+
+				</div>
+
 				<div id="homeScreen">
 					<div id="pageSelector">
 						<div class="pageSelection active" data-page="0"></div>
@@ -138,44 +163,59 @@
 					<div id="HS_Pages">
 						<div class="HS_Page">
 							<div class="HS_Icons">
+								<div class="widgetSmall"></div>
+								<div class="widgetSmall"></div>
 								<div class="homeIcon">
 									<img src="./sources/image/App Icons/DarkLight/FaceTime.svg" alt="FaceTime">
+									<p>FaceTime</p>
 								</div>
 								<div class="homeIcon">
 									<img src="./sources/image/App Icons/DarkLight/Calendar.svg" alt="Calendar">
+									<p>Calendar</p>
 								</div>
 								<div class="homeIcon">
 									<img src="./sources/image/App Icons/DarkLight/Photos.svg" alt="Photos">
+									<p>Photos</p>
 								</div>
 								<div class="homeIcon">
 									<img src="./sources/image/App Icons/DarkLight/Camera.svg" alt="Camera">
+									<p>Camera</p>
 								</div>
 								<div class="homeIcon">
 									<img src="./sources/image/App Icons/DarkLight/Mail.svg" alt="Mail">
+									<p>Mail</p>
 								</div>
 								<div class="homeIcon">
 									<img src="./sources/image/App Icons/DarkLight/Notes.svg" alt="Notes">
+									<p>Notes</p>
 								</div>
 								<div class="homeIcon">
 									<img src="./sources/image/App Icons/DarkLight/Reminders.svg" alt="Reminders">
+									<p>Reminders</p>
 								</div>
 								<div class="homeIcon" app="Calculator">
 									<img src="./sources/image/App Icons/DarkLight/Calculator.svg" alt="Calculator">
+									<p>Calculator</p>
 								</div>
 								<div class="homeIcon">
 									<img src="./sources/image/App Icons/DarkLight/Podcasts.svg" alt="Podcasts">
+									<p>Podcasts</p>
 								</div>
 								<div class="homeIcon">
 									<img src="./sources/image/App Icons/DarkLight/AppStore.svg" alt="App Store">
+									<p>App Store</p>
 								</div>
 								<div class="homeIcon">
 									<img src="./sources/image/App Icons/DarkLight/Maps.webp" alt="Maps">
+									<p>Maps</p>
 								</div>
 								<div class="homeIcon" app="Settings">
 									<img src="./sources/image/App Icons/DarkLight/Settings.svg" alt="Settings">
+									<p>Settings</p>
 								</div>
 								<div class="homeIcon">
 									<img src="./sources/image/App Icons/DarkLight/YouTube_Old.webp" alt="Old YouTube">
+									<p>YouTube</p>
 								</div>
 							</div>
 						</div>
@@ -183,9 +223,11 @@
 							<div class="HS_Icons">
 								<div class="homeIcon" app="DevPanel">
 									<img src="./sources/image/App Icons/DarkLight/AppleDeveloper.svg" alt="Developer Panel">
+									<p>Developer Panel</p>
 								</div>
 								<div class="homeIcon">
 									<img src="./sources/image/App Icons/DarkLight/AppleSupport.svg" alt="Support">
+									<p>Support</p>
 								</div>
 							</div>
 						</div>
@@ -195,18 +237,22 @@
 						<div id="HS_dockInner">
 							<div class="homeIcon">
 								<img src="./sources/image/App Icons/DarkLight/Phone.svg" alt="Phone">
+								<p>Phone</p>
 							</div>
 						
 							<div class="homeIcon">
 								<img src="./sources/image/App Icons/DarkLight/Safari.svg" alt="Safari">
+								<p>Safari</p>
 							</div>
 	
 							<div class="homeIcon">
 								<img src="./sources/image/App Icons/DarkLight/Messages.svg" alt="Messages">
+								<p>Messages</p>
 							</div>
 						
 							<div class="homeIcon" app="AppleMusic">
 								<img src="./sources/image/App Icons/DarkLight/Music.svg" alt="Music">
+								<p>Music</p>
 							</div>
 						</div>
 					</div>
@@ -214,8 +260,8 @@
 					<!--! etc -->
 				</div>
 
-				<button id="appClose" onclick="closeApp()">
-					<div id="appCloseBar"></div>
+				<button class="appClose" onclick="closeApp()">
+					<div class="appCloseBar"></div>
 				</button>
 
 				<div id="currentApp" class="noApp">
@@ -227,7 +273,7 @@
 	<!-- JS -->
 
 	<script src="./sources/js/syncVars.js"></script>
-	<script src="./sources/js/main.js" defer></script>
+	<script src="./sources/js/main.js"></script>
 	<script src="./sources/html/sources/js/global-js-connections.js"></script>
 	<script src="./sources/js/customElements.js"></script>
 	<script src="./sources/js/dynamicIsland.js"></script>
@@ -236,6 +282,6 @@
 		//<!--? Use this for Debugging
 
 		//DynamicIslandStyle('full-width-open');
-		//openNewApp('./sources/html/AppleMusicApp.html');
+		//openNewApp('./sources/html/FaceTimeApp.html');
 	</script>
 </html>

@@ -3,13 +3,16 @@ window.CONNECTIONVARIABLES = {
         showDebug: {
             enabled: false
         },
-        showInvalidIcons: {
-            enabled: false
-        },
         showDebugScreenshots: {
             enabled: false
         },
         experiment_darkmode: {
+            enabled: false
+        },
+        showInvalidIcons: {
+            enabled: false
+        },
+        showIconLabels: {
             enabled: false
         }
     },

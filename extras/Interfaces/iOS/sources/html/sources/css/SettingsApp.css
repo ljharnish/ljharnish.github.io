@@ -643,3 +643,99 @@ div#display_brightness_slider div.brightness_slider div.circle {
     left: calc(70% - 20px);
     transform: translateY(-50%);
 }
+
+div.wallpaperCustomizer {
+    background:white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: grey;
+}
+
+div.wallpaperCustomizer > button {
+    background:#007aff;
+    border:none;
+    color: white;
+    font-size: 18px;
+    padding: 10px 20px;
+    border-radius:100px;
+    cursor: pointer;
+}
+
+div.wallpaperCustomizerSlide {
+    margin: 20px 0;
+    width: 100%;
+}
+
+div.wallpaperCustomizerInnerSlide {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+div.lockScreenCustomize,
+div.homeScreenCustomize {
+    border-radius: 20px;
+    background-size: cover !important;
+    position: relative;
+    height: 300px;
+    aspect-ratio: 0.25;
+    margin: 5px;
+}
+
+div.lockScreenCustomize img,
+div.homeScreenCustomize img {
+    user-select: none;
+    height: 90%;
+}
+
+div.lockScreenCustomize {
+    background: url(../../../image/Backgrounds/449380-1280.avif);
+}
+
+div.homeScreenCustomize {
+    background: url(../../../image/Backgrounds/449380-1280.avif);
+}
+
+div.lockScreenCustomize button,
+div.homeScreenCustomize button {
+    cursor: pointer;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    width: 80%;
+    transform: translateX(-50%);
+    background: #fff6;
+    backdrop-filter: blur(5px);
+    border-radius: 100px;
+    padding: 5px;
+    font-size: 14px;
+    color: white;
+    border: none;
+}
+
+div.wallpaperCustomizerNavDots {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 8px;
+    margin-bottom: 20px;
+}
+
+div.wallpaperCustomizerNavDot {
+    height: 100%;
+    aspect-ratio: 1;
+    border-radius: 100%;
+    background: #c5c5c5;
+    margin: 0 5px;
+}
+
+div.wallpaperCustomizerNavDot.active {
+    background: black;
+}

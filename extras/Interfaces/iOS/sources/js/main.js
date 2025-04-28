@@ -1,5 +1,16 @@
 document.querySelector('#HS_Pages').scrollTo(0, 0)
 
+//! Random Call
+
+setInterval(() => {
+    let chance = Math.floor(Math.random() * 100);
+
+    if(chance >= 95) {
+        //DynamicIslandShowcase('NewCall');
+    }
+}, 60_000)
+
+
 document.addEventListener('keyup', (key) => {
     if(key.key == 'Escape') closeApp();
     return;
@@ -44,7 +55,48 @@ function setTime() {
     return timeStr;
 }
 
-const timeInterval = setInterval(() => { document.getElementById('topBarTimeP').innerText = setTime() });
+
+function setDate() {
+    const date = new Date(Date.now());
+
+    const months = [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December',
+    ]
+
+    const days = [
+        'Sunday',
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Firday',
+        'Saturday',
+    ]
+
+    const month = months[date.getMonth()];
+    const dayOfWeek = days[date.getDay()];
+
+    const dateStr = `${dayOfWeek}, ${month} ${date.getDate()}`;
+
+    return dateStr;
+}
+
+const timeInterval = setInterval(() => { 
+    document.getElementById('topBarTimeP').innerText = setTime();
+    document.getElementById('lockTime').innerText = setTime();
+    document.getElementById('lockDate').innerText = setDate();
+ });
 
 function iframeLoad() {
     let currentApp = document.getElementById('currentApp');

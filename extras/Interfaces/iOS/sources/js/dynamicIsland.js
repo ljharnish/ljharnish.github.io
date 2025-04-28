@@ -218,7 +218,7 @@ function DynamicIslandSetup(information) {
 							</div>
 
 							<div id="DYNAMIC_call_buttons">
-								<button id="DYNAMIC_call_decline">
+								<button id="DYNAMIC_call_decline" onclick="DynamicIslandShowcase('Empty')">
 									<sf-symbol glyph="phone.down.fill" color="white"></sf-symbol>
 								</button>
 								<button id="DYNAMIC_call_accept">

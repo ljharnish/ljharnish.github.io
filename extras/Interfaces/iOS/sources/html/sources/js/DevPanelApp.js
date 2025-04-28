@@ -64,6 +64,22 @@ const settingsTable = {
             {
                 title: "Home Screen"
             },
+            {
+                name: "Show Labels",
+                id: "showIconLabels",
+                data: {
+                    enabled: false
+                },
+                icon: {
+                    color: 'blue',
+                    glyph: 'textformat.size'
+                },
+                right: {
+                    type: 'switch',
+                    //? Toggle the data[toggleData] value if a boolean
+                    toggleData: 'enabled'
+                }
+            },
             {  
                 name: "Show Invalid Icons",
                 id: "showInvalidIcons",

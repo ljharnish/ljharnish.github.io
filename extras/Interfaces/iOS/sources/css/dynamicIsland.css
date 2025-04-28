@@ -19,6 +19,9 @@ div#dynamicIsland {
     border-radius: 50px;
 	height: 42px;
 	width: 142px;
+    transition: 
+        width 1s cubic-bezier(.68,-0.55,.11,1.29),
+        height 1s cubic-bezier(.68,-0.55,.11,1.29);
 }
 
 div#dynamicIsland.DYNAMIC_fullwidth_open_open,
