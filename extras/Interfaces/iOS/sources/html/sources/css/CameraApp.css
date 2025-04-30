@@ -33,5 +33,37 @@ body {
     height: 40%;
     width: 100%;
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
     background: linear-gradient(to bottom, transparent 0%, black 50%);
+}
+
+button#takePhoto {
+    cursor: pointer;
+    width: 80px;
+    overflow: hidden;
+    aspect-ratio: 1;
+    border-radius: 100%;
+    border: none;
+    background: transparent;
+    border: 5px solid white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button#takePhoto div.innerButton {
+    border-radius: 100%;
+    width: 70px;
+    aspect-ratio: 1;
+    background: white;
+    border: 3px solid black;
+    transition: 0.1s ease-in-out width;
+}
+
+button#takePhoto:active div.innerButton {
+    width: 60px;
 }
