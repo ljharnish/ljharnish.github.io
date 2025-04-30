@@ -114,6 +114,9 @@ function iframeLoad() {
 
     } else {
         document.getElementById('topBarTimeP').style.color = 'white';
+        document.querySelectorAll('.topBar-right > div > sf-symbol').forEach((el) => {
+            el.style.filter = 'invert(0)';
+        });
     }
         
     //? Creates a custom event that can sync all global variables to the main window when the app is clicked,
