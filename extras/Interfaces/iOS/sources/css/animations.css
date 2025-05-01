@@ -21,12 +21,16 @@
         opacity: 0;
         top: 50%;
         left: 70%;
+        rotate: 0deg;
+        scale: 1;
     }
 
     11% {
         top: 40%;
         left: 0;
         opacity: 0;
+        rotate: 10deg;
+        scale: 1.2;
     }
 
     25% {
