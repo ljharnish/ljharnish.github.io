@@ -1,16 +1,96 @@
+div#animatedText {
+    position: absolute;
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    top: 50%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+}
+
+div#animatedText * {
+    transition: 0.5s ease-in-out opacity;
+}
+
+
+div#animatedText h1 {
+    opacity: 0;
+    font-size: 60px;
+}
+
+div#animatedText p {
+    opacity: 0;
+    font-size: 30px;
+}
+
+div#animatedText *.show {
+    opacity: 1;
+}
+
+p#credit {
+    position: absolute;
+    bottom: 50px;
+    text-align: center;
+    opacity: 0;
+    transition: 0.5s ease-in-out opacity;
+}
+
+div#animatedText2 {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+}
+
+div#animatedText2 h1{
+    font-size: 70px;
+    margin-bottom: 20px;
+}
+
+div#animatedText2 svg{
+    height: 200px;
+    aspect-ratio: 1;
+}
+
 #iosHolder.animate,
 #iphoneOverlay.animate,
 #iphoneDynamicIslandOverlay.animate {
-    position: absolute;
-    transform: translate(0, -50%);
     animation: iphoneAnimate 30s 1 ease-in-out forwards;
+}
+
+#lockScreen.animate {
+    animation: lockAnimate 30s 1 ease-in-out;
+}
+
+
+
+@keyframes lockAnimate {
+    0% {
+        transform: translate(0, 0);
+    }
+    34% {
+        transform: translate(0, 0);
+    }
+    40% {
+        transform: translate(0, -100%);
+    }
+    80% {
+        transform: translate(0, -100%);
+    }
+    90% {
+        transform: translate(0, 0);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
 }
 
 @keyframes iphoneAnimate {
     0% {
         opacity: 0;
-        top: 50%;
-        left: -32px;
+        transform: translate(-200%, 0%);
     }
 
     5% {
@@ -19,27 +99,76 @@
 
     10% {
         opacity: 0;
-        top: 50%;
-        left: 70%;
-        rotate: 0deg;
-        scale: 1;
+        transform: translate(200%, 0%);
     }
-
     11% {
-        top: 40%;
-        left: 0;
         opacity: 0;
-        rotate: 10deg;
-        scale: 1.2;
+        transform: translate(135%, -15%) rotate(-10deg);
     }
 
-    25% {
+    15% {
         opacity: 1;
     }
 
-    26% {
+    20% {
         opacity: 0;
-        top: 100%;
-        left: 100%;
+        transform: translate(-135%, 15%);
+    }
+    21% {
+        opacity: 0;
+        transform: translate(0, 0) scale(1.2) rotate(20deg);
+    }
+
+    25%,
+    42.999% {
+        opacity: 1;
+        transform: translate(20%, 0) scale(1) rotate(0deg);
+        animation-timing-function: steps(1)
+    }
+
+    43% {
+        transform: translate(450%, 120%) scale(4);
+    }
+
+    50% {
+        transform: translate(-450%, 120%) scale(4);
+    }
+
+    55% {
+        transform: translate(-450%, -120%) scale(4);
+    }
+
+    62%,
+    64.999% {
+        transform: translate(450%, -120%) scale(4);
+    }
+
+
+
+    65% {
+        opacity: 0;
+        transform: translate(0%, 0%) scale(1.5);
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    89.999% {
+        opacity: 1;
+        transform: translate(0%, 0%) scale(1);
+    }
+    90% {
+        opacity: 0;
+    }
+
+    99.999% {
+        opacity: 0;
+        transform: translate(0, 0) scale(1) rotate(0deg);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translate(0, 0) scale(1) rotate(0deg);
     }
 }
