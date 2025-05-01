@@ -1,0 +1,41 @@
+#iosHolder.animate,
+#iphoneOverlay.animate,
+#iphoneDynamicIslandOverlay.animate {
+    position: absolute;
+    transform: translate(0, -50%);
+    animation: iphoneAnimate 30s 1 ease-in-out forwards;
+}
+
+@keyframes iphoneAnimate {
+    0% {
+        opacity: 0;
+        top: 50%;
+        left: -32px;
+    }
+
+    5% {
+        opacity: 1;
+    }
+
+    10% {
+        opacity: 0;
+        top: 50%;
+        left: 70%;
+    }
+
+    11% {
+        top: 40%;
+        left: 0;
+        opacity: 0;
+    }
+
+    25% {
+        opacity: 1;
+    }
+
+    26% {
+        opacity: 0;
+        top: 100%;
+        left: 100%;
+    }
+}

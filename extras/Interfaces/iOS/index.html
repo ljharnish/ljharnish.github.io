@@ -8,6 +8,7 @@
 		<!-- CSS -->
 	
 		<link rel="stylesheet" href="./sources/css/style.css">
+		<link rel="stylesheet" href="./sources/css/animations.css">
 		<link rel="stylesheet" href="./sources/css/debugOptions.css">
 		<link rel="stylesheet" href="./sources/css/dynamicIsland.css">
 		<link rel="stylesheet" href="./sources/fonts/sf-pro-display.css">
@@ -70,10 +71,10 @@
 
         <!--? Actual Stuff -->
 
-		<div id="iphoneOverlay"></div>
-		<div id="iphoneDynamicIslandOverlay"></div>
+		<div id="iphoneOverlay" class="animate"></div>
+		<div id="iphoneDynamicIslandOverlay" class="animate"></div>
 
-		<div id="iosHolder">
+		<div id="iosHolder" class="animate">
 			<div id="ios18">
 				<div id="topBar">
 					<div class="topBar-time">
@@ -137,7 +138,7 @@
                     
                 </div>
 
-				<div id="lockScreen" class='closed'>
+				<div id="lockScreen">
 					<div class="lockTime">
 						<p id="lockDate">Monday, June 6</p>
 						<h1 id="lockTime">9:41</h1>
@@ -278,6 +279,7 @@
 	</body>
 	<!-- JS -->
 
+	<script src="./sources/js/startUpAnimation.js" defer></script>
 	<script src="./sources/js/syncVars.js"></script>
 	<script src="./sources/js/main.js"></script>
 	<script src="./sources/html/sources/js/global-js-connections.js"></script>
