@@ -6,11 +6,11 @@ window.CONNECTIONVARIABLES = {
         showDebugScreenshots: {
             enabled: false
         },
-        experiment_darkmode: {
+        experiment_fullscreen: {
             enabled: false
         },
         experiment_controlCenter: {
-            enabled: true
+            enabled: false
         },
         showInvalidIcons: {
             enabled: false

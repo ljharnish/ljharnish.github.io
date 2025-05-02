@@ -40,6 +40,16 @@ function handleNewVariables() {
     } else {
         if(document.body.classList.contains('showControlBtns')) document.body.classList.remove('showControlBtns');
     }
+    
+    if(window.CONNECTIONVARIABLES.debug.experiment_fullscreen.enabled) {
+        document.body.classList.add('fullscreen');
+        document.documentElement.requestFullscreen();
+    } else {
+        if(document.body.classList.contains('fullscreen')) {
+            document.body.classList.remove('fullscreen');
+            document.exitFullscreen();
+        }
+    }
 
     if(window.CONNECTIONVARIABLES.debug.showInvalidIcons.enabled) {
         document.body.classList.add('showInvalidIcons');

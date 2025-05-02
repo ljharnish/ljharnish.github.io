@@ -252,14 +252,14 @@ const stopDragging = (e) => {
     mouseDown = false;
 
     if(directionL) {
-        if(HomeScreen.scrollLeft < (216 * HS_page)) {
+        if(HomeScreen.scrollLeft < (((parseInt(getComputedStyle(document.querySelector('.HS_Page')).width.replace('px', '')) + 32)/2) * HS_page)) {
             HS_page -= 1;
             fixHSScroll();
         } else {
             fixHSScroll();
         }
     } else {
-        if(HomeScreen.scrollLeft > (216 * (HS_page + 1))) {
+        if(HomeScreen.scrollLeft > (((parseInt(getComputedStyle(document.querySelector('.HS_Page')).width.replace('px', '')) + 32)/2) * (HS_page + 1))) {
             HS_page += 1;
             fixHSScroll();
         } else {
@@ -299,7 +299,7 @@ document.querySelectorAll('div.pageSelection').forEach((pageSel) => {
 function fixHSScroll() {
     document.querySelector('#HS_Pages').scrollTo({
         top: 0,
-        left: HS_page * 432,
+        left: HS_page * (parseInt(getComputedStyle(document.querySelector('.HS_Page')).width.replace('px', '')) + 32),
         behavior: "smooth",
     });
 

@@ -1386,6 +1386,20 @@ function loadSettings(table, outputdiv) {
                         categoryInner.classList.add('open');
                     });
                     
+                } else if (setting.right.type = 'button') {
+                    const rightDiv = document.createElement("div");
+                    rightDiv.className = "rightSide";
+
+                    const button = document.createElement("button");
+                    button.setAttribute('onclick', setting.right.onclick);
+                    button.className = "settingButton";
+                    if(setting.right.text) button.innerText = `${setting.right.text}`;
+                    rightDiv.appendChild(button);
+                    textAndMore.appendChild(rightDiv);
+
+                    settingDiv.addEventListener('click', () => {
+                        categoryInner.classList.add('open');
+                    });
                 }
             }
 

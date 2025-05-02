@@ -32,7 +32,6 @@ const settingsTable = {
                 },
                 right: {
                     type: 'switch',
-                    //? Toggle the data[toggleData] value if a boolean
                     toggleData: 'enabled'
                 }
             },
@@ -42,25 +41,8 @@ const settingsTable = {
             {
                 title: "Experiments"
             },
-            {  
-                disabled: true,
-                name: "Enable Dark Mode",
-                id: "experiment_darkmode",
-                data: {
-                    enabled: false
-                },
-                icon: {
-                    color: 'black',
-                    glyph: 'circle.lefthalf.fill'
-                },
-                right: {
-                    type: 'switch',
-                    //? Toggle the data[toggleData] value if a boolean
-                    toggleData: 'enabled'
-                }
-            },
             {
-                name: "Show Control Center Buttons",
+                name: "Show Control Center Button",
                 id: "experiment_controlCenter",
                 data: {
                     enabled: false
@@ -71,9 +53,26 @@ const settingsTable = {
                 },
                 right: {
                     type: 'switch',
-                    //? Toggle the data[toggleData] value if a boolean
                     toggleData: 'enabled'
                 }
+            },
+            {
+                name: "Enable Fullscreen",
+                id: "experiment_fullscreen",
+                data: {
+                    enabled: false
+                },
+                icon: {
+                    color: 'black',
+                    glyph: 'rectangle.expand.vertical'
+                },
+                right: {
+                    type: 'switch',
+                    toggleData: 'enabled'
+                }
+            },
+            {
+                subtitle: 'These are experimental beta features. They will not have perfect support across all platforms, nor are they guaranteed to work in all apps.'
             }
         ],
         [
@@ -92,7 +91,6 @@ const settingsTable = {
                 },
                 right: {
                     type: 'switch',
-                    //? Toggle the data[toggleData] value if a boolean
                     toggleData: 'enabled'
                 }
             },
@@ -108,7 +106,6 @@ const settingsTable = {
                 },
                 right: {
                     type: 'switch',
-                    //? Toggle the data[toggleData] value if a boolean
                     toggleData: 'enabled'
                 }
             },
@@ -260,6 +257,20 @@ function loadSettings(table, outputdiv) {
                         categoryInner.classList.add('open');
                     });
                     
+                } else if (setting.right.type = 'button') {
+                    const rightDiv = document.createElement("div");
+                    rightDiv.className = "rightSide";
+
+                    const button = document.createElement("button");
+                    button.setAttribute('onclick', setting.right.onclick);
+                    button.className = "settingButton";
+                    if(setting.right.text) button.innerText = `${setting.right.text}`;
+                    rightDiv.appendChild(button);
+                    textAndMore.appendChild(rightDiv);
+
+                    settingDiv.addEventListener('click', () => {
+                        categoryInner.classList.add('open');
+                    });
                 }
             }
 
