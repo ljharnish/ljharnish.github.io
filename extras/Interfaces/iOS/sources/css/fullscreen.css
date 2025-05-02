@@ -11,6 +11,8 @@ body.fullscreen div#iphoneOverlay {
 body.fullscreen div#iphoneDynamicIslandOverlay {
     position: absolute;
     top: -32px;
+    left: 50%;
+    transform: translate(-50%, 0);
 }
 
 body.fullscreen div#iosHolder {
