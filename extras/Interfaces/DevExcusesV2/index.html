@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>DevExcusesV2</title>
+	
+		<script src="./sources/js/excuses.js"></script>
+		
+		<link rel="apple-touch-icon" sizes="180x180" href="./sources/favicon/apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="./sources/favicon/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="./sources/favicon/favicon-16x16.png">
+		<link rel="manifest" href="./sources/favicon/site.webmanifest">
+
+		<link rel="stylesheet" href="./sources/css/style.css">
+		<link rel="stylesheet" href="./sources/fonts/JetBrainsMono.css">
+	</head>
+	<body>
+		<div id="categories">
+			<h2>Categories</h2>
+			<select name="category" id="categorySelect" oninput="categorySel()">
+				<option value="coder" selected>For Other Developers</option>
+				<option value="testers">For Testers</option>
+				<option value="consumers">For Consumers</option>
+			</select>
+		</div>
+
+
+		<div id="textHolder">
+		</div>
+
+		<div id="commentBlocks">
+			<h2>Copy as a comment.</h2>
+			<select name="commentLanguage" id="commentLanguage" oninput="commentLang()" autocomplete="no">
+				<option value="html" selected>HTML</option>
+				<option value="css">CSS / Enclosed JS</option>
+				<option value="javascript">JavaScript</option>
+				<option value="python">Python</option>
+				<option disabled="disabled"></option>
+				<option value="custom">Custom</option>
+			</select>
+			<button id="copyComment" onclick="copyComment()">Copy Comment</button>
+
+			<p id="commentExcuse">// Developer Excuse Here</p>
+		</div>
+
+		<div id="copiedComment">
+			Copied to Clipboard!
+		</div>
+
+		<button id="generate" onclick="generateShownExcuse()">Generate New Excuse</button>
+	</body>
+
+	<script src="./sources/js/main.js"></script>
+</html>

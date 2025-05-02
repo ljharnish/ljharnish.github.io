@@ -1,0 +1,861 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: "SF Pro Display";
+}
+
+:root {
+    --unselected-icon: #aaa;
+    --selected-icon: #4b85ff;
+    --white-bg: #ffffff65;
+    --dark-bg: #18181865;
+
+    --close: #ff5d55;
+    --close-outer: #c74842;
+    --min: #febb2e;
+    --min-outer: #c99321;
+    --max: #00cc4b;
+    --max-outer: #009737;
+
+    --full-magnify-scale: 1.2;
+    --full-magnify-distance: -25px;
+    --sibling-magnify-scale: 1.05;
+    --sibling-magnify-distance: -15px;
+    --base-magnify-scale: 1;
+    --base-magnify-distance: -5px;
+}
+
+html,
+body {
+    margin: 0;
+    overflow: hidden;
+    background-image: url("../image/backgrounds/bigsur/light.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+}
+
+body * {
+    cursor: none;
+}
+
+body.disablecursor * {
+    cursor: auto;
+}
+
+body.disablecursor #cursor {
+    display: none;
+}
+
+body.dark #cursor {
+    filter: invert(1) drop-shadow(0 0 1px #fff);
+}
+
+#cursor {
+    filter: drop-shadow(0 0 1px #000);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 24px;
+    height: 24px;
+    z-index: 10000;
+    pointer-events: none;
+}
+
+#cursor img {
+    height: 100%;
+    width: 100%;
+    color: red;
+}
+
+div#bootScreen {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background: black;
+    z-index: 10001;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+div#bootScreen.closing {
+    opacity: 0;
+}
+
+div#bootScreen img {
+    height: 90px;
+    margin-bottom: 30px;
+}
+
+div#bootLoadingBar {
+    width: 200px;
+    height: 15px;
+    overflow: hidden;
+    padding: 2px;
+    border: 2px solid white;
+    border-radius: 999px;
+}
+
+div#bootLoadingBar div {
+    width: 100%;
+    height: 100%;
+    border-radius: 999px;
+    background: white;
+}
+
+div.homeScreen {
+    width: 100vw;
+    height: 100vh;
+}
+
+body.dark {
+    background-image: url("../image/backgrounds/bigsur/dark.jpg");
+}
+
+body.monterey:not(.dark) {
+    background-image: url("../image/backgrounds/monterey/light.jpg");
+}
+
+body.monterey.dark {
+    background-image: url("../image/backgrounds/monterey/dark.jpg");
+}
+
+*::webkit-resizer {
+    display: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,
+p,
+img {
+    pointer-events: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+*::-webkit-scrollbar {
+    width: 10px;
+    background: transparent;
+}
+
+*::-webkit-scrollbar:hover {
+    background: #eee !important;
+}
+
+*::-webkit-scrollbar-thumb {
+    border: 4px solid transparent;
+    border-radius: 900px;
+    background: #858585;
+    background-clip: padding-box;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+    border: 2px solid transparent;
+}
+
+button p {
+    padding: 0;
+    margin: 0;
+}
+
+div.activeWindow {
+    z-index: 10;
+}
+
+body.dark div#buttonNoFunction {
+    background: var(--dark-bg);
+    color: white;
+}
+
+div#buttonNoFunction.open {
+    top: 30px;
+}
+
+div#buttonNoFunction {
+    transition: top 0.5s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+    color: black;
+    position: absolute;
+    top: -30px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    padding: 10px;
+    border-radius: 5px;
+    background: var(--white-bg);
+}
+
+body.dark #finder {
+    background: var(--dark-bg);
+}
+
+#finder {
+    backdrop-filter: blur(5px);
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 25px;
+    padding: 0 20px;
+    background: var(--white-bg);
+}
+
+#finder button {
+    padding: 5px;
+    height: 100%;
+    background: none;
+    border: none;
+    border-radius: 5px;
+    transition: 0.2s ease-in-out background;
+    margin-right: 10px;
+    font-family: "SF Pro Display";
+    color: black;
+    font-size: 14px;
+}
+
+body.dark #finder button {
+    color: white;
+}
+
+#finder button:has(img) {
+    width: 25px;
+    filter: invert(1);
+}
+
+body.dark #finder button:has(img) {
+    filter: none;
+}
+
+#finder div.functions {
+    display: flex;
+    flex-direction: row;
+    flex: 1 1 auto;
+}
+
+#finder button.boldAppName {
+    font-weight: 800;
+}
+
+body.dark #finder button:hover {
+    background: var(--dark-bg);
+}
+
+#finder button:hover {
+    background: var(--white-bg);
+}
+
+#finder button img {
+    height: 100%;
+    aspect-ratio: 1;
+}
+
+#finder div.finderShowcase {
+    display: flex;
+    align-items: center;
+}
+
+#finder div.finderShowcase p {
+    margin: 0 5px;
+}
+
+#appleMenu.open {
+    top: 30px;
+}
+
+body.dark #appleMenu {
+    background: var(--dark-bg);
+}
+
+#appleMenu {
+    backdrop-filter: blur(5px);
+    box-shadow: 0px 0px 3px #00000080;
+    border: 1px solid #00000080;
+    font-family: "SF Pro Display";
+    z-index: 20;
+    padding: 10px;
+    top: -500px;
+    left: 10px;
+    position: absolute;
+    width: 190px;
+    min-height: 140px;
+    max-height: 450px;
+    background: var(--white-bg);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    transition: top 0.2s ease-in-out;
+}
+
+body.dark #appleMenu button {
+    color: white;
+}
+
+#appleMenu button {
+    margin: 2px 0px;
+    font-family: "SF Pro Display";
+    font-weight: 100;
+    font-size: 14px;
+    border: none;
+    background: none;
+    padding: 5px 10px;
+    width: 100%;
+    text-align: left;
+    border-radius: 5px;
+    transition: 0.2s ease-in-out background;
+}
+
+body.dark #appleMenu button:hover {
+    background: var(--dark-bg);
+}
+
+#appleMenu button:hover {
+    background: var(--white-bg);
+}
+
+#appleMenu div.appleDivider {
+    height: 1px;
+    background: #00000020;
+    width: 100%;
+    margin: 5px 0;
+}
+
+body.dark #controlCenter {
+    background: var(--dark-bg);
+}
+
+#controlCenter {
+    backdrop-filter: blur(5px);
+    box-shadow: 0px 0px 3px #00000080;
+    border: 1px solid #00000080;
+    z-index: 20;
+    padding: 10px;
+    top: -200px;
+    right: 10px;
+    position: absolute;
+    width: 270px;
+    min-height: 140px;
+    max-height: 340px;
+    background: var(--white-bg);
+    border-radius: 10px;
+    transition: top 0.5s ease-in-out;
+}
+
+#controlCenter.open {
+    top: 30px;
+}
+
+#controlCenter div.bigStuff {
+    width: 100%;
+    height: 120px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+body.dark #controlCenter div.bigStuff div.onebyone {
+    background: var(--dark-bg);
+}
+
+#controlCenter div.bigStuff div.onebyone {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    aspect-ratio: 1;
+    height: 100%;
+    background: var(--white-bg);
+    border-radius: 5px;
+}
+
+#controlCenter div.bigStuff div.onebyone div.controlSetting {
+    width: 100%;
+    height: 30%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+
+#controlCenter div.bigStuff div.onebyone div.controlSetting div.icon {
+    height: 100%;
+    aspect-ratio: 1;
+    display: flex;
+    overflow: clip;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    background: var(--unselected-icon);
+    border-radius: 100%;
+}
+
+#controlCenter div.bigStuff div.onebyone div.controlSetting div.icon.selected {
+    background: var(--selected-icon);
+}
+
+body.dark #controlCenter div.bigStuff div.onebyone div.controlSetting div.text {
+    color: white;
+}
+
+#controlCenter div.bigStuff div.onebyone div.controlSetting div.text {
+    display: flex;
+    flex-direction: column;
+    margin: 5px;
+    width: 63px;
+    height: 100%;
+}
+
+#controlCenter div.bigStuff div.onebyone div.controlSetting div.text h1 {
+    font-family: "SF Pro Display";
+    font-size: 12px;
+}
+
+#controlCenter div.bigStuff div.onebyone div.controlSetting div.text p {
+    font-size: 10px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-family: "SF Pro Display";
+}
+
+#controlCenter div.bigStuff div.ontop {
+    aspect-ratio: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+body.dark #controlCenter div.bigStuff div.ontop div.donotdisturb {
+    background: var(--dark-bg);
+}
+
+#controlCenter div.bigStuff div.ontop div.donotdisturb {
+    width: 100%;
+    height: 50%;
+    margin-bottom: 5px;
+    background: var(--white-bg);
+    border-radius: 5px;
+}
+
+#controlCenter div.bigStuff div.ontop div.donotdisturb div.controlSetting {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+#controlCenter
+    div.bigStuff
+    div.ontop
+    div.donotdisturb
+    div.controlSetting
+    div.icon {
+    height: 35px;
+    aspect-ratio: 1;
+    display: flex;
+    overflow: clip;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+    background: var(--unselected-icon);
+    border-radius: 100%;
+}
+
+#controlCenter
+    div.bigStuff
+    div.ontop
+    div.donotdisturb
+    div.controlSetting
+    div.icon.selected {
+    background: var(--selected-icon);
+}
+
+#controlCenter
+    div.bigStuff
+    div.ontop
+    div.donotdisturb
+    div.controlSetting
+    div.text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 5px;
+    height: 100%;
+}
+
+body.dark
+    #controlCenter
+    div.bigStuff
+    div.ontop
+    div.donotdisturb
+    div.controlSetting
+    div.text {
+    color: white;
+}
+
+#controlCenter
+    div.bigStuff
+    div.ontop
+    div.donotdisturb
+    div.controlSetting
+    div.text
+    h1 {
+    font-family: "SF Pro Display";
+    font-size: 14px;
+}
+
+#controlCenter
+    div.bigStuff
+    div.ontop
+    div.donotdisturb
+    div.controlSetting
+    div.text
+    p {
+    font-size: 12px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-family: "SF Pro Display";
+}
+
+#controlCenter div.bigStuff div.ontop div.smallWidgets {
+    width: 100%;
+    height: 50%;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+body.dark #controlCenter div.bigStuff div.ontop div.smallWidgets div {
+    background: var(--dark-bg);
+}
+
+#controlCenter div.bigStuff div.ontop div.smallWidgets div {
+    width: 48%;
+    height: 100%;
+    border-radius: 5px;
+    background: var(--white-bg);
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 5px;
+}
+
+body.dark #controlCenter div.bigStuff div.ontop div.smallWidgets div {
+    color: white;
+}
+
+#controlCenter div.bigStuff div.ontop div.smallWidgets div img {
+    width: 30px;
+}
+
+body.dark #controlCenter div.bigStuff div.ontop div.smallWidgets div img {
+    filter: invert(1);
+}
+
+#controlCenter div.bigStuff div.ontop div.smallWidgets div h1 {
+    font-size: 10px;
+    text-align: center;
+    font-family: "SF Pro Display";
+    font-weight: 100;
+}
+
+body.dark #dock {
+    background: var(--dark-bg);
+}
+
+#dock {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -10px);
+    background: var(--white-bg);
+    backdrop-filter: blur(5px);
+    height: 80px;
+    min-width: 80px;
+    max-width: 90%;
+    border-radius: 20px;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    z-index: 100;
+    box-shadow: 0px 0px 3px #00000080;
+    border: 1px solid #00000080;
+}
+
+#dock button {
+    filter: drop-shadow(0px 0px 3px #00000080);
+    position: relative;
+    background: transparent;
+    padding: 2px;
+    display: flex;
+    height: 80px;
+    aspect-ratio: 1;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    transform: translate(0, -50px) scale(1.5);
+    opacity: 0;
+    pointer-events: none;
+}
+
+#dock button::after {
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    top: -30px;
+    content: attr(data-name);
+    position: absolute;
+    min-width: 100%;
+    max-width: 150%;
+    height: 20px;
+    padding: 2px 5px;
+    background: var(--white-bg);
+    border: 1px solid #00000080;
+    box-shadow: 0px 0px 3px #00000080;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.2s ease-in-out opacity;
+}
+
+#dock button:hover::after {
+    opacity: 1;
+}
+
+#dock button.visible {
+    opacity: 1;
+    transform: none;
+    pointer-events: all;
+}
+
+#dock div.dockDivider {
+    width: 2px;
+    border-radius: 90px;
+    margin: 0 10px;
+    height: 80%;
+    background: #d8d8d86c;
+}
+
+#dock button img {
+    position: relative;
+    height: 100%;
+    transition: all 0.2s ease;
+}
+
+/* Magnify */
+
+#dock button:has(+ button + button:hover) {
+    transform: translate(0, var(--base-magnify-distance))
+        scale(var(--base-magnify-scale));
+    z-index: 1;
+}
+
+#dock button:has(+ button:hover) {
+    transform: translate(0, var(--sibling-magnify-distance))
+        scale(var(--sibling-magnify-scale));
+    z-index: 2;
+}
+
+#dock button:hover {
+    transform: translate(0, var(--full-magnify-distance))
+        scale(var(--full-magnify-scale));
+    z-index: 3;
+}
+
+#dock button:hover + button {
+    transform: translate(0, var(--sibling-magnify-distance))
+        scale(var(--sibling-magnify-scale));
+    z-index: 2;
+}
+
+#dock button:hover + button + button {
+    transform: translate(0, var(--base-magnify-distance))
+        scale(var(--base-magnify-scale));
+    z-index: 1;
+}
+
+#dock button.trash img {
+    height: 90%;
+}
+
+#dock button.trash:active img {
+    height: 80%;
+}
+
+#dock button:active img {
+    height: 90%;
+}
+
+#dock button.opened::after {
+    content: "";
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #373737;
+    border-radius: 50%;
+    bottom: 1px;
+}
+
+#desktop {
+    width: 100vw;
+    height: 100vh;
+    height: calc(100vh - 46px);
+    color: white;
+    font-family: "SF Pro Display";
+}
+
+#desktop .icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 110px;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 1px;
+}
+
+#desktop .icon p {
+    text-align: center;
+    margin: 0;
+}
+
+#desktop .icon img {
+    width: 48px;
+    height: 48px;
+}
+
+#desktop .icon:hover {
+    background: rgb(128 128 128 / 30%);
+}
+
+#launchpad {
+    pointer-events: none;
+    opacity: 0;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(15px);
+    position: absolute;
+    top: 0;
+    z-index: 100;
+    background: #00000080;
+    display: grid;
+    grid-template-rows: repeat(5, 1fr);
+    grid-template-columns: repeat(7, 1fr);
+    padding: 120px 175px 190px 120px;
+    transition: 0.2s ease-in-out opacity;
+}
+
+#launchpad.open {
+    pointer-events: all;
+    opacity: 1;
+}
+
+button.launchpadApp {
+    transform: translate(0, -50px) scale(1.4);
+    opacity: 0;
+    height: 100%;
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    font-size: 16px;
+    margin: auto;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    border: none;
+    background: none;
+}
+
+button.launchpadApp.visible {
+    transform: translate(0, 0px) scale(1);
+    opacity: 1;
+}
+
+button.launchpadApp img {
+    aspect-ratio: 1;
+    height: 130px
+}
+
+body.dark div#patchNotes,
+body.dark div#credits {
+    background: var(--dark-bg);
+    color: white;
+}
+
+div#patchNotes, div#credits {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    opacity: 0;
+    pointer-events: none;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 20px;
+    background: var(--white-bg);
+    backdrop-filter: blur(5px);
+    width: 100vw;
+    height: 100vh;
+    z-index: 100;
+    transition: 0.2s ease-in-out opacity;
+}
+
+div#patchNotes.open, div#credits.open {
+    pointer-events: all;
+    opacity: 1;   
+}
+
+body.dark div#patchNotes button.leave,
+body.dark div#credits button.leave {
+    color: white;
+    background: var(--dark-bg);
+}
+
+div#patchNotes button.leave, div#credits button.leave {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--white-bg);
+    border: none;
+    border-radius: 5px;
+
+    padding: 5px;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+div#patchNotes h1, div#patchNotes h2, div#patchNotes h3,
+div#credits h1, div#credits h2, div#credits h3 {
+    margin-bottom: 10px;
+}
+
+div#patchNotes ul,
+div#credits ul {
+    padding-left: 15px;
+    margin-bottom: 30px;
+}
