@@ -80,7 +80,7 @@ function setDate() {
         'Tuesday',
         'Wednesday',
         'Thursday',
-        'Firday',
+        'Friday',
         'Saturday',
     ]
 
