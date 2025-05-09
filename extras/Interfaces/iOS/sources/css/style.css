@@ -465,6 +465,7 @@ div#flash {
 	width: 500px;
 	height: 500px;
 	background: transparent;
+	pointer-events: none;
 }
 
 div#flash.on {
