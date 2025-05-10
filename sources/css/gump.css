@@ -1,0 +1,12 @@
+
+
+
+#gump img {
+    width: 10%;
+}
+
+
+a:not(header a) {
+    color: lime;
+    
+}
