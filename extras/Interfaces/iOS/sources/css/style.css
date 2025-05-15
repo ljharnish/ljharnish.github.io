@@ -457,6 +457,7 @@ body.showControlBtns div#controlCenter.open {
 }
 
 div#flash {
+	pointer-events: none;
 	position: absolute;
 	top: -100px;
 	border-radius: 100%;
@@ -469,4 +470,144 @@ div#flash {
 
 div#flash.on {
 	background: white;
+}
+
+div#setupScreen {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+	position: absolute;
+	top: 16px;
+	left: 16px;
+	z-index: 900;
+	width: calc(100% - 32px);
+	height: calc(100% - 32px);
+	border-radius: 100px;
+	background: url(../image/Backgrounds/apple_intelligence.jpg);
+	background-size: cover;
+}
+
+div#setupHello {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: #000a;
+	backdrop-filter: blur(5px);
+}
+
+div#setupHello img {
+	width: 70%;
+}
+
+div#setupScreen .appClose {
+	bottom: 20px;
+}
+
+div#setupScreen .appCloseBar {
+	background: white;
+}
+
+div#setupScreen p.appBarText {
+	font-weight: 600;
+	font-size: 20px;
+	color: white;
+	position: absolute;
+	text-align: center;
+	transform: translate(-50%, 0);
+	left: 50%;
+	bottom: 60px;
+}
+
+div#setupScreen button.infoButton {
+	position: absolute;
+	background: none;
+	border: none;
+	height: 30px;
+	aspect-ratio: 1;
+	bottom: 50px;
+	right: 50px;
+}
+
+div#setupLanguage,
+div#setupRegion {
+	display: none;
+	padding: 70px 32px;
+	padding-bottom: 0;
+}
+
+div#setupLanguage.shown,
+div#setupRegion.shown {
+	position: absolute;
+	display: flex;
+	width: 100%;
+	height: 100%;
+	background: white;
+	flex-direction: column;
+}
+
+div#setupLanguage div.topIcon,
+div#setupRegion div.topIcon {
+	width: 100%;
+	height: 30%;
+
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+}
+
+div#setupLanguage div.topIcon img,
+div#setupRegion div.topIcon img {
+	height: 40%;
+	filter: invert(14%) sepia(56%) saturate(2854%) hue-rotate(222deg) brightness(151%) contrast(98%);
+}
+
+div.setupChoose {
+	width: 100%;
+	background: #ddd;
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+div.setupChoose div.setupChoice {
+	user-select: none;
+	padding: 20px 0;
+	border-bottom: 1px solid #aaa;
+	font-weight: 600;
+	font-size: 20px;
+	padding-left: 15px;
+	display: flex;
+	justify-content: start;
+	align-items: center;
+	position: relative;
+	cursor: pointer;
+}
+
+div.setupChoose div.setupChoice.disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+div.setupChoose div.setupChoice:active {
+	background: #bbb;
+}
+
+div.setupChoose div.setupChoice:last-of-type {
+	border-bottom: none;
+}
+
+div.setupChoose div.setupChoice::after {
+	content: "";
+	border: solid #aaa;
+	border-width: 0 2px 2px 0;
+	display: inline-block;
+	padding: 4px;
+	transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg);
+	position: absolute;
+	right: 20px;
 }

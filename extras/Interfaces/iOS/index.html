@@ -22,9 +22,9 @@
 
 	<!--TODO: Unlock & Relock -->
 	<!--TODO: Clickable Side Buttons -->
-
-	<body onload="handleNewVariables();showAnimation();">
-        <!--? Debug Stuff -->
+	
+	<body onload="handleNewVariables(); showAnimation(); ">
+        <!--? Debug Stuff-->
 
         <div id="debugOptions" class="hidden">
 			<div class="sides">
@@ -89,6 +89,100 @@
 		<div id="iosHolder">
 			<div id="iphoneOverlay"></div>
 			<div id="iphoneDynamicIslandOverlay"></div>
+
+			<div id="setupScreen" style="display: none;">
+				<div id="setupHello">
+					<img src="./sources/image/hello.png" alt="">
+
+					<p class="appBarText">Click to open</p>
+
+					<button class="infoButton">
+						<sf-symbol glyph="info.circle" color="white"></sf-symbol>
+					</button>
+
+					<button class="appClose" onclick="document.getElementById('setupScreen').remove()">
+						<div class="appCloseBar"></div>
+					</button>
+				</div>
+
+				<div id="setupLanguage">
+					<div class="topIcon">
+						<img src="./sources/image/Globe_icon.svg" alt="">
+					</div>
+					<div class="setupChoose">
+						<div class="setupChoice">
+							English
+						</div>
+						<div class="setupChoice disabled">
+							Español
+						</div>
+						<div class="setupChoice disabled">
+							中文
+						</div>
+						<div class="setupChoice disabled">
+							日本語
+						</div>
+						<div class="setupChoice disabled">
+							Français
+						</div>
+						<div class="setupChoice disabled">
+							Deutsch
+						</div>
+						<div class="setupChoice disabled">
+							Русский
+						</div>
+						<div class="setupChoice disabled">
+							Português
+						</div>
+						<div class="setupChoice disabled">
+							Italiano
+						</div>
+					</div>
+				</div>
+
+				<div id="setupRegion" class="shown">
+					<div class="topIcon">
+						<img src="./sources/image/globecountries.png" alt="">
+						<h1>Select Your Country or Region</h1>
+					</div>
+
+					<div class="setupChoose" style="margin-bottom: 30px;">
+						<div class="setupChoice">
+							United States
+						</div>
+					</div>
+
+					<h1 style="font-size: 25px;margin-bottom: 10px;">More Countries and Regions</h1>
+
+					<div class="setupChoose">
+						<div class="setupChoice disabled">
+							Afghanistan
+						</div>
+						<div class="setupChoice disabled">
+							Åland Islands
+						</div>
+						<div class="setupChoice disabled">
+							Albania
+						</div>
+						<div class="setupChoice disabled">
+							Algeria
+						</div>
+						<div class="setupChoice disabled">
+							American Samoa
+						</div>
+						<div class="setupChoice disabled">
+							Andorra
+						</div>
+						<div class="setupChoice disabled">
+							Angola
+						</div>
+						<div class="setupChoice disabled">
+							Argentina
+						</div>
+					</div>
+				</div>
+			</div>
+
 			<div id="ios18">
 				<div id="topBar">
 					<div class="topBar-time">
