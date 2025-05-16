@@ -32,6 +32,7 @@ document.getElementById('themeBtn').addEventListener('click', (e) => {
 });
 
 function newTabAndHighlight(e) {
+    if(!e.newURL.includes('#')) return
     if(document.getElementById('activeCategory')) document.getElementById('activeCategory').remove();
 
     let itemTab = document.querySelector(`a[href="#${e.newURL.split('#')[1]}"`);
