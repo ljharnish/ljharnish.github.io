@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg version="1.0" width="384pt" height="384pt" viewBox="0 0 384 384" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
+  <g transform="translate(0,384)scale(.075,.075)">
+    <path id="path1" d="M 0 -2560 l 0 2560 2560 0 2560 0 0 -2560 0 -2560 -2560 0 -2560 0 0 2560 z " />
+    <path id="path2" d="M 5110 -2560 l 0 2550 -2552 0 -2553 0 2550 -2550 c 1402 -1402 2551 -2550 2552 -2550 2 0 3 1148 3 2550 z " fill="#FFF" />
+  </g>
+</svg>
