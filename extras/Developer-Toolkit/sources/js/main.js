@@ -1,4 +1,33 @@
 document.getElementById('sidebar').scroll(0, 0);
+document.documentElement.scrollTo(0, 0);
+
+function setCookie(cname, cvalue, exdays) {
+    const d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    let expires = "expires="+ d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(let i = 0; i <ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+if(getCookie('dark') == 'true') {
+    document.querySelector('#themeBtn img').src = './sources/image/moon.svg';
+    document.getElementById('wrapper').classList.add('dark');
+}
 
 //! Run mobile detect
 
@@ -19,19 +48,23 @@ newTabAndHighlight({newURL: window.location.href});
 
 document.getElementById('themeBtn').addEventListener('click', (e) => {
     let wrapper =  document.getElementById('wrapper');
+    console.log(e)
     let innerImg = e.target.querySelector('img');
     
     wrapper.classList.toggle('dark');
 
     if(wrapper.classList.contains('dark')) {
         innerImg.src = './sources/image/moon.svg';
+        setCookie('dark', 'true', 365);
         return;
     }
 
     innerImg.src = './sources/image/sun.svg';
+    setCookie('dark', 'false', 365);
 });
 
 function newTabAndHighlight(e) {
+    if(e.oldURL) e.preventDefault()
     if(!e.newURL.includes('#')) return
     if(document.getElementById('activeCategory')) document.getElementById('activeCategory').remove();
 
@@ -42,6 +75,21 @@ function newTabAndHighlight(e) {
     itemTab.classList.add('activeTab');
     
     if(itemTab.querySelector('div.newItem')) itemTab.querySelector('div.newItem').remove(); 
+
+    try {
+        document.querySelectorAll('div.categoryBody.active').forEach((e) => {e.classList.remove('active')});
+
+        document.getElementById(e.newURL.split('#')[1]).classList.add('active');
+    } catch(error) {
+        console.error(`Page Not Found | ID: ${e.newURL.split('#')[1]}\n\n` + error)
+    }
 }
 
-window.addEventListener('hashchange', newTabAndHighlight);
+document.querySelectorAll('a.sideItem[href]').forEach((a) => {
+    a.addEventListener('click', (e) => {
+        if(!e.target.href.includes('#')) return
+        e.preventDefault();
+        history.pushState({}, '', e.target.href);
+        newTabAndHighlight({newURL:e.target.href})
+    })
+})
