@@ -1,5 +1,5 @@
-document.getElementById('sidebar').scroll(0, 0);
 document.documentElement.scrollTo(0, 0);
+document.getElementById('sidebar').scroll(0, 0);
 
 function setCookie(cname, cvalue, exdays) {
     const d = new Date();
@@ -70,6 +70,9 @@ function newTabAndHighlight(e) {
 
     let itemTab = document.querySelector(`a[href="#${e.newURL.split('#')[1]}"`);
 
+    document.querySelectorAll('div.categoryBody').forEach((e) => {
+        e.scrollTo(0, 0);
+    });
 
     if(document.querySelector('.activeTab')) document.querySelector('.activeTab').classList.remove('activeTab');
 
