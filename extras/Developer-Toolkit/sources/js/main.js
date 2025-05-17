@@ -106,7 +106,7 @@ window.mobileCheck = (function() {
     if(!check) if(window.innerWidth<=900) check = true;
     
     window.addEventListener('resize', () => {
-        if(window.innerWidth <= 600) {
+        if(window.innerWidth <= 700) {
             document.getElementById('wrapper').classList.add('mobile');
         } else {
             document.getElementById('wrapper').classList.remove('mobile');
