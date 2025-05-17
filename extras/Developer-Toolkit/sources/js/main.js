@@ -107,9 +107,13 @@ window.mobileCheck = (function() {
     
     window.addEventListener('resize', () => {
         if(window.innerWidth <= 700) {
+            if(document.getElementById('wrapper').classList.contains('mobile')) return;
             document.getElementById('wrapper').classList.add('mobile');
+            document.getElementById('sidebar').style.width = '10px';
         } else {
+            if(!document.getElementById('wrapper').classList.contains('mobile')) return;
             document.getElementById('wrapper').classList.remove('mobile');
+            document.getElementById('sidebar').style.width = '25%';
         }
     });
 
