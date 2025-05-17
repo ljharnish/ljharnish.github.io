@@ -55,6 +55,7 @@ function setFavorites() {
 
         clonedTab.classList.add('favorited');
         clonedTab.classList.remove('activeTab');
+        if(clonedTab.querySelector('div.newItem')) clonedTab.querySelector('div.newItem').remove();
 
         function clickListener(e) {
             if(!e.target.href.includes('#')) return
@@ -156,7 +157,7 @@ document.getElementById('favoriteBtn').addEventListener('click', (e) => {
     if(str[0] === '|') {
         str = str.slice(1);
     }
-    
+
     setFavorites();
 
     if(favoritedTabs.length == 0) {
