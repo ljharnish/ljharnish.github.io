@@ -22,11 +22,14 @@
         <script src="./sources/js/highlightjs/languages/xml.min.js"></script>
         <script src="./sources/js/highlightjs/languages/css.min.js"></script>
         <script src="./sources/js/highlightjs/languages/javascript.min.js"></script>
-
-        <script>hljs.highlightAll();</script>
     </head>
-	<body>
+	<body onload="ready()">
 		<div id="wrapper">
+            <div id="copiedClipboard">
+                <img src="./sources/image/icons/copy.svg" alt="">
+                Copied to clipboard!
+            </div> 
+
 			<div id="header">
 				<img src="./sources/image/webdevtoolkit.svg" alt="">
 				<h1>Web Developer Toolkit</h1>
@@ -97,7 +100,12 @@
 							<h1>Styling</h1>
 							<button>^</button>
 						</div>
-						
+
+						<a class="sideItem disabled" href="#bezierCurveGenerator">
+							<img src="./sources/image/icons/borderRadius.svg" alt="">
+							<p>Bezier Curve Generator</p>
+						</a>
+
 						<a class="sideItem disabled" href="#borderRadiiCalc">
 							<img src="./sources/image/icons/borderRadius.svg" alt="">
 							<p>Border Radii Calculator</p>
@@ -145,6 +153,7 @@
 				</div>
 
 				<div id="body">
+
                     <div class="categoryBody active" id="homePage">
 						<h1>Home</h1>
 
@@ -267,26 +276,51 @@
 
                         <p>Detecting mobile devices is really easy!</p>
                         
-                        <p>There are three main methods to detect mobile devices automatically.</p>
+                        <p>There are 2 common methods to detect mobile devices automatically.</p>
 
                         <h2>Method 1: The userAgent</h2>
                         <h3>What is a userAgent?</h3>
-                        <p>A userAgent is a string that tells the browser what brand, type, or system your current device is running.<p>
-                        <p>Common examples of userAgents are:  Android, iPhone, iPad, iPod, BlackBerry, webOS, and Windows Phone.</p>
+                        <p>A userAgent is a string that tells the browser what brand, type, or system your current device is running.<br>Common examples of userAgents are: Android, iPhone, iPad, iPod, BlackBerry, webOS, and Windows Phone.<br><span id="myUserAgent"></span><p>
+
+                        <script defer>document.getElementById('myUserAgent').innerText = 'My userAgent: ' + navigator.userAgent;</script>
 
                         <h3>The Code</h3>
-                        <script></script>
-                        <pre><code>if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {&NewLine;   // This device is likely a mobile device.&NewLine;}</code></pre>
+                        <pre data-copy="yes"><code>if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {&NewLine;   // This device is likely a mobile device.&NewLine;}</code></pre>
 
                         <h3>The Breakdown</h3>
-                        <p>This regex/regexp (Regular Expression) is used as a list of common userAgents that are for mobile devices.<br><br>The | character is used as an OR, meaning it will match if one of the userAgents are met.</p>
-                        <pre><code>/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i</code></pre>
+                        <p>This regex/regexp (Regular Expression) is used as a list of common userAgents that are for mobile devices.<br>The | character is used as an OR, meaning it will match if one of the userAgents are met.</p>
+                        <pre><code>'/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i'</code></pre>
 
-                        <p>In this line, it may be confusing at first, but it will make sense.<br><br>This line takes the regex, and tests it against the device's (also known as the navigator) userAgent.<br><br>This will return a boolean with either true or false, depending on if the device matched any one the userAgents in the list.</p>
-                        <pre><code class="language-js">regex.test(navigator.userAgent)</code></pre>
+                        <p>In this line, it may be confusing at first, but it will make sense.<br>This line takes the regex, and compares it to the device's (also known as the navigator) userAgent.<br>This will return a boolean with either true or false, depending on if the device matched any one the userAgents in the list.</p>
+                        <pre><code>(/Android|...|Opera Mini/i.test(navigator.userAgent))</code></pre>
 
                         <p>When the regex is passed through the if statement, it will only run if the device matched a userAgent, making it only do functions if the device is a mobile device.</p>
-                        <pre><code class="language-js">if(regex.test(navigator.userAgent)) {&NewLine;   // Any code for mobile devices only.&NewLine;}</code></pre>
+                        <pre><code class="language-js">if(/Android|...|Opera Mini/i.test(navigator.userAgent)) {&NewLine;   return true;&NewLine;} else {&NewLine;    return false;&NewLine;}&NewLine;&NewLine;// userAgent has Mozilla&NewLine;// Output: false&NewLine;&NewLine;// userAgent has Android&NewLine;// Output: true</code></pre>
+                    
+                        <h2>Method 2: CSS Media Queries (Styling Only)</h2>
+                        <h3>What is a Media Query?</h3>
+                        <p>A media query allows CSS to determine the type of device and its dimensions.<br>Many devices are different so many media queries may need to be used for other devices.<p>
+
+                        <p>This is an example of a media query that will make the documents body red on devices with a viewport of <strong>less than</strong> 500 pixels.</p>
+                        <pre data-copy="yes"><code>@media (max-width: 500px) {&NewLine;    body {&NewLine;        background: #ff0000;&NewLine;    }&NewLine;}</code></pre>
+
+                        <p>Here is a live demo of the above media query:</p>
+
+                        <div class="interactiveIframe" style="resize: horizontal;overflow: hidden;margin-bottom:60px;">
+                            <iframe srcdoc="<html><head><style>html,body{overflow:hidden;margin:0;padding:0;box-sizing:border-box;background:black;color:white;width:100vw;height:100vh}@media(max-width: 500px){body{background:#f00;}}</style><script>window.addEventListener('resize',() => {document.querySelector('h1').innerText='Width: '+window.innerWidth+'px';document.querySelector('p').innerText=(window.innerWidth<500)?'Media Query Met':'Width too large.'});</script></head><body><h1>Width: 0px</h1><p>Resize Me!</p></body><script>document.querySelector('h1').innerText='Width: '+window.innerWidth+'px';</script></html>"></iframe>
+                        </div>
+
+                        <h3>The Breakdown</h3>
+                        <p>Using @media will tell CSS that this is a media query and accomodate if the condition is met.</p>
+                        <pre><code>@media (...)</code></pre>
+
+                        <p>The max-width parameter declares that the styles will only occur if the devices viewport width is less than or equal to that number.</p>
+                        <pre><code>... (max-width: 500px)</code></pre>
+
+                        <p>These can become complex with more requirements, like this media query that will apply a style if the viewport is from 320px to 600px in width.</p>
+                        <pre data-copy="yes"><code>@media only screen and (min-width: 320px) and (max-width: 600px) {&NewLine;    /* Styles for mobile devices */&NewLine;}</code></pre>
+
+                        <p>More info about media queries can be found <a href="https://www.w3schools.com/cssref/atrule_media.php">here</a>.</p>
                     </div>
 				</div>
 			</div>
@@ -295,4 +329,20 @@
 	<!-- JS -->
 
 	<script src="./sources/js/main.js"></script>
+    <script>
+        document.querySelectorAll('pre').forEach((el) => {
+            if(el.children[0].nodeName === 'CODE' && el.getAttribute('data-copy') === 'yes') {
+                let code = el.children[0].innerText;
+                let nB = document.createElement('button');
+                nB.innerHTML = '<img src="./sources/image/icons/copy.svg">';
+                nB.addEventListener('click', () => {
+                    navigator.clipboard.writeText(code);
+                    document.getElementById('copiedClipboard').classList.add('a');
+                    setTimeout(() => { document.getElementById('copiedClipboard').classList.remove('a'); }, 1500);
+                });
+                el.appendChild(nB);
+            }
+        });
+        hljs.highlightAll();
+    </script>
 </html>

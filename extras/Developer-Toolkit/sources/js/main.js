@@ -1,5 +1,9 @@
-document.documentElement.scrollTo(0, 0);
-document.getElementById('sidebar').scroll(0, 0);
+//? Reset Scrolls
+
+function ready() {
+    document.querySelectorAll('*').forEach((e) => e.scrollTo(0, 0));
+    document.querySelectorAll('code').forEach((e) => e.scrollTo(0, 0));    
+}
 
 function setCookie(cname, cvalue, exdays) {
     const d = new Date();
@@ -45,7 +49,6 @@ newTabAndHighlight({newURL: window.location.href});
 
 document.getElementById('themeBtn').addEventListener('click', (e) => {
     let wrapper =  document.getElementById('wrapper');
-    console.log(e)
     let innerImg = e.target.querySelector('img');
 
     wrapper.classList.toggle('dark');
@@ -69,10 +72,6 @@ function newTabAndHighlight(e) {
     if(document.getElementById('activeCategory')) document.getElementById('activeCategory').remove();
 
     let itemTab = document.querySelector(`a[href="#${e.newURL.split('#')[1]}"`);
-
-    document.querySelectorAll('div.categoryBody').forEach((e) => {
-        e.scrollTo(0, 0);
-    });
 
     if(document.querySelector('.activeTab')) document.querySelector('.activeTab').classList.remove('activeTab');
 
