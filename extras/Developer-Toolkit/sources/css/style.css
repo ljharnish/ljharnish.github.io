@@ -115,9 +115,13 @@ button {
 	padding: 10px;
 	aspect-ratio: 1;
 	height: 100%;
-
+    margin-right: 10px;
 	background: #bbb;
 	border-radius: 100%;
+}
+
+#header button:last-of-type {
+    margin: 0;
 }
 
 #header button img {
@@ -213,6 +217,10 @@ div.sideCollapseHeader {
 	flex-direction: row;
 	align-items: center;
 	height: 70px;
+}
+
+#wrapper.mobile div.sideCategory.title {
+    display: none;
 }
 
 #wrapper.mobile div.sideCategory.title h1 {
@@ -390,6 +398,18 @@ div.categoryBody > p {
     margin-bottom: 20px;
 }
 
+div.categoryBody > p code {
+	font-family: Consolas, monospace;
+    padding: 5px;
+    border-radius: 5px;
+    background: #fafafa;
+}
+
+#wrapper.dark div.categoryBody > p code {
+	background: #282c34;
+}
+
+
 div.categoryBody > h2 {
     font-size: 42px;
     margin-top: 50px;
@@ -445,8 +465,20 @@ div.categoryBody pre button img {
 #wrapper.dark div.categoryBody pre button img { filter: invert(1); }
 
 div.categoryBody.active {
+    animation: openCategory 0.5s ease-in-out 1 forwards;
 	display: flex;
 	flex-direction: column;
+}
+
+@keyframes openCategory {
+    from {
+        scale: 0.9;
+        opacity: 0;
+    }
+    to {
+        scale: 1;
+        opacity: 1;
+    }
 }
 
 div.articleHolder {

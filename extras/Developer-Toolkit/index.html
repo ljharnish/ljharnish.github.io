@@ -33,6 +33,9 @@
 			<div id="header">
 				<img src="./sources/image/webdevtoolkit.svg" alt="">
 				<h1>Web Developer Toolkit</h1>
+				<button id="favoriteBtn">
+					<img src="./sources/image/icons/star-outline.svg" alt="">
+				</button>
 				<button id="themeBtn">
 					<img src="./sources/image/sun.svg" alt="">
 				</button>
@@ -41,15 +44,21 @@
 			<div id="contents">
 				<div id="sidebar">
 					<div class="sideCategory title">
-						<button><</button>
 						<h1>Categories</h1>
-					</div>
+					</div> 
 
                     <div class="sideCategory">
 						<a class="sideItem activeTab" href="#">
 							<img src="./sources/image/icons/home.svg" alt="">
 							<p>Home</p>
 						</a>
+                    </div>
+
+                    <div class="sideCategory" id="favorites">
+						<div class="sideCollapseHeader">
+							<h1>Favorites</h1>
+							<button>^</button>
+						</div>
                     </div>
 
 					<div class="sideCategory">
@@ -71,29 +80,16 @@
 						</a>
 					</div>
 
-					<div class="sideCategory">
-						<div class="sideCollapseHeader">
-							<h1>Prefabs</h1>
+                    <div class="sideCategory">
+                        <div class="sideCollapseHeader">
+							<h1>Base Files</h1>
 							<button>^</button>
 						</div>
-						<a class="sideItem disabled" href="#cameraViewPrefab">
-							<img src="./sources/image/icons/cameraView.svg" alt="">
-							<p>Camera View</p>
-						</a>
-						<a class="sideItem disabled" href="#indexHTMLPrefab">
-							<img src="./sources/image/icons/html5logo.svg" alt="">
+						<a class="sideItem disabled" href="#indexHTML">
+							<img src="./sources/image/placeholder-icon.png" alt="">
 							<p>HTML5 Index</p>
 						</a>
-						<a class="sideItem disabled" href="#metaTagPrefab">
-							<img src="./sources/image/icons/metaTags.svg" alt="">
-							<p>Meta Tags</p>
-						</a>
-						<a class="sideItem" href="#mobileDetection">
-                            <div class="newItem">New!</div>
-                            <img src="./sources/image/icons/mobileDetection.svg" alt="">
-							<p>Mobile Detection</p>
-						</a>
-					</div>
+                    </div>
 					
 					<div class="sideCategory">
 						<div class="sideCollapseHeader">
@@ -102,7 +98,7 @@
 						</div>
 
 						<a class="sideItem disabled" href="#bezierCurveGenerator">
-							<img src="./sources/image/icons/borderRadius.svg" alt="">
+							<img src="./sources/image/placeholder-icon.png" alt="">
 							<p>Bezier Curve Generator</p>
 						</a>
 
@@ -129,6 +125,27 @@
 						<a class="sideItem disabled" href="#darkThemeCalc">
 							<img src="./sources/image/icons/darkTheme.svg" alt="">
 							<p>Dark Theme Calculator</p>
+						</a>
+					</div>
+
+					<div class="sideCategory">
+						<div class="sideCollapseHeader">
+							<h1>Tutorials</h1>
+							<button>^</button>
+						</div>
+						<a class="sideItem disabled" href="#cameraView">
+							<img src="./sources/image/icons/cameraView.svg" alt="">
+							<p>Camera View</p>
+						</a>
+						<a class="sideItem" href="#metaTags">
+							<div class="newItem">New!</div>
+                            <img src="./sources/image/icons/metaTags.svg" alt="">
+							<p>Meta Tags</p>
+						</a>
+						<a class="sideItem" href="#mobileDetection">
+                            <div class="newItem">New!</div>
+                            <img src="./sources/image/icons/mobileDetection.svg" alt="">
+							<p>Mobile Detection</p>
 						</a>
 					</div>
 
@@ -271,6 +288,30 @@
 						<h1>JavaScript News</h1>
 					</div>
 
+                    <div class="categoryBody" id="metaTags">
+                        <h1>Meta Tags</h1>
+
+                        <h3>What are Meta Tags?</h3>
+                        <p>Meta Tags are tags that hold data about your site.<br>This could vary from a pages icon to words to search on search engines to find it.</p>
+
+                        <p>This example sets the character set, description, keywords, author, and viewport settings.</p> 
+                        <pre data-copy="yes"><code>&lt;head&gt;&NewLine;    &lt;meta charset="UTF-8"&gt;&NewLine;    &lt;meta name="description" content="A short description."&gt;&NewLine;    &lt;meta name="keywords" content="Keyword1, Keyword2, Keyword3"&gt;&NewLine;    &lt;meta name="author" content="John Doe"&gt;&NewLine;    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;&NewLine;&lt;/head&gt;</code></pre>
+                    
+                        <h3>The Breakdown</h3>
+                        <p>Most of these lines are the same, so we'll condense it for this example.</p>
+
+                        <p>If you know much about text encoding, you will recognize the <code class="hljs-attribute">UTF-8</code> character set.<br>This line is used to make sure all browsers process a sites text using the same configuration.</p>
+                        <pre><code>&lt;meta charset="UTF-8"&gt;</code></pre>
+
+                        <p>The <code class="hljs-attr">name</code> attribute tells the browser what this data should be used as. We won't list every name here, but you can find more info <a href="https://www.w3schools.com/tags/tag_meta.asp">here</a>.</p>
+                        <pre><code>&lt;meta name="description" content="A short description."&gt;</code></pre>
+
+                        <p>The <code class="hljs-attribute">viewport</code> name is a special one.<br>The content holds 2 properties.<br>The <code class="hljs-attribute">width=device-width</code> property tells the browser to set the width of the document to the width of the device.<br>The <code class="hljs-attribute">initial-scale=1.0</code> property tells the browser the initial zoom of the page should be 100%.</p>
+                        <pre><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code></pre>
+                    
+                        <p>These can be shown in different places as well, such as embeds in Discord, Twitter, Snapchat, and other platforms.</p>
+                    </div>
+
                     <div class="categoryBody" id="mobileDetection">
                         <h1>Mobile Detection</h1>
 
@@ -284,7 +325,7 @@
 
                         <script defer>document.getElementById('myUserAgent').innerText = 'My userAgent: ' + navigator.userAgent;</script>
 
-                        <h3>The Code</h3>
+                        <p>This is a simplified example showing a few common userAgents.</p>
                         <pre data-copy="yes"><code>if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {&NewLine;   // This device is likely a mobile device.&NewLine;}</code></pre>
 
                         <h3>The Breakdown</h3>
@@ -311,10 +352,10 @@
                         </div>
 
                         <h3>The Breakdown</h3>
-                        <p>Using @media will tell CSS that this is a media query and accomodate if the condition is met.</p>
+                        <p>Using <code class="hljs-keyword">@media</code> will tell CSS that this is a media query and accomodate if the condition is met.</p>
                         <pre><code>@media (...)</code></pre>
 
-                        <p>The max-width parameter declares that the styles will only occur if the devices viewport width is less than that number.</p>
+                        <p>The <code class="hljs-attribute">max-width</code> parameter declares that the styles will only occur if the devices viewport width is less than that number.</p>
                         <pre><code>... (max-width: 500px)</code></pre>
 
                         <p>These can become complex with more requirements, like this media query that will apply a style if the viewport is from 320px to 600px in width.</p>
