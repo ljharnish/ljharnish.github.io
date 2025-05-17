@@ -59,14 +59,9 @@ function setFavorites() {
 
         function clickListener(e) {
             if(!e.target.href.includes('#')) return
-            document.getElementById('body').scrollTo({
-                top: 0,
-                left: 0,
-                behavior: 'smooth'
-            });
             e.preventDefault();
             history.pushState({}, '', e.target.href);
-            newTabAndHighlight({newURL:e.target.href}, clonedTab)
+            newTabAndHighlight({newURL:e.target.href}, clonedTab);
         }
 
         clonedTab.addEventListener('click', clickListener);
@@ -111,7 +106,7 @@ window.mobileCheck = (function() {
     if(!check) if(window.innerWidth<=900) check = true;
     
     window.addEventListener('resize', () => {
-        if(window.innerWidth <= 900) {
+        if(window.innerWidth <= 600) {
             document.getElementById('wrapper').classList.add('mobile');
         } else {
             document.getElementById('wrapper').classList.remove('mobile');
@@ -201,4 +196,10 @@ function newTabAndHighlight(e, el) {
     } catch(error) {
         console.error(`Page Not Found | ID: ${e.newURL.split('#')[1]}\n\n` + error)
     }
+
+    document.getElementById('body').scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+    });
 }
