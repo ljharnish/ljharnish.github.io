@@ -2,8 +2,6 @@
 let favoritedTabs = [];
 
 function ready() {
-    document.querySelectorAll('*').forEach((e) => e.scrollTo(0, 0));
-    document.querySelectorAll('code').forEach((e) => e.scrollTo(0, 0));
     
     document.querySelectorAll('a.sideItem[href]').forEach((a) => {
         function clickListener(e) {
@@ -40,6 +38,30 @@ function ready() {
 
     newTabAndHighlight({newURL: window.location.href});
     mobileCheck();
+
+    document.querySelectorAll('div.sideCategoryP').forEach((cat) => {
+        if(cat.classList.contains('search') || cat.id == 'favorites') return;
+        let newCat = cat.cloneNode(true);
+        newCat.classList.remove('sideCategoryP');
+        newCat.classList.add('sideCategoryM');
+
+        document.getElementById('mobileSearchSettings').appendChild(newCat);
+    });
+    
+    document.getElementById('mobileSearchSettings').innerHTML = document.getElementById('mobileSearchSettings').innerHTML.replaceAll('<a', '<button').replaceAll('a>', 'button>').replaceAll('<div class="newItem">New!</div>', '');
+
+    document.querySelectorAll('button.sideItem').forEach((btn) => {
+        let a = document.querySelector(`a[href='${btn.getAttribute('href')}']`);
+
+        btn.addEventListener('click', () => {
+            a.click();
+            document.getElementById('mobileSearch').classList.remove('open');
+        });
+    });
+
+    document.querySelectorAll('*').forEach((e) => e.scrollTo(0, 0));
+    document.querySelectorAll('code').forEach((e) => e.scrollTo(0, 0));
+    document.documentElement.scrollTop = 0;
 }
 
 function setFavorites() {
@@ -144,8 +166,7 @@ document.querySelector('#searchBox input').addEventListener('keyup', (e) => {
         }
     });
 
-    document.querySelectorAll('div.sideCategory').forEach((cat) => {
-		let visible = true;
+    document.querySelectorAll('div.sideCategoryP').forEach((cat) => {
         let invisibleItems = [];
         let items = cat.querySelectorAll('a.sideItem');
 
@@ -158,7 +179,57 @@ document.querySelector('#searchBox input').addEventListener('keyup', (e) => {
         }
     });
 
-    let shownCategories = document.querySelectorAll('div.sideCategory');
+    let shownCategories = Array.from(document.querySelectorAll('div.sideCategoryP'));
+
+    let hiddenNum = 0;
+
+    Array.from(shownCategories).forEach(el => {
+        if(el.classList.contains('search')) shownCategories.splice(shownCategories.indexOf(el), 1);
+        if(el.style.display == 'none') hiddenNum++;
+    });
+
+    console.log(hiddenNum);
+    console.log(shownCategories);
+
+    if(hiddenNum == shownCategories.length) document.getElementById('searchNotFound').style.display = 'block';
+    else document.getElementById('searchNotFound').style.display = 'none';
+});
+
+
+document.querySelector('#mobileSearchBar input').addEventListener('keyup', (e) => {
+    if(
+        e.key != 'Backspace' &&
+        e.key != 'Enter' &&
+        e.key != 'ArrowLeft' &&
+        e.key != 'ArrowRight' &&
+        e.key.length != 1
+    ) { e.preventDefault(); return; };
+    
+
+    document.querySelectorAll('button.sideItem').forEach((item) => {
+        let itemName = item.querySelector('p').innerText;
+
+        if(!itemName.toLowerCase().includes(document.querySelector('#mobileSearchBar input').value.toLowerCase())) {
+            item.style.display = 'none';
+        } else {
+            item.style.display = 'flex';
+        }
+    });
+
+    document.querySelectorAll('div.sideCategoryM').forEach((cat) => {
+        let invisibleItems = [];
+        let items = cat.querySelectorAll('button.sideItem');
+
+		Array.from(items).forEach((itm) => { if(itm.style.display == 'none') invisibleItems.push(itm); });
+
+        if(invisibleItems.length == items.length) {
+            cat.style.display = 'none';
+        } else {
+            cat.style.display = 'block';
+        }
+    });
+
+    let shownCategories = Array.from(document.querySelectorAll('div.sideCategoryM'));
 
     let hiddenNum = 0;
 
@@ -166,9 +237,11 @@ document.querySelector('#searchBox input').addEventListener('keyup', (e) => {
         if(el.style.display == 'none') hiddenNum++;
     });
 
-    if((hiddenNum-1) == shownCategories.length) {
-        console.log('all hidden')
-    }
+    console.log(hiddenNum);
+    console.log(shownCategories);
+
+    if(hiddenNum == shownCategories.length) document.getElementById('searchNotFoundM').style.display = 'block';
+    else document.getElementById('searchNotFoundM').style.display = 'none';
 });
 
 document.getElementById('searchBtnMobile').addEventListener('click', () => {
@@ -229,7 +302,7 @@ function newTabAndHighlight(e, el) {
 
     let itemTab = el || document.querySelector(`a[href="#${e.newURL.split('#')[1]}"]:not(.favorited)`);
 
-    if(document.querySelector('.activeTab')) document.querySelector('.activeTab').classList.remove('activeTab');
+    document.querySelectorAll('.activeTab').forEach((e) => {e.classList.remove('activeTab');})
 
     itemTab.classList.add('activeTab');
     
@@ -249,14 +322,22 @@ function newTabAndHighlight(e, el) {
             document.getElementById('homePage').classList.add('active');
             return;
         }
+        
         document.getElementById(e.newURL.split('#')[1]).classList.add('active');
+
+        document.getElementById('body').scrollTop = 0;
+
     } catch(error) {
         console.error(`Page Not Found | ID: ${e.newURL.split('#')[1]}\n\n` + error)
     }
+}
 
-    document.getElementById('body').scrollTo({
-        top: 0,
-        left: 0,
-        behavior: 'smooth'
-    });
+function mobileSearchBar(a) {
+    let searchBar = document.getElementById('mobileSearch');
+
+    if(a) {
+        searchBar.classList.add('open');
+    } else {
+        searchBar.classList.remove('open');
+    }
 }

@@ -29,6 +29,18 @@
                 <img src="./sources/image/icons/copy.svg" alt="">
                 Copied to clipboard!
             </div> 
+			
+			<div id="mobileSearch">
+				<div id="mobileSearchBar">
+					<button id="mobileSearchClose" onclick="mobileSearchBar(false)">
+						<img src="./sources/image/icons/close.svg" alt="">
+					</button>
+					<input type="text" name="" id="" placeholder="Search" autocomplete="off" autocorrect="off" value="">
+				</div>
+				<div id="mobileSearchSettings">
+					<p id="searchNotFoundM">Nothing was found from your search...</p>
+				</div>
+			</div>
 
 			<div id="header">
 				<img src="./sources/image/webdevtoolkit.svg" alt="">
@@ -43,51 +55,53 @@
 
 			<div id="contents">
 				<div id="sidebar">
-					<div class="sideCategory search">
+					<div class="sideCategoryP search">
                         <a class="sideItem" id="searchBox">
                             <img src="./sources/image/icons/search.svg" alt="">
-                            <input type="text" name="" id="" placeholder="Search">
+                            <input type="text" name="" id="" placeholder="Search" autocomplete="off" autocorrect="off" value="">
                         </a>
 
-                        <a class="sideItem" id="searchBtnMobile">
+                        <a class="sideItem" id="searchBtnMobile" onclick="mobileSearchBar(true)">
                             <img src="./sources/image/icons/search.svg" alt="">
                         </a>
 					</div> 
 
-                    <div class="sideCategory">
+					<p id="searchNotFound">Nothing was found from your search...</p>
+
+                    <div class="sideCategoryP">
 						<a class="sideItem activeTab" href="#">
 							<img src="./sources/image/icons/home.svg" alt="">
 							<p>Home</p>
 						</a>
                     </div>
 
-                    <div class="sideCategory" id="favorites">
+                    <div class="sideCategoryP" id="favorites">
 						<div class="sideCollapseHeader">
 							<h1>Favorites</h1>
 							<button>^</button>
 						</div>
                     </div>
 
-					<div class="sideCategory">
+					<div class="sideCategoryP">
 						<div class="sideCollapseHeader">
 							<h1>News for...</h1>
 							<button>^</button>
 						</div>
-						<a class="sideItem" href="#html5News">
+						<a class="sideItem disabled" href="#html5News">
 							<img src="./sources/image/icons/html5logo.svg" alt="">
 							<p>HTML</p>
 						</a>
-						<a class="sideItem" href="#css3News">
+						<a class="sideItem disabled" href="#css3News">
 							<img src="./sources/image/icons/css3logo.svg" alt="">
 							<p>CSS</p>
 						</a>
-						<a class="sideItem" href="#javascriptNews">
+						<a class="sideItem disabled" href="#javascriptNews">
 							<img src="./sources/image/icons/jslogo.svg" alt="">
 							<p>JS</p>
 						</a>
 					</div>
 
-                    <div class="sideCategory">
+                    <div class="sideCategoryP">
                         <div class="sideCollapseHeader">
 							<h1>Base Files</h1>
 							<button>^</button>
@@ -98,7 +112,7 @@
 						</a>
                     </div>
 					
-					<div class="sideCategory">
+					<div class="sideCategoryP">
 						<div class="sideCollapseHeader">
 							<h1>Styling</h1>
 							<button>^</button>
@@ -135,7 +149,7 @@
 						</a>
 					</div>
 
-					<div class="sideCategory">
+					<div class="sideCategoryP">
 						<div class="sideCollapseHeader">
 							<h1>Tutorials</h1>
 							<button>^</button>
@@ -156,7 +170,7 @@
 						</a>
 					</div>
 
-					<div class="sideCategory">
+					<div class="sideCategoryP">
 						<div class="sideCollapseHeader">
 							<h1>Other Resources</h1>
 							<button>^</button>
