@@ -171,6 +171,10 @@ button {
 	background: var(--sidebar-dark);
 }
 
+#wrapper.dark #sidebar button img {
+    filter: invert(1);
+}
+
 #body {
 	background: var(--body-light);
 	color: var(--body-text-light);
@@ -212,7 +216,6 @@ div.sideCategory {
 	background: var(--sidebar-category-dark);
 }
 
-div.sideCategory.title,
 div.sideCollapseHeader {
 	overflow: hidden;
 	display: flex;
@@ -221,15 +224,45 @@ div.sideCollapseHeader {
 	height: 70px;
 }
 
-#wrapper.mobile div.sideCategory.title {
-    display: none;
-}
-
-#wrapper.mobile div.sideCategory.title h1 {
+#wrapper.mobile div.sideCategory.search h1 {
 	display: none;
 }
 
-div.sideCategory.title button {
+
+div.sideCategory.search input {
+	width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 5px;
+    padding: 0 5px;
+    padding-left: 60px;
+}
+
+#searchBox { 
+    margin-bottom: 0 !important;
+}
+
+#wrapper.mobile #searchBox {
+    display: none;
+}
+
+#wrapper:not(.mobile) #searchBtnMobile {
+    display: none;
+}
+
+#wrapper.dark div.sideCategory.search input,
+#wrapper.dark div.sideCategory.search input::placeholder {
+	background: black;
+    color: white;
+}
+
+div.sideCategory.search #searchBox img {
+    position: absolute;
+    padding: 10px;
+}
+
+
+div.sideCategory.search button {
 	height: 100%;
 	aspect-ratio: 1;
 	margin: 5px;
@@ -245,7 +278,7 @@ div.sideCollapseHeader button {
 }
 
 #wrapper.dark div.sideCollapseHeader button,
-#wrapper.dark div.sideCategory.title button {
+#wrapper.dark div.sideCategory.search button {
 	color: white;
 }
 
@@ -295,7 +328,11 @@ a.sideItem.disabled {
 	width: 60px;
 }
 
-a.sideItem:not(.disabled):active {
+a.sideItem:not(.disabled):not(:has(> input)):active {
+	scale: 0.9;
+}
+
+#wrapper.mobile a.sideItem:not(.disabled):has(> input):active {
 	scale: 0.9;
 }
 

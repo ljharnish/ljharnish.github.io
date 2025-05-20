@@ -122,6 +122,59 @@ window.mobileCheck = (function() {
     return;
 });
 
+document.querySelector('#searchBox input').addEventListener('keyup', (e) => {
+    if(
+        e.key != 'Backspace' &&
+        e.key != 'Enter' &&
+        e.key != 'ArrowLeft' &&
+        e.key != 'ArrowRight' &&
+        e.key.length != 1
+    ) { e.preventDefault(); return; };
+    
+
+    document.querySelectorAll('a.sideItem').forEach((item) => {
+        if(item.id == 'searchBox' || item.id == 'searchBtnMobile') return;
+
+        let itemName = item.querySelector('p').innerText;
+
+        if(!itemName.toLowerCase().includes(document.querySelector('#searchBox input').value.toLowerCase())) {
+            item.style.display = 'none';
+        } else {
+            item.style.display = 'flex';
+        }
+    });
+
+    document.querySelectorAll('div.sideCategory').forEach((cat) => {
+		let visible = true;
+        let invisibleItems = [];
+        let items = cat.querySelectorAll('a.sideItem');
+
+		Array.from(items).forEach((itm) => { if(itm.id == 'searchBox' || itm.id == 'searchBtnMobile') return; if(itm.style.display == 'none') invisibleItems.push(itm); });
+
+        if(invisibleItems.length == items.length) {
+            cat.style.display = 'none';
+        } else {
+            cat.style.display = 'block';
+        }
+    });
+
+    let shownCategories = document.querySelectorAll('div.sideCategory');
+
+    let hiddenNum = 0;
+
+    Array.from(shownCategories).forEach(el => {
+        if(el.style.display == 'none') hiddenNum++;
+    });
+
+    if((hiddenNum-1) == shownCategories.length) {
+        console.log('all hidden')
+    }
+});
+
+document.getElementById('searchBtnMobile').addEventListener('click', () => {
+    //? search box shows up
+});
+
 document.getElementById('themeBtn').addEventListener('click', (e) => {
     let wrapper =  document.getElementById('wrapper');
     
