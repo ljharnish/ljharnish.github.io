@@ -128,7 +128,7 @@ window.mobileCheck = (function() {
     if(!check) if(window.innerWidth<=900) check = true;
     
     window.addEventListener('resize', () => {
-        if(window.innerWidth <= 700) {
+        if(window.innerWidth <= 760) {
             if(document.getElementById('wrapper').classList.contains('mobile')) return;
             document.getElementById('wrapper').classList.add('mobile');
             document.getElementById('sidebar').style.width = '10px';
@@ -329,6 +329,22 @@ function newTabAndHighlight(e, el) {
 
     } catch(error) {
         console.error(`Page Not Found | ID: ${e.newURL.split('#')[1]}\n\n` + error)
+    }
+
+
+
+    if(e.newURL.split('#')[1] == 'cameraView') {
+        var video = document.querySelector("#cameraViewVideo");
+
+        if (navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(function (stream) {
+                video.srcObject = stream;
+            })
+            .catch(function (err0r) {
+                console.log("Something went wrong!");
+            });
+        }
     }
 }
 

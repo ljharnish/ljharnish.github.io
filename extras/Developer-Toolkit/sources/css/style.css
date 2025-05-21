@@ -35,10 +35,29 @@
 	--sidebar-active-item-dark: #4f7bff;
 }
 
+html,
 body {
 	width: 100dvw;
 	height: 100dvh;
 	overflow: hidden;
+}
+
+::-webkit-scrollbar,
+::-webkit-scrollbar-track-piece,
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-corner {
+	scrollbar-width: thin;
+	border: none;
+	background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #000a;
+	border-radius: 10px;
+}
+
+#wrapper.dark ::-webkit-scrollbar-thumb {
+	background: #fffa !important;
 }
 
 a {
@@ -149,6 +168,7 @@ button {
 }
 
 #sidebar {
+	position: relative;
     resize: horizontal;
 	width: 25%;
 	min-width: 100px;
@@ -225,6 +245,13 @@ div.sideCollapseHeader {
 	flex-direction: row;
 	align-items: center;
 	height: 70px;
+}
+
+div.sideCategoryP.search {
+	position: sticky;
+	top: 0;
+	z-index: 2;
+	box-shadow: 0px 0px 5px black;
 }
 
 #wrapper.mobile div.sideCategoryP.search h1 {
@@ -332,6 +359,10 @@ div.sideCategoryP.search input,
 
 button.sideItem {
 	justify-content: start !important;
+}
+
+button.sideItem.disabled {
+	pointer-events: none;
 }
 
 div.sideCategoryP.search #searchBox img {
@@ -814,4 +845,27 @@ p#searchNotFoundM {
 #wrapper.dark p#searchNotFound,
 #wrapper.dark p#searchNotFoundM {
 	color: #777;
+}
+
+video {
+	width: 60%;
+}
+
+#wrapper.mobile video {
+	width: 100%;
+}
+
+div.categoryBody.wip::after {
+	top: 10px;
+	right: 10px;
+	position: absolute;
+	margin-top: 10px;
+	content: 'This page is still under construction. Check back later for more updates.';
+}
+
+#wrapper.mobile div.categoryBody.wip::after {
+	background: #000d;
+	backdrop-filter: blur(5px);
+	border-radius: 10px;
+	padding: 20px;
 }
