@@ -133,8 +133,6 @@ window.mobileCheck = (function() {
 
     let mobileWidth = 760;
 
-    console.log(window.innerWidth<=mobileWidth)
-
     if(window.innerWidth<=mobileWidth) check = true;
     
     window.addEventListener('resize', () => {
@@ -198,9 +196,6 @@ document.querySelector('#searchBox input').addEventListener('keyup', (e) => {
         if(el.style.display == 'none') hiddenNum++;
     });
 
-    console.log(hiddenNum);
-    console.log(shownCategories);
-
     if(hiddenNum == shownCategories.length) document.getElementById('searchNotFound').style.display = 'block';
     else document.getElementById('searchNotFound').style.display = 'none';
 });
@@ -246,9 +241,6 @@ document.querySelector('#mobileSearchBar input').addEventListener('keyup', (e) =
     Array.from(shownCategories).forEach(el => {
         if(el.style.display == 'none') hiddenNum++;
     });
-
-    console.log(hiddenNum);
-    console.log(shownCategories);
 
     if(hiddenNum == shownCategories.length) document.getElementById('searchNotFoundM').style.display = 'block';
     else document.getElementById('searchNotFoundM').style.display = 'none';

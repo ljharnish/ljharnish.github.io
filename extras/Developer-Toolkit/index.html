@@ -106,9 +106,10 @@
 							<h1>Base Files</h1>
 							<button>^</button>
 						</div>
-						<a class="sideItem disabled" href="#indexHTML">
-							<img src="./sources/image/icons/html5logo.svg" alt="">
-							<p>HTML5 Index</p>
+						<a class="sideItem" href="#websiteBase">
+							<div class="newItem">New!</div>
+							<img src="./sources/image/icons/websiteBase.svg" alt="">
+							<p>Website Base</p>
 						</a>
                     </div>
 					
@@ -154,7 +155,7 @@
 							<h1>Tutorials</h1>
 							<button>^</button>
 						</div>
-						<a class="sideItem" href="#cameraView">
+						<a class="sideItem disabled" href="#cameraView">
 							<img src="./sources/image/icons/cameraView.svg" alt="">
 							<p>Camera View</p>
 						</a>
@@ -167,6 +168,17 @@
                             <div class="newItem">New!</div>
                             <img src="./sources/image/icons/mobileDetection.svg" alt="">
 							<p>Mobile Detection</p>
+						</a>
+					</div>
+
+					<div class="sideCategoryP">
+						<div class="sideCollapseHeader">
+							<h1>Converters</h1>
+							<button>^</button>
+						</div>
+						<a class="sideItem" href="#convertHTMLsrcToText">
+							<img src="./sources/image/placeholder-icon.png" alt="">
+							<p>HTML SRC to HTML Text</p>
 						</a>
 					</div>
 
@@ -203,8 +215,11 @@
                         <!--<pre><code class="language-html">&lt;html class='hi'&gt;</code></pre>-->
 					</div>
 
+					<!--! News for... -->
+
 					<div class="categoryBody" id="html5News">
-						<h1>HTML News</h1>
+						<h4>News for...</h4>
+						<h1>HTML</h1>
 
 						<div class="articleHolder">
 							<div class="article">
@@ -255,7 +270,8 @@
 					</div>
 
 					<div class="categoryBody" id="css3News">
-						<h1>CSS News</h1>
+						<h4>News for...</h4>
+						<h1>CSS</h1>
 
 						<div class="articleHolder">
 							<div class="article">
@@ -306,18 +322,50 @@
 					</div>
 
 					<div class="categoryBody" id="javascriptNews">
-						<h1>JavaScript News</h1>
+						<h4>News for...</h4>
+						<h1>JavaScript</h1>
 					</div>
 
+					<!--! Base Files -->
+
+					<div class="categoryBody" id="websiteBase">
+						<h4>Base Files</h4>
+						<h1>Creating the base of a website.</h1>
+
+						<p>This will go over what base files <strong><i>can</i></strong> look like. They do not need to be the same as these examples.</p>
+
+						<p>Your directory tree:</p>
+						<pre><code><span class="hljs-name">root</span>&NewLine;├─ sources&NewLine;|   ├─ css&NewLine;|   |   └─ style.css&NewLine;|   ├─ fonts&NewLine;|   ├─ image&NewLine;|   └─ js&NewLine;|       └─ main.js&NewLine;└─ index.html&NewLine;</code></pre>
+
+						<p>A version of <code class="hljs-attr">index.html</code>:<br>The script being at the bottom will cause it to load after everything in the <code class="hljs-name">body</code> tag is loaded.</p>
+						<pre data-copy="yes"><code>&lt;!DOCTYPE html&gt;&NewLine;&lt;html lang="en"&gt;&NewLine;    &lt;head&gt;&NewLine;        &lt;meta charset="UTF-8"&gt;&NewLine;        &lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;&NewLine;        &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;&NewLine;        &lt;title&gt;Site Title&lt;/title&gt;&NewLine;        &lt;link rel="stylesheet" href="./sources/css/style.css"&gt;&NewLine;    &lt;/head&gt;&NewLine;&NewLine;    &lt;body&gt;&NewLine;&NewLine;    &lt;/body&gt;&NewLine;&NewLine;    &lt;script src="./sources/js/main.js"&gt;&lt;/script&gt;&NewLine;&lt;/html&gt;</code></pre>
+						
+						<p>A version of <code class="hljs-meta">style.css</code>:<br>This will make all default margins and padding of elements to set to 0.</p>
+						<pre data-copy="yes"><code>* {&NewLine;    margin: 0px;&NewLine;    padding: 0px;&NewLine;    box-sizing: border-box;&NewLine;}</code></pre>
+						
+						<p>A version of <code class="hljs-built_in">main.js</code>:<br>JavaScript does not need code to build a base website, but having an <code class="hljs-keyword">onload</code> function can be useful in some cases.</p>
+						<pre data-copy="yes"><code>window.onload = function() {&NewLine;    // Code to run on site load.&NewLine;}</code></pre>
+					</div>
+
+					<!--! Tutorials -->
+
 					<div class="categoryBody wip" id="cameraView">
-						<h1>Camera Views</h1>
+						<h4>Tutorials</h4>
+						<h1>Camera View</h1>
 						<h2>This is your camera:</h2>
 						<video autoplay="true" id="cameraViewVideo">
 							
             			</video>
+
+						<h2>How can <i>you</i> do something like this?</h2>
+
+						<p>This </p>
+
+						<sup>This page was last updated on May 21, 2025.</sup>
 					</div>
 
                     <div class="categoryBody" id="metaTags">
+						<h4>Tutorials</h4>
                         <h1>Meta Tags</h1>
 
                         <h3>What are Meta Tags?</h3>
@@ -339,9 +387,12 @@
                         <pre><code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code></pre>
                     
                         <p>These can be shown in different places as well, such as embeds in Discord, Twitter, Snapchat, and other platforms.</p>
+
+						<sup>This page was last updated on May 17, 2025.</sup>
                     </div>
 
                     <div class="categoryBody" id="mobileDetection">
+						<h4>Tutorials</h4>
                         <h1>Mobile Detection</h1>
 
                         <p>Detecting mobile devices is really easy!</p>
@@ -391,7 +442,51 @@
                         <pre data-copy="yes"><code>@media only screen and (min-width: 320px) and (max-width: 600px) {&NewLine;    /* Styles for mobile devices */&NewLine;}</code></pre>
 
                         <p>More info about media queries can be found <a href="https://www.w3schools.com/cssref/atrule_media.php">here</a>.</p>
+						<sup>This page was last updated on May 17, 2025.</sup>
                     </div>
+
+					<!--! Converters -->
+
+					<div class="categoryBody" id="convertHTMLsrcToText">
+						<h4>Converters</h4>
+						<h1>Converting HTML SRC to HTML Text</h1>
+
+						<h3 class="topMargin">Input</h3>
+
+						<input class="inputText" type="text" id="convertHTMLSTTI" placeholder="HTML Source">
+
+						<h3 class="topMargin">Output</h3>
+
+						<input type="text" name="" id="convertHTMLSTTO" class="inputText" placeholder="HTML Text">
+						
+						<h3 class="topMargin">Preview</h3>
+						<div id="showHTML">
+							
+						</div>
+
+						<script>
+							(function() {
+								let input = document.getElementById('convertHTMLSTTI');
+								let output = document.getElementById('convertHTMLSTTO');
+								let preview = document.getElementById('showHTML');
+
+								function convert() {
+									function convertHTMLsrcToText(s)
+									{
+										var el = document.createElement("div");
+										el.innerText = el.textContent = s;
+										s = el.innerHTML;
+										return s;
+									}
+
+									output.value = convertHTMLsrcToText(input.value);
+									preview.innerHTML = `<pre><code>${output.value}</code></pre>`;
+									hljs.highlightElement(document.getElementById('showHTML').children[0].children[0]);
+								}
+								input.addEventListener('keyup', () => convert());
+							})();
+						</script>
+					</div>
 				</div>
 			</div>
 		</div>
