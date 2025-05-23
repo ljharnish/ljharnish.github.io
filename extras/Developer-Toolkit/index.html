@@ -524,7 +524,7 @@
 	<!-- JS -->
 
 	<script src="./sources/js/main.js"></script>
-    <script>
+    <script defer>
         document.querySelectorAll('pre').forEach((el) => {
             if(el.children[0].nodeName === 'CODE' && el.getAttribute('data-copy') === 'yes') {
                 let code = el.children[0].innerText;
@@ -539,6 +539,5 @@
             }
         });
         hljs.highlightAll();
-		loadStuff();
     </script>
 </html>
