@@ -4,7 +4,7 @@ let mobile = false;
 let modern = true;
 let readyDone = false;
 
-function loadStuff() {
+
     //if(readyDone == true) return;
     document.querySelectorAll('a.sideItem[href]').forEach((a) => {
         function clickListener(e) {
@@ -72,8 +72,6 @@ function loadStuff() {
 
     mobileCheck();
     modernOrOld(modern);
-	readyDone = true;
-}
 
 function setFavorites() {
     let favorites = document.getElementById('favorites');
