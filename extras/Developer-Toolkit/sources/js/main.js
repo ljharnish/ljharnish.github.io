@@ -81,7 +81,7 @@ function ready() {
 function setFavorites() {
     let favorites = document.getElementById('favorites');
 
-    favorites.innerHTML='<div class="sideCollapseHeader"><h1>Favorites</h1><button>^</button></div>'
+    favorites.innerHTML='<div class="sideCollapseHeader"><h1>Favorites</h1></div>'
 
     favoritedTabs.forEach((tab) => {
         let tabEl = document.querySelector(`a[href='#${tab}']:not(.favorited)`);
