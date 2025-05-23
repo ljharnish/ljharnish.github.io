@@ -1,0 +1,134 @@
+:root {
+	--header-d: linear-gradient(90deg, #345974 60%, #5788aa 100%);
+	--wrapper-d: linear-gradient(135deg, #072438 30%, #000c15 100%);
+	--sidebar-border-d: #959fd5;
+	--sidebar-bg-d: linear-gradient(135deg, #474f77 0%, #020b39 100%);
+	--sidebar-search-d: #21253b;
+	--sidebar-cat-d: #0007;
+	--sidebar-highlight-d: #4565bd;
+	--accent-d: #3d446d;
+}
+
+#wrapper.dark {
+	background: var(--wrapper-d);
+    color: white;
+	
+    *:not(code):not(code span) {
+        color: white;
+    }
+}
+
+#wrapper.dark ::-webkit-scrollbar-thumb {
+	background: #fffa !important;
+}
+
+#wrapper.dark #header,
+#wrapper.dark #header::after {
+	background: var(--header-d);
+}
+
+#wrapper.dark #header > img {
+	filter: invert(1);
+}
+
+#wrapper.dark #header button {
+	background: var(--accent-d);
+	box-shadow: 0px 0px 5px var(--accent-d);
+}
+
+#wrapper.dark #header button img {
+	filter: invert(1);
+}
+
+#wrapper.dark #sidebar {
+	background: var(--sidebar-bg-d);
+}
+
+#wrapper.dark #sidebar button img {
+    filter: invert(1);
+}
+
+#wrapper.dark div.sideCategoryP,
+#wrapper.dark div.sideCategoryM {
+	background: var(--sidebar-cat-d);
+}
+
+#wrapper.dark .sideCategoryP.search {
+	background: var(--sidebar-search-d);
+}
+
+#wrapper.dark #mobileSearchBar {
+    background: var(--sidebar-search-d);
+}
+
+#wrapper.dark #mobileSearchBar button,
+#wrapper.dark #mobileSearchBar input {
+    background: var(--sidebar-cat-d);
+}
+
+#wrapper.dark #searchBox input {
+	background: var(--sidebar-cat-d);
+}
+
+#wrapper.dark #mobileSearchBar button img {
+	filter: invert(1);
+}
+
+#wrapper.dark a.sideItem:hover,
+#wrapper.dark button.sideItem:hover {
+	background: var(--sidebar-highlight-d);
+}
+
+#wrapper.dark a.sideItem img:not([type='png']),
+#wrapper.dark button.sideItem img:not([type='png']){
+	filter: invert(1);
+}
+
+#wrapper.dark a.sideItem.activeTab {
+	background: var(--accent-d);
+}
+
+#wrapper.dark a.sideItem.activeTab:hover {
+	background: var(--accent-d);
+}
+
+#wrapper.dark p#searchNotFound,
+#wrapper.dark p#searchNotFoundM {
+	color: black;
+}
+
+#wrapper.dark #body {
+	color: var(--body-text-dark);
+}
+
+#wrapper.dark div.categoryBody h4 {
+	border-bottom: 1px solid white;
+}
+
+#wrapper.dark div.categoryBody > p code {
+	background: #282c34;
+}
+
+#wrapper.dark div.categoryBody pre button {
+    background: #222;
+}
+
+#wrapper.dark div.categoryBody pre button img {
+    filter: invert(1);
+}
+
+#wrapper.dark div.articleDetails {
+	background: black;
+}
+
+#wrapper.dark input.inputText {
+	background: #333;
+}
+
+#wrapper.dark div.interactiveIframe iframe {
+    border: 5px solid #333;
+}
+
+#wrapper.dark div#bottomTriangle {
+    background: var(--header-d);
+}

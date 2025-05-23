@@ -13,8 +13,10 @@
 		<link rel="manifest" href="./sources/image/favicon/site.webmanifest">
 
 		
-		<link rel="stylesheet" href="./sources/css/style.css">
-		<link rel="stylesheet" href="./sources/css/mediaQueries.css">
+		<link id="stylesheet" rel="stylesheet" href="./sources/css/style.css">
+		<link id="lightSheet" rel="stylesheet" href="./sources/css/light.css">
+		<link id="darkSheet" rel="stylesheet" href="./sources/css/dark.css">
+		<link id="mobileSheet" rel="stylesheet" href="./sources/css/mobile.css">
 		<link rel="stylesheet" href="./sources/fonts/sf-pro-display.css">
 	
         <link id='hljs-style' rel="stylesheet" href="./sources/js/highlightjs/styles/atom-one-light.min.css">
@@ -23,7 +25,7 @@
         <script src="./sources/js/highlightjs/languages/css.min.js"></script>
         <script src="./sources/js/highlightjs/languages/javascript.min.js"></script>
     </head>
-	<body>
+	<body onload="ready()">
 		<div id="wrapper">
             <div id="copiedClipboard">
                 <img src="./sources/image/icons/copy.svg" alt="">
@@ -51,10 +53,18 @@
 				<button id="themeBtn">
 					<img src="./sources/image/sun.svg" alt="">
 				</button>
+				<button id="modernBtn">
+					<img src="./sources/image/icons/cube-outline.svg" alt="">
+					<img src="./sources/image/icons/cube.svg" alt="">
+				</button>
 			</div>
+
+			<div id="bottomTriangle"></div>
 
 			<div id="contents">
 				<div id="sidebar">
+					<div id="sidebarScrollUp"></div>
+
 					<div class="sideCategoryP search">
                         <a class="sideItem" id="searchBox">
                             <img src="./sources/image/icons/search.svg" alt="">
@@ -78,14 +88,14 @@
                     <div class="sideCategoryP" id="favorites">
 						<div class="sideCollapseHeader">
 							<h1>Favorites</h1>
-							<button>^</button>
+							
 						</div>
                     </div>
 
 					<div class="sideCategoryP">
 						<div class="sideCollapseHeader">
 							<h1>News for...</h1>
-							<button>^</button>
+							
 						</div>
 						<a class="sideItem disabled" href="#html5News">
 							<img src="./sources/image/icons/html5logo.svg" alt="">
@@ -104,7 +114,7 @@
                     <div class="sideCategoryP">
                         <div class="sideCollapseHeader">
 							<h1>Base Files</h1>
-							<button>^</button>
+							
 						</div>
 						<a class="sideItem" href="#websiteBase">
 							<div class="newItem">New!</div>
@@ -116,7 +126,7 @@
 					<div class="sideCategoryP">
 						<div class="sideCollapseHeader">
 							<h1>Styling</h1>
-							<button>^</button>
+							
 						</div>
 
 						<a class="sideItem disabled" href="#bezierCurveGenerator">
@@ -153,7 +163,7 @@
 					<div class="sideCategoryP">
 						<div class="sideCollapseHeader">
 							<h1>Tutorials</h1>
-							<button>^</button>
+							
 						</div>
 						<a class="sideItem disabled" href="#cameraView">
 							<img src="./sources/image/icons/cameraView.svg" alt="">
@@ -174,7 +184,7 @@
 					<div class="sideCategoryP">
 						<div class="sideCollapseHeader">
 							<h1>Converters</h1>
-							<button>^</button>
+							
 						</div>
 						<a class="sideItem" href="#convertHTMLsrcToText">
 							<img src="./sources/image/placeholder-icon.png" alt="">
@@ -184,8 +194,27 @@
 
 					<div class="sideCategoryP">
 						<div class="sideCollapseHeader">
+							<h1>Get our App!</h1>
+							
+						</div>
+						<a class="sideItem disabled" href="">
+							<img src="./sources/image/icons/github-mark.svg" alt="">
+							<p>GitHub</p>
+						</a>
+						<a class="sideItem disabled" href="">
+							<img src="./sources/image/icons/apple_logo.svg" alt="">
+							<p>App Store</p>
+						</a>
+						<a class="sideItem disabled" href="">
+							<img src="./sources/image/icons/google_play_logo.svg" alt="" type="png">
+							<p>Google Play Store</p>
+						</a>
+					</div>
+
+					<div class="sideCategoryP">
+						<div class="sideCollapseHeader">
 							<h1>Other Resources</h1>
-							<button>^</button>
+							
 						</div>
 						<a class="sideItem" href="https://www.codecademy.com/" target="_blank">
 							<img src="./sources/image/icons/codecademy.svg" alt="">
@@ -509,5 +538,7 @@
             }
         });
         hljs.highlightAll();
+
+		ready()
     </script>
 </html>

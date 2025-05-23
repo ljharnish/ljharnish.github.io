@@ -1,5 +1,7 @@
 
 let favoritedTabs = [];
+let mobile = false;
+let modern = true;
 
 document.addEventListener('DOMContentLoaded', function() {
     mobileCheck();
@@ -30,6 +32,10 @@ function ready() {
         }
     });
 
+    if(getCookie('modern') != 'true') {
+        if(getCookie('modern') == '') return; 
+        modern = false;
+    }
 
     if(getCookie('favorites').length > 0) {
         favoritedTabs = getCookie('favorites').split('|');
@@ -66,8 +72,10 @@ function ready() {
     document.querySelectorAll('*').forEach((e) => e.scrollTo(0, 0));
     document.querySelectorAll('code').forEach((e) => e.scrollTo(0, 0));
     document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
 
     mobileCheck();
+    modernOrOld(modern);
 }
 
 function setFavorites() {
@@ -148,6 +156,8 @@ window.mobileCheck = (function() {
     });
 
     if(check)document.getElementById('wrapper').classList.add('mobile');
+
+    mobile = check;
 
     return;
 });
@@ -250,25 +260,6 @@ document.getElementById('searchBtnMobile').addEventListener('click', () => {
     //? search box shows up
 });
 
-document.getElementById('themeBtn').addEventListener('click', (e) => {
-    let wrapper =  document.getElementById('wrapper');
-    
-    let innerImg = e.target.querySelector('img');
-
-    wrapper.classList.toggle('dark');
-
-    if(wrapper.classList.contains('dark')) {
-        innerImg.src = './sources/image/moon.svg';
-        setCookie('dark', 'true', 365);
-        document.getElementById('hljs-style').href = './sources/js/highlightjs/styles/atom-one-dark.min.css'
-        return;
-    }
-
-    innerImg.src = './sources/image/sun.svg';
-    setCookie('dark', 'false', 365);
-    document.getElementById('hljs-style').href = './sources/js/highlightjs/styles/atom-one-light.min.css'
-});
-
 document.getElementById('favoriteBtn').addEventListener('click', (e) => {
     let activeCategory = document.querySelector('div.categoryBody.active');
 
@@ -294,6 +285,31 @@ document.getElementById('favoriteBtn').addEventListener('click', (e) => {
     }
 
     setCookie('favorites', str, 365);
+});
+
+document.getElementById('themeBtn').addEventListener('click', (e) => {
+    let wrapper =  document.getElementById('wrapper');
+    
+    let innerImg = e.target.querySelector('img');
+
+    wrapper.classList.toggle('dark');
+
+    if(wrapper.classList.contains('dark')) {
+        innerImg.src = './sources/image/moon.svg';
+        setCookie('dark', 'true', 365);
+        document.getElementById('hljs-style').href = './sources/js/highlightjs/styles/atom-one-dark.min.css'
+        return;
+    }
+
+    innerImg.src = './sources/image/sun.svg';
+    setCookie('dark', 'false', 365);
+    document.getElementById('hljs-style').href = './sources/js/highlightjs/styles/atom-one-light.min.css'
+});
+
+document.getElementById('modernBtn').addEventListener('click', (e) => {
+    modern = !modern;
+    modernOrOld(modern);
+    setCookie('modern', modern, 365);
 });
 
 function newTabAndHighlight(e, el) {
@@ -357,5 +373,29 @@ function mobileSearchBar(a) {
         searchBar.classList.add('open');
     } else {
         searchBar.classList.remove('open');
+    }
+}
+
+function modernOrOld(m) {
+    let mS = document.getElementById('stylesheet');
+    let lM = document.getElementById('lightSheet');
+    let dM = document.getElementById('darkSheet');
+    let mO = document.getElementById('mobileSheet');
+    let bN = document.getElementById('modernBtn');
+
+    if(m) {
+        mS.href = './sources/css/style.css';
+        lM.disabled = false;
+        dM.disabled = false;
+        mO.disabled = false;
+        bN.children[0].style.display = 'none';
+        bN.children[1].style.display = 'block';
+    } else {
+        mS.href = './sources/css/oldstyle.css';
+        lM.disabled = true;
+        dM.disabled = true;
+        mO.disabled = true;
+        bN.children[0].style.display = 'block';
+        bN.children[1].style.display = 'none';
     }
 }

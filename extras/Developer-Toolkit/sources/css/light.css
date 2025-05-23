@@ -1,0 +1,114 @@
+:root {
+	--header-l: linear-gradient(90deg, #d3edff 60%, #e4f4ff 100%);
+	--wrapper-l: linear-gradient(135deg, #b8e1ff 30%, #699bbe 100%);
+	--sidebar-border-l: #959fd5;
+	--sidebar-bg-l: linear-gradient(135deg, #b5c1ff 30%, #6474c9 100%);
+	--sidebar-search-l: #dee4ff;
+	--sidebar-cat-l: #fff5;
+	--sidebar-highlight-l: #96b2ff;
+	--accent-l: #b6c1ff;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #000a;
+}
+
+#wrapper:not(.dark) {
+	background: var(--wrapper-l);
+    *:not(code):not(code span) {
+        color: black;
+    }
+}
+
+#header {
+	background: var(--header-l);
+}
+
+#header::after {
+	background: var(--header-l);
+}
+
+#header button {
+	background: var(--accent-l);
+	box-shadow: 0px 0px 5px var(--accent-l);
+}
+
+#sidebar {
+	background: var(--sidebar-bg-l);
+	border: 2px solid var(--sidebar-border-l);
+}
+
+div.sideCategoryP:not(:first-of-type)::before,
+div.sideCategoryM:not(:first-of-type)::before {
+	background: var(--sidebar-border-l);
+}
+
+div.sideCategoryP,
+div.sideCategoryM {
+	background: var(--sidebar-cat-l);
+}
+
+.sideCategoryP.search {
+	background: var(--sidebar-search-l);
+}
+
+#searchBox input {
+	background: var(--sidebar-cat-l);
+}
+
+#mobileSearchBar input,
+#mobileSearchBar button {
+    background: var(--accent-l);
+}
+
+#mobileSearchBar button,
+#mobileSearchBar input {
+    background: var(--sidebar-cat-l);
+}
+
+#mobileSearchBar {
+	background: var(--sidebar-search-l);
+}
+
+a.sideItem.activeTab {
+	background: var(--accent-l);
+}
+
+a.sideItem:hover,
+button.sideItem:hover {
+	background: var(--sidebar-highlight-l);
+}
+
+a.sideItem.activeTab:hover {
+	background: var(--accent-l);
+}
+
+
+div.categoryBody > p code {
+    background: #fafafa;
+}
+
+div.categoryBody pre button {
+    background: #ddd;
+}
+
+div.article div.articleDetails {
+    background: white;
+}
+
+input.inputText {
+	background: #ccc;
+	color: black;
+}
+
+input.inputText::placeholder {
+	color: black;
+}
+
+.sideItem input {
+	background: var(--accent-l);
+}
+
+div#bottomTriangle {
+    background: var(--header-l);
+}
