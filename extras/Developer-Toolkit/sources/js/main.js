@@ -4,13 +4,7 @@ let mobile = false;
 let modern = true;
 let readyDone = false;
 
-window.addEventListener('DOMContentLoaded', function() {
-    mobileCheck();
-}, false);
-
 function loadStuff() {
-    if(readyDone) return;
-    readyDone = true;
     document.querySelectorAll('a.sideItem[href]').forEach((a) => {
         function clickListener(e) {
             if(!e.target.href.includes('#')) return
