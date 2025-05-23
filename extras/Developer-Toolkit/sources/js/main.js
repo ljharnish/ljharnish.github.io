@@ -6,10 +6,9 @@ let readyDone = false;
 
 window.addEventListener('DOMContentLoaded', function() {
     mobileCheck();
-    ready();
 }, false);
 
-function ready() {
+function loadStuff() {
     if(readyDone) return;
     readyDone = true;
     document.querySelectorAll('a.sideItem[href]').forEach((a) => {
