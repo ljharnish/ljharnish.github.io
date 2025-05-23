@@ -523,7 +523,7 @@
 	<!-- JS -->
 
 	<script src="./sources/js/main.js"></script>
-    <script>
+    <script defer>
         document.querySelectorAll('pre').forEach((el) => {
             if(el.children[0].nodeName === 'CODE' && el.getAttribute('data-copy') === 'yes') {
                 let code = el.children[0].innerText;
@@ -538,6 +538,14 @@
             }
         });
         hljs.highlightAll();
-		loadStuff();
+if (document.readyState !== 'loading') {
+    console.log('document is already ready, just execute code here');
+    loadStuff();
+} else {
+    document.addEventListener('DOMContentLoaded', function () {
+        console.log('document was not ready, place code here');
+        loadStuff();
+    });
+}
     </script>
 </html>
