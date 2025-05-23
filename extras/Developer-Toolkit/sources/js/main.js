@@ -394,5 +394,3 @@ function modernOrOld(m) {
         bN.children[1].style.display = 'none';
     }
 }
-
-loadStuff();
