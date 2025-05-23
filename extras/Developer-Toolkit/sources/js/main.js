@@ -29,8 +29,8 @@ let readyDone = false;
     });
 
     if(getCookie('modern') != 'true') {
-        if(getCookie('modern') == '') return; 
         modern = false;
+	    if(getCookie('modern') == '') modern = true;
     }
 
     if(getCookie('favorites').length > 0) {
