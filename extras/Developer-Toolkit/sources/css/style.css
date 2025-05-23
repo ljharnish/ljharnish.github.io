@@ -89,6 +89,8 @@ button {
 
 #header button img {
 	pointer-events: none;
+	width: 100%;
+	border-radius: 100%;
 }
 
 #contents {
@@ -554,7 +556,6 @@ div#copiedClipboard {
 
     border-radius: 10px;
 
-    display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;

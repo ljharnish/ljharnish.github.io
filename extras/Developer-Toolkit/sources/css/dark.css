@@ -9,6 +9,10 @@
 	--accent-d: #3d446d;
 }
 
+#wrapper.dark ::placeholder {
+	color: white;
+}
+
 #wrapper.dark {
 	background: var(--wrapper-d);
     color: white;
@@ -42,6 +46,7 @@
 
 #wrapper.dark #sidebar {
 	background: var(--sidebar-bg-d);
+    border-color: var(--sidebar-border-d);
 }
 
 #wrapper.dark #sidebar button img {
@@ -51,6 +56,11 @@
 #wrapper.dark div.sideCategoryP,
 #wrapper.dark div.sideCategoryM {
 	background: var(--sidebar-cat-d);
+}
+
+#wrapper.dark div.sideCategoryP:not(:first-of-type)::before,
+#wrapper.dark div.sideCategoryM:not(:first-of-type)::before {
+	background: var(--sidebar-border-d);
 }
 
 #wrapper.dark .sideCategoryP.search {
@@ -84,17 +94,10 @@
 	filter: invert(1);
 }
 
-#wrapper.dark a.sideItem.activeTab {
+#wrapper.dark a.sideItem.activeTab,
+#wrapper.dark a.sideItem.activeTab:hover,
+#wrapper.dark div.categoryBody pre button {
 	background: var(--accent-d);
-}
-
-#wrapper.dark a.sideItem.activeTab:hover {
-	background: var(--accent-d);
-}
-
-#wrapper.dark p#searchNotFound,
-#wrapper.dark p#searchNotFoundM {
-	color: black;
 }
 
 #wrapper.dark #body {
@@ -109,10 +112,6 @@
 	background: #282c3477;
 }
 
-#wrapper.dark div.categoryBody pre button {
-    background: #222;
-}
-
 #wrapper.dark div.categoryBody pre button img {
     filter: invert(1);
 }
@@ -122,7 +121,8 @@
 }
 
 #wrapper.dark input.inputText {
-	background: #333;
+	background: #282c3477;
+	color: white;
 }
 
 #wrapper.dark div.interactiveIframe iframe {
@@ -131,4 +131,8 @@
 
 #wrapper.dark div#bottomTriangle {
     background: var(--header-d);
+}
+
+#wrapper.dark #copiedClipboard {
+	color: black;
 }
