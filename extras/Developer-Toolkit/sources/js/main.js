@@ -5,6 +5,7 @@ let modern = true;
 let readyDone = false;
 
 function loadStuff() {
+    //if(readyDone == true) return;
     document.querySelectorAll('a.sideItem[href]').forEach((a) => {
         function clickListener(e) {
             if(!e.target.href.includes('#')) return
@@ -71,6 +72,7 @@ function loadStuff() {
 
     mobileCheck();
     modernOrOld(modern);
+	readyDone = true;
 }
 
 function setFavorites() {
@@ -394,3 +396,5 @@ function modernOrOld(m) {
         bN.children[1].style.display = 'none';
     }
 }
+
+loadStuff();
