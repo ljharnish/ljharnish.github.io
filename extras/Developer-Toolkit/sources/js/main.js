@@ -5,6 +5,8 @@ let modern = true;
 
 document.addEventListener('DOMContentLoaded', function() {
     mobileCheck();
+
+	ready();
 }, false);
 
 function ready() {
