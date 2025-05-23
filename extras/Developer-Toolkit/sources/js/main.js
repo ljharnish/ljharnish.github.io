@@ -4,75 +4,6 @@ let mobile = false;
 let modern = true;
 let readyDone = false;
 
-
-    //if(readyDone == true) return;
-    document.querySelectorAll('a.sideItem[href]').forEach((a) => {
-        function clickListener(e) {
-            if(!e.target.href.includes('#')) return
-            document.getElementById('body').scrollTo({
-                top: 0,
-                left: 0,
-                behavior: 'smooth'
-            });
-            e.preventDefault();
-            history.pushState({}, '', e.target.href);
-            newTabAndHighlight({newURL:e.target.href})
-        }
-
-        a.addEventListener('click', clickListener);
-
-        if(a.classList.contains('disabled')) {
-
-            a.href = 'javascript:void(0)';
-            a.removeEventListener('click', clickListener, true)
-        }
-    });
-
-    if(getCookie('modern') != 'true') {
-        modern = false;
-	    if(getCookie('modern') == '') modern = true;
-    }
-
-    if(getCookie('favorites').length > 0) {
-        favoritedTabs = getCookie('favorites').split('|');
-    }
-
-    if(favoritedTabs.length == 0) {
-        document.getElementById('favorites').style.display = 'none';
-    } else {
-        setFavorites();
-    }
-
-    newTabAndHighlight({newURL: window.location.href});
-
-    document.querySelectorAll('div.sideCategoryP').forEach((cat) => {
-        if(cat.classList.contains('search') || cat.id == 'favorites') return;
-        let newCat = cat.cloneNode(true);
-        newCat.classList.remove('sideCategoryP');
-        newCat.classList.add('sideCategoryM');
-
-        document.getElementById('mobileSearchSettings').appendChild(newCat);
-    });
-    
-    document.getElementById('mobileSearchSettings').innerHTML = document.getElementById('mobileSearchSettings').innerHTML.replaceAll('<a', '<button').replaceAll('a>', 'button>').replaceAll('<div class="newItem">New!</div>', '');
-
-    document.querySelectorAll('button.sideItem').forEach((btn) => {
-        let a = document.querySelector(`a[href='${btn.getAttribute('href')}']`);
-
-        btn.addEventListener('click', () => {
-            a.click();
-            document.getElementById('mobileSearch').classList.remove('open');
-        });
-    });
-
-    document.querySelectorAll('*').forEach((e) => e.scrollTo(0, 0));
-    document.querySelectorAll('code').forEach((e) => e.scrollTo(0, 0));
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
-
-    mobileCheck();
-    modernOrOld(modern);
-
 function setFavorites() {
     let favorites = document.getElementById('favorites');
 
@@ -394,3 +325,71 @@ function modernOrOld(m) {
         bN.children[1].style.display = 'none';
     }
 }
+
+//if(readyDone == true) return;
+    document.querySelectorAll('a.sideItem[href]').forEach((a) => {
+        function clickListener(e) {
+            if(!e.target.href.includes('#')) return
+            document.getElementById('body').scrollTo({
+                top: 0,
+                left: 0,
+                behavior: 'smooth'
+            });
+            e.preventDefault();
+            history.pushState({}, '', e.target.href);
+            newTabAndHighlight({newURL:e.target.href})
+        }
+
+        a.addEventListener('click', clickListener);
+
+        if(a.classList.contains('disabled')) {
+
+            a.href = 'javascript:void(0)';
+            a.removeEventListener('click', clickListener, true)
+        }
+    });
+
+    if(getCookie('modern') != 'true') {
+        modern = false;
+	    if(getCookie('modern') == '') modern = true;
+    }
+
+    if(getCookie('favorites').length > 0) {
+        favoritedTabs = getCookie('favorites').split('|');
+    }
+
+    if(favoritedTabs.length == 0) {
+        document.getElementById('favorites').style.display = 'none';
+    } else {
+        setFavorites();
+    }
+
+    newTabAndHighlight({newURL: window.location.href});
+
+    document.querySelectorAll('div.sideCategoryP').forEach((cat) => {
+        if(cat.classList.contains('search') || cat.id == 'favorites') return;
+        let newCat = cat.cloneNode(true);
+        newCat.classList.remove('sideCategoryP');
+        newCat.classList.add('sideCategoryM');
+
+        document.getElementById('mobileSearchSettings').appendChild(newCat);
+    });
+    
+    document.getElementById('mobileSearchSettings').innerHTML = document.getElementById('mobileSearchSettings').innerHTML.replaceAll('<a', '<button').replaceAll('a>', 'button>').replaceAll('<div class="newItem">New!</div>', '');
+
+    document.querySelectorAll('button.sideItem').forEach((btn) => {
+        let a = document.querySelector(`a[href='${btn.getAttribute('href')}']`);
+
+        btn.addEventListener('click', () => {
+            a.click();
+            document.getElementById('mobileSearch').classList.remove('open');
+        });
+    });
+
+    document.querySelectorAll('*').forEach((e) => e.scrollTo(0, 0));
+    document.querySelectorAll('code').forEach((e) => e.scrollTo(0, 0));
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+
+    mobileCheck();
+    modernOrOld(modern
