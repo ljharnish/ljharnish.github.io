@@ -2,14 +2,16 @@
 let favoritedTabs = [];
 let mobile = false;
 let modern = true;
+let readyDone = false;
 
-document.addEventListener('DOMContentLoaded', function() {
+window.addEventListener('DOMContentLoaded', function() {
     mobileCheck();
-
+    ready();
 }, false);
 
 function ready() {
-    
+    if(readyDone) return;
+    readyDone = true;
     document.querySelectorAll('a.sideItem[href]').forEach((a) => {
         function clickListener(e) {
             if(!e.target.href.includes('#')) return

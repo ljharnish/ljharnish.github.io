@@ -25,7 +25,7 @@
         <script src="./sources/js/highlightjs/languages/css.min.js"></script>
         <script src="./sources/js/highlightjs/languages/javascript.min.js"></script>
     </head>
-	<body>
+	<body onload="ready()">
 		<div id="wrapper">
             <div id="copiedClipboard">
                 <img src="./sources/image/icons/copy.svg" alt="">
@@ -522,7 +522,7 @@
 	</body>
 	<!-- JS -->
 
-	<script src="./sources/js/main.js"></script>
+	<script src="./sources/js/main.js" defer></script>
     <script>
         document.querySelectorAll('pre').forEach((el) => {
             if(el.children[0].nodeName === 'CODE' && el.getAttribute('data-copy') === 'yes') {
