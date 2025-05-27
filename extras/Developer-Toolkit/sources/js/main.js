@@ -326,6 +326,27 @@ function modernOrOld(m) {
     }
 }
 
+
+document.getElementById('body').addEventListener('scroll', (e) => {
+    console.log(e.target.scrollTop);
+
+    if(e.target.scrollTop > 110) {
+        document.getElementById('scrollUp').classList.remove('hidden');
+    } else {
+        document.getElementById('scrollUp').classList.add('hidden');
+    }
+});
+
+
+document.getElementById('scrollUp').addEventListener('click', () => {
+    document.getElementById('body').scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+    });
+});
+
+
 //if(readyDone == true) return;
     document.querySelectorAll('a.sideItem[href]').forEach((a) => {
         function clickListener(e) {

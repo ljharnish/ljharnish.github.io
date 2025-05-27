@@ -923,3 +923,96 @@ div.categoryBody h4 {
 #wrapper.dark .hljs {
 	background: #282c34 !important;
 }
+
+
+
+button.coolButton {
+    border: 2px solid #999;
+    background: #aaa;
+}
+
+button.coolButton:hover {
+	filter: brightness(1.2);
+}
+
+button.coolButton * {
+	z-index: 1;
+}
+
+#bottomButtons {
+	z-index: 20;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	bottom: 20px;
+	right: 20px;
+	height: 90px;
+	width: auto;
+}
+
+#bottomButtons button {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	aspect-ratio: 1;
+	border-radius: 100%;
+	margin: 0 10px;
+	position: relative;
+}
+
+#bottomButtons button.hidden {
+	display: none;
+}
+
+#bottomButtons button > img,
+#bottomButtons button > div.imageOverlayer {
+	filter: invert(1);
+	object-fit: contain;
+	aspect-ratio: 1;
+	height: 60%;
+}
+
+#bottomButtons button.wide {
+	border-radius: 999px;
+	width: 270px;
+}
+
+#bottomButtons button.wide > img,
+#bottomButtons button > div.imageOverlayer {
+	margin-right: 20px;
+}
+
+#bottomButtons button.wide p {
+	font-size: 24px;
+}
+
+div.imageOverlayer {
+	position: relative;
+}
+
+div.imageOverlayer > img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	transition: 0.5s ease-in-out transform, 0.5s ease-in-out filter;
+}
+
+#bottomButtons button:hover div.imageOverlayer#aiAssistantOverlayer > img:nth-of-type(2) {
+	filter: drop-shadow(0px 0px 10px white);
+	transform: scale(1.5) rotate(360deg);
+}
+
+#bottomButtons button:hover div.imageOverlayer#aiAssistantOverlayer > img:nth-of-type(3) {
+	transform: scale(1.5);
+}
+
+#header button.unused {
+    pointer-events: none;
+    opacity: 0.5;
+    transform: scale(0.8);
+}

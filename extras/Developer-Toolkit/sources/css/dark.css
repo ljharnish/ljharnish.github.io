@@ -7,6 +7,8 @@
 	--sidebar-cat-d: #0007;
 	--sidebar-highlight-d: #4565bd;
 	--accent-d: #3d446d;
+
+	--button-bg-d: linear-gradient(135deg, #b5c1ff 30%, #6474c9 100%);
 }
 
 #wrapper.dark ::placeholder {
@@ -36,7 +38,6 @@
 }
 
 #wrapper.dark #header button {
-	background: var(--accent-d);
 	box-shadow: 0px 0px 5px var(--accent-d);
 }
 

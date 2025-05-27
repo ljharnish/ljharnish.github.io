@@ -7,6 +7,8 @@
 	--sidebar-cat-l: #fff5;
 	--sidebar-highlight-l: #96b2ff;
 	--accent-l: #b6c1ff;
+
+	--button-bg-l: linear-gradient(135deg, #8f9ad3 30%, #4b5aa1 100%);
 }
 
 ::placeholder {
@@ -32,6 +34,10 @@ div#bottomTriangle {
 
 #header button {
 	box-shadow: 0px 0px 5px var(--accent-l);
+}
+
+#header button img {
+	filter: invert(1);
 }
 
 #sidebar {
@@ -60,8 +66,7 @@ div.sideCategoryM,
 a.sideItem.activeTab,
 a.sideItem.activeTab:hover,
 .sideItem input,
-div.categoryBody pre button,
-#header button  {
+div.categoryBody pre button  {
 	background: var(--accent-l);
 }
 
@@ -81,4 +86,12 @@ div.article div.articleDetails {
 input.inputText {
 	background: #fafafa77;
 	color: black;
+}
+
+button.coolButton {
+	background: var(--button-bg-l);
+}
+
+#bottomButtons button p {
+	color: white !important;
 }

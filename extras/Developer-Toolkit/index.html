@@ -48,21 +48,39 @@
 			<div id="header">
 				<img src="./sources/image/webdevtoolkit.svg" alt="">
 				<h1>Web Developer Toolkit</h1>
-				<button id="favoriteBtn">
+				<button id="favoriteBtn" class="coolButton">
 					<img src="./sources/image/icons/star-outline.svg" alt="">
 				</button>
-				<button id="themeBtn">
+				<button id="themeBtn" class="coolButton">
 					<img src="./sources/image/sun.svg" alt="">
 				</button>
-				<button id="modernBtn">
+				<button id="modernBtn" class="coolButton">
 					<img style="display: none;" src="./sources/image/icons/cube-outline.svg" alt="">
 					<img src="./sources/image/icons/cube.svg" alt="">
+				</button>
+				<button id="settingsBtn" class="coolButton unused">
+					<img src="./sources/image/icons/settings-outline.svg" alt="">
 				</button>
 			</div>
 
 			<div id="bottomTriangle"></div>
 
 			<div id="contents">
+				<div id="bottomButtons">
+					<button id="aiAssistant" class="coolButton wide hidden">
+						<div class="imageOverlayer" id="aiAssistantOverlayer">
+							<img src="./sources/image/icons/AI Slices/Slice-1.png" alt="">
+							<img src="./sources/image/icons/AI Slices/Slice-2.png" alt="">
+							<img src="./sources/image/icons/AI Slices/Slice-3.png" alt="">
+						</div>
+
+						<p>WebDev AI</p>
+					</button>
+					<button id="scrollUp" class="coolButton hidden">
+						<img src="./sources/image/icons/arrow-up.svg" alt="">
+					</button>
+				</div>
+
 				<div id="sidebar">
 					<div id="sidebarScrollUp"></div>
 

@@ -3,7 +3,8 @@
 }
 
 #wrapper.mobile #header::after {
-	display: none;
+	height: 30%;
+	bottom: -30%;
 }
 
 #wrapper.mobile #header > h1 {
