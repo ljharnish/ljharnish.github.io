@@ -89,6 +89,10 @@ button {
 	height: calc(100% - 6px);
 }
 
+#header button::before {
+	filter: blur(5px);
+}
+
 #header button:last-of-type {
     margin: 0;
 }

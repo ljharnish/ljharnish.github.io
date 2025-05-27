@@ -53,7 +53,6 @@ body {
 
 ::-webkit-scrollbar-thumb {
 	background: #000a;
-	border-radius: 10px;
 }
 
 #sidebar img {
@@ -78,7 +77,6 @@ button {
 	background: transparent;
 	color: black;
 	border: none;
-	border-radius: 5px;
 	font-size: larger;
 
 	display: flex;
@@ -139,7 +137,6 @@ button {
 	height: 100%;
     margin-right: 10px;
 	background: #bbb;
-	border-radius: 100%;
 }
 
 #header button:last-of-type {
@@ -212,28 +209,15 @@ button {
 	color: var(--body-text-dark);
 }
 
-div.sideCategoryP:not(:first-of-type)::before,
-div.sideCategoryM:not(:first-of-type)::before {
-	content: '';
-	position: absolute;
-	top: -15px;
-	left: 50%;
-	transform: translate(-50%, 0%);
-	width: 90%;
-	height: 2px;
-	background: #999;
-}
-
 div.sideCategoryP,
 div.sideCategoryM {
 	position: relative;
 	width: 100%;
 	min-height: 60px;
 
-	margin-bottom: 30px;
+	margin-bottom: 15px;
 	padding: 10px;
 
-	border-radius: 5px;
 	background: var(--sidebar-category-light);
 }
 
@@ -266,7 +250,6 @@ div.sideCategoryP.search input,
 	width: 100%;
     height: 100%;
     border: none;
-    border-radius: 5px;
     padding: 0 5px;
     padding-left: 60px;
 }
@@ -313,7 +296,6 @@ div.sideCategoryP.search input,
 	position: absolute;
 	height: 70px;
 	width: 100%;
-	border-radius: 0;
 	padding: 10px;
 	background: #ddd;
 	box-shadow: 0px 0px 5px black;
@@ -329,7 +311,6 @@ div.sideCategoryP.search input,
 	height: 100%;
 	background: #fff;
 	aspect-ratio: 1;
-	border-radius: 5px;
 	border-bottom-right-radius: 0;
 	border-top-right-radius: 0;
 }
@@ -425,7 +406,6 @@ button.sideItem {
 	height: 60px;
 	padding: 5px;
 
-	border-radius: 5px;
 	display: flex;
 	align-items: center;
 
@@ -522,7 +502,6 @@ a.sideItem img,
 button.sideItem img {
 	pointer-events: none;
 	aspect-ratio: 1;
-	border-radius: 5px;
 	height: 100%;
 	margin-right: 10px;
 	object-fit: contain;
@@ -554,7 +533,6 @@ div.newItem {
 	padding: 5px;
 	top: -10px;
 	left: 60px;
-	border-radius: 5px;
 	rotate: -10deg;
 	background: red;
 	position: absolute;
@@ -589,7 +567,6 @@ div.categoryBody > p {
 div.categoryBody > p code {
 	font-family: Consolas, monospace;
     padding: 5px;
-    border-radius: 5px;
     background: #fafafa;
 }
 
@@ -619,7 +596,6 @@ div.categoryBody pre code * {
 }
 
 div.categoryBody pre {
-    border-radius: 5px;
     overflow: hidden;
     position: relative;
     margin-bottom: 50px;
@@ -687,7 +663,6 @@ div.articleHolder {
 
 div.article {
 	overflow: hidden;
-	border-radius: 10px;
 	position: relative;
 
 	width: auto;
@@ -775,7 +750,6 @@ div.article div.articleDetails h3 {
 div.article div.articleDetails img {
 	height: 100%;
 	aspect-ratio: 1;
-	border-radius: 5px;
 }
 
 div.article div.articleDetails div {
@@ -788,8 +762,6 @@ div.article div.articleDetails div {
 div#copiedClipboard {
     pointer-events: none;
     position: absolute;
-
-    border-radius: 10px;
 
     display: flex;
     flex-direction: row;
@@ -871,13 +843,11 @@ div.categoryBody.wip::after {
 #wrapper.mobile div.categoryBody.wip::after {
 	background: #000d;
 	backdrop-filter: blur(5px);
-	border-radius: 10px;
 	padding: 20px;
 }
 
 input.inputText {
 	font-size: 20px;
-	border-radius: 5px;
 	padding: 10px;
 	border: none;
 	background: #ccc;
@@ -958,7 +928,6 @@ button.coolButton * {
 	align-items: center;
 	height: 100%;
 	aspect-ratio: 1;
-	border-radius: 100%;
 	margin: 0 10px;
 	position: relative;
 }
@@ -976,7 +945,6 @@ button.coolButton * {
 }
 
 #bottomButtons button.wide {
-	border-radius: 999px;
 	width: 270px;
 }
 
@@ -1015,4 +983,52 @@ div.imageOverlayer > img {
     pointer-events: none;
     opacity: 0.5;
     transform: scale(0.8);
+}
+
+/*! Deprecated - May 26th, 2025 */
+/*! Deprecated - May 26th, 2025 */
+/*! Deprecated - May 26th, 2025 */
+/*! Deprecated - May 26th, 2025 */
+
+/*? This style is deprecated and should not be worked on.
+/*? It will lack features and may not work properly.
+/*? This style should be removed in the future.*/
+
+body::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    font-size: 3vw;
+    text-align: center;
+    white-space: pre-wrap;
+    content: 'The "Classic" style is deprecated and may lack features, or not work properly.\AThis style may be removed in the future.\A\APlease use the updated "Modern" style instead.';
+    color: white;
+    box-sizing: border-box;
+    background: #000a;
+    z-index: 20;
+    backdrop-filter: blur(15px);
+    pointer-events: all;
+    animation: fadeout 8s 1 forwards;
+}
+
+@keyframes fadeout {
+    0% {
+        opacity: 1;
+    }
+
+    70% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        pointer-events: none;
+    }
 }

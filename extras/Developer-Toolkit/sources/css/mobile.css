@@ -1,5 +1,6 @@
 #wrapper.mobile #header {
 	margin-bottom: 0;
+	justify-content: space-evenly;
 }
 
 #wrapper.mobile #header::after {
@@ -121,7 +122,6 @@
     height: 90px;
 }
 
-#wrapper.mobile #modernBtn {
-	aspect-ratio: 1 !important;
-	overflow: hidden;
+#wrapper.mobile #header h1 {
+	display: none;
 }
