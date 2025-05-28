@@ -649,16 +649,19 @@ div#bottomTriangle {
 	opacity: 0.2;
 }
 
-button.coolButton {
+.insetElement {
+	position: relative;
+	aspect-ratio: 1;
+	border-radius: 999px;
 	box-shadow: 0px 0px 15px rgba(0, 0, 0, 1);
 	transition: 0.1s ease-in-out filter;
 }
 
-button.coolButton:hover {
+button.insetElement:hover {
 	filter: brightness(1.2);
 }
 
-button.coolButton::before {
+.insetElement::before {
 	z-index: -1;
 	filter: blur(10px);
 	content: '';
@@ -671,17 +674,33 @@ button.coolButton::before {
 	border-radius: inherit;
 }
 
-button.coolButton::after {
+.insetElement::after {
 	z-index: 0;
 	content: '';
 	position: absolute;
 	width: calc(100% - 10px);
 	height: calc(100% - 10px);
+	top: 5px;
+	left: 5px;
 	border-radius: inherit;
 	background: rgba(0, 0, 0, 0.5);
 }
 
-button.coolButton * {
+.insetElement::after {
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.insetElement.bigBorder::after {
+	width: calc(100% - 30px);
+	height: calc(100% - 30px);
+	top: 15px;
+	left: 15px;
+	transform: none;
+}
+
+.insetElement * {
 	z-index: 1;
 }
 
@@ -720,25 +739,30 @@ button.coolButton * {
 	visibility: hidden;
 }
 
-#bottomButtons button > img,
-#bottomButtons button > div.imageOverlayer {
+.insetElement > img,
+.insetElement > div.imageOverlayer {
 	filter: invert(1);
 	object-fit: contain;
 	aspect-ratio: 1;
 	height: 60%;
 }
 
-#bottomButtons button img[type='nofilter']{
+#header .insetElement img {
+	height: unset;
+}
+
+.insetElement button img[type='nofilter']{
 	filter: invert(0);
 }
 
-#bottomButtons button > div.imageOverlayer img[type='nofilter'] {
+.insetElement button > div.imageOverlayer img[type='nofilter'] {
 	filter: invert(1);
 }
 
 #bottomButtons button.wide {
 	border-radius: 999px;
 	width: 270px;
+	aspect-ratio: unset;
 }
 
 #bottomButtons button.wide > img,
@@ -779,6 +803,9 @@ div.imageOverlayer > img {
 }
 
 div#settings {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	width: 100%;
 	height: 100%;
 	background: #000a;
@@ -795,4 +822,49 @@ div#settings {
 div#settings.open {
 	opacity: 1;
 	pointer-events: all;
+}
+
+div#settings button#closeSettings {
+	position: absolute;
+	top: 15px;
+	left: 15px;
+	width: 80px;
+}
+
+div#settingsI {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 30px;
+	aspect-ratio: 16 / 9;
+	width: 80%;
+	border-radius: 15px;
+}
+
+div.settingsSide {
+	align-items: baseline;
+	padding: 10px;
+	border-radius: 10px;
+	width: 20%;
+	height: 100%;
+	margin-right: auto;
+}
+
+div.settingsFull {
+	padding: 20px;
+	border-radius: 10px;
+	margin-left: 10px;
+	width: inherit;
+	flex: 1 1 auto;
+	height: 100%;
+}
+
+div.settingsFullInner {
+	position: relative;
+	width: 100%;
+	height: auto;
+}
+
+div.settingsFullInner h1 {
+	font-size: 36px;
 }

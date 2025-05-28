@@ -125,3 +125,21 @@
 #wrapper.mobile #header h1 {
 	display: none;
 }
+
+#wrapper.mobile div#settingsI {
+	height: 70%;
+	width: 90%;
+}
+
+#wrapper.mobile div.settingsSide {
+	margin-right: auto;
+	width: 100px;
+}
+
+#wrapper.mobile div.settingsSide p {
+	display: none;
+}
+
+#wrapper.mobile div.settingsFull {
+	width: calc(100% - 100px)
+}

@@ -346,6 +346,14 @@ document.getElementById('scrollUp').addEventListener('click', () => {
     });
 });
 
+document.getElementById('closeSettings').addEventListener('click', () => {
+    document.getElementById('settings').classList.remove('open');
+});
+
+document.getElementById('settingsBtn').addEventListener('click', () => {
+    document.getElementById('settings').classList.add('open');
+});
+
 
 //if(readyDone == true) return;
     document.querySelectorAll('a.sideItem[href]').forEach((a) => {

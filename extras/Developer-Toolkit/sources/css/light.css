@@ -88,7 +88,7 @@ input.inputText {
 	color: black;
 }
 
-button.coolButton {
+.insetElement {
 	background: var(--button-bg-l);
 }
 
