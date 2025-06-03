@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ubuntu | For The Web</title>
+        <!-- CSS -->
+    
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="./sources/css/style.css">
+
+        <link rel="apple-touch-icon" sizes="180x180" href="./sources/favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="./sources/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="./sources/favicon/favicon-16x16.png">
+        <link rel="manifest" href="./sources/favicon/site.webmanifest">
+        
+    </head>
+    <body>
+        <div id="wrapper">
+            <div id="topBar">
+                <div id="windowManager">
+
+                </div>
+
+                <button id="dateTime">
+                </button>
+
+                <div id="quickSettings">
+                    <img src="./sources/image/icons/Yaru/scalable/status/network-wireless-signal-good-symbolic.svg" alt="">
+                    <img src="./sources/image/icons/Yaru/scalable/status/audio-volume-muted-symbolic.svg" alt="">
+                    <img src="./sources/image/icons/Yaru/scalable/status/battery-level-100-symbolic.svg" alt="">
+                    <p>100%</p>
+                </div>
+            </div>
+
+            <div id="mainView">
+                <div id="dock">
+                    <button>
+                        <img src="./sources/image/icons/Apps/Firefox_logo,_2019.svg.png" alt="">
+                    </button>
+                    <button>
+                        <img src="./sources/image/icons/Apps/thunderbird.webp" alt="">
+                    </button>
+                    <button data-appid="base.ubuntu.filemanager" onclick="openApp('base.ubuntu.filemanager');">
+                        <img src="./sources/image/icons/Yaru/apps/filemanager-app.png" alt="">
+                    </button>
+                    <button>
+                        <img src="./sources/image/icons/Yaru/apps/rhythmbox.png" alt="">
+                    </button>
+                    <button>
+                        <img src="./sources/image/icons/Yaru/apps/libreoffice-writer.png" alt="">
+                    </button>
+                    <button>
+                        <img src="./sources/image/icons/Yaru/apps/app-center.png" alt="">
+                    </button>
+                    <button>
+                        <img src="./sources/image/icons/Yaru/apps/help-app.png" alt="">
+                    </button>
+
+                    <div class="divider"></div>
+
+                    <button>
+                        <img src="./sources/image/icons/Yaru/folders/user-trash.png" alt="">
+                    </button>
+
+                    <button id="launcherButton">
+                        <img src="./sources/image/loading/bgrt-fallback.png" alt="">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </body>
+    <!-- JS -->
+
+    <script src="./sources/js/main.js"></script>
+    <script src="./sources/js/custom.js"></script>
+</html>

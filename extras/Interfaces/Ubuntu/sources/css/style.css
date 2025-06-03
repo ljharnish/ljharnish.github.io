@@ -1,0 +1,163 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+    font-family: 'Ubuntu', Arial, Helvetica, sans-serif;
+}
+
+:root {
+    --colscheme-default-ubuntu: #d34615;
+    --colscheme-1: red;
+}
+
+/* Make color scheme changable. */
+
+html,
+body,
+div#wrapper {
+    overflow: hidden;
+    width: 100dvw;
+    height: 100dvh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+div#wrapper {
+    overflow-x: hidden;
+    overflow-y: hidden;
+    position: relative;
+}
+
+div#topBar {
+    top: 0;
+    position: absolute;
+    padding: 3px 0;
+    background: #131313;
+    height: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+div#topBar button#dateTime {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+div#topBar button,
+div#topBar div {
+    border-radius: 999px;
+    height: 100%;
+    padding: 5px 10px;
+    border: none;
+    color: white;
+    background: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+}
+
+div#topBar div img,
+div#topBar div p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    margin: 0 5px;
+    filter: brightness(0) invert(1);
+}
+
+div#topBar button:hover,
+div#topBar div:hover {
+    background: #fff2;
+}
+
+div#mainView {
+    margin-top: 30px;
+    background: url(../image/backgrounds/warty-final-ubuntu.png);
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: calc(100% - 30px);
+    padding-left: 70px;
+}
+
+div#dock {
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    padding: 2px;
+    padding-top: 5px;
+    margin-left: -70px;
+    background: #0005;
+    backdrop-filter: blur(3px);
+    width: 70px;
+    height: calc(100% - 30px);
+    position: absolute;
+}
+
+div#dock button {
+    position: relative;
+    padding: 7px;
+    border: none;
+    border-radius: 10px;
+    aspect-ratio: 1;
+    width: 100%;
+    margin-bottom: 5px;
+    background: none;
+}
+
+div#dock button:hover {
+    background: #fff2;
+}
+
+div#dock button img {
+    width: 100%;
+}
+
+div#dock button.openApp::before {
+    content: '';
+    border-radius: 100%;
+    width: 5px;
+    height: 5px;
+
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    
+    background: var(--colscheme-default-ubuntu);
+}
+
+div#dock div.divider {
+    width: 80%;
+    height: 1px;
+    background: #fff4;
+    margin-bottom: 5px;
+}
+
+button#launcherButton {
+    width: calc(100% - 10px) !important;
+    padding: 10px !important;
+    position: absolute !important;
+    bottom: 0;
+}
+
+button#launcherButton img {
+    filter: brightness(0) invert(1);
+}
+
+ubuntu-application {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
