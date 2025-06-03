@@ -161,3 +161,195 @@ ubuntu-application {
     left: 50%;
     top: 50%;
 }
+
+div#lockScreen {
+    position: absolute;
+    width: 100dvw;
+    height: 100dvh;
+
+    background: url(../image/backgrounds/warty-final-ubuntu.png);
+    background-size: cover;
+    background-position: center;
+
+    z-index: 13;
+}
+
+div.lockUI {
+    width: 100%;
+    height: 100%;
+    background: #fff1;
+    backdrop-filter: blur(15px);
+    color: white;
+}
+
+div.lockUI h1 {
+    font-weight: 100;
+    font-size: 90px;
+    margin-bottom: 70px;
+}
+
+div.lockUI h3 {
+    font-weight: 400;
+    font-size: 25px;
+    margin-bottom: 70px;
+}
+
+div.lockDateTime,
+div.lockLogin {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    transition: 500ms top ease-in-out, 500ms opacity ease-in-out, 500ms scale cubic-bezier(.47,0,.74,.71)
+}
+
+div.lockDateTime {
+    top: 0;
+    scale: 1;
+    opacity: 1;
+}
+
+div.lockDateTime.closed {
+    top: -100%;
+    scale: 0.5;
+    opacity: 0;
+}
+
+div.lockLogin {
+    bottom: -100%;
+    scale: 0.5;
+    opacity: 0;
+    transition: 500ms bottom ease-in-out, 500ms opacity ease-in-out, 500ms scale cubic-bezier(.47,0,.74,.71)
+}
+
+div.lockLogin > img {
+    border-radius: 100%;
+    width: 200px;
+    margin-bottom: 20px;
+}
+
+div.lockLogin h2 {
+    margin-bottom: 20px;
+}
+
+div.lockLogin div.lockLoginInput {
+    position: relative;
+    height: 40px;
+}
+
+div.lockLogin input {
+    width: 300px;
+    height: 40px;
+    background: #fff4;
+    border: none;
+    padding: 10px 10px;
+    border-radius: 5px;
+}
+
+div.lockLogin input,
+div.lockLogin input::placeholder {
+    font-size: 16px;
+    color: white;
+}
+
+div.lockUI:has(div.lockDateTime.closed) div.lockLogin {
+    bottom: 0;
+    scale: 1;
+    opacity: 1;
+}
+
+div#lockScreen.unlocked {
+    display: none;
+}
+
+div.lockLoginInput button {
+    position: absolute;
+
+    aspect-ratio: 1;
+    height: 100%;
+    right: 40px;
+    padding: 10px;
+    background: none;
+    border: none;
+}
+
+div.lockLoginInput button:nth-of-type(2) {
+    top: 0;
+    right: 0;
+}
+
+div.lockLoginInput button img {
+    aspect-ratio: 1;
+    height: 100%;
+    filter: brightness(0) invert(1);
+}
+
+img#lockLoginThrobber {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: -40px;
+    padding: 10px;
+    height: 100%;
+    aspect-ratio: 1;
+}
+
+img#lockLoginThrobber.spin {
+    display: block;
+}
+
+.throbberSpinning {
+    animation: throbberRotate 5s linear infinite forwards;
+}
+
+@keyframes throbberRotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+div#bootAnim {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    width: 100dvw;
+    height: 100dvh;
+    background: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s ease-in-out opacity;
+}
+
+div#bootAnim > img:nth-of-type(1) {
+    aspect-ratio: 1;
+    height: 200px;
+    margin-bottom: 200px;
+}
+
+div#bootAnim > img:nth-of-type(2) {
+    aspect-ratio: 1;
+    height: 60px;
+}
+
+div#bootAnim > img:nth-of-type(3) {
+    position: absolute;
+    bottom: 20px;
+}
+
+div#bootAnim.boot * {
+    display: none;
+}
+
+div#bootAnim.boot {
+    opacity: 0;
+    pointer-events: none;
+}

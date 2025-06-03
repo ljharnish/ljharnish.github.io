@@ -20,6 +20,35 @@
         
     </head>
     <body>
+        <div id="bootAnim">
+            <img src="./sources/image/loading/bgrt-fallback.png" alt="">
+            <img class="throbberSpinning" src="./sources/image/loading/throbber.svg" alt="">
+            <img class="" src="./sources/image/loading/watermark.png" alt="">
+        </div>
+        <div id="lockScreen">
+            <div class="lockUI">
+                <div class="lockDateTime">
+                    <h1 id="lockTime">00:00</h1>
+                    <h3 id="lockDate">Sunday January 1</h3>
+                    <p>Click <s>or press a key</s> to unlock</p>
+                </div>
+                <div class="lockLogin">
+                    <img src="./sources/image/icons/placeholder.jpg" alt="">
+                    <h2>Username</h2>
+                    <div class="lockLoginInput">
+                        <input type="text" placeholder="Password (Any)" style="-webkit-text-security:disc" autocomplete="off">
+                        <button>
+                            <img src="./sources/image/icons/Yaru/scalable/actions/visible-symbolic.svg" alt="">
+                        </button>
+                        <button>
+                            <img src="./sources/image/icons/Yaru/scalable/actions/go-next-symbolic.svg" alt="">
+                        </button>
+                        <img id="lockLoginThrobber" class="throbberSpinning" src="./sources/image/loading/throbber.svg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div id="wrapper">
             <div id="topBar">
                 <div id="windowManager">
