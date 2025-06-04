@@ -1,13 +1,17 @@
 let timeInterval;
 
-let debug = false;
-//if(window.location.href.includes('5500')) debug = true;
+let skipBoot = false;
+let debug = true;
+
+let applicationsOpen = [];
 
 const monthShort = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 const dayOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 window.onload = function() {
+    console.log('Hello!\n\elcome to Ubuntu | For The Web!\nThis is a web-based port of Ubuntu 24.04 LTS in pure HTML, JS, and CSS.\n\nMade by ljharnish.\n\nEnjoy!')
+
     let topBarTime = document.getElementById('dateTime');
     let lockScreenTime = document.getElementById('lockTime');
     let lockScreenDate = document.getElementById('lockDate');
@@ -36,6 +40,7 @@ window.onload = function() {
         });
 
         try {
+            if(e.target.localName == 'ubuntu-application' && e.target.parentNode.lastChild != e.target) e.target.parentNode.appendChild(e.target);
             let app = e.target.shadowRoot.querySelector('div.app');
             app.classList.remove('inactive');
         } catch (error) {
@@ -50,17 +55,19 @@ window.onload = function() {
         if(e.key == 'Escape') document.querySelector('div.lockDateTime').classList.remove('closed');
 
         if(e.key == 'Enter') { 
+            if(debug) console.log(`Unlocking Ubuntu 24.04 LTS:\nPassword: [${document.getElementById('lockLoginPassword').value}]`);
             document.getElementById('lockLoginThrobber').classList.add('spin');
             setTimeout(() => { document.getElementById('lockScreen').classList.add('unlocked') }, 500);
         }
     });
     document.querySelector('div.lockLogin button:nth-of-type(2)').addEventListener('click', () => {
+        if(debug) console.log(`Unlocking Ubuntu 24.04 LTS:\nPassword: [${document.getElementById('lockLoginPassword').value}]`);
         document.getElementById('lockLoginThrobber').classList.add('spin');
         setTimeout(() => { document.getElementById('lockScreen').classList.add('unlocked') }, 500);
     });
 
-    if(debug) document.getElementById('bootAnim').classList.add('boot');
-    if(debug) document.getElementById('lockScreen').classList.add('unlocked');
+    if(skipBoot) document.getElementById('bootAnim').classList.add('boot');
+    if(skipBoot) document.getElementById('lockScreen').classList.add('unlocked');
 
     let randBootInterval = Math.floor(Math.random() * 1500) + 2000;
     setTimeout(() => {
@@ -74,7 +81,6 @@ function dragElement(elmnt) {
     elmnt.shadowRoot.querySelector('.app_handleBar').onpointerdown = dragMouseDown;
     function dragMouseDown(e) {
         e = e || window.event;
-        e.preventDefault();
         pos3 = e.clientX;
         pos4 = e.clientY;
         document.onmouseup = closeDragElement;
@@ -101,6 +107,8 @@ function dragElement(elmnt) {
 }
 
 function openApp(appid) {
+    if(debug) console.log(`Opening app: '${appid}'`);
+
     let appIcon = document.querySelector(`button[data-appid='${appid}']`);
     appIcon.classList.add('openApp');
 
@@ -108,4 +116,21 @@ function openApp(appid) {
     app.setAttribute('type', appid);
 
     document.getElementById('mainView').appendChild(app);
+
+    applicationsOpen.push(app);
+}
+
+function closeApp(app) {
+    let appEl = app.closest("div.app").parentNode.host;
+
+    if(debug) console.log(`Closing app: '${appEl.getAttribute('type')}'\nWindow Index: ${applicationsOpen.indexOf(appEl)>-1?applicationsOpen.indexOf(appEl):'Undefined'}`);
+
+    applicationsOpen.splice(applicationsOpen.indexOf(appEl), 1);
+    appEl.remove();
+
+    let amountOfAppsOfType = applicationsOpen.filter((e) => e.getAttribute('type') == appEl.getAttribute('type'));
+    if(amountOfAppsOfType == 0) {
+        let appIcon = document.querySelector(`button[data-appid='${appEl.getAttribute('type')}']`);
+        appIcon.classList.remove('openApp');
+    }
 }

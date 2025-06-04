@@ -11,12 +11,15 @@ class Application extends HTMLElement {
     }
 
     connectedCallback() {
-        const shadow = this.attachShadow({ mode: "open" });
+        let shadow;
+        try {
+            shadow = this.attachShadow({ mode: "open" });
+        } catch (error) {}
         let type = this.getAttribute("type") || null;
 
         if(type == 'base.ubuntu.filemanager') {
             shadow.innerHTML = `
-            <link rel="stylesheet" href="./sources/css/apps/filemanager.css">
+            <link rel="stylesheet" href="./sources/css/apps/base.ubuntu.filemanager.css">
 
             <div class="app app_filemanager">
                 <div class="app_handleBar"></div>
@@ -106,7 +109,7 @@ class Application extends HTMLElement {
                             <button>
                                 <img src="./sources/image/icons/Yaru/scalable/ui/window-maximize-symbolic.svg" alt="">
                             </button>
-                            <button onclick='this.closest("div.app").parentNode.host.remove()'>
+                            <button onclick='closeApp(this)'>
                                 <img src="./sources/image/icons/Yaru/scalable/ui/window-close-symbolic.svg" alt="">
                             </button>
                         </div>
@@ -152,6 +155,177 @@ class Application extends HTMLElement {
                     </div>
                 </div>
             </div>`;
+
+            dragElement(this);
+        } else if(type == 'base.ubuntu.preferences') {
+        
+            shadow.innerHTML = `
+            
+                <link rel="stylesheet" href="./sources/css/apps/base.ubuntu.preferences.css">
+
+                <div class="app app_preferences">
+                    <div class="app_handleBar">
+                        <div class="app_preferences-sidebar-header">
+                            <button>
+                                <img src="./sources/image/icons/Yaru/scalable/actions/edit-find-symbolic.svg" alt="">
+                            </button>
+                            <p>Settings</p>
+                            <button>
+                                <img src="./sources/image/icons/Yaru/scalable/actions/open-menu-symbolic.svg" alt="">
+                            </button>
+                        </div>
+                        <div class="app_preferences-body-header">
+                            <div class="app_preferences_windowbuttons">
+                                <button>
+                                    <img src="./sources/image/icons/Yaru/scalable/ui/window-minimize-symbolic.svg" alt="">
+                                </button>
+                                <button>
+                                    <img src="./sources/image/icons/Yaru/scalable/ui/window-maximize-symbolic.svg" alt="">
+                                </button>
+                                <button onclick='closeApp(this)'>
+                                    <img src="./sources/image/icons/Yaru/scalable/ui/window-close-symbolic.svg" alt="">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="app_preferences-sidebar">
+                        <div class="app_preferences-sidebar-items">
+                            <div class="app_preferences-sidebar-item">
+                                <img src="./sources/image/icons/Yaru/scalable/devices/network-wireless-symbolic.svg" alt="">
+                                <p>Wi-Fi</p>
+                            </div>
+                            <div class="app_preferences-sidebar-item">
+                                <img src="./sources/image/icons/Yaru/scalable/org.gnome.Settings/org.gnome.Settings-network-symbolic.svg" alt="">
+                                <p>Network</p>
+                            </div>
+                            <div class="app_preferences-sidebar-item">
+                                <img src="./sources/image/icons/Yaru/scalable/org.gnome.Settings/org.gnome.Settings-bluetooth-symbolic.svg" alt="">
+                                <p>Bluetooth</p>
+                            </div>
+                            <div class="app_preferences-sidebar-divider"></div>
+                            <div class="app_preferences-sidebar-item">
+                                <img src="./sources/image/icons/Yaru/scalable/org.gnome.Settings/org.gnome.Settings-display-symbolic.svg" alt="">
+                                <p>Displays</p>
+                            </div>
+                            <div class="app_preferences-sidebar-item">
+                                <img src="./sources/image/icons/Yaru/scalable/org.gnome.Settings/org.gnome.Settings-sound-symbolic.svg" alt="">
+                                <p>Sound</p>
+                            </div>
+                            <div class="app_preferences-sidebar-item">
+                                <img src="./sources/image/icons/Yaru/scalable/org.gnome.Settings/org.gnome.Settings-power-symbolic.svg" alt="">
+                                <p>Power</p>
+                            </div>
+                            <div class="app_preferences-sidebar-item">
+                                <img src="./sources/image/icons/Yaru/scalable/org.gnome.Settings/org.gnome.Settings-multitasking-symbolic.svg" alt="">
+                                <p>Multitasking</p>
+                            </div>
+                            <div class="app_preferences-sidebar-item">
+                                <img src="./sources/image/icons/Yaru/scalable/org.gnome.Settings/org.gnome.Settings-appearance-symbolic.svg" alt="">
+                                <p>Appearance</p>
+                            </div>
+                            <div class="app_preferences-sidebar-item">
+                                <img src="./sources/image/icons/Yaru/scalable/categories/preferences-ubuntu-panel-symbolic.svg" alt="">
+                                <p>Ubuntu Desktop</p>
+                            </div>
+                            <div class="app_preferences-sidebar-divider"></div>
+                            <div class="app_preferences-sidebar-item">
+                                <img src="./sources/image/icons/Yaru/scalable/org.gnome.Settings/org.gnome.Settings-applications-symbolic.svg" alt="">
+                                <p>Apps</p>
+                            </div>
+                            <div class="app_preferences-sidebar-item">
+                                <img src="./sources/image/icons/Yaru/scalable/org.gnome.Settings/org.gnome.Settings-notifications-symbolic.svg" alt="">
+                                <p>Notifications</p>
+                            </div>
+                            <div class="app_preferences-sidebar-item">
+                                <img src="./sources/image/icons/Yaru/scalable/org.gnome.Settings/org.gnome.Settings-search-symbolic.svg" alt="">
+                                <p>Search</p>
+                            </div>
+                            <div class="app_preferences-sidebar-item">
+                                <img src="./sources/image/icons/Yaru/scalable/org.gnome.Settings/org.gnome.Settings-online-accounts-symbolic.svg" alt="">
+                                <p>Online Accounts</p>
+                            </div>
+                            <div class="app_preferences-sidebar-item">
+                                <img src="./sources/image/icons/Yaru/scalable/org.gnome.Settings/org.gnome.Settings-sharing-symbolic.svg" alt="">
+                                <p>Sharing</p>
+                            </div>
+                            <div class="app_preferences-sidebar-divider"></div>
+                            <div class="app_preferences-sidebar-item">
+                                <img src="./sources/image/icons/Yaru/scalable/org.gnome.Settings/org.gnome.Settings-mouse-symbolic.svg" alt="">
+                                <p>Mouse & Touchpad</p>
+                            </div>
+                            <div class="app_preferences-sidebar-item">
+                                <img src="./sources/image/icons/Yaru/scalable/org.gnome.Settings/org.gnome.Settings-keyboard-symbolic.svg" alt="">
+                                <p>Keyboard</p>
+                            </div>
+                            <div class="app_preferences-sidebar-item">
+                                <img src="./sources/image/icons/Yaru/scalable/org.gnome.Settings/org.gnome.Settings-color-symbolic.svg" alt="">
+                                <p>Color</p>
+                            </div>
+                            <div class="app_preferences-sidebar-item">
+                                <img src="./sources/image/icons/Yaru/scalable/org.gnome.Settings/org.gnome.Settings-printers-symbolic.svg" alt="">
+                                <p>Printers</p>
+                            </div>
+                            <div class="app_preferences-sidebar-item">
+                                <img src="./sources/image/icons/Yaru/scalable/devices/input-tablet-symbolic.svg" alt="">
+                                <p>Wacom Tablet</p>
+                            </div>
+                            <div class="app_preferences-sidebar-divider"></div>
+                            <div class="app_preferences-sidebar-item">
+                                <img src="./sources/image/icons/Yaru/scalable/org.gnome.Settings/org.gnome.Settings-accessibility-symbolic.svg" alt="">
+                                <p>Accessibility</p>
+                            </div>
+                            <div class="app_preferences-sidebar-item">
+                                <img src="./sources/image/icons/Yaru/scalable/org.gnome.Settings/org.gnome.Settings-privacy-symbolic.svg" alt="">
+                                <p>Privacy & Security</p>
+                            </div>
+                            <div class="app_preferences-sidebar-item">
+                                <img src="./sources/image/icons/Yaru/scalable/org.gnome.Settings/org.gnome.Settings-system-symbolic.svg" alt="">
+                                <p>System</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="app_preferences-body">
+                        <div class="app_preferences-body-contents">
+                            <div class="app_preferences-body-file">
+                                <img src="./sources/image/icons/Yaru/folders/user-desktop.png" alt="">
+                                Desktop
+                            </div>
+                            <div class="app_preferences-body-file">
+                                <img src="./sources/image/icons/Yaru/folders/folder-documents.png" alt="">
+                                Documents
+                            </div>
+                            <div class="app_preferences-body-file">
+                                <img src="./sources/image/icons/Yaru/folders/folder-download.png" alt="">
+                                Downloads
+                            </div>
+                            <div class="app_preferences-body-file">
+                                <img src="./sources/image/icons/Yaru/folders/folder-music.png" alt="">
+                                Music
+                            </div>
+                            <div class="app_preferences-body-file">
+                                <img src="./sources/image/icons/Yaru/folders/folder-pictures.png" alt="">
+                                Pictures
+                            </div>
+                            <div class="app_preferences-body-file">
+                                <img src="./sources/image/icons/Yaru/folders/folder-publicshare.png" alt="">
+                                Public
+                            </div>
+                            <div class="app_preferences-body-file">
+                                <img src="./sources/image/icons/Yaru/folders/folder.png" alt="">
+                                snap
+                            </div>
+                            <div class="app_preferences-body-file">
+                                <img src="./sources/image/icons/Yaru/folders/folder-templates.png" alt="">
+                                Templates
+                            </div>
+                            <div class="app_preferences-body-file">
+                                <img src="./sources/image/icons/Yaru/folders/folder-videos.png" alt="">
+                                Videos
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>`;
 
             dragElement(this);
         } else {

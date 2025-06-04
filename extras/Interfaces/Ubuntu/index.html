@@ -36,7 +36,7 @@
                     <img src="./sources/image/icons/placeholder.jpg" alt="">
                     <h2>Username</h2>
                     <div class="lockLoginInput">
-                        <input type="text" placeholder="Password (Any)" style="-webkit-text-security:disc" autocomplete="off">
+                        <input type="text" id="lockLoginPassword" placeholder="Password (Any)" style="-webkit-text-security:disc" autocomplete="off">
                         <button>
                             <img src="./sources/image/icons/Yaru/scalable/actions/visible-symbolic.svg" alt="">
                         </button>
@@ -89,17 +89,23 @@
                     <button>
                         <img src="./sources/image/icons/Yaru/apps/help-app.png" alt="">
                     </button>
+                    <button data-appid="base.ubuntu.preferences" onclick="openApp('base.ubuntu.preferences');">
+                        <img src="./sources/image/icons/Yaru/apps/org.gnome.Settings.png" alt="">
+                    </button>
+                    <button onclick="document.documentElement.requestFullscreen()">
+                        <img src="./sources/image/icons/Yaru/scalable/actions/view-fullscreen-symbolic.svg" alt="">
+                    </button>
 
                     <div class="divider"></div>
 
                     <button>
                         <img src="./sources/image/icons/Yaru/folders/user-trash.png" alt="">
                     </button>
-
-                    <button id="launcherButton">
-                        <img src="./sources/image/loading/bgrt-fallback.png" alt="">
-                    </button>
                 </div>
+
+                <button id="launcherButton">
+                    <img src="./sources/image/loading/bgrt-fallback.png" alt="">
+                </button>
             </div>
         </div>
     </body>
