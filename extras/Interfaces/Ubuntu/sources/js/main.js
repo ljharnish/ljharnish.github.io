@@ -1,6 +1,6 @@
 let timeInterval;
 
-let skipBoot = true;
+let skipBoot = false;
 let debug = true;
 
 let applicationsOpen = [];
