@@ -205,8 +205,14 @@ button#launcherButton img {
 
 ubuntu-application {
     position: absolute;
-    left: 50%;
-    top: 50%;
+    left: 150px;
+    top: 90px;
+    z-index: 1;
+    border: 1px solid #555;
+    border-radius: 10px;
+    overflow: hidden;
+    container-type: size;
+    resize: both;
 }
 
 div#lockScreen {
@@ -492,7 +498,29 @@ div.allApps_page {
     align-items: end;
 }
 
-div.app.layout-top-left {
-    width: 50%;
-    height: 50%;
+/* Screen Organizing */
+
+ubuntu-application.maximized {
+    transition: 0.3s ease-in-out all;
+    width: calc(100% - 70px) !important;
+    height: calc(100% - 30px) !important;
+    top: 30px !important;
+    left: 70px !important;
+    border-radius: 0 !important;
+}
+
+ubuntu-application.left-half {
+    border-radius: 0 !important;
+    top: 30px !important;
+    left: 70px !important;
+    height: calc(100% - 30px) !important;
+    width: calc(50% - 70px) !important;
+}
+
+ubuntu-application.right-half {
+    border-radius: 0 !important;
+    top: 30px !important;
+    left: 50% !important;
+    height: calc(100% - 30px) !important;
+    width: 50% !important;
 }

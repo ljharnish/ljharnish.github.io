@@ -6,21 +6,25 @@
 }
 
 div.app_filemanager {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    position: absolute;
-    width: 900px;
-    height: 560px;
+    width: 100%;
+    height: 100%;
     background: #1d1d1d;
-    border-radius: 10px;
     overflow: hidden;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    border: 1px solid #fff3;
     box-shadow: 0px 0px 25px #0009;
+}
+
+@container (orientation: portrait) {
+    div.app_filemanager-sidebar {
+        display: none !important;
+    }
+
+    div.app_filemanager-sidebar-header {
+        display: none !important;
+    }
 }
 
 div.app_filemanager * {
@@ -107,7 +111,8 @@ div.app_filemanager-location-bar {
     background: #353535;
     margin-left: 10px;
     margin-right: 10px;
-    width: 370px;
+    width: auto;
+    flex: 1 1 auto;
     height: 100%;
     border-radius: 5px;
 }
@@ -159,7 +164,7 @@ div.app_filemanager-body-contents {
     padding: 10px 15px;
     padding-bottom: 0;
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
     grid-auto-rows: 80px;
     gap: 5px 20px;
     width: 100%;
@@ -213,7 +218,7 @@ div.app_filemanager_organizebuttons button:nth-of-type(2) img {
 }
 
 *:has(+ div.app_filemanager_windowbuttons) {
-    flex: 1 1 auto;
+    margin-right: 5px;
 }
 
 div.app_filemanager_windowbuttons {

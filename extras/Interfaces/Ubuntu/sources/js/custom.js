@@ -16,6 +16,9 @@ class Application extends HTMLElement {
 
         if(filteredAppLayouts.length > 0) {
             shadow.innerHTML = filteredAppLayouts[0].layout;
+            console.log(this);
+            this.style.width = filteredAppLayouts[0].baseWidth + 'px';
+            this.style.height = filteredAppLayouts[0].baseHeight + 'px';
             dragElement(this);
         } else {
             //! No app in appLayouts array.

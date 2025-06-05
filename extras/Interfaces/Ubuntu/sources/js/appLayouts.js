@@ -1,6 +1,8 @@
 let appLayouts = [
     {
         id: 'base.ubuntu.filemanager',
+        baseWidth:900,
+        baseHeight:560,
         layout: `<link rel="stylesheet" href="./sources/css/apps/base.ubuntu.filemanager.css">
 
             <div class="app app_filemanager">
@@ -88,7 +90,7 @@ let appLayouts = [
                             <button>
                                 <img src="./sources/image/icons/Yaru/scalable/ui/window-minimize-symbolic.svg" alt="">
                             </button>
-                            <button>
+                            <button onclick='maximizeApp(this)'>
                                 <img src="./sources/image/icons/Yaru/scalable/ui/window-maximize-symbolic.svg" alt="">
                             </button>
                             <button onclick='closeApp(this)'>
@@ -140,6 +142,8 @@ let appLayouts = [
     },
     {
         id: 'base.ubuntu.preferences',
+        baseWidth:1000,
+        baseHeight:660,
         layout: `<link rel="stylesheet" href="./sources/css/apps/base.ubuntu.preferences.css">
                 <link rel="stylesheet" href="./sources/css/global.css">
 
@@ -164,7 +168,7 @@ let appLayouts = [
                                 <button>
                                     <img src="./sources/image/icons/Yaru/scalable/ui/window-minimize-symbolic.svg" alt="">
                                 </button>
-                                <button>
+                                <button onclick='maximizeApp(this)'>
                                     <img src="./sources/image/icons/Yaru/scalable/ui/window-maximize-symbolic.svg" alt="">
                                 </button>
                                 <button onclick='closeApp(this)'>

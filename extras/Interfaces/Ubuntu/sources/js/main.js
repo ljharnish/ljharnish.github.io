@@ -1,6 +1,6 @@
 let timeInterval;
 
-let skipBoot = false;
+let skipBoot = true;
 let debug = true;
 
 let applicationsOpen = [];
@@ -11,7 +11,7 @@ const dayOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Frid
 
 window.onload = function() {
     if(debug) {
-        //openApp('base.ubuntu.preferences')
+        openApp('base.ubuntu.preferences')
     }
 
     window.addEventListener('keydown', (e) => {
@@ -93,6 +93,7 @@ function dragElement(elmnt) {
         e = e || window.event;
         pos3 = e.clientX;
         pos4 = e.clientY;
+        //elmnt.className = '';
         document.onmouseup = closeDragElement;
         document.onpointerup = closeDragElement;
         document.onmousemove = elementDrag;
@@ -105,8 +106,11 @@ function dragElement(elmnt) {
         pos2 = pos4 - e.clientY;
         pos3 = e.clientX;
         pos4 = e.clientY;
-        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        /*if((elmnt.offsetTop - pos2) > 0) */elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        /*if((elmnt.offsetLeft - pos1) > 70) */elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        if((e.clientX) <= 70) elmnt.classList.add('left-half');
+        else if((e.clientX) == (window.innerWidth - 1)) elmnt.classList.add('right-half');
+        else elmnt.className = '';
     }
     function closeDragElement() {
         document.onmouseup = null;
@@ -166,4 +170,26 @@ function openAllApps() {
 
 function implementApp(appID, appCode) {
     appLayouts.push({id: appID, layout: appCode});
+}
+
+function maximizeApp(app) {
+    let appEl = app.closest("div.app").parentNode.host;
+    appEl.setAttribute('bW', appEl.style.width);
+    appEl.setAttribute('bH', appEl.style.height);
+    app.children[0].src = './sources/image/icons/Yaru/scalable/ui/window-restore-symbolic.svg';
+    appEl.classList.add('maximized');
+
+    app.onclick = function () {
+        unmaximizeApp(app)
+    }
+}
+
+function unmaximizeApp(app) {
+    let appEl = app.closest("div.app").parentNode.host;
+    app.children[0].src = './sources/image/icons/Yaru/scalable/ui/window-maximize-symbolic.svg';
+    appEl.classList.remove('maximized');
+
+    app.onclick = function () {
+        maximizeApp(app)
+    }
 }
