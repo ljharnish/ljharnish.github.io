@@ -1,3 +1,23 @@
+:root {
+    --terminal-black: #171421;
+    --terminal-red: #c01c28;
+    --terminal-green: #26a269;
+    --terminal-yellow: #a2734c;
+    --terminal-blue: #12488b;
+    --terminal-purple: #a347ba;
+    --terminal-teal: #2aa1b3;
+    --terminal-grey: #d0cfcc;
+
+    --terminal-l-black: #5e5c64;
+    --terminal-l-red: #f66151;
+    --terminal-l-green: #33da7a;
+    --terminal-l-yellow: #e9ad0c;
+    --terminal-l-blue: #2a7bde;
+    --terminal-l-purple: #c061cb;
+    --terminal-l-teal: #33c7de;
+    --terminal-white: #ffffff;
+}
+
 .throbberSpinning {
     animation: throbberRotate 5s linear infinite forwards;
 }

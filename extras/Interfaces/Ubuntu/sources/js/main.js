@@ -1,6 +1,6 @@
 let timeInterval;
 
-let skipBoot = false;
+let skipBoot = true;
 let debug = true;
 
 let applicationsOpen = [];
@@ -10,8 +10,9 @@ const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 
 const dayOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 window.onload = function() {
+    window.scrollTo(0, 0);
     if(debug) {
-        //openApp('base.ubuntu.preferences')
+        //openApp('base.ubuntu.terminal')
     }
 
     window.addEventListener('keydown', (e) => {
@@ -108,8 +109,9 @@ function dragElement(elmnt) {
         pos4 = e.clientY;
         /*if((elmnt.offsetTop - pos2) > 0) */elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
         /*if((elmnt.offsetLeft - pos1) > 70) */elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-        if((e.clientX) <= 70) elmnt.classList.add('left-half');
-        else if((e.clientX) == (window.innerWidth - 1)) elmnt.classList.add('right-half');
+        if((e.clientX) <= 75) elmnt.classList.add('left-half');
+        else if((e.clientX) >= (window.innerWidth - 6)) elmnt.classList.add('right-half');
+        else if(elmnt.classList.contains('maximized')) elmnt.className = 'maximized';
         else elmnt.className = '';
     }
     function closeDragElement() {
@@ -174,9 +176,11 @@ function implementApp(appID, appCode) {
 
 function maximizeApp(app) {
     let appEl = app.closest("div.app").parentNode.host;
+    appEl.setAttribute('bfS', appEl.className);
     appEl.setAttribute('bW', appEl.style.width);
     appEl.setAttribute('bH', appEl.style.height);
     app.children[0].src = './sources/image/icons/Yaru/scalable/ui/window-restore-symbolic.svg';
+    appEl.className = '';
     appEl.classList.add('maximized');
 
     app.onclick = function () {
@@ -187,6 +191,7 @@ function maximizeApp(app) {
 function unmaximizeApp(app) {
     let appEl = app.closest("div.app").parentNode.host;
     app.children[0].src = './sources/image/icons/Yaru/scalable/ui/window-maximize-symbolic.svg';
+    appEl.className = appEl.getAttribute('bfS');
     appEl.classList.remove('maximized');
 
     app.onclick = function () {
