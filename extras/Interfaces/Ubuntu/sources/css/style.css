@@ -491,3 +491,8 @@ div.allApps_page {
     justify-content: center;
     align-items: end;
 }
+
+div.app.layout-top-left {
+    width: 50%;
+    height: 50%;
+}

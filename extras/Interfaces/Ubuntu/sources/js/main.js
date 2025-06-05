@@ -163,3 +163,7 @@ function closeApp(app) {
 function openAllApps() {
     document.getElementById('allApps').classList.toggle('open');
 }
+
+function implementApp(appID, appCode) {
+    appLayouts.push({id: appID, layout: appCode});
+}
