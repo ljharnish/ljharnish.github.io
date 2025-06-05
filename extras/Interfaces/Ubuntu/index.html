@@ -11,6 +11,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
 
+        <link rel="stylesheet" href="./sources/css/global.css">
         <link rel="stylesheet" href="./sources/css/style.css">
 
         <link rel="apple-touch-icon" sizes="180x180" href="./sources/favicon/apple-touch-icon.png">
@@ -30,7 +31,7 @@
                 <div class="lockDateTime">
                     <h1 id="lockTime">00:00</h1>
                     <h3 id="lockDate">Sunday January 1</h3>
-                    <p>Click <s>or press a key</s> to unlock</p>
+                    <p>Click or press a key to unlock</p>
                 </div>
                 <div class="lockLogin">
                     <img src="./sources/image/icons/placeholder.jpg" alt="">
@@ -49,68 +50,179 @@
             </div>
         </div>
 
-        <div id="wrapper">
-            <div id="topBar">
-                <div id="windowManager">
+        <div id="topBar">
+            <div id="windowManager">
 
-                </div>
-
-                <button id="dateTime">
-                </button>
-
-                <div id="quickSettings">
-                    <img src="./sources/image/icons/Yaru/scalable/status/network-wireless-signal-good-symbolic.svg" alt="">
-                    <img src="./sources/image/icons/Yaru/scalable/status/audio-volume-muted-symbolic.svg" alt="">
-                    <img src="./sources/image/icons/Yaru/scalable/status/battery-level-100-symbolic.svg" alt="">
-                    <p>100%</p>
-                </div>
             </div>
 
+            <button id="dateTime">
+            </button>
+
+            <div id="quickSettings">
+                <img src="./sources/image/icons/Yaru/scalable/status/network-wireless-signal-good-symbolic.svg" alt="">
+                <img src="./sources/image/icons/Yaru/scalable/status/audio-volume-muted-symbolic.svg" alt="">
+                <img src="./sources/image/icons/Yaru/scalable/status/battery-level-100-symbolic.svg" alt="">
+                <p>100%</p>
+            </div>
+        </div>
+
+        <div id="dock">
+            <button>
+                <img src="./sources/image/icons/Apps/Firefox_logo,_2019.svg.png" alt="">
+            </button>
+            <button>
+                <img src="./sources/image/icons/Apps/thunderbird.webp" alt="">
+            </button>
+            <button data-appid="base.ubuntu.filemanager" onclick="openApp('base.ubuntu.filemanager');">
+                <img src="./sources/image/icons/Yaru/apps/filemanager-app.png" alt="">
+            </button>
+            <button>
+                <img src="./sources/image/icons/Yaru/apps/rhythmbox.png" alt="">
+            </button>
+            <button>
+                <img src="./sources/image/icons/Yaru/apps/libreoffice-writer.png" alt="">
+            </button>
+            <button>
+                <img src="./sources/image/icons/Yaru/apps/app-center.png" alt="">
+            </button>
+            <button>
+                <img src="./sources/image/icons/Yaru/apps/help-app.png" alt="">
+            </button>
+            <button data-appid="base.ubuntu.preferences" onclick="openApp('base.ubuntu.preferences');">
+                <img src="./sources/image/icons/Yaru/apps/org.gnome.Settings.png" alt="">
+            </button>
+            <button onclick="document.documentElement.requestFullscreen()">
+                <img src="./sources/image/icons/Yaru/scalable/actions/view-fullscreen-symbolic.svg" alt="">
+            </button>
+
+            <div class="divider"></div>
+
+            <button>
+                <img src="./sources/image/icons/Yaru/folders/user-trash.png" alt="">
+            </button>
+        </div>
+
+        <button id="launcherButton" onclick="openAllApps()">
+            <img src="./sources/image/loading/bgrt-fallback.png" alt="">
+        </button>
+
+        <div id="wrapper">
             <div id="mainView">
-                <div id="dock">
+                
+            </div>
+        </div>
+
+        <div id="allApps">
+            <div class="allApps_page">
+                <div class="allApps_appGrid">
                     <button>
-                        <img src="./sources/image/icons/Apps/Firefox_logo,_2019.svg.png" alt="">
+                        <img src="./sources/image/icons/Yaru/apps/calendar-app.png" alt="">
+                        <p>Calendar</p>
                     </button>
                     <button>
-                        <img src="./sources/image/icons/Apps/thunderbird.webp" alt="">
-                    </button>
-                    <button data-appid="base.ubuntu.filemanager" onclick="openApp('base.ubuntu.filemanager');">
-                        <img src="./sources/image/icons/Yaru/apps/filemanager-app.png" alt="">
+                        <img src="./sources/image/icons/Yaru/apps/camera-app.png" alt="">
+                        <p>Camera</p>
                     </button>
                     <button>
-                        <img src="./sources/image/icons/Yaru/apps/rhythmbox.png" alt="">
+                        <img src="./sources/image/icons/Yaru/apps/clock-app.png" alt="">
+                        <p>Clock</p>
+                    </button>
+                    <button data-appid="base.ubuntu.filemanager" onclick="openApp('base.ubuntu.filemanager')">
+                        <img src="./sources/image/icons/Yaru/apps/file-manager.png" alt="">
+                        <p>File Manager</p>
                     </button>
                     <button>
-                        <img src="./sources/image/icons/Yaru/apps/libreoffice-writer.png" alt="">
+                        <img src="./sources/image/icons/Yaru/apps/multimedia-video-player.png" alt="">
+                        <p>Videos</p>
                     </button>
                     <button>
-                        <img src="./sources/image/icons/Yaru/apps/app-center.png" alt="">
+                        <img src="./sources/image/icons/Yaru/apps/calculator-app.png" alt="">
+                        <p>Calculator</p>
+                    </button>
+                    <button>
+                        <img src="./sources/image/icons/Yaru/apps/scanner.png" alt="">
+                        <p>Document Scanner</p>
+                    </button>
+                    <button data-appid="base.ubuntu.preferences" onclick="openApp('base.ubuntu.preferences')">
+                        <img src="./sources/image/icons/Yaru/apps/system-settings.png" alt="">
+                        <p>Settings</p>
+                    </button>
+                    <button>
+                        <img src="./sources/image/icons/Yaru/apps/system-monitor-app.png" alt="">
+                        <p>System Monitor</p>
+                    </button>
+                    <button>
+                        <img src="./sources/image/icons/Yaru/apps/image-viewer-app.png" alt="">
+                        <p>Image Viewer</p>
+                    </button>
+                    <button>
+                        <div class="folderIcons">
+                            <img src="./sources/image/icons/Yaru/apps/extensions.png" alt="">
+                            <img src="./sources/image/icons/Yaru/apps/disk-usage-app.png" alt="">
+                            <img src="./sources/image/icons/Yaru/apps/deja-dup.png" alt="">
+                            <img src="./sources/image/icons/Yaru/apps/disk-utility-app.png" alt="">
+                        </div>
+                        <p>Utilities</p>
+                    </button>
+                    <button>
+                        <img src="./sources/image/icons/Yaru/apps/libreoffice-main.png" alt="">
+                        <p>LibreOffice</p>
                     </button>
                     <button>
                         <img src="./sources/image/icons/Yaru/apps/help-app.png" alt="">
+                        <p>Help</p>
                     </button>
-                    <button data-appid="base.ubuntu.preferences" onclick="openApp('base.ubuntu.preferences');">
-                        <img src="./sources/image/icons/Yaru/apps/org.gnome.Settings.png" alt="">
-                    </button>
-                    <button onclick="document.documentElement.requestFullscreen()">
-                        <img src="./sources/image/icons/Yaru/scalable/actions/view-fullscreen-symbolic.svg" alt="">
-                    </button>
-
-                    <div class="divider"></div>
-
                     <button>
-                        <img src="./sources/image/icons/Yaru/folders/user-trash.png" alt="">
+                        <img src="./sources/image/icons/Yaru/apps/libreoffice-calc.png" alt="">
+                        <p>LibreOffice Calc</p>
+                    </button>
+                    <button>
+                        <img src="./sources/image/icons/Yaru/apps/libreoffice-draw.png" alt="">
+                        <p>LibreOffice Draw</p>
+                    </button>
+                    <button>
+                        <img src="./sources/image/icons/Yaru/apps/libreoffice-impress.png" alt="">
+                        <p>LibreOffice Impress</p>
+                    </button>
+                    <button>
+                        <img src="./sources/image/icons/Yaru/apps/libreoffice-math.png" alt="">
+                        <p>LibreOffice Math</p>
+                    </button>
+                    <button>
+                        <img src="./sources/image/icons/Yaru/apps/libreoffice-writer.png" alt="">
+                        <p>LibreOffice Writer</p>
+                    </button>
+                    <button>
+                        <img src="./sources/image/icons/Yaru/apps/mate-power-statistics.png" alt="">
+                        <p>Power Statistics</p>
+                    </button>
+                    <button>
+                        <img src="./sources/image/icons/Yaru/apps/shotwell.png" alt="">
+                        <p>Shotwell</p>
+                    </button>
+                    <button>
+                        <img src="./sources/image/icons/Yaru/apps/software-properties.png" alt="">
+                        <p>Sofware & Updates</p>
+                    </button>
+                    <button>
+                        <img src="./sources/image/icons/Yaru/apps/software-updater.png" alt="">
+                        <p>Sofware Updater</p>
+                    </button>
+                    <button>
+                        <img src="./sources/image/icons/Yaru/apps/session-properties.png" alt="">
+                        <p>Startup Applications</p>
+                    </button>
+                    <button>
+                        <img src="./sources/image/icons/Yaru/apps/usb-creator-gtk.png" alt="">
+                        <p>Startup Disk Creator</p>
                     </button>
                 </div>
-
-                <button id="launcherButton">
-                    <img src="./sources/image/loading/bgrt-fallback.png" alt="">
-                </button>
             </div>
         </div>
     </body>
     <!-- JS -->
 
+    <script src="./sources/js/appLayouts.js"></script>
     <script src="./sources/js/main.js"></script>
     <script src="./sources/js/custom.js"></script>
 </html>

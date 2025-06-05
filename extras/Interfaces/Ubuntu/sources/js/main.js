@@ -10,6 +10,16 @@ const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 
 const dayOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 window.onload = function() {
+    if(debug) {
+        //openApp('base.ubuntu.preferences')
+    }
+
+    window.addEventListener('keydown', (e) => {
+        if(!document.querySelector('div.lockDateTime').classList.contains('closed')) {
+            document.querySelector('div.lockDateTime').classList.add('closed');
+        }
+    });
+
     console.log('Hello!\n\elcome to Ubuntu | For The Web!\nThis is a web-based port of Ubuntu 24.04 LTS in pure HTML, JS, and CSS.\n\nMade by ljharnish.\n\nEnjoy!')
 
     let topBarTime = document.getElementById('dateTime');
@@ -107,10 +117,19 @@ function dragElement(elmnt) {
 }
 
 function openApp(appid) {
+    document.getElementById('allApps').classList.remove('open');
+
     if(debug) console.log(`Opening app: '${appid}'`);
 
-    let appIcon = document.querySelector(`button[data-appid='${appid}']`);
-    appIcon.classList.add('openApp');
+    try {
+        let appIcons = document.querySelectorAll(`button[data-appid='${appid}']`);
+        appIcons.forEach((el) => {
+            el.classList.add('openApp');
+        });
+    } catch (error) {
+        
+    }
+   
 
     let app = document.createElement('ubuntu-application');
     app.setAttribute('type', appid);
@@ -130,7 +149,17 @@ function closeApp(app) {
 
     let amountOfAppsOfType = applicationsOpen.filter((e) => e.getAttribute('type') == appEl.getAttribute('type'));
     if(amountOfAppsOfType == 0) {
-        let appIcon = document.querySelector(`button[data-appid='${appEl.getAttribute('type')}']`);
-        appIcon.classList.remove('openApp');
+        try {
+            let appIcons = document.querySelectorAll(`button[data-appid='${appEl.getAttribute('type')}']`);
+            appIcons.forEach((el) => {
+                el.classList.remove('openApp');
+            });
+        } catch (error) {
+            console.error(error)
+        }
     }
+}
+
+function openAllApps() {
+    document.getElementById('allApps').classList.toggle('open');
 }

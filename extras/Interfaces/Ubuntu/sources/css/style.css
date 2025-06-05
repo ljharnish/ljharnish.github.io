@@ -18,11 +18,13 @@ div#wrapper {
     overflow: hidden;
     width: 100dvw;
     height: 100dvh;
-
+    background: #222;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    top: 0;
+    transition: 0.4s ease-in-out scale, 0.4s ease-in-out top;
 }
 
 div#wrapper {
@@ -81,16 +83,19 @@ div#topBar div:hover {
 }
 
 div#mainView {
-    margin-top: 30px;
     background: url(../image/backgrounds/warty-final-ubuntu.png);
     background-size: cover;
     background-position: center;
     width: 100%;
-    height: calc(100% - 30px);
+    height: 100%;
     padding-left: 70px;
+    padding-top: 30px;
 }
 
 div#dock {
+    position: absolute;
+    left: 0;
+    top: 30px;
     z-index: 10;
     display: flex;
     flex-direction: column;
@@ -98,13 +103,13 @@ div#dock {
     justify-content: start;
     padding: 2px;
     padding-top: 5px;
-    margin-left: -70px;
     background: #0005;
     backdrop-filter: blur(3px);
     width: 70px;
     height: calc(100% - 30px);
     position: absolute;
     overflow-y: scroll;
+    overflow-x: visible;
     padding-bottom: 80px;
     scrollbar-width: none;
 }
@@ -128,6 +133,34 @@ div#dock button:hover {
 div#dock button img {
     width: 100%;
 }
+
+div#dock button p {
+    position: absolute;
+    color: white;
+    top: 50%;
+    left: 100%;
+}
+
+/* div#dock button:not([data-appid]) {
+    scale: 0.75;
+    opacity: 0.5;
+    pointer-events: none;
+    filter: grayscale(1);
+}
+
+div#dock button:not([data-appid])::after {
+    content: 'Unavail.';
+    font-size: 16px;
+    background: #000a;
+    padding: 5px;
+    border-radius: 5px;
+    backdrop-filter: blur(5px);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+} */
 
 div#dock button.openApp::before {
     content: '';
@@ -315,19 +348,6 @@ img#lockLoginThrobber.spin {
     display: block;
 }
 
-.throbberSpinning {
-    animation: throbberRotate 5s linear infinite forwards;
-}
-
-@keyframes throbberRotate {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
-
 div#bootAnim {
     position: absolute;
     top: 0;
@@ -366,4 +386,108 @@ div#bootAnim.boot * {
 div#bootAnim.boot {
     opacity: 0;
     pointer-events: none;
+}
+
+body:has(div#allApps.open) div#wrapper {
+    position: absolute;
+    top: -30%;
+    box-shadow: 0px 0px 50px 10px #000a;
+    scale: 0.2;
+}
+
+div#allApps {
+    position: absolute;
+    width: 100%;
+    height: calc(100% - 30px);
+    margin-top: 30px;
+    padding-top: 200px;
+    top: 100%;
+    transition: 0.4s ease-in-out top;
+}
+
+div#allApps.open {
+    top: 0;
+}
+
+div.allApps_appGrid {
+    margin-bottom: 100px;
+    width: 80%;
+    max-width: 800px;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 20px;
+}
+
+div.allApps_appGrid button {
+    width: 100%;
+    aspect-ratio: 1;
+    border: none;
+    background: none;
+    color: white;
+    overflow: hidden;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+div.allApps_appGrid button:hover {
+    background: #fff2;
+}
+
+div.allApps_appGrid button p {
+    width: inherit;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+div.allApps_appGrid button:hover p {
+    overflow: visible;
+    white-space: pre-wrap;
+    text-overflow: ellipsis;
+}
+
+div.allApps_appGrid button img, 
+div.allApps_appGrid button div.folderIcons {
+    width: 80%;
+    aspect-ratio: 1;
+    object-fit: contain;
+}
+
+div.allApps_appGrid button.openApp::after {
+    content: '';
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background: white;
+    bottom: 5px;
+    border-radius: 100%;
+}
+
+div.allApps_appGrid button div.folderIcons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 0 5px;
+}
+
+div.allApps_appGrid button div.folderIcons >img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1;
+    object-fit: contain;
+}
+
+div.allApps_page {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: end;
 }
