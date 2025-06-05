@@ -11,7 +11,7 @@ const dayOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Frid
 
 window.onload = function() {
     if(debug) {
-        openApp('base.ubuntu.preferences')
+        //openApp('base.ubuntu.preferences')
     }
 
     window.addEventListener('keydown', (e) => {
