@@ -1,6 +1,6 @@
 let timeInterval;
 
-let skipBoot = true;
+let skipBoot = false;
 let rainbowLogging = false;
 let debug = false;
 
