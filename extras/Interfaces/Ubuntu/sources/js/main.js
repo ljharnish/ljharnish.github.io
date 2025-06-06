@@ -64,7 +64,7 @@ window.onload = function() {
 
     if(debug) {
         // Build Actions
-        openApp('base.ubuntu.softwareupdater');
+        // openApp('base.ubuntu.softwareupdater');
     }
 
     window.scrollTo(0, 0);
