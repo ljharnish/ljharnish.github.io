@@ -219,6 +219,10 @@ ubuntu-application {
     resize: both;
 }
 
+ubuntu-application[data-static-size='true'] {
+    resize: none;
+}
+
 div#lockScreen {
     position: absolute;
     width: 100dvw;

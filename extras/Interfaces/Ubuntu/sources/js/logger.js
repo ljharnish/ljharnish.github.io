@@ -1,22 +1,3 @@
-const rainbowClasses = [
-    //'black',
-    'red',
-    'green',
-    'yellow',
-    //'blue',
-    'purple',
-    'teal',
-    'grey',
-    'l-black',
-    'l-red',
-    'l-green',
-    'l-yellow',
-    'l-blue',
-    'l-purple',
-    'l-teal',
-    'white',
-]
-
 const log = function(message, type) {
     function logger(message, style) {
         const loggerMessage = message
@@ -30,25 +11,14 @@ const log = function(message, type) {
 
         document.querySelectorAll('ubuntu-application[type="base.ubuntu.terminal.logger"]').forEach((terminalWindow) => {
             if(rainbowLogging) {
-                if(loggerMessage == 0) return terminalWindow.shadowRoot.querySelector('div.app_terminal-body-contents').innerHTML += `<div style='height:20px;'></div>`;
-                let msgArray = loggerMessage.slice(2).trim().split(' ');
-                let rainbowMsg = '';
-                msgArray.forEach((e) => {
-                    let color = rainbowClasses[Math.floor(Math.random() * rainbowClasses.length)]
-                    rainbowMsg += `<p style="white-space:break-spaces" class='${color}'>${e} </p>`
-                });
-
-                let span = document.createElement('span');
-                span.innerHTML = rainbowMsg;
-
-                terminalWindow.shadowRoot.querySelector('div.app_terminal-body-contents').appendChild(span);
+                if(loggerMessage.length == 0 || loggerMessage == 'undefined') terminalWindow.shadowRoot.querySelector('div.app_terminal-body-contents').innerHTML += `<div style='min-height:20px;'></div>`;
+                else terminalWindow.shadowRoot.querySelector('div.app_terminal-body-contents').innerHTML += `<span class='full' style='${style.replaceAll("'", '"')}color:transparent;background:linear-gradient(90deg,rgba(131, 58, 180, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(252, 176, 69, 1) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;'>${loggerMessage}</span>`;
 
                 let body = terminalWindow.shadowRoot.querySelector('div.app_terminal-body-contents');
                 body.scrollTo(body.scrollLeft, body.scrollHeight);
-                return;
             } else {
-                if(loggerMessage.length == 0) terminalWindow.shadowRoot.querySelector('div.app_terminal-body-contents').innerHTML += `<div style='height:20px;'></div>`;
-                else terminalWindow.shadowRoot.querySelector('div.app_terminal-body-contents').innerHTML += `<span style='${style}'>${loggerMessage}</span>`;
+                if(loggerMessage.length == 0 || loggerMessage == 'undefined') terminalWindow.shadowRoot.querySelector('div.app_terminal-body-contents').innerHTML += `<div style='min-height:20px;'></div>`;
+                else terminalWindow.shadowRoot.querySelector('div.app_terminal-body-contents').innerHTML += `<span class='full' style='${style.replaceAll("'", '"')}'>${loggerMessage}</span>`;
 
                 let body = terminalWindow.shadowRoot.querySelector('div.app_terminal-body-contents');
                 body.scrollTo(body.scrollLeft, body.scrollHeight);

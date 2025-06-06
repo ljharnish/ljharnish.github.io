@@ -427,5 +427,42 @@ let appLayouts = [
                     </div>
                 </div>
             </div>`
+    },
+    {
+        id: 'base.ubuntu.softwareupdater',
+        resizable: false,
+        baseWidth:600,
+        baseHeight:150,
+        layout: `<link rel="stylesheet" href="./sources/css/apps/base.ubuntu.softwareupdater.css">
+
+            <div class="app app_softwareupdater">
+                <div class="app_handleBar">
+                    <div class="app_softwareupdater-body-header">
+                        <div class='spacer'></div>
+                        <p>Software Updater</p>
+                        <div class="app_softwareupdater_windowbuttons">
+                            <button>
+                                <img src="./sources/image/icons/Yaru/scalable/ui/window-minimize-symbolic.svg" alt="">
+                            </button>
+                            <button onclick='closeApp(this)'>
+                                <img src="./sources/image/icons/Yaru/scalable/ui/window-close-symbolic.svg" alt="">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="app_softwareupdater-body">
+                    <div class="app_softwareupdater-body-contents">
+                        <div class="app_softwareupdater-body-main">
+                            <img src='./sources/image/icons/Yaru/apps/software-updater.png'>
+                            <p>The software on this computer is up to date.
+                        </div>
+                        <div class="app_softwareupdater-body-buttons">
+                            <button>Settings...</button>
+                            <button onclick='closeApp(this)'>OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>`
     }
 ];

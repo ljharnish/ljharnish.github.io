@@ -1,0 +1,198 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+    font-family: 'Ubuntu', Arial, Helvetica, sans-serif;
+}
+
+div.app_softwareupdater {
+    width: 100%;
+    height: 100%;
+    background: #1d1d1d;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 0px 25px #0009;
+}
+
+div.app_softwareupdater * {
+    user-select: none;
+}
+
+div.app_softwareupdater div.app_handleBar {
+    width: 100%;
+    height: 40px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: transparent;
+}
+
+div.app_softwareupdater-body {
+    margin-top: 40px;
+    width: 100%;
+    height: calc(100% - 40px);
+    background: #2c2c2c;
+}
+
+div.app_softwareupdater-body-header {
+    padding: 10px;
+    width: 100%;
+    height: 40px;
+    color: white;
+    background: #222;
+}
+
+div.app_softwareupdater-body-header button {
+    min-width: 20px;
+    height: 100%;
+    border: none;
+    overflow: hidden;
+    aspect-ratio: 1;
+    background: #373737;
+    border: 1px #353535;
+    padding: 3px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+div.app_softwareupdater-body-header button:hover {
+    background: #fff1;
+}
+
+div.app_softwareupdater-body-header p {
+    margin-right: auto;
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+div.app_softwareupdater-body-header button:has(+ p) {
+    margin-right: auto;
+}
+
+
+div.app_softwareupdater-body-header button:has(+ *) {
+    margin-right: 10px;
+}
+
+
+div.app_softwareupdater-body-header button img {
+    height: 100%;
+    aspect-ratio: 1;
+    object-fit: contain;
+    filter: brightness(2);
+}
+
+div.app_softwareupdater-body-header {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+div.app_softwareupdater-body-contents {
+    padding: 10px 15px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+    scrollbar-width: none;
+    justify-content: space-between;
+}
+
+div.app_softwareupdater_organizebuttons {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+div.app_softwareupdater_organizebuttons button:first-of-type {
+    margin: 0 !important;
+    padding: 5px 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: 1px solid #fff3;
+}
+
+div.app_softwareupdater_organizebuttons button:nth-of-type(2) {
+    aspect-ratio: unset;
+    width: 25px;
+}
+
+div.app_softwareupdater_organizebuttons button:nth-of-type(2) img {
+    width: 100%;
+}
+
+*:has(+ div.app_softwareupdater_windowbuttons) {
+    margin-right: 5px;
+}
+
+div.app_softwareupdater_windowbuttons {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+div.app_softwareupdater_windowbuttons button {
+    margin-left: 5px;
+    margin-right: 0;
+    height: 100%;
+    background: #fff1;
+    border-radius: 100%;
+}
+
+div.app_softwareupdater.inactive div.app_softwareupdater-body {
+    background: #343434;
+}
+
+div.app_softwareupdater.inactive div.app_softwareupdater-body-header {
+    background: #2c2c2c;
+    color: #bbb;
+}
+
+div.spacer {
+    flex: 1 1 auto;
+}
+
+div.app_softwareupdater-body-main {
+    display: flex;
+    flex-direction: row;
+    color: white;
+}
+
+div.app_softwareupdater-body-main img {
+    width: 50px;
+    aspect-ratio: 1;
+    margin-right: 10px;
+}
+
+div.app_softwareupdater-body-main p {
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+div.app_softwareupdater-body-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+div.app_softwareupdater-body-buttons button {
+    background: #373737;
+    color: white;
+    padding: 5px 10px;
+    border: 1px solid #222;
+    border-radius: 5px;
+    width: 90px;
+}

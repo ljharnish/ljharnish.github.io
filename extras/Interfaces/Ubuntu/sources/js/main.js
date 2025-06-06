@@ -1,6 +1,6 @@
 let timeInterval;
 
-let skipBoot = false;
+let skipBoot = true;
 let rainbowLogging = false;
 let debug = false;
 
@@ -51,24 +51,36 @@ window.onload = function() {
         let appGrid = document.querySelector('#allApps .allApps_appGrid');
         appGrid.innerHTML += `<button data-appid="base.ubuntu.terminal.logger" onclick="openApp('base.ubuntu.terminal.logger')"><img src="./sources/image/icons/Yaru/apps/gksu-root-terminal.png" alt=""><p>Debug Logger</p></button>`
 
-
         openApp('base.ubuntu.terminal.logger');
 
-        log('')
+        log()
+        log('Testing Info Log...', 'info');
         log('Testing Error Log...', 'error');
         log('Testing Debug Log...', 'debug');
         log('Testing Warning Log...', 'warning');
-        log('')
-        log(`SkipBoot: ${skipBoot}, Debug: ${debug}`, 'debug');
+        log()
+        log(`SkipBoot: ${skipBoot}, Debug: ${debugCookie}`, 'debug');
+    }
+
+    if(debug) {
+        // Build Actions
+        openApp('base.ubuntu.softwareupdater');
     }
 
     window.scrollTo(0, 0);
 
     window.addEventListener('keydown', (e) => {
+        if(e.key == 'Tab') {
+            e.preventDefault();
+            log()
+        }
+            
         if(!document.querySelector('div.lockDateTime').classList.contains('closed')) {
             document.querySelector('div.lockDateTime').classList.add('closed');
         }
     });
+    log();
+    log('Global Key Down Event Listener Created.', 'info');
 
     let topBarTime = document.getElementById('dateTime');
     let lockScreenTime = document.getElementById('lockTime');
@@ -105,30 +117,42 @@ window.onload = function() {
             return;
         }
     });
+    log('Global Mouse Down Event Listener Created.', 'info');
 
     document.querySelector('div.lockDateTime').addEventListener('click', () => {
         document.querySelector('div.lockDateTime').classList.add('closed');
     });
+
+    log('Lock Screen Click Event Listener Created.', 'info');
+    
     document.querySelector('div.lockLogin input').addEventListener('keydown', (e) => {
         if(e.key == 'Escape') document.querySelector('div.lockDateTime').classList.remove('closed');
 
         if(e.key == 'Enter') { 
-            if(debug) log(`Unlocking Ubuntu 24.04 LTS:\nPassword: [${document.getElementById('lockLoginPassword').value}]`, 'debug');
+            log(`Unlocking Ubuntu 24.04 LTS:\nPassword: [${document.getElementById('lockLoginPassword').value}]`, 'debug');
             document.getElementById('lockLoginThrobber').classList.add('spin');
             setTimeout(() => { document.getElementById('lockScreen').classList.add('unlocked') }, 500);
         }
     });
+
+    log('Lock Screen Key Down Event Listener Created.', 'info');
+
     document.querySelector('div.lockLogin button:nth-of-type(2)').addEventListener('click', () => {
-        if(debug) log(`Unlocking Ubuntu 24.04 LTS:\nPassword: [${document.getElementById('lockLoginPassword').value}]`, 'debug');
+        log(`Unlocking Ubuntu 24.04 LTS:\nPassword: [${document.getElementById('lockLoginPassword').value}]`, 'debug');
         document.getElementById('lockLoginThrobber').classList.add('spin');
         setTimeout(() => { document.getElementById('lockScreen').classList.add('unlocked') }, 500);
     });
+
+    log('Lock Screen Submit Button Click Event Listener Created.', 'info');
+    log()
 
     if(skipBoot) document.getElementById('bootAnim').classList.add('boot');
     if(skipBoot) document.getElementById('lockScreen').classList.add('unlocked');
 
     let randBootInterval = Math.floor(Math.random() * 1500) + 2000;
-    if(debug) log(`RNG Boot Time: ${randBootInterval / 1000}s`, 'debug');
+    log(`RNG Boot Time: ${randBootInterval / 1000}s`, 'debug');
+    if(skipBoot) log(`Boot Screen Skipped...`, 'info');
+    log()
     setTimeout(() => {
         document.getElementById('bootAnim').classList.add('boot');
     }, randBootInterval);
@@ -162,13 +186,13 @@ function dragElement(elmnt) {
         pos4 = e.clientY;
         /*if((elmnt.offsetTop - pos2) > 0) */elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
         /*if((elmnt.offsetLeft - pos1) > 70) */elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-        log(`App [${applicationsOpen.indexOf(elmnt)}] (${elmnt.getAttribute('type')}) - DragEvent: X: ${elmnt.style.left.split('px')[0]}, Y ${elmnt.style.top.split('px')[0]}`, 'debug');
+        log(`App [${applicationsOpen.indexOf(elmnt)}] (${elmnt.getAttribute('type')}) - DragEvent: [${elmnt.style.left.split('px')[0]}, ${elmnt.style.top.split('px')[0]}]`, 'debug');
         
-        if((e.clientX) <= 75) {
+        if((e.clientX) <= 75 && !elmnt.dataset.staticSize == "true") {
             if(logFixCounter.leftHalf == 0) log(`App [${applicationsOpen.indexOf(elmnt)}] (${elmnt.getAttribute('type')}) snapped to left-half.`,'debug')
             elmnt.classList.add('left-half');
             logFixCounter.leftHalf = 1;
-        } else if((e.clientX) >= (window.innerWidth - 6)) { 
+        } else if((e.clientX) >= (window.innerWidth - 6) && !elmnt.dataset.staticSize == "true") { 
             if(logFixCounter.rightHalf == 0) log(`App [${applicationsOpen.indexOf(elmnt)}] (${elmnt.getAttribute('type')}) snapped to right-half.`,'debug')
             elmnt.classList.add('right-half');
             logFixCounter.rightHalf = 1;
@@ -187,9 +211,10 @@ function dragElement(elmnt) {
 }
 
 function openApp(appid) {
+    log('');
     document.getElementById('allApps').classList.remove('open');
 
-    if(debug) log(`Opening app: '${appid}'`, 'debug');
+    log(`Opening app: '${appid}'`, 'debug');
 
     try {
         let appIcons = document.querySelectorAll(`button[data-appid='${appid}']`);
@@ -207,11 +232,13 @@ function openApp(appid) {
         app.setAttribute('type', appid);
 
         document.getElementById('mainView').appendChild(app);
-
+        if(filteredAppLayouts[0].resizable == false) {
+            app.dataset.staticSize = true;
+        }
         applicationsOpen.push(app);
 
         function logResize() {
-            log(`App [${applicationsOpen.indexOf(app)}] (${appid}) - ResizeEvent: ${app.offsetHeight}x${app.offsetWidth}`, 'debug');
+            log(`App [${applicationsOpen.indexOf(app)}] (${appid}) - ResizeEvent: [${app.offsetHeight}x${app.offsetWidth}]`, 'debug');
         }
 
         new ResizeObserver(logResize).observe(app);
@@ -222,9 +249,10 @@ function openApp(appid) {
 }
 
 function closeApp(app) {
+    log('');
     let appEl = app.closest("div.app").parentNode.host;
 
-    if(debug) log(`Closing app: '${appEl.getAttribute('type')}'\nWindow Index: ${applicationsOpen.indexOf(appEl)>-1?applicationsOpen.indexOf(appEl):'Undefined'}`, 'debug');
+    log(`Closing app: '${appEl.getAttribute('type')}' Window Index: [${applicationsOpen.indexOf(appEl)>-1?applicationsOpen.indexOf(appEl):'Undefined'}]`, 'debug');
 
     applicationsOpen.splice(applicationsOpen.indexOf(appEl), 1);
     appEl.remove();
@@ -244,16 +272,22 @@ function closeApp(app) {
 
 function openAllApps() {
     document.getElementById('allApps').classList.toggle('open');
+
+    if(document.getElementById('allApps').classList.contains('open')) {
+        log('All apps menu OPEN.', 'debug');
+    } else {
+        log('All apps menu CLOSED.', 'debug');
+    }
 }
 
 function implementApp(appID, appCode) {
     appLayouts.push({id: appID, layout: appCode});
-    if(debug) log(`New app "${appID}" implemented.`, 'debug');
+    log(`New app "${appID}" implemented.`, 'debug');
 }
 
 function maximizeApp(app) {
     let appEl = app.closest("div.app").parentNode.host;
-    if(debug) log(`App [${applicationsOpen.indexOf(appEl)}] (${appEl.getAttribute('type')}) maximized.`,'debug');
+    log(`App [${applicationsOpen.indexOf(appEl)}] (${appEl.getAttribute('type')}) maximized.`,'debug');
     appEl.setAttribute('bfS', appEl.className);
     appEl.setAttribute('bW', appEl.style.width);
     appEl.setAttribute('bH', appEl.style.height);
@@ -268,7 +302,7 @@ function maximizeApp(app) {
 
 function unmaximizeApp(app) {
     let appEl = app.closest("div.app").parentNode.host;
-    if(debug) log(`App [${applicationsOpen.indexOf(appEl)}] (${appEl.getAttribute('type')}) unmaximized.\nFix bug: no transition on unmaximizing.`,'debug');
+    log(`App [${applicationsOpen.indexOf(appEl)}] (${appEl.getAttribute('type')}) unmaximized.\nFix bug: no transition on unmaximizing.`,'debug');
     app.children[0].src = './sources/image/icons/Yaru/scalable/ui/window-maximize-symbolic.svg';
     appEl.className = appEl.getAttribute('bfS');
     appEl.classList.remove('maximized');
