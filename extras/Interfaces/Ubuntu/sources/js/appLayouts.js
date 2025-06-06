@@ -394,5 +394,38 @@ let appLayouts = [
                     </div>
                 </div>
             </div>`
+    },
+    {
+        id: 'base.ubuntu.terminal.logger',
+        baseWidth:700,
+        baseHeight:550,
+        layout: `<link rel="stylesheet" href="./sources/css/apps/base.ubuntu.terminal.css">
+
+            <div class="app app_terminal">
+                <div class="app_handleBar">
+                    <div class="app_terminal-body-header">
+                        <button onclick="this.closest('div.app').querySelector('div.app_terminal-body-contents').innerHTML = ''">
+                            <img src="./sources/image/icons/Yaru/scalable/actions/edit-clear-symbolic.svg" alt="">
+                        </button>
+                        <p>Logger</p>
+                        <div class="app_terminal_windowbuttons">
+                            <button>
+                                <img src="./sources/image/icons/Yaru/scalable/ui/window-minimize-symbolic.svg" alt="">
+                            </button>
+                            <button onclick='maximizeApp(this)'>
+                                <img src="./sources/image/icons/Yaru/scalable/ui/window-maximize-symbolic.svg" alt="">
+                            </button>
+                            <button onclick='closeApp(this)'>
+                                <img src="./sources/image/icons/Yaru/scalable/ui/window-close-symbolic.svg" alt="">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="app_terminal-body">
+                    <div class="app_terminal-body-contents">
+                    </div>
+                </div>
+            </div>`
     }
 ];

@@ -1,7 +1,8 @@
 let timeInterval;
 
-let skipBoot = false;
-let debug = true;
+let skipBoot = true;
+let rainbowLogging = false;
+let debug = false;
 
 let applicationsOpen = [];
 
@@ -9,19 +10,65 @@ const monthShort = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep
 const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 const dayOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-window.onload = function() {
-    window.scrollTo(0, 0);
-    if(debug) {
-        //openApp('base.ubuntu.terminal')
+function setDebug() {
+    let debugMode = getCookie('debug') || 'false';
+
+    switch(debugMode) {
+        case 'false':
+            setCookie('debug', true, 365);
+            break;
+        case 'true':
+            setCookie('debug', 'rainbow', 365);
+            break;
+        case 'rainbow':
+            setCookie('debug', false, 365);
+            break;
     }
+
+    location.reload();
+}
+
+window.onload = function() {
+    let debugCookie = getCookie('debug');
+    switch(debugCookie) {
+        case 'false':
+            debug = false;
+            break;
+        case 'true':
+            document.querySelector('button[onclick="setDebug()"]').children[0].src = './sources/image/icons/Yaru/apps/terminal-app.png';
+            debug = true;
+            break;
+        case 'rainbow':
+            document.querySelector('button[onclick="setDebug()"]').children[0].src = './sources/image/icons/Yaru/apps/terminal-colored.png';
+            debug = true;
+            rainbowLogging = true;
+            break;
+    }
+
+    log('Hello!\nWelcome to Ubuntu | For The Web!\nThis is a web-based port of Ubuntu 24.04 LTS in pure HTML, JS, and CSS.\n\nMade by ljharnish.\n\nEnjoy!')
+
+    if(debug) {
+        let appGrid = document.querySelector('#allApps .allApps_appGrid');
+        appGrid.innerHTML += `<button data-appid="base.ubuntu.terminal.logger" onclick="openApp('base.ubuntu.terminal.logger')"><img src="./sources/image/icons/Yaru/apps/gksu-root-terminal.png" alt=""><p>Debug Logger</p></button>`
+
+
+        openApp('base.ubuntu.terminal.logger');
+
+        log('')
+        log('Testing Error Log...', 'error');
+        log('Testing Debug Log...', 'debug');
+        log('Testing Warning Log...', 'warning');
+        log('')
+        log(`SkipBoot: ${skipBoot}, Debug: ${debug}`, 'debug');
+    }
+
+    window.scrollTo(0, 0);
 
     window.addEventListener('keydown', (e) => {
         if(!document.querySelector('div.lockDateTime').classList.contains('closed')) {
             document.querySelector('div.lockDateTime').classList.add('closed');
         }
     });
-
-    console.log('Hello!\n\elcome to Ubuntu | For The Web!\nThis is a web-based port of Ubuntu 24.04 LTS in pure HTML, JS, and CSS.\n\nMade by ljharnish.\n\nEnjoy!')
 
     let topBarTime = document.getElementById('dateTime');
     let lockScreenTime = document.getElementById('lockTime');
@@ -66,13 +113,13 @@ window.onload = function() {
         if(e.key == 'Escape') document.querySelector('div.lockDateTime').classList.remove('closed');
 
         if(e.key == 'Enter') { 
-            if(debug) console.log(`Unlocking Ubuntu 24.04 LTS:\nPassword: [${document.getElementById('lockLoginPassword').value}]`);
+            if(debug) log(`Unlocking Ubuntu 24.04 LTS:\nPassword: [${document.getElementById('lockLoginPassword').value}]`, 'debug');
             document.getElementById('lockLoginThrobber').classList.add('spin');
             setTimeout(() => { document.getElementById('lockScreen').classList.add('unlocked') }, 500);
         }
     });
     document.querySelector('div.lockLogin button:nth-of-type(2)').addEventListener('click', () => {
-        if(debug) console.log(`Unlocking Ubuntu 24.04 LTS:\nPassword: [${document.getElementById('lockLoginPassword').value}]`);
+        if(debug) log(`Unlocking Ubuntu 24.04 LTS:\nPassword: [${document.getElementById('lockLoginPassword').value}]`, 'debug');
         document.getElementById('lockLoginThrobber').classList.add('spin');
         setTimeout(() => { document.getElementById('lockScreen').classList.add('unlocked') }, 500);
     });
@@ -81,9 +128,15 @@ window.onload = function() {
     if(skipBoot) document.getElementById('lockScreen').classList.add('unlocked');
 
     let randBootInterval = Math.floor(Math.random() * 1500) + 2000;
+    if(debug) log(`RNG Boot Time: ${randBootInterval / 1000}s`, 'debug');
     setTimeout(() => {
         document.getElementById('bootAnim').classList.add('boot');
     }, randBootInterval);
+}
+
+let logFixCounter = {
+    leftHalf: 0,
+    rightHalf: 0,
 }
 
 function dragElement(elmnt) {
@@ -109,10 +162,21 @@ function dragElement(elmnt) {
         pos4 = e.clientY;
         /*if((elmnt.offsetTop - pos2) > 0) */elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
         /*if((elmnt.offsetLeft - pos1) > 70) */elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-        if((e.clientX) <= 75) elmnt.classList.add('left-half');
-        else if((e.clientX) >= (window.innerWidth - 6)) elmnt.classList.add('right-half');
-        else if(elmnt.classList.contains('maximized')) elmnt.className = 'maximized';
-        else elmnt.className = '';
+        log(`App [${applicationsOpen.indexOf(elmnt)}] (${elmnt.getAttribute('type')}) - DragEvent: X: ${elmnt.style.left.split('px')[0]}, Y ${elmnt.style.top.split('px')[0]}`, 'debug');
+        
+        if((e.clientX) <= 75) {
+            if(logFixCounter.leftHalf == 0) log(`App [${applicationsOpen.indexOf(elmnt)}] (${elmnt.getAttribute('type')}) snapped to left-half.`,'debug')
+            elmnt.classList.add('left-half');
+            logFixCounter.leftHalf = 1;
+        } else if((e.clientX) >= (window.innerWidth - 6)) { 
+            if(logFixCounter.rightHalf == 0) log(`App [${applicationsOpen.indexOf(elmnt)}] (${elmnt.getAttribute('type')}) snapped to right-half.`,'debug')
+            elmnt.classList.add('right-half');
+            logFixCounter.rightHalf = 1;
+        } else if(elmnt.classList.contains('maximized')) {
+            elmnt.className = 'maximized'; 
+        } else { elmnt.className = ''; 
+        logFixCounter.leftHalf = 0;
+        logFixCounter.rightHalf = 0;}
     }
     function closeDragElement() {
         document.onmouseup = null;
@@ -125,7 +189,7 @@ function dragElement(elmnt) {
 function openApp(appid) {
     document.getElementById('allApps').classList.remove('open');
 
-    if(debug) console.log(`Opening app: '${appid}'`);
+    if(debug) log(`Opening app: '${appid}'`, 'debug');
 
     try {
         let appIcons = document.querySelectorAll(`button[data-appid='${appid}']`);
@@ -136,19 +200,31 @@ function openApp(appid) {
         
     }
    
+    let filteredAppLayouts = appLayouts.filter((a)=>a.id==appid);
 
-    let app = document.createElement('ubuntu-application');
-    app.setAttribute('type', appid);
+    if(filteredAppLayouts.length > 0) {
+        let app = document.createElement('ubuntu-application');
+        app.setAttribute('type', appid);
 
-    document.getElementById('mainView').appendChild(app);
+        document.getElementById('mainView').appendChild(app);
 
-    applicationsOpen.push(app);
+        applicationsOpen.push(app);
+
+        function logResize() {
+            log(`App [${applicationsOpen.indexOf(app)}] (${appid}) - ResizeEvent: ${app.offsetHeight}x${app.offsetWidth}`, 'debug');
+        }
+
+        new ResizeObserver(logResize).observe(app);
+    } else {
+        //! No app in appLayouts array.
+        log(`'${appid}' is not a valid application ID.`, 'error')
+    }
 }
 
 function closeApp(app) {
     let appEl = app.closest("div.app").parentNode.host;
 
-    if(debug) console.log(`Closing app: '${appEl.getAttribute('type')}'\nWindow Index: ${applicationsOpen.indexOf(appEl)>-1?applicationsOpen.indexOf(appEl):'Undefined'}`);
+    if(debug) log(`Closing app: '${appEl.getAttribute('type')}'\nWindow Index: ${applicationsOpen.indexOf(appEl)>-1?applicationsOpen.indexOf(appEl):'Undefined'}`, 'debug');
 
     applicationsOpen.splice(applicationsOpen.indexOf(appEl), 1);
     appEl.remove();
@@ -161,7 +237,7 @@ function closeApp(app) {
                 el.classList.remove('openApp');
             });
         } catch (error) {
-            console.error(error)
+            log(error, 'error')
         }
     }
 }
@@ -172,10 +248,12 @@ function openAllApps() {
 
 function implementApp(appID, appCode) {
     appLayouts.push({id: appID, layout: appCode});
+    if(debug) log(`New app "${appID}" implemented.`, 'debug');
 }
 
 function maximizeApp(app) {
     let appEl = app.closest("div.app").parentNode.host;
+    if(debug) log(`App [${applicationsOpen.indexOf(appEl)}] (${appEl.getAttribute('type')}) maximized.`,'debug');
     appEl.setAttribute('bfS', appEl.className);
     appEl.setAttribute('bW', appEl.style.width);
     appEl.setAttribute('bH', appEl.style.height);
@@ -190,6 +268,7 @@ function maximizeApp(app) {
 
 function unmaximizeApp(app) {
     let appEl = app.closest("div.app").parentNode.host;
+    if(debug) log(`App [${applicationsOpen.indexOf(appEl)}] (${appEl.getAttribute('type')}) unmaximized.\nFix bug: no transition on unmaximizing.`,'debug');
     app.children[0].src = './sources/image/icons/Yaru/scalable/ui/window-maximize-symbolic.svg';
     appEl.className = appEl.getAttribute('bfS');
     appEl.classList.remove('maximized');
@@ -197,4 +276,27 @@ function unmaximizeApp(app) {
     app.onclick = function () {
         maximizeApp(app)
     }
+}
+
+function setCookie(cname, cvalue, exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  let expires = "expires="+ d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i <ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
 }
