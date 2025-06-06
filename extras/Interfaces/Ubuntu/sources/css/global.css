@@ -20,6 +20,21 @@
     --terminal-white: #ffffff;
 }
 
+::-webkit-scrollbar,
+::-webkit-scrollbar-corner {
+    width: 5px;
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #aaa;
+    border-radius: 999px;
+}
+
+* {
+    scrollbar-color: green;
+}
+
 .throbberSpinning {
     animation: throbberRotate 5s linear infinite forwards;
 }

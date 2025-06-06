@@ -3,7 +3,10 @@ let appLayouts = [
         id: 'base.ubuntu.filemanager',
         baseWidth:900,
         baseHeight:560,
-        layout: `<link rel="stylesheet" href="./sources/css/apps/base.ubuntu.filemanager.css">
+        layout: `
+        
+        <link rel="stylesheet" href="./sources/css/global.css">
+        <link rel="stylesheet" href="./sources/css/apps/base.ubuntu.filemanager.css">
 
             <div class="app app_filemanager">
                 <div class="app_handleBar"></div>
@@ -350,7 +353,10 @@ let appLayouts = [
         id: 'base.ubuntu.terminal',
         baseWidth:700,
         baseHeight:550,
-        layout: `<link rel="stylesheet" href="./sources/css/apps/base.ubuntu.terminal.css">
+        layout: `
+        
+        <link rel="stylesheet" href="./sources/css/global.css">
+        <link rel="stylesheet" href="./sources/css/apps/base.ubuntu.terminal.css">
 
             <div class="app app_terminal">
                 <div class="app_handleBar">
@@ -399,7 +405,10 @@ let appLayouts = [
         id: 'base.ubuntu.terminal.logger',
         baseWidth:700,
         baseHeight:550,
-        layout: `<link rel="stylesheet" href="./sources/css/apps/base.ubuntu.terminal.css">
+        layout: `
+        
+        <link rel="stylesheet" href="./sources/css/global.css">
+        <link rel="stylesheet" href="./sources/css/apps/base.ubuntu.terminal.css">
 
             <div class="app app_terminal">
                 <div class="app_handleBar">
@@ -433,7 +442,10 @@ let appLayouts = [
         resizable: false,
         baseWidth:600,
         baseHeight:150,
-        layout: `<link rel="stylesheet" href="./sources/css/apps/base.ubuntu.softwareupdater.css">
+        layout: `
+        
+        <link rel="stylesheet" href="./sources/css/global.css">
+        <link rel="stylesheet" href="./sources/css/apps/base.ubuntu.softwareupdater.css">
 
             <div class="app app_softwareupdater">
                 <div class="app_handleBar">
