@@ -240,6 +240,7 @@ function openApp(appid) {
         applicationsOpen.push(app);
 
         function logResize() {
+            if(applicationsOpen.indexOf(app) < 0) return;
             log(`App [ ${applicationsOpen.indexOf(app)} ] ( ${appid} ) \n | ResizeEvent: [ ${app.offsetHeight} x ${app.offsetWidth} ] |`, 'debug');
         }
 
