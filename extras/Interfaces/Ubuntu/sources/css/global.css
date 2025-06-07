@@ -1,10 +1,14 @@
-
+@font-face {
+    font-family: 'customicons';
+    src: url(../fonts/customicons.woff);
+}
 
 :root {
     --terminal-black: #171421;
     --terminal-red: #c01c28;
-    --terminal-green: #26a269;
+    --terminal-orange: #e95420;
     --terminal-yellow: #a2734c;
+    --terminal-green: #26a269;
     --terminal-blue: #12488b;
     --terminal-purple: #a347ba;
     --terminal-teal: #2aa1b3;
@@ -12,13 +16,33 @@
 
     --terminal-l-black: #5e5c64;
     --terminal-l-red: #f66151;
-    --terminal-l-green: #33da7a;
+    --terminal-l-orange: #f6a283;
     --terminal-l-yellow: #e9ad0c;
+    --terminal-l-green: #33da7a;
     --terminal-l-blue: #2a7bde;
     --terminal-l-purple: #c061cb;
     --terminal-l-teal: #33c7de;
     --terminal-white: #ffffff;
 }
+
+.black      { color: var(--terminal-black);     }
+.red        { color: var(--terminal-red);       }
+.orange     { color: var(--terminal-orange)     }
+.yellow     { color: var(--terminal-yellow);    }
+.green      { color: var(--terminal-green);     }
+.blue       { color: var(--terminal-blue);      }
+.purple     { color: var(--terminal-purple);    }
+.teal       { color: var(--terminal-teal);      }
+.grey       { color: var(--terminal-grey);      }
+.l-black    { color: var(--terminal-l-black);   }
+.l-red      { color: var(--terminal-l-red);     }
+.l-orange   { color: var(--terminal-l-orange)   }
+.l-yellow   { color: var(--terminal-l-yellow);  }
+.l-green    { color: var(--terminal-l-green);   }
+.l-blue     { color: var(--terminal-l-blue);    }
+.l-purple   { color: var(--terminal-l-purple);  }
+.l-teal     { color: var(--terminal-l-teal);    }
+.white      { color: var(--terminal-white);     }
 
 ::-webkit-scrollbar,
 ::-webkit-scrollbar-corner {

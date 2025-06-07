@@ -5,23 +5,6 @@
     font-family: 'Ubuntu', Arial, Helvetica, sans-serif;
 }
 
-.black      { color: var(--terminal-black);     }
-.red        { color: var(--terminal-red);       }
-.green      { color: var(--terminal-green);     }
-.yellow     { color: var(--terminal-yellow);    }
-.blue       { color: var(--terminal-blue);      }
-.purple     { color: var(--terminal-purple);    }
-.teal       { color: var(--terminal-teal);      }
-.grey       { color: var(--terminal-grey);      }
-.l-black    { color: var(--terminal-l-black);   }
-.l-red      { color: var(--terminal-l-red);     }
-.l-green    { color: var(--terminal-l-green);   }
-.l-yellow   { color: var(--terminal-l-yellow);  }
-.l-blue     { color: var(--terminal-l-blue);    }
-.l-purple   { color: var(--terminal-l-purple);  }
-.l-teal     { color: var(--terminal-l-teal);    }
-.white      { color: var(--terminal-white);     }
-
 
 div.app_terminal {
     width: 100%;
@@ -207,9 +190,9 @@ div.app_terminal.inactive div.app_terminal-body-header {
 
 div.app_terminal-body-contents span.full {
     width: 100%;
-    min-height: 25px;
     display: flex;
     align-items: center;
+    margin-bottom: 10px;
 }
 
 div.app_terminal-body-contents span {

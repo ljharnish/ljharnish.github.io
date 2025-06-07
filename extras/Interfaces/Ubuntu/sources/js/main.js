@@ -47,6 +47,8 @@ window.onload = function() {
 
     log('Hello!\nWelcome to Ubuntu | For The Web!\nThis is a web-based port of Ubuntu 24.04 LTS in pure HTML, JS, and CSS.\n\nMade by ljharnish.\n\nEnjoy!')
 
+    appLayouts.forEach((layout) => keywords.filter(e => e.type=='l-blue')[0].strings.push(layout.id))
+
     if(debug) {
         let appGrid = document.querySelector('#allApps .allApps_appGrid');
         appGrid.innerHTML += `<button data-appid="base.ubuntu.terminal.logger" onclick="openApp('base.ubuntu.terminal.logger')"><img src="./sources/image/icons/Yaru/apps/gksu-root-terminal.png" alt=""><p>Debug Logger</p></button>`
@@ -59,7 +61,7 @@ window.onload = function() {
         log('Testing Debug Log...', 'debug');
         log('Testing Warning Log...', 'warning');
         log()
-        log(`SkipBoot: ${skipBoot}, Debug: ${debugCookie}`, 'debug');
+        log(`SkipBoot: ${skipBoot} , Debug: ${debugCookie}`, 'debug');
     }
 
     if(debug) {
@@ -129,7 +131,7 @@ window.onload = function() {
         if(e.key == 'Escape') document.querySelector('div.lockDateTime').classList.remove('closed');
 
         if(e.key == 'Enter') { 
-            log(`Unlocking Ubuntu 24.04 LTS:\nPassword: [${document.getElementById('lockLoginPassword').value}]`, 'debug');
+            log(`Unlocking Ubuntu 24.04 LTS: \n Password: [ ${document.getElementById('lockLoginPassword').value} ]`, 'debug');
             document.getElementById('lockLoginThrobber').classList.add('spin');
             setTimeout(() => { document.getElementById('lockScreen').classList.add('unlocked') }, 500);
         }
@@ -138,7 +140,7 @@ window.onload = function() {
     log('Lock Screen Key Down Event Listener Created.', 'info');
 
     document.querySelector('div.lockLogin button:nth-of-type(2)').addEventListener('click', () => {
-        log(`Unlocking Ubuntu 24.04 LTS:\nPassword: [${document.getElementById('lockLoginPassword').value}]`, 'debug');
+        log(`Unlocking Ubuntu 24.04 LTS: \n Password: [ ${document.getElementById('lockLoginPassword').value} ]`, 'debug');
         document.getElementById('lockLoginThrobber').classList.add('spin');
         setTimeout(() => { document.getElementById('lockScreen').classList.add('unlocked') }, 500);
     });
@@ -186,14 +188,14 @@ function dragElement(elmnt) {
         pos4 = e.clientY;
         /*if((elmnt.offsetTop - pos2) > 0) */elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
         /*if((elmnt.offsetLeft - pos1) > 70) */elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-        log(`App [${applicationsOpen.indexOf(elmnt)}] (${elmnt.getAttribute('type')}) - DragEvent: [${elmnt.style.left.split('px')[0]}, ${elmnt.style.top.split('px')[0]}]`, 'debug');
+        log(`App [ ${applicationsOpen.indexOf(elmnt)} ] ( ${elmnt.getAttribute('type')} ) \n | DragEvent: [ ${elmnt.style.left.split('px')[0]}, ${elmnt.style.top.split('px')[0]} ] |`, 'debug');
         
         if((e.clientX) <= 75 && !elmnt.dataset.staticSize == "true") {
-            if(logFixCounter.leftHalf == 0) log(`App [${applicationsOpen.indexOf(elmnt)}] (${elmnt.getAttribute('type')}) snapped to left-half.`,'debug')
+            if(logFixCounter.leftHalf == 0) log(`App [ ${applicationsOpen.indexOf(elmnt)} ] ( ${elmnt.getAttribute('type')} ) snapped to left-half.`,'debug')
             elmnt.classList.add('left-half');
             logFixCounter.leftHalf = 1;
         } else if((e.clientX) >= (window.innerWidth - 6) && !elmnt.dataset.staticSize == "true") { 
-            if(logFixCounter.rightHalf == 0) log(`App [${applicationsOpen.indexOf(elmnt)}] (${elmnt.getAttribute('type')}) snapped to right-half.`,'debug')
+            if(logFixCounter.rightHalf == 0) log(`App [ ${applicationsOpen.indexOf(elmnt)} ] ( ${elmnt.getAttribute('type')} ) snapped to right-half.`,'debug')
             elmnt.classList.add('right-half');
             logFixCounter.rightHalf = 1;
         } else if(elmnt.classList.contains('maximized')) {
@@ -238,10 +240,12 @@ function openApp(appid) {
         applicationsOpen.push(app);
 
         function logResize() {
-            log(`App [${applicationsOpen.indexOf(app)}] (${appid}) - ResizeEvent: [${app.offsetHeight}x${app.offsetWidth}]`, 'debug');
+            log(`App [ ${applicationsOpen.indexOf(app)} ] ( ${appid} ) \n | ResizeEvent: [ ${app.offsetHeight} x ${app.offsetWidth} ] |`, 'debug');
         }
 
         new ResizeObserver(logResize).observe(app);
+
+        return app;
     } else {
         //! No app in appLayouts array.
         log(`'${appid}' is not a valid application ID.`, 'error')
@@ -252,7 +256,7 @@ function closeApp(app) {
     log('');
     let appEl = app.closest("div.app").parentNode.host;
 
-    log(`Closing app: '${appEl.getAttribute('type')}' Window Index: [${applicationsOpen.indexOf(appEl)>-1?applicationsOpen.indexOf(appEl):'Undefined'}]`, 'debug');
+    log(`Closing app: '${appEl.getAttribute('type')}' Window Index: [ ${applicationsOpen.indexOf(appEl)>-1?applicationsOpen.indexOf(appEl):'Undefined'} ]`, 'debug');
 
     applicationsOpen.splice(applicationsOpen.indexOf(appEl), 1);
     appEl.remove();
@@ -283,11 +287,12 @@ function openAllApps() {
 function implementApp(appID, appCode) {
     appLayouts.push({id: appID, layout: appCode});
     log(`New app "${appID}" implemented.`, 'debug');
+    keywords.filter(e => e.type=='l-green')[0].strings.push(appID);
 }
 
 function maximizeApp(app) {
     let appEl = app.closest("div.app").parentNode.host;
-    log(`App [${applicationsOpen.indexOf(appEl)}] (${appEl.getAttribute('type')}) maximized.`,'debug');
+    log(`App [ ${applicationsOpen.indexOf(appEl)} ] ( ${appEl.getAttribute('type')} ) maximized.`,'debug');
     appEl.setAttribute('bfS', appEl.className);
     appEl.setAttribute('bW', appEl.style.width);
     appEl.setAttribute('bH', appEl.style.height);
@@ -302,7 +307,7 @@ function maximizeApp(app) {
 
 function unmaximizeApp(app) {
     let appEl = app.closest("div.app").parentNode.host;
-    log(`App [${applicationsOpen.indexOf(appEl)}] (${appEl.getAttribute('type')}) unmaximized.\nFix bug: no transition on unmaximizing.`,'debug');
+    log(`App [ ${applicationsOpen.indexOf(appEl)} ] ( ${appEl.getAttribute('type')} ) unmaximized. \n Fix bug: no transition on unmaximizing.`,'debug');
     app.children[0].src = './sources/image/icons/Yaru/scalable/ui/window-maximize-symbolic.svg';
     appEl.className = appEl.getAttribute('bfS');
     appEl.classList.remove('maximized');
