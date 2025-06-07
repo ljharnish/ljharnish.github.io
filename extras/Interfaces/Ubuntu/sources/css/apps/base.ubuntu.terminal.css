@@ -105,11 +105,10 @@ div.app_terminal-location-bar {
 
 div.app_terminal-body-contents {
     padding: 10px 15px;
-    padding-bottom: 0;
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: calc(100% - 50px);
+    height: 100%;
     overflow: scroll;
     scrollbar-width: none;
 }
