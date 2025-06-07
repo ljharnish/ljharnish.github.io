@@ -216,7 +216,7 @@ function openApp(appid) {
     log('');
     document.getElementById('allApps').classList.remove('open');
 
-    log(`Opening app: '${appid}'`, 'debug');
+    log(`Opening App ( ${appid} )`, 'debug');
 
     try {
         let appIcons = document.querySelectorAll(`button[data-appid='${appid}']`);
@@ -256,7 +256,7 @@ function closeApp(app) {
     log('');
     let appEl = app.closest("div.app").parentNode.host;
 
-    log(`Closing app: '${appEl.getAttribute('type')}' Window Index: [ ${applicationsOpen.indexOf(appEl)>-1?applicationsOpen.indexOf(appEl):'Undefined'} ]`, 'debug');
+    log(`Closing App [ ${applicationsOpen.indexOf(appEl)>-1?applicationsOpen.indexOf(appEl):'Undefined'} ] ( ${appEl.getAttribute('type')} )`, 'debug');
 
     applicationsOpen.splice(applicationsOpen.indexOf(appEl), 1);
     appEl.remove();
