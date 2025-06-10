@@ -194,8 +194,6 @@ const log = function(message, type, freezeBypass = false) {
 
     let date = new Date(Date.now());
 
-    console.log(weekdays[date.getDay()])
-
     let colorfulDate = '('
     + weekdays[date.getDay()]
     + ' '

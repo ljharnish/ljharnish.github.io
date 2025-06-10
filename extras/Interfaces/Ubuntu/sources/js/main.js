@@ -2,6 +2,9 @@ let timeInterval;
 
 let debugOptions = {
     debug: false, //? Is debug on? (Auto set by cookies.)
+    all: false, //? Overrides all other options, enabling all logs.
+    string1: "Global Options",
+
     fastBoot: false, //? Skip boot screen and login, essentially FastBoot.
     logsFrozen: false, //? Freezes logs for debugging.
     rainbowLogging: false, //? Enables / Disables rainbow logs in Debug Logger.
@@ -10,7 +13,6 @@ let debugOptions = {
     categories: {
         categoriesString: "Log Categories",
 
-        all: true, //? Overrides all other options, enabling all logs.
         builtInMenus: true, //? Enables / Disables logs of opening / closing built in menus.
         eventListeners: true, //? Enables / Disables info logs of event listeners.
         startupLogs: true, //? Enables / Disables logging startup options like fastBoot.
@@ -75,24 +77,18 @@ window.onload = function () {
             break;
     }
 
-    if (localStorage.getItem("debugLogOptions")) {
-        debugOptions.categories = JSON.parse(localStorage.getItem("debugLogOptions"));
-    }
-
     if(localStorage.getItem('debugOptions')) {
         let savedSettings = JSON.parse(localStorage.getItem('debugOptions'));
 
         let debugSetting = debugOptions.debug;
 
-        Object.keys(savedSettings).forEach((e) => {
-            debugOptions[e] = savedSettings[e];
-        });
+        debugOptions=savedSettings;
 
         debugOptions.debug = debugSetting;
     }
 
     //! fuckass way of doing this but its wtv (sets all debug options to true upon all set to true)
-    if (debugOptions.categories.all) debugOptions.categories = JSON.parse(JSON.stringify(debugOptions.categories).replaceAll("false", "true"));
+    if (debugOptions.all) debugOptions = JSON.parse(JSON.stringify(debugOptions).replaceAll("false", "true"));
 
     //? Sets all package names as blue in the Debug Logger
     appLayouts.forEach((layout) => keywords.filter((e) => e.type == "l-blue")[0].strings.push(layout.id));
@@ -100,11 +96,6 @@ window.onload = function () {
     if (debugOptions.debug) {
         //? Does stuff on debug enabled
         setDebugCheckboxes();
-
-        document.querySelector('[data-fastboot]').checked = debugOptions.fastBoot;
-        document.querySelector('[data-freezelogs]').checked = debugOptions.logsFrozen;
-        document.querySelector('[data-rainbowlogs]').checked = debugOptions.rainbowLogging;
-        document.querySelector('[data-showdatetime]').checked = debugOptions.showDateTime;
 
         if(debugOptions.rainbowLogging) document.querySelector('[onclick="setDebug()"] img').src = './sources/image/icons/Yaru/apps/terminal-colored.png'
 
@@ -120,7 +111,7 @@ window.onload = function () {
         log("TestingWarningLog...", "warning");
         log();
         if (debugOptions.categories.startupLogs) {
-            if (localStorage.getItem("debugLogOptions") && debugOptions.categories.startupLogs) log("Saved Debug Options Found and Loaded.", "debug");
+            if (localStorage.getItem("debugOptions") && debugOptions.categories.startupLogs) log("Saved Debug Options Found and Loaded.", "debug");
             log(`Current Debug Options: ${JSON.stringify(debugOptions)}`, "debug");
         }
         applicationsOpen[0].shadowRoot.querySelector("div.app_terminal-body-contents").scrollTo(0, 0);
@@ -246,6 +237,11 @@ window.onload = function () {
 
 //? Set debugMenu checkboxes
 function setDebugCheckboxes() {
+    const reloadRequireds = [
+        'fastBoot',
+        'startupLogs'
+    ]
+
     let booleanArray = [];
 
     function searchObj(obj) {
@@ -280,11 +276,12 @@ function setDebugCheckboxes() {
         });
     }
 
-    searchObj(debugOptions.categories);
+    searchObj(debugOptions);
 
     booleanArray.forEach((item) => {
-        let fullPath = "";
-        searchObjWithPath(debugOptions.categories, [], (path) => {
+
+        searchObjWithPath(debugOptions, [], (path, na) => {
+            if(typeof na !== 'boolean') return
             if (path.includes(item.name)) fullPath = path.join(".");
         });
 
@@ -295,6 +292,8 @@ function setDebugCheckboxes() {
             p.textContent = item.text;
             debugMenu.appendChild(p);
             return;
+        } else if (item.name == 'debug') {
+            return;
         }
 
         let debugOption = document.createElement("div");
@@ -302,20 +301,31 @@ function setDebugCheckboxes() {
 
         let label = document.createElement("label");
         label.textContent = item.name.charAt(0).toUpperCase() + item.name.slice(1) + ":";
+        if(reloadRequireds.filter(e => e==item.name).length>0) label.innerHTML += '<span style="color:red">*</span>';
         debugOption.appendChild(label);
 
         let checkbox = document.createElement("input");
         checkbox.type = "checkbox";
         checkbox.checked = item.value;
-        checkbox.setAttribute("onchange", `debugOptions.categories.${fullPath}=!debugOptions.categories.${fullPath};this.checked=debugOptions.categories.${fullPath};debugOptions.categories.all=false;document.querySelector('input[data-all="true"]').checked=false;localStorage.setItem('debugLogOptions',JSON.stringify(debugOptions.categories));`);
+        checkbox.dataset.option = fullPath;
+        checkbox.setAttribute("onchange", `updateDebug('debugOptions.${fullPath}', ${`debugOptions.${fullPath}`}, this);`);
 
         if (item.name == "all") {
             checkbox.dataset.all = true;
-            checkbox.setAttribute("onchange", `debugOptions.categories.${fullPath}=!debugOptions.categories.${fullPath};this.checked=debugOptions.categories.${fullPath};if(this.checked){debugOptions.categories=JSON.parse(JSON.stringify(debugOptions.categories).replaceAll('false', 'true'));document.querySelectorAll('div#debugMenu input[type="checkbox"]:not([static])').forEach(el=>el.checked=true)}else{debugOptions.categories=JSON.parse(JSON.stringify(debugOptions.categories).replaceAll('true', 'false'));document.querySelectorAll('div#debugMenu input[type="checkbox"]:not([static])').forEach(el=>el.checked=false)}localStorage.setItem('debugLogOptions',JSON.stringify(debugOptions.categories))`);
+            checkbox.setAttribute("onchange", 'allDebug(this.checked, true)');
         }
 
         debugOption.appendChild(checkbox);
         debugMenu.appendChild(debugOption);
+
+        fullPath = '';
+        let s = Array.from(document.querySelectorAll('div#debugMenu input[type="checkbox"]:not([data-all]):not([data-option="logsFrozen"]):not([data-option="rainbowLogging"])')).filter(e=>e.checked);
+
+        if(document.querySelectorAll('div#debugMenu input[type="checkbox"]:not([data-all]):not([data-option="logsFrozen"]):not([data-option="rainbowLogging"])').length == s.length) {
+            document.querySelector('input[data-all="true"]').checked = true;
+        } else {
+            document.querySelector('input[data-all="true"]').checked = false;
+        }
     });
 
     let clearButton = document.createElement("button");
@@ -337,6 +347,30 @@ function setDebugCheckboxes() {
     debugMenu.appendChild(reloadButton);
 
     if(debugOptions.categories.startupLogs) log('Debug Menu Built', 'debug');
+}
+
+function updateDebug(option, optionState, checkbox) {
+    let thing = 'debugOptions';
+    option.split('.').filter(e=>e!=='debugOptions').forEach(e=>{thing+=`['${e}']`;if(thing.includes('categories'))allDebug(false)});
+    eval(thing + '=' +checkbox.checked);
+    localStorage.setItem('debugOptions', JSON.stringify(debugOptions));
+
+    let s = Array.from(document.querySelectorAll('div#debugMenu input[type="checkbox"]:not([data-all]):not([data-option="logsFrozen"]):not([data-option="rainbowLogging"])')).filter(e=>e.checked);
+
+    if(document.querySelectorAll('div#debugMenu input[type="checkbox"]:not([data-all]):not([data-option="logsFrozen"]):not([data-option="rainbowLogging"])').length == s.length) {
+        document.querySelector('input[data-all="true"]').checked = true;
+    } else {
+        document.querySelector('input[data-all="true"]').checked = false;
+    }
+}
+
+function allDebug(ed, btn) {
+    if(btn) {
+        document.querySelectorAll('div#debugMenu input[type="checkbox"]').forEach((e) => {
+            if(e.dataset.option == 'logsFrozen' || e.dataset.option == 'rainbowLogging') return;
+            if(e.checked !== ed) e.click();
+        });
+    }
 }
 
 //? Fix for Debug Logger logging multiple times on window snapping.

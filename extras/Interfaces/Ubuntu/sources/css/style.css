@@ -568,6 +568,20 @@ div#debugMenu {
     max-height: calc(100% - 20px);
 }
 
+div.category {
+    display: flex;
+    justify-content: start;
+    align-items: end;
+    flex-direction: column;
+    background: #0004;
+    box-shadow: 0px 0px 5px var(--colscheme-default-ubuntu);
+    border: 1px solid var(--colscheme-default-ubuntu);
+    border-radius: 10px;
+    padding: 10px;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
 div.debugOption {
     display: flex;
     flex-direction: row;
@@ -583,7 +597,7 @@ div.debugOption label {
     font-weight: 500;
 }
 
-div#debugMenu > p {
+div#debugMenu p {
     width: 100%;
     color: var(--colscheme-default-ubuntu);
     margin-bottom: 15px;
@@ -591,17 +605,12 @@ div#debugMenu > p {
     font-family: 'Ubuntu Mono', monospace !important;
 }
 
-div#debugMenu > h1 {
+div#debugMenu h1 {
     width: 100%;
-    margin-bottom: 30px;
     font-weight: 900;
     font-size: 30px;
     font-family: 'Ubuntu Mono', monospace !important;
     color: var(--colscheme-default-ubuntu);;
-}
-
-div#debugMenu > p:not(:first-of-type) {
-    margin-top: 15px;
 }
 
 div#debugMenu.hidden {
@@ -637,4 +646,9 @@ div#debugMenu button {
 div#debugMenu button:hover,
 div#debugMenu button:active {
     background: #0006;
+}
+
+div#debugMenu input[data-all] {
+    accent-color: black;
+    box-shadow: 0px 0px 0px 2px var(--colscheme-default-ubuntu);
 }

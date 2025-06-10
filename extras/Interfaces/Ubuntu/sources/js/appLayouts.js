@@ -421,7 +421,7 @@ let appLayouts = [
                         <button onclick="downloadLog()">
                             <img src="./sources/image/icons/Yaru/scalable/actions/document-save-symbolic.svg" alt="">
                         </button>
-                        <button onclick='document.getElementById("debugMenu").classList.toggle("hidden");'>
+                        <button onclick='document.getElementById("debugMenu").classList.toggle("hidden");' style='cursor:pointer;box-shadow: 0px 0px 5px var(--colscheme-default-ubuntu);border:1px solid var(--colscheme-default-ubuntu);background:#0004'>
                             <img src="./sources/image/icons/Yaru/scalable/apps/settings-symbolic.svg" alt="">
                         </button>
                         <p>Logger</p>
