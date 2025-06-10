@@ -232,11 +232,19 @@
             <h1>Debug Options</h1>
             <div class="debugOption">
                 <label>FastBoot</label>
-                <input type="checkbox" data-fastboot onchange="debugOptions.skipBoot=!debugOptions.skipBoot;this.checked=debugOptions.skipBoot;let settingsFixed={};Object.keys(debugOptions).filter((s)=>typeof debugOptions[s]!=='object').forEach(e=>{settingsFixed[e]=debugOptions[e]});localStorage.setItem('debugOptions',JSON.stringify(settingsFixed));">
+                <input type="checkbox" static data-fastboot onchange="debugOptions.fastBoot=!debugOptions.fastBoot;this.checked=debugOptions.fastBoot;let settingsFixed={};Object.keys(debugOptions).filter((s)=>typeof debugOptions[s]!=='object').forEach(e=>{settingsFixed[e]=debugOptions[e]});localStorage.setItem('debugOptions',JSON.stringify(settingsFixed));">
+            </div>
+            <div class="debugOption">
+                <label>FreezeLogs</label>
+                <input type="checkbox" static data-freezelogs onchange="debugOptions.logsFrozen=!debugOptions.logsFrozen;this.checked=debugOptions.logsFrozen;if(!debugOptions.logsFrozen)unfreezeLogs();let settingsFixedL={};Object.keys(debugOptions).filter((s)=>typeof debugOptions[s]!=='object').forEach(e=>{settingsFixedL[e]=debugOptions[e]});localStorage.setItem('debugOptions',JSON.stringify(settingsFixedL));">
             </div>
             <div class="debugOption">
                 <label>RainbowLogs</label>
-                <input type="checkbox" data-rainbowlogs onchange="debugOptions.rainbowLogging=!debugOptions.rainbowLogging;this.checked=debugOptions.rainbowLogging;let settingsFixedR={};Object.keys(debugOptions).filter((s)=>typeof debugOptions[s]!=='object').forEach(e=>{settingsFixedR[e]=debugOptions[e]});localStorage.setItem('debugOptions',JSON.stringify(settingsFixedR));">
+                <input type="checkbox" static data-rainbowlogs onchange="debugOptions.rainbowLogging=!debugOptions.rainbowLogging;this.checked=debugOptions.rainbowLogging;let settingsFixedR={};Object.keys(debugOptions).filter((s)=>typeof debugOptions[s]!=='object').forEach(e=>{settingsFixedR[e]=debugOptions[e]});localStorage.setItem('debugOptions',JSON.stringify(settingsFixedR));">
+            </div>
+            <div class="debugOption">
+                <label>ShowDateTime</label>
+                <input type="checkbox" static data-showdatetime onchange="debugOptions.showDateTime=!debugOptions.showDateTime;this.checked=debugOptions.showDateTime;let settingsFixedSDT={};Object.keys(debugOptions).filter((s)=>typeof debugOptions[s]!=='object').forEach(e=>{settingsFixedSDT[e]=debugOptions[e]});localStorage.setItem('debugOptions',JSON.stringify(settingsFixedSDT));">
             </div>
         </div>
     </body>

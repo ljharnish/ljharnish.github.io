@@ -556,7 +556,6 @@ div#debugMenu {
     background: #0004;
     backdrop-filter: blur(5px);
     border: 1px solid var(--colscheme-default-ubuntu);
-    z-index: 2;
     display: flex;
     justify-content: start;
     align-items: end;

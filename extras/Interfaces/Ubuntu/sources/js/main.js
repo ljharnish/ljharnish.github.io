@@ -2,8 +2,10 @@ let timeInterval;
 
 let debugOptions = {
     debug: false, //? Is debug on? (Auto set by cookies.)
-    skipBoot: false, //? Skip boot screen and login, essentially FastBoot.
+    fastBoot: false, //? Skip boot screen and login, essentially FastBoot.
+    logsFrozen: false, //? Freezes logs for debugging.
     rainbowLogging: false, //? Enables / Disables rainbow logs in Debug Logger.
+    showDateTime: false, //? Enables timestamps in logger.
 
     categories: {
         categoriesString: "Log Categories",
@@ -11,7 +13,7 @@ let debugOptions = {
         all: true, //? Overrides all other options, enabling all logs.
         builtInMenus: true, //? Enables / Disables logs of opening / closing built in menus.
         eventListeners: true, //? Enables / Disables info logs of event listeners.
-        startupLogs: true, //? Enables / Disables logging startup options like skipBoot.
+        startupLogs: true, //? Enables / Disables logging startup options like fastBoot.
 
         eventString: "Global Events",
 
@@ -92,8 +94,6 @@ window.onload = function () {
     //! fuckass way of doing this but its wtv (sets all debug options to true upon all set to true)
     if (debugOptions.categories.all) debugOptions.categories = JSON.parse(JSON.stringify(debugOptions.categories).replaceAll("false", "true"));
 
-    log("Hello!\nWelcome to Ubuntu | For The Web!\nThis is a web-based port of Ubuntu 24.04 LTS in pure HTML, JS, and CSS.\n\nMade by ljharnish.\n\nEnjoy!");
-
     //? Sets all package names as blue in the Debug Logger
     appLayouts.forEach((layout) => keywords.filter((e) => e.type == "l-blue")[0].strings.push(layout.id));
 
@@ -101,8 +101,10 @@ window.onload = function () {
         //? Does stuff on debug enabled
         setDebugCheckboxes();
 
-        document.querySelector('[data-fastboot]').checked = debugOptions.skipBoot;
+        document.querySelector('[data-fastboot]').checked = debugOptions.fastBoot;
+        document.querySelector('[data-freezelogs]').checked = debugOptions.logsFrozen;
         document.querySelector('[data-rainbowlogs]').checked = debugOptions.rainbowLogging;
+        document.querySelector('[data-showdatetime]').checked = debugOptions.showDateTime;
 
         if(debugOptions.rainbowLogging) document.querySelector('[onclick="setDebug()"] img').src = './sources/image/icons/Yaru/apps/terminal-colored.png'
 
@@ -230,12 +232,12 @@ window.onload = function () {
     if (debugOptions.categories.eventListeners) log("Lock Screen Submit Button Click Event Listener Created.", "info");
     if (debugOptions.categories.eventListeners) log();
 
-    if (debugOptions.skipBoot) document.getElementById("bootAnim").classList.add("boot");
-    if (debugOptions.skipBoot) document.getElementById("lockScreen").classList.add("unlocked");
+    if (debugOptions.fastBoot) document.getElementById("bootAnim").classList.add("boot");
+    if (debugOptions.fastBoot) document.getElementById("lockScreen").classList.add("unlocked");
 
     let randBootInterval = Math.floor(Math.random() * 1500) + 2000;
     if (debugOptions.categories.startupLogs) log(`RNG Boot Time: ${randBootInterval / 1000}s`, "debug");
-    if (debugOptions.skipBoot && debugOptions.categories.startupLogs) log(`Boot Screen Skipped...`, "info");
+    if (debugOptions.fastBoot && debugOptions.categories.startupLogs) log(`Boot Screen Skipped...`, "info");
     log();
     setTimeout(() => {
         document.getElementById("bootAnim").classList.add("boot");
@@ -309,7 +311,7 @@ function setDebugCheckboxes() {
 
         if (item.name == "all") {
             checkbox.dataset.all = true;
-            checkbox.setAttribute("onchange", `debugOptions.categories.${fullPath}=!debugOptions.categories.${fullPath};this.checked=debugOptions.categories.${fullPath};if(this.checked){debugOptions.categories=JSON.parse(JSON.stringify(debugOptions.categories).replaceAll('false', 'true'));document.querySelectorAll('div#debugMenu input[type="checkbox"]').forEach(el=>el.checked=true)}else{debugOptions.categories=JSON.parse(JSON.stringify(debugOptions.categories).replaceAll('true', 'false'));document.querySelectorAll('div#debugMenu input[type="checkbox"]').forEach(el=>el.checked=false)}localStorage.setItem('debugLogOptions',JSON.stringify(debugOptions.categories))`);
+            checkbox.setAttribute("onchange", `debugOptions.categories.${fullPath}=!debugOptions.categories.${fullPath};this.checked=debugOptions.categories.${fullPath};if(this.checked){debugOptions.categories=JSON.parse(JSON.stringify(debugOptions.categories).replaceAll('false', 'true'));document.querySelectorAll('div#debugMenu input[type="checkbox"]:not([static])').forEach(el=>el.checked=true)}else{debugOptions.categories=JSON.parse(JSON.stringify(debugOptions.categories).replaceAll('true', 'false'));document.querySelectorAll('div#debugMenu input[type="checkbox"]:not([static])').forEach(el=>el.checked=false)}localStorage.setItem('debugLogOptions',JSON.stringify(debugOptions.categories))`);
         }
 
         debugOption.appendChild(checkbox);

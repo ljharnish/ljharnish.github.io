@@ -131,15 +131,26 @@ function colorizeKeywords(message) {
     words.forEach((word) => {
         let keyword = getKeyword(word) || {type:'unknown', color:''};
         if(`<p class=''><br> </p>` == `<p class='${keyword.color}'>${word} </p>`) newStr += '<br>'
-        else if(parseFloat(word)) newStr+=`<p class='purple'>${word} </p>`
+        else if(parseInt(word)) newStr+=`<p class='purple'>${word} </p>`
         else newStr+=`<p class='${keyword.color}'>${word} </p>`
     });
 
     return newStr
 }
 
+let frozenLogs = [];
+
+function unfreezeLogs(){
+    frozenLogs.unshift({message:'Logs were frozen here ^', type: 'debug'})
+    frozenLogs.forEach((logf)=>log(logf.message,logf.type,true));frozenLogs=[]}
+
 //? Finally, logs the message
-const log = function(message, type) {
+const log = function(message, type, freezeBypass = false) {
+    if(debugOptions.logsFrozen && !freezeBypass) {
+        frozenLogs.push({message:message,type:type});
+        return;
+    }
+
     function logger(message, style) {
         //? Message stylized for the built-in Debug Logger
         const loggerMessage = message
@@ -178,19 +189,43 @@ const log = function(message, type) {
         if(loggerMessage.length> 0 && loggerMessage !== 'undefined') console.log(consolizedMessage, style);
         if(loggerMessage.length>0&&loggerMessage!=='undefined')logFileContent+=`\n${consolizedMessage.replaceAll('%c','')}`;
     }
+
+    const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+    let date = new Date(Date.now());
+
+    console.log(weekdays[date.getDay()])
+
+    let colorfulDate = '('
+    + weekdays[date.getDay()]
+    + ' '
+    + date.getFullYear().toString()
+    + '-'
+    + (date.getMonth().toString().length>1?date.getMonth():"0"+date.getMonth())
+    + "-"
+    + (date.getDate().toString().length>1?date.getDate():"0"+date.getDate())
+    + ' '
+    + (date.getHours().toString().length>1?date.getHours():"0"+date.getHours())
+    + ":"
+    + (date.getMinutes().toString().length>1?date.getMinutes():"0"+date.getMinutes())
+    + ":"
+    + (date.getSeconds().toString().length>1?date.getSeconds():"0"+date.getSeconds())
+    + ') ';
     
+    if(!debugOptions.showDateTime) colorfulDate = '';
+
     switch(type) {
         case 'info':
-            logger(`%c❔ [INFO]: ${message}`, "color:white;font-size:16px;font-family:'Ubuntu Mono';");
+            logger(`%c❔ [INFO]: ${colorfulDate}${message}`, "color:white;font-size:16px;font-family:'Ubuntu Mono';");
             break;
         case 'warning':
-            logger(`%c⚠️ [WARNING]: ${message}`, "color:yellow;font-size:16px;font-family:'Ubuntu Mono';");
+            logger(`%c⚠️ [WARNING]: ${colorfulDate}${message}`, "color:yellow;font-size:16px;font-family:'Ubuntu Mono';");
             break;
         case 'error':
-            logger(`%c❌ [ERROR]: ${message}`, "color:red;font-size:16px;font-family:'Ubuntu Mono';");
+            logger(`%c❌ [ERROR]: ${colorfulDate}${message}`, "color:red;font-size:16px;font-family:'Ubuntu Mono';");
             break;
         case 'debug':
-            logger(`%c🟠 [DEBUG]: ${message}`, "color:#e95420;font-size:16px;font-family:'Ubuntu Mono';");
+            logger(`%c🟠 [DEBUG]: ${colorfulDate}${message}`, "color:#e95420;font-size:16px;font-family:'Ubuntu Mono';");
             break;
         default:
             logger(`%c${message}`, "color:white;font-size:16px;font-family:'Ubuntu Mono';");
