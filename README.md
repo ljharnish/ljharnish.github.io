@@ -6,7 +6,7 @@
 ## [iOS | For The Web](https://ljharnish.github.io/extras/Interfaces/iOS/)
 A version of iOS 18, built entirely out of pure HTML, JS, and CSS.
 
-Still being worked on and in beta stages.
+Not being worked on at the time, as iOS 19 is out soon, and I don't own an iPhone.
 
 ![image](https://github.com/user-attachments/assets/90510aab-51b9-4d49-8b04-8aebbefaa1f3)
 
