@@ -189,9 +189,15 @@ div.app_terminal.inactive div.app_terminal-body-header {
 
 div.app_terminal-body-contents span.full {
     width: 100%;
-    display: flex;
-    align-items: center;
+    display: inline-block;
     margin-bottom: 10px;
+    white-space: nowrap;
+}
+
+div.app_terminal-body-contents span.full p {
+    white-space: pre;
+    display: inline-block;
+    width: min-content;
 }
 
 div.app_terminal-body-contents span {

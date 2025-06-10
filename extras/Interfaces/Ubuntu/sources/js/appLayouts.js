@@ -1,3 +1,5 @@
+//? This holds all the HTML for app layouts, and nothing else.
+
 let appLayouts = [
     {
         id: 'base.ubuntu.filemanager',
@@ -415,6 +417,12 @@ let appLayouts = [
                     <div class="app_terminal-body-header">
                         <button onclick="this.closest('div.app').querySelector('div.app_terminal-body-contents').innerHTML = ''">
                             <img src="./sources/image/icons/Yaru/scalable/actions/edit-clear-symbolic.svg" alt="">
+                        </button>
+                        <button onclick="downloadLog()">
+                            <img src="./sources/image/icons/Yaru/scalable/actions/document-save-symbolic.svg" alt="">
+                        </button>
+                        <button onclick='document.getElementById("debugMenu").classList.toggle("hidden");'>
+                            <img src="./sources/image/icons/Yaru/scalable/apps/settings-symbolic.svg" alt="">
                         </button>
                         <p>Logger</p>
                         <div class="app_terminal_windowbuttons">

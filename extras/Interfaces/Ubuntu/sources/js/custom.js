@@ -1,3 +1,7 @@
+//? Custom elements for HTML
+
+//? All applications sit in a custom element
+//? Syntax: <ubuntu-application type='app.package.id'>
 class Application extends HTMLElement {
     static observedAttributes = ['type'];
 
