@@ -51,9 +51,6 @@ function setDebug() {
             setCookie("debug", true, 365);
             break;
         case "true":
-            setCookie("debug", "rainbow", 365);
-            break;
-        case "rainbow":
             setCookie("debug", false, 365);
             break;
     }
@@ -65,7 +62,6 @@ window.onload = function () {
     // A whole lotta stuff to do on startup
 
     //? Get debug status from cookies.
-    //(TODO) Set up debug options and save them to cookies.
     let debugCookie = getCookie("debug");
     switch (debugCookie) {
         case "false":
@@ -75,15 +71,22 @@ window.onload = function () {
             document.querySelector('button[onclick="setDebug()"]').children[0].src = "./sources/image/icons/Yaru/apps/terminal-app.png";
             debugOptions.debug = true;
             break;
-        case "rainbow":
-            document.querySelector('button[onclick="setDebug()"]').children[0].src = "./sources/image/icons/Yaru/apps/terminal-colored.png";
-            debugOptions.debug = true;
-            debugOptions.rainbowLogging = true;
-            break;
     }
 
-    if (localStorage.getItem("debugOptions")) {
-        debugOptions.categories = JSON.parse(localStorage.getItem("debugOptions"));
+    if (localStorage.getItem("debugLogOptions")) {
+        debugOptions.categories = JSON.parse(localStorage.getItem("debugLogOptions"));
+    }
+
+    if(localStorage.getItem('debugOptions')) {
+        let savedSettings = JSON.parse(localStorage.getItem('debugOptions'));
+
+        let debugSetting = debugOptions.debug;
+
+        Object.keys(savedSettings).forEach((e) => {
+            debugOptions[e] = savedSettings[e];
+        });
+
+        debugOptions.debug = debugSetting;
     }
 
     //! fuckass way of doing this but its wtv (sets all debug options to true upon all set to true)
@@ -96,9 +99,12 @@ window.onload = function () {
 
     if (debugOptions.debug) {
         //? Does stuff on debug enabled
-
-        //(TODO) Run after getting user settings
         setDebugCheckboxes();
+
+        document.querySelector('[data-fastboot]').checked = debugOptions.skipBoot;
+        document.querySelector('[data-rainbowlogs]').checked = debugOptions.rainbowLogging;
+
+        if(debugOptions.rainbowLogging) document.querySelector('[onclick="setDebug()"] img').src = './sources/image/icons/Yaru/apps/terminal-colored.png'
 
         let appGrid = document.querySelector("#allApps .allApps_appGrid");
         appGrid.innerHTML += `<button data-appid="base.ubuntu.terminal.logger" onclick="openApp('base.ubuntu.terminal.logger')"><img src="./sources/image/icons/Yaru/apps/gksu-root-terminal.png" alt=""><p>Debug Logger</p></button>`;
@@ -112,7 +118,7 @@ window.onload = function () {
         log("TestingWarningLog...", "warning");
         log();
         if (debugOptions.categories.startupLogs) {
-            if (localStorage.getItem("debugOptions") && debugOptions.categories.startupLogs) log("Saved Debug Options Found and Loaded.", "debug");
+            if (localStorage.getItem("debugLogOptions") && debugOptions.categories.startupLogs) log("Saved Debug Options Found and Loaded.", "debug");
             log(`Current Debug Options: ${JSON.stringify(debugOptions)}`, "debug");
         }
         applicationsOpen[0].shadowRoot.querySelector("div.app_terminal-body-contents").scrollTo(0, 0);
@@ -299,11 +305,11 @@ function setDebugCheckboxes() {
         let checkbox = document.createElement("input");
         checkbox.type = "checkbox";
         checkbox.checked = item.value;
-        checkbox.setAttribute("onchange", `debugOptions.categories.${fullPath}=!debugOptions.categories.${fullPath};this.checked=debugOptions.categories.${fullPath};debugOptions.categories.all=false;document.querySelector('input[data-all="true"]').checked=false;localStorage.setItem('debugOptions',JSON.stringify(debugOptions.categories));`);
+        checkbox.setAttribute("onchange", `debugOptions.categories.${fullPath}=!debugOptions.categories.${fullPath};this.checked=debugOptions.categories.${fullPath};debugOptions.categories.all=false;document.querySelector('input[data-all="true"]').checked=false;localStorage.setItem('debugLogOptions',JSON.stringify(debugOptions.categories));`);
 
         if (item.name == "all") {
             checkbox.dataset.all = true;
-            checkbox.setAttribute("onchange", `debugOptions.categories.${fullPath}=!debugOptions.categories.${fullPath};this.checked=debugOptions.categories.${fullPath};if(this.checked){debugOptions.categories=JSON.parse(JSON.stringify(debugOptions.categories).replaceAll('false', 'true'));document.querySelectorAll('div#debugMenu input[type="checkbox"]').forEach(el=>el.checked=true)}else{debugOptions.categories=JSON.parse(JSON.stringify(debugOptions.categories).replaceAll('true', 'false'));document.querySelectorAll('div#debugMenu input[type="checkbox"]').forEach(el=>el.checked=false)}localStorage.setItem('debugOptions',JSON.stringify(debugOptions.categories))`);
+            checkbox.setAttribute("onchange", `debugOptions.categories.${fullPath}=!debugOptions.categories.${fullPath};this.checked=debugOptions.categories.${fullPath};if(this.checked){debugOptions.categories=JSON.parse(JSON.stringify(debugOptions.categories).replaceAll('false', 'true'));document.querySelectorAll('div#debugMenu input[type="checkbox"]').forEach(el=>el.checked=true)}else{debugOptions.categories=JSON.parse(JSON.stringify(debugOptions.categories).replaceAll('true', 'false'));document.querySelectorAll('div#debugMenu input[type="checkbox"]').forEach(el=>el.checked=false)}localStorage.setItem('debugLogOptions',JSON.stringify(debugOptions.categories))`);
         }
 
         debugOption.appendChild(checkbox);
@@ -313,7 +319,7 @@ function setDebugCheckboxes() {
     let clearButton = document.createElement("button");
     clearButton.innerHTML = "Clear Saved Options";
     clearButton.addEventListener("click", () => {
-        localStorage.removeItem("debugOptions");
+        localStorage.clear();
         log("Saved Debug Options Cleared.", "debug");
     });
     debugMenu.appendChild(clearButton);
@@ -322,6 +328,13 @@ function setDebugCheckboxes() {
     openLog.innerHTML = "Open Debug Logger";
     openLog.addEventListener("click", () => {openApp('base.ubuntu.terminal.logger')});
     debugMenu.appendChild(openLog);
+
+    let reloadButton = document.createElement("button");
+    reloadButton.innerHTML = "Reload Page";
+    reloadButton.addEventListener("click", () => {location.reload()});
+    debugMenu.appendChild(reloadButton);
+
+    if(debugOptions.categories.startupLogs) log('Debug Menu Built', 'debug');
 }
 
 //? Fix for Debug Logger logging multiple times on window snapping.

@@ -230,6 +230,14 @@
 
         <div id="debugMenu" class="hidden">
             <h1>Debug Options</h1>
+            <div class="debugOption">
+                <label>FastBoot</label>
+                <input type="checkbox" data-fastboot onchange="debugOptions.skipBoot=!debugOptions.skipBoot;this.checked=debugOptions.skipBoot;let settingsFixed={};Object.keys(debugOptions).filter((s)=>typeof debugOptions[s]!=='object').forEach(e=>{settingsFixed[e]=debugOptions[e]});localStorage.setItem('debugOptions',JSON.stringify(settingsFixed));">
+            </div>
+            <div class="debugOption">
+                <label>RainbowLogs</label>
+                <input type="checkbox" data-rainbowlogs onchange="debugOptions.rainbowLogging=!debugOptions.rainbowLogging;this.checked=debugOptions.rainbowLogging;let settingsFixedR={};Object.keys(debugOptions).filter((s)=>typeof debugOptions[s]!=='object').forEach(e=>{settingsFixedR[e]=debugOptions[e]});localStorage.setItem('debugOptions',JSON.stringify(settingsFixedR));">
+            </div>
         </div>
     </body>
     <!-- JS -->
