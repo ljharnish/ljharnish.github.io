@@ -21,7 +21,7 @@ body.fullscreen div#iosHolder {
     height: 100%;
 }
 
-body.fullscreen div#ios18 {
+body.fullscreen div#ios26 {
     border-radius: 0;
 }
 
@@ -52,23 +52,12 @@ body.fullscreen div.widgetSmall {
     height: calc(100% - 20px);
     aspect-ratio: 1;
 }
-
-body.fullscreen div#HS_dockInner div.homeIcon {
-    max-height: 100%;
-    width: 100%;
-    min-height: 100%;
-}
-
 body.fullscreen div#pageSelector {
     bottom: 20%;
 }
 
 body.fullscreen iframe {
     clip-path: none !important;
-}
-
-body.fullscreen button.appClose {
-    bottom: 4.5dvh;
 }
 
 /* body.fullscreen div.homeIconShow {

@@ -63,6 +63,24 @@ function handleNewVariables() {
         if(document.body.classList.contains('showHSLabels')) document.body.classList.remove('showHSLabels');
     }
     
+
+    if(window.CONNECTIONVARIABLES.debug.iconCircles.enabled) {
+        document.body.classList.add('iconCircles');
+    } else {
+        if(document.body.classList.contains('iconCircles')) document.body.classList.remove('iconCircles');
+    }
+    
+    if(window.CONNECTIONVARIABLES.debug.iconGlowOnly.enabled) {
+        document.body.classList.add('iconGlowOnly');
+    } else {
+        if(document.body.classList.contains('iconGlowOnly')) document.body.classList.remove('iconGlowOnly');
+    }
+    
+    if(window.CONNECTIONVARIABLES.debug.performanceMode.enabled) {
+        document.body.classList.add('performanceMode');
+    } else {
+        if(document.body.classList.contains('performanceMode')) document.body.classList.remove('performanceMode');
+    }
 }
 
 let playingAudio = {src:''};

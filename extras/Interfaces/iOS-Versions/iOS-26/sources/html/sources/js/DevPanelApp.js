@@ -2,6 +2,56 @@ const settingsTable = {
     categories: [
         [
             {
+                title: "Debug iOS 26 Features"
+            },
+            {
+                name: "Performance Mode",
+                id: "performanceMode",
+                data: {
+                    enabled: false
+                },
+                icon: {
+                    color: 'red',
+                    glyph: 'exclamationmark.triangle.fill'
+                },
+                right: {
+                    type: 'switch',
+                    toggleData: 'enabled'
+                }
+            },
+            {
+                name: "Circular Icons",
+                id: "iconCircles",
+                data: {
+                    enabled: false
+                },
+                icon: {
+                    color: 'blue',
+                    glyph: '26.circle.fill'
+                },
+                right: {
+                    type: 'switch',
+                    toggleData: 'enabled'
+                }
+            },
+            {
+                name: "Show Icon Glow Only (Hide Icon)",
+                id: "iconGlowOnly",
+                data: {
+                    enabled: false
+                },
+                icon: {
+                    color: 'orange',
+                    glyph: 'burst.fill'
+                },
+                right: {
+                    type: 'switch',
+                    toggleData: 'enabled'
+                }
+            }
+        ],
+        [
+            {
                 title: "Testing and Layouts"
             },
             {  

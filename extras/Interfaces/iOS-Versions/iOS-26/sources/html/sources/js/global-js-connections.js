@@ -1,5 +1,14 @@
 window.CONNECTIONVARIABLES = {
     debug: {
+        iconCircles: {
+            enabled: false
+        },
+        performanceMode: {
+            enabled: false
+        },
+        iconGlowOnly: {
+            enabled: false
+        },
         showDebug: {
             enabled: false
         },

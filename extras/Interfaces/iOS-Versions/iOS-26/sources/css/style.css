@@ -7,8 +7,8 @@
 
 /*? Base styles for glow */
 /*
-!	background: #fff3;
-!	filter: drop-shadow(1px 1px 0 #fff3) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff3) drop-shadow(1px -1px 0 #fff3);
+!	background: #fff2;
+!	filter: drop-shadow(1px 1px 0 #fff2) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff2) drop-shadow(1px -1px 0 #fff2);
 !	backdrop-filter: blur(10px);
 */
 
@@ -76,6 +76,12 @@ div#ios26 {
 	border-radius: 50px;
 	width: 100%;
 	height: 100%;
+	transition: 0.1s ease-in-out filter;
+	filter: brightness(1);
+}
+
+div#ios26.locked {
+	filter: brightness(0);
 }
 
 div#topBar {
@@ -183,10 +189,10 @@ div.homeIcon {
 	width: 90px;
 	justify-self: center;
 	align-self: center;
-	border-radius: 21px;
+	border-radius: 20px;
 	backdrop-filter: blur(10px);
-	background: #fff3;
-	filter: drop-shadow(1px 1px 0 #fff3) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff3) drop-shadow(1px -1px 0 #fff3);
+	background: #fff2;
+	filter: drop-shadow(1px 1px 0 #fff2) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff2) drop-shadow(1px -1px 0 #fff2);
 }
 
 div.homeIcon p {
@@ -197,7 +203,7 @@ body.showHSLabels div.homeIcon p {
 	display: block !important;
 }
 
-/* div.homeIcon:not([app]),
+div.homeIcon:not([app]),
 div.homeIcon:not([app]) img {
 	cursor: not-allowed;
 }
@@ -212,23 +218,27 @@ body:not(.showInvalidIcons) div.homeIcon:not([app]) {
 	scale: 0.9;
 	opacity: 0.5;
 	filter: grayscale(1) brightness(0.5);
-} */
+}
 
 div.homeIcon > img {
-	opacity: 0.1;
+	opacity: 1;
 	pointer-events: all !important;
 	height: 90px;
 	aspect-ratio: 1;
 	width: 90px;
 	user-select: none;
 	object-fit: contain;
+	border-radius: 20px;
+	backdrop-filter: blur(10px);
+	background: #fff2;
+	filter: drop-shadow(1px 1px 0 #fff2) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff2) drop-shadow(1px -1px 0 #fff2);
 }
 
 div.HS_Icons div.widgetSmall {
 	overflow: hidden;
 	border-radius: 20px;
-	background: #fff3;
-	filter: drop-shadow(1px 1px 0 #fff3) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff3) drop-shadow(1px -1px 0 #fff3);
+	background: #fff2;
+	filter: drop-shadow(1px 1px 0 #fff2) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff2) drop-shadow(1px -1px 0 #fff2);
 	backdrop-filter: blur(10px);
 	margin: 10px;
 	grid-column: span 2;
@@ -259,8 +269,8 @@ div#HS_dockInner {
 	height: 110px;
 	padding: 5px;
 	width: 450px;
-	background: #fff3;
-	filter: drop-shadow(1px 1px 0 #fff3) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff3) drop-shadow(1px -1px 0 #fff3);
+	background: #fff2;
+	filter: drop-shadow(1px 1px 0 #fff2) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff2) drop-shadow(1px -1px 0 #fff2);
 	backdrop-filter: blur(10px);
 	margin-top: 20px;
 }
@@ -314,7 +324,7 @@ div.homeIconShow img {
 #currentApp iframe {
 	width: 100%;
 	height: 100%;
-	clip-path: inset(0% 0% 0% 0% round 15px);
+	clip-path: inset(0% 0% 0% 0% round 50px);
 }
 
 .appClose {
@@ -366,32 +376,39 @@ div#lockScreen.closed {
 div.lockTime {
 	position: absolute;
 	top: 100px;
-	left: 50%;
-	transform: translateX(-50%);
+	width: 100%;
 	text-align: center;
 	z-index: 1;
+	filter: drop-shadow(1px 1px 0 #fff2) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff2) drop-shadow(1px -1px 0 #fff2);
+  	backdrop-filter: blur(0);
 }
 
 p#lockDate {
 	font-size: 28px;
 	color: #fff6;
 	/* backdrop-filter: blur(5px); */
-	-webkit-text-stroke: 0.5px #fff6;
+	/* -webkit-text-stroke: 0.5px #fff6; */
 	z-index: 2;
 	position: relative;
 }
 
-h1#lockTime {
-	font-size: 90px;
-	color: #fff6;
-	/* backdrop-filter: blur(15px); */
-	-webkit-text-stroke: 1px #fff6;
+div#lockTimeDiv {
+	user-select: none;
+	color: #fff4;
+	/* backdrop-filter: blur(15px);
+	-webkit-text-stroke: 1px #fff6; */
 	font-family: 'Zuume';
 	font-weight: normal;
 	font-size: 280px;
 	scale: 1 1.1;
 	z-index: 1;
 	position: relative;
+	
+	backdrop-filter: blur(5px);
+	clip-path: url(#svgTextPath);
+	text-align: initial;
+	width: fit-content;
+	margin: auto;
 }
 
 div#lockScreen div.otherButtons {
@@ -407,7 +424,7 @@ div#lockScreen div.otherButtons {
 }
 
 div#lockScreen div.otherButtons button {
-	background: #fff3;
+	background: #fff2;
 	border: none;
 	border-radius: 100%;
 	padding: 10px;
@@ -416,9 +433,9 @@ div#lockScreen div.otherButtons button {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background: #fff3;
-	filter: drop-shadow(1px 1px 0 #fff3) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff3) drop-shadow(1px -1px 0 #fff3);
-	backdrop-filter: blur(10px);
+	background: #fff2;
+	filter: drop-shadow(1px 1px 0 #fff2) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff2) drop-shadow(1px -1px 0 #fff2);
+	backdrop-filter: blur(4px);
 }
 
 div#lockScreen div.otherButtons button:nth-of-type(2) {
@@ -430,10 +447,12 @@ div#lockScreen div.otherButtons sf-symbol {
 	aspect-ratio: 1;
 }
 
-div#lockScreen img.lockScreenOverlay {
+div#lockScreen div.lockScreenOverlay {
 	height: 100%;
-	width: calc(100% + 3px);
-	object-fit: cover;
+	width: 100%;
+	background: url(../image/Backgrounds/crop/dark.png);
+	background-size: contain;
+	pointer-events: none;
 	position: relative;
 	z-index: 2;
 }
@@ -500,6 +519,7 @@ div#flash {
 	width: 500px;
 	height: 500px;
 	background: transparent;
+	z-index: -1;
 }
 
 div#flash.on {
@@ -644,4 +664,32 @@ div.setupChoose div.setupChoice::after {
 	-webkit-transform: rotate(-45deg);
 	position: absolute;
 	right: 20px;
+}
+
+#lockButton {
+	cursor: pointer;
+	position: absolute;
+	height: 129px;
+	width: 30px;
+	border: none;
+	right: 0;
+	top: 351px;
+	border-radius: 10px;
+	background: #fff2;
+	filter: drop-shadow(1px 1px 0 #fff2) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff2) drop-shadow(1px -1px 0 #fff2);
+	backdrop-filter: blur(10px);
+}
+
+body.iconCircles div.homeIcon,
+body.iconCircles div.homeIcon img {
+	border-radius: 100%;
+}
+
+body.iconGlowOnly div.homeIcon img {
+	opacity: 0;
+}
+
+body.performanceMode *:not(#iosHolder):not(#ios26):not(.appCloseBar) {
+	backdrop-filter: none !important;
+	filter: none !important;
 }

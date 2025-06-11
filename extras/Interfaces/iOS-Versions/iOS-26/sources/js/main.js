@@ -93,12 +93,14 @@ function setDate() {
 }
 
 document.getElementById('topBarTimeP').innerText = setTime();
-document.getElementById('lockTime').innerText = setTime();
+document.getElementById('lockTimeDiv').innerText = setTime();
+document.getElementById('svgTextPath').children[0].innerHTML = setTime();
 document.getElementById('lockDate').innerText = setDate();
 
 const timeInterval = setInterval(() => { 
     document.getElementById('topBarTimeP').innerText = setTime();
-    //document.getElementById('lockTime').innerText = setTime();
+    document.getElementById('lockTimeDiv').innerText = setTime();
+    document.getElementById('svgTextPath').children[0].innerHTML = setTime();
     document.getElementById('lockDate').innerText = setDate();
 }, 1000);
 
@@ -331,3 +333,11 @@ CC_Bar.addEventListener('click', () => {
     if(ccOpen) document.getElementById('topBar').classList.add('ccOpen');
     if(!ccOpen) document.getElementById('topBar').classList.remove('ccOpen');
 });
+
+function lockPhone() {
+    document.getElementById('ios26').classList.toggle('locked');
+
+    if(document.getElementById('ios26').classList.contains('locked')) {
+        document.getElementById('lockScreen').classList.remove('closed');
+    }
+}

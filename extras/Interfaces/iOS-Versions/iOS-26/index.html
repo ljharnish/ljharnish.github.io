@@ -26,6 +26,8 @@
 	<body onload="handleNewVariables();">
         <!--? Debug Stuff-->
 
+		<p id="warning" style="position:absolute;top:10px;left:10px;font-size:20px;padding: 15px 20px;backdrop-filter:blur(10px);background:#fff2;border-radius:10px;filter:drop-shadow(1px 1px 0 #fff2) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff2) drop-shadow(1px -1px 0 #fff2);">Warning: iOS 26 | For The Web is <i><strong>VERY</strong></i> resource intensive and may slow down or lag.<br>To mitigate this, there is an option in Developer Settings <img style="height: 30px; pointer-events: none;margin-bottom: -10px;" src="./sources/image/App Icons/DarkLight/AppleDeveloper.svg" alt="" draggable="false"> to enable "Performance Mode".</p>
+
         <div id="debugOptions" class="hidden">
 			<div class="sides">
 				<p style="color:#188ef0;text-align:center;font-weight:900;">Show<br>Layout</p>
@@ -233,10 +235,17 @@
 				<div id="lockScreen">
 					<div class="lockTime">
 						<p id="lockDate">Monday, June 6</p>
-						<h1 id="lockTime">5:36</h1>
+						<div id="lockTimeDiv">12:10</div>
+						<svg height="0" width="0">
+							<defs>
+								<clipPath id="svgTextPath">
+									<text x="auto" y="240" style="font-family: 'Zuume';" font-size="280px" font-weight="400">12:10</text>
+								</clipPath>
+							</defs>
+						</svg>
 					</div>
 
-					<img src="./sources/image/Backgrounds/crop/dark.png" alt="" class="lockScreenOverlay">
+					<div class="lockScreenOverlay">
 
 					<div class="lockBottomPart">
 						<div class="otherButtons">
@@ -366,6 +375,8 @@
 				</div>
 			</div>
 			<div id="flash"></div>
+
+			<button id="lockButton" onclick="lockPhone()"></button>
 		</div>
 	</body>
 	<!-- JS -->
