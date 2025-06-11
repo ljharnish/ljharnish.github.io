@@ -13,7 +13,7 @@ const settingsTable = {
                 title: "Processing Info"
             },
             {
-                subtitle: "Warning:\n\nAs HTML and websites are not meant to be full operating systems, rendering every little detail with new effects and such, iOS 26 | For The Web is VERY resource intensive and may / WILL slow down or lag.\n\nTo mitigate this, there is an option in Developer Settings to enable \"Performance Mode\"."
+                subtitle: "Warning:\n\nAs HTML and websites are not meant to be full operating systems, rendering every little detail with new effects and such, iOS 26 | For The Web is VERY resource intensive and may / WILL slow down or lag.\n\nTo mitigate this, options called \"Super Performance Mode\" and regular \"Performance Mode\" were created. These can be accessed from your lock screen and the Developer Panel app anytime."
             }
         ],
         [

@@ -1,0 +1,70 @@
+body.superPerformanceMode *:not(#iosHolder):not(#ios26):not(.appCloseBar):not(.topBar-right *) {
+	backdrop-filter: blur(0) !important;
+    filter: blur(0) !important;
+}
+
+body.superPerformanceMode * {
+	backdrop-filter: none !important;
+    box-shadow: none !important;
+    transition: none !important;
+}
+
+body.superPerformanceMode #lockDate {
+    color: white;
+}
+
+body.superPerformanceMode #lockTimeDiv {
+    color: white;
+}
+
+body.superPerformanceMode #homeScreen.animate {
+    animation: none !important;
+}
+
+body.superPerformanceMode div.HS_Icons div.widgetSmall {
+    box-shadow: none !important;
+    background: #aaa !important;
+    border: 2px solid white !important;
+}
+
+body.superPerformanceMode:not(.showInvalidIcons) div.homeIcon:not([app]) {
+	scale: 1 !important;
+	visibility: hidden !important;
+}
+
+body.superPerformanceMode div.homeIcon.ios18::after {
+    display: none;
+}
+
+body.superPerformanceMode div.homeIconShow {
+    display: none !important;
+}
+
+body.superPerformanceMode div#HS_dockInner {
+    background: #aaa !important;
+}
+
+body.superPerformanceMode div.lockScreenNotification {
+    background: #666 !important;
+}
+
+body.superPerformanceMode div.otherButtons button {
+    background: #666 !important;
+}
+
+body.superPerformanceMode div#lockScreen {
+    background: black !important;
+    transition: none !important;
+}
+
+body.superPerformanceMode div#lockScreen div.lockScreenOverlay {
+    display: none;
+}
+
+body.superPerformanceMode div#homeScreenBG {
+    background: black;
+}
+
+body.superPerformanceMode .appCloseBar {
+    background: white;
+}

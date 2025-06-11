@@ -977,7 +977,7 @@ const settingsTable = {
                             },
                             {
                                 id: "display_brightness_slider",
-                                type: 'brightness_slider'
+                                type: 'slider'
                             },
                             {
                                 name: "True Tone",
@@ -1283,21 +1283,25 @@ function loadSettings(table, outputdiv) {
 
                 categoryDiv.appendChild(settingDiv);
                 return;
-            } else if(setting.type == 'brightness_slider') {
+            } else if(setting.type == 'slider') {
                 const sunMin = document.createElement('div');
                 sunMin.classList.add('sunicon');
                 sunMin.innerHTML = '<sf-symbol glyph="sun.min.fill" color="white"></sf-symbol>';
 
                 const slider = document.createElement('div');
-                slider.classList.add('brightness_slider');
-                slider.innerHTML = '<div class="bar"><div class="barFill"></div></div><div class="circle"></div>';
+                slider.classList.add('slider');
+                slider.innerHTML = '<div class="bar"><div class="barFill"></div></div>';
 
                 const sunMax = document.createElement('div');
                 sunMax.classList.add('sunicon');
                 sunMax.innerHTML = '<sf-symbol glyph="sun.max.fill" color="white"></sf-symbol>';
 
+                const circle = document.createElement('div');
+                circle.classList.add('circle');
+
                 settingDiv.appendChild(sunMin);
                 settingDiv.appendChild(slider);
+                settingDiv.appendChild(circle);
                 settingDiv.appendChild(sunMax);
 
                 categoryDiv.appendChild(settingDiv);

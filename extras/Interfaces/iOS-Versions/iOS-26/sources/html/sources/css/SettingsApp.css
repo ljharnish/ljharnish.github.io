@@ -586,6 +586,7 @@ p.subtitle {
     color: #777;
     font-weight: 400;
     padding: 10px 30px 0px 15px;
+    margin-bottom: 5px;
 }
 
 /*? Display & Brightness > Appearance */
@@ -655,7 +656,7 @@ div.settingsCheckedCircle sf-symbol {
     filter: invert(40%) sepia(94%) saturate(3539%) hue-rotate(196deg) brightness(103%) contrast(102%)
 }
 
-div#display_brightness_slider {
+div.setting:has(> div.slider) {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -667,13 +668,40 @@ div#display_brightness_slider div.sunicon {
     scale: 0.8;
 }
 
-div#display_brightness_slider div.brightness_slider {
+div.circle {
+    height: 30px;
+    width: 45px;
+    background: white;
+    border-radius: 1000px;
+    position: absolute;
+    box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.25);
+}
+
+div.circle,
+div.appleSliderValue {
+    scale: 1;
+    transition: 0.5s cubic-bezier(.57,-0.56,.15,.99) scale;
+}
+
+div.circle:active,
+div.appleSliderValue:active {
+    background: #fff7;
+    box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.25), inset -2px -2px 5px #0004, inset 2px 2px 5px #fff4,inset 0px 0px 5px #fff2;
+    scale: 1.7;
+}
+
+body.dark div.circle:active,
+body.dark div.appleSliderValue:active {
+    background: #0007;
+}
+
+div.slider {
     flex: 1 1 auto;
-    margin: 0 25px;
+    margin: 0 5px;
     position: relative;
 }
 
-div#display_brightness_slider div.brightness_slider div.bar {
+div.slider div.bar {
     height: 5px;
     width: 100%;
     background: #aaa;
@@ -681,26 +709,13 @@ div#display_brightness_slider div.brightness_slider div.bar {
     overflow: hidden;
 }
 
-div#display_brightness_slider div.brightness_slider div.bar div.barFill {
+div.slider div.bar div.barFill {
     height: 100%;
     width: 70%;
+    border-radius: 999px;
 
     background: var(--blue);
 }
-
-div#display_brightness_slider div.brightness_slider div.circle {
-    height: 30px;
-    width: 30px;
-    background: white;
-    border-radius: 100%;
-    position: absolute;
-    box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.25);
-
-    top: 50%;
-    left: calc(70% - 20px);
-    transform: translateY(-50%);
-}
-
 div.wallpaperCustomizer {
     background:white;
     padding: 20px;

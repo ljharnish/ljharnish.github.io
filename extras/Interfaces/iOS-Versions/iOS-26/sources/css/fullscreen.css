@@ -74,7 +74,7 @@ body.fullscreen iframe {
 } */
 
 body.fullscreen button#lockButton.sideButton {
-    right: -20px;
+    right: -10px;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
 

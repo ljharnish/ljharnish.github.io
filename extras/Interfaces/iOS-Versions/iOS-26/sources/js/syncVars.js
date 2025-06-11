@@ -21,6 +21,7 @@ function syncVariables(variables) {
 }
 
 function handleNewVariables() {
+    changeBattery(window.CONNECTIONVARIABLES.battery.level)
     switchAppearance();
 
     if(window.CONNECTIONVARIABLES.debug.showDebug.enabled) {

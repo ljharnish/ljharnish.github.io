@@ -407,6 +407,11 @@ function changeBattery(percent) {
     batteryPercent = percent;
 }
 
+document.addEventListener('fullscreenchange', (e) => {
+    console.log(window.fullScreen)
+    if(window.fullScreen == false && window.innerWidth > window.innerHeight) document.body.classList.remove('fullscreen');
+})
+
 function toggleLockPhone() {
     document.getElementById('ios26').classList.toggle('locked');
 

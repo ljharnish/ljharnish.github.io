@@ -8,6 +8,8 @@
 		<!-- CSS -->
 	
 		<link rel="stylesheet" href="./sources/css/style.css">
+		<link rel="stylesheet" href="./sources/css/superPerformanceMode.css">
+		<link rel="stylesheet" href="./sources/css/performanceMode.css">
 		<link rel="stylesheet" href="./sources/css/fullscreen.css">
 		<link rel="stylesheet" href="./sources/css/debugOptions.css">
 		<link rel="stylesheet" href="./sources/css/dynamicIsland.css">
@@ -35,7 +37,7 @@
 
 		<p style="color:white;position:absolute;top:15px;left:15px;font-size:20px;padding: 15px 20px;backdrop-filter:blur(10px);background:#fff2;border-radius:30px;filter:drop-shadow(1px 1px 0 #fff2) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff2) drop-shadow(1px -1px 0 #fff2);width: 800px;"><strong>iOS 26 | For The Web</strong> works best and it is highly recommended you use this site on Firefox for the best experience.<br><br>Better yet, using Firefox Nightly or Beta will guarantee it will work as intended.</p>
 		
-		<p style="color:white;position:absolute;top:160px;left:15px;font-size:20px;padding: 15px 20px;backdrop-filter:blur(10px);background:#fff2;border-radius:30px;filter:drop-shadow(1px 1px 0 #fff2) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff2) drop-shadow(1px -1px 0 #fff2);width: 800px;">Warning: <strong>iOS 26 | For The Web</strong> is <i style="font-size: 24px;"><strong>VERY</strong></i> resource intensive and may slow down or lag.<br>To mitigate this, there is an option in Developer Settings <img style="height: 30px; pointer-events: none;margin-bottom: -10px;" src="./sources/image/App Icons/DarkLight/AppleDeveloper.svg" alt="" draggable="false"> to enable "<strong>Performance Mode</strong>".<br><br>If you cannot make it to Developer Settings, use these buttons.</p>
+		<p style="color:white;position:absolute;top:160px;left:15px;font-size:20px;padding: 15px 20px;backdrop-filter:blur(10px);background:#fff2;border-radius:30px;filter:drop-shadow(1px 1px 0 #fff2) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff2) drop-shadow(1px -1px 0 #fff2);width: 800px;">Warning: <strong>iOS 26 | For The Web</strong> is <i style="font-size: 24px;"><strong>VERY</strong></i> resource intensive and may slow down or lag.<br>To mitigate this, there is an option in the Developer Panel app <img style="height: 30px; pointer-events: none;margin-bottom: -10px;" src="./sources/image/App Icons/DarkLight/AppleDeveloper.svg" alt="" draggable="false"> to enable "<strong>Performance Mode</strong>".<br><br>If you cannot make it to Developer Panel, use these buttons.</p>
 
 		<button style="color:white;border:none;cursor:pointer;position:absolute;top:330px;left:15px;font-size:20px;padding: 15px 20px;backdrop-filter:blur(10px);background:#fff2;border-radius:30px;filter:drop-shadow(1px 1px 0 #fff2) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff2) drop-shadow(1px -1px 0 #fff2);transition:0.2s ease-in-out scale;" onmouseover="this.style.scale='1.1';" onmouseout="this.style.scale='1'" onclick="window.CONNECTIONVARIABLES.debug.performanceMode.enabled=true;document.body.classList.add('performanceMode')">Enable Performance Mode</button>
 
@@ -263,6 +265,36 @@
 					<div class="lockScreenNotifications">
 						<div class="lockScreenNotification">
 							<div class="image">
+								<img src="./sources/image/App Icons/DarkLight/DarkMode/Apple_Feedback_Assistant_(iOS)_2019.webp">
+							</div>
+							<div class="info">
+								<div class="header">
+									<p class="title">Please read,</p>
+									<p class="date">Now</p>
+								</div>
+								<div class="description">
+									Performance Mode can be enabled below, check out the "Info" app for more details.
+								</div>
+							</div>
+						</div>
+						<div class="lockScreenNotification">
+							<div class="image">
+								<img src="./sources/image/App Icons/DarkLight/DarkMode/Apple_Feedback_Assistant_(iOS)_2019.webp">
+							</div>
+							<div class="info">
+								<div class="header">
+									<p class="title">What do the Buttons do?</p>
+									<p class="date">Now</p>
+								</div>
+								<div class="description">
+									<i><strong>Super</strong> Performance Mode</i>
+									<br><i>Performance Mode</i>
+									<br><i>Fullscreen Toggle</i>
+								</div>
+							</div>
+						</div>
+						<div class="lockScreenNotification">
+							<div class="image">
 								<img src="./sources/image/ios-26-logo.png">
 							</div>
 							<div class="info">
@@ -275,25 +307,23 @@
 								</div>
 							</div>
 						</div>
-						<div class="lockScreenNotification">
-							<div class="image">
-								<img src="./sources/image/App Icons/DarkLight/DarkMode/Apple_Feedback_Assistant_(iOS)_2019.webp">
-							</div>
-							<div class="info">
-								<div class="header">
-									<p class="title">Please read,</p>
-									<p class="date">Now</p>
-								</div>
-								<div class="description">
-									Before you start using iOS 26 | For The Web, please read the info in the top left, or the "Info" app.
-								</div>
-							</div>
-						</div>
 					</div>
 
 					<div class="otherButtons">
 						<button onclick="document.getElementById('flash').classList.toggle('on');">
 							<sf-symbol glyph="flashlight.on.fill" color="white"></sf-symbol>
+						</button>
+
+						<button onclick="document.body.classList.toggle('superPerformanceMode');window.CONNECTIONVARIABLES.debug.superPerformanceMode.enabled=document.body.classList.contains('superPerformanceMode');">
+							<sf-symbol glyph="exclamationmark.triangle.fill" color="white"></sf-symbol>
+						</button>
+						
+						<button onclick="document.body.classList.toggle('performanceMode');window.CONNECTIONVARIABLES.debug.performanceMode.enabled=document.body.classList.contains('performanceMode');">
+							<sf-symbol glyph="exclamationmark.triangle" color="white"></sf-symbol>
+						</button>
+
+						<button onclick="document.body.classList.add('fullscreen');window.fullScreen==true?document.exitFullscreen():document.documentElement.requestFullscreen();">
+							<sf-symbol glyph="arrow.up.left.and.arrow.down.right" color="white"></sf-symbol>
 						</button>
 
 						<button>

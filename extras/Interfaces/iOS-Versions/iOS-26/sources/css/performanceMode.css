@@ -1,0 +1,39 @@
+body.performanceMode *:not(#iosHolder):not(#ios26):not(.appCloseBar):not(.topBar-right *) {
+	backdrop-filter: blur(0) !important;
+    filter: blur(0) !important;
+}
+
+body.performanceMode #lockDate {
+    color: white;
+}
+
+body.performanceMode #lockTimeDiv {
+    -webkit-text-stroke: 2px white;
+}
+
+body.performanceMode #homeScreen.animate {
+    animation: none !important;
+}
+
+body.performanceMode div.HS_Icons div.widgetSmall {
+    box-shadow: none !important;
+    border: 2px solid white !important;
+}
+
+body.performanceMode div.homeIcon.ios18::after {
+    background: #fff;
+    filter: none;
+    backdrop-filter: none;
+}
+
+body.performanceMode div.homeIconShow {
+    display: none !important;
+}
+
+body.performanceMode div.lockScreenNotification {
+    border: 1px solid white !important;
+}
+
+body.performanceMode div.otherButtons button {
+    border: 1px solid white !important;
+}

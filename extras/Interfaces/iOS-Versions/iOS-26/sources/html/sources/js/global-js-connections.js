@@ -6,6 +6,9 @@ window.CONNECTIONVARIABLES = {
         performanceMode: {
             enabled: false
         },
+        superPerformanceMode: {
+            enabled: false
+        },
         iconGlowOnly: {
             enabled: false
         },

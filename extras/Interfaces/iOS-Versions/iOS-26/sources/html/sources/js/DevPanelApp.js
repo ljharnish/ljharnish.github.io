@@ -5,13 +5,13 @@ const settingsTable = {
                 title: "Processing Settings"
             },
             {
-                name: "Performance Mode",
-                id: "performanceMode",
+                name: "Super Performance Mode",
+                id: "superPerformanceMode",
                 data: {
                     enabled: false
                 },
                 icon: {
-                    color: 'red',
+                    color: 'black',
                     glyph: 'exclamationmark.triangle.fill'
                 },
                 right: {
@@ -20,7 +20,22 @@ const settingsTable = {
                 }
             },
             {
-                subtitle: "Perfomance Mode will disable new iOS 26 features, such as icon glow, Liquid Glass, and more effects. This may need to be used to get the best performance on devices as HTML is not suited for this."
+                name: "Performance Mode",
+                id: "performanceMode",
+                data: {
+                    enabled: false
+                },
+                icon: {
+                    color: 'red',
+                    glyph: 'exclamationmark.triangle'
+                },
+                right: {
+                    type: 'switch',
+                    toggleData: 'enabled'
+                }
+            },
+            {
+                subtitle: "Perfomance Mode will disable new iOS 26 features, such as icon glow, Liquid Glass, and more effects. This may need to be used to get the best performance on devices as HTML is not suited for this.\n\nSuper Performance Mode brings this to another level, disabling all animations, backgrounds, transparency, shadows, transitions, etc."
             }
         ],
         [
@@ -170,6 +185,18 @@ const settingsTable = {
             {
                 subtitle: "Shows Icons on the Home Screen regardless of whether they do or do not yet have an app layout associated with them.\n\nThese icons will still be non-interactable and on non-mobile devices, a denial cursor will show."
             }
+        ], 
+        [
+            {
+                title: "Hardware"
+            },
+            {
+                subtitle: "Battery Level:"
+            },
+            {
+                id: "battery_level_slider",
+                type: 'slider'
+            }
         ]
     ]
 };
@@ -236,6 +263,66 @@ function loadSettings(table, outputdiv) {
             iconSide.className = "iconSide";
 
             const categoryInner = document.createElement('div');
+
+            if(setting.type == 'slider') {
+                const slider = document.createElement('div');
+                slider.classList.add('slider');
+                slider.innerHTML = '<div class="bar"></div>';
+
+                const sliderFill = document.createElement('div');
+                sliderFill.classList.add('barFill');
+                slider.children[0].appendChild(sliderFill);
+
+
+                const circle = document.createElement('div');
+                circle.classList.add('circle');
+
+                settingDiv.style.position = 'relative';
+                settingDiv.appendChild(slider);
+                settingDiv.appendChild(circle);
+
+                const debugInput = document.createElement('input');
+                debugInput.style.opacity = '0.5';
+                debugInput.style.position = 'absolute';
+                debugInput.style.bottom = '-20px';
+                debugInput.type = 'range';
+                debugInput.id = 'asuh'
+
+                
+                setTimeout(() => { 
+                    sliderFill.style.width = CONNECTIONVARIABLES.battery.level + '%'; 
+                    circle.style.left = CONNECTIONVARIABLES.battery.level/100*370+15 + 'px';
+                    debugInput.value = CONNECTIONVARIABLES.battery.level;
+
+                    sliderFill.style.background = '#27cd41';
+                    if(Math.round(CONNECTIONVARIABLES.battery.level) <= 10) {
+                        sliderFill.style.background = '#eb3137';
+                    } else if(Math.round(CONNECTIONVARIABLES.battery.level) <= 20) {
+                        sliderFill.style.background = '#fecd0b';
+                    } else {
+                        sliderFill.style.background = '#27cd41';
+                    }
+                }, 240);
+
+                let callback = () => {};
+
+                switch(setting.id) {
+                    case 'battery_level_slider':
+                        callback = (n) => {
+                            window.CONNECTIONVARIABLES.battery.level = Math.round(parseInt(n));
+                        }
+                        break;
+                    default:
+                        break;
+                }
+
+                dragElement(circle, sliderFill, debugInput, callback, setting.id);
+
+                categoryDiv.appendChild(settingDiv);
+                settingDiv.appendChild(debugInput);
+
+                return;
+            }
 
             if(setting.innerSettings) {
                 // handleNewCategory(setting, categoryInner);
@@ -374,4 +461,49 @@ function settingToggle(slider, setting, toggleData) {
     }
 
     slider.classList.remove("active");
+}
+
+
+//! Slider Limits 0 - 370px (margin-left)
+
+function dragElement(elmnt, barFill, sliderInput, callback, id) {
+    var pos1 = 0,
+        pos3 = 0;
+    elmnt.onmousedown = dragMouseDown;
+    function dragMouseDown(e) {
+        e = e || window.event;
+        //e.preventDefault();
+        pos3 = e.clientX;
+        document.onmouseup = closeDragElement;
+        document.onmousemove = elementDrag;
+    }
+    function elementDrag(e) {
+        e = e || window.event;
+        e.preventDefault();
+        pos1 = pos3 - e.clientX;
+        pos3 = e.clientX;
+        elmnt.style.left = elmnt.offsetLeft - pos1 + "px";
+        if(parseInt(elmnt.style.left.split('px')[0]) <= 15) elmnt.style.left = '15px';
+        if(parseInt(elmnt.style.left.split('px')[0]) >= 385) elmnt.style.left = '385px';
+        
+        let percentage = ((parseInt(elmnt.style.left.split('px')[0])-15)/370)*100;
+        
+        if(id == 'battery_level_slider') {
+            if(Math.round(percentage) <= 10) {
+                barFill.style.background = '#eb3137';
+            } else if(Math.round(percentage) <= 20) {
+                barFill.style.background = '#fecd0b';
+            } else {
+                barFill.style.background = '#27cd41';
+            }
+        }
+
+        barFill.style.width = `${percentage}%`;
+        sliderInput.value = Math.round(percentage);
+        callback(percentage);
+    }
+    function closeDragElement() {
+        document.onmouseup = null;
+        document.onmousemove = null;
+    }
 }
