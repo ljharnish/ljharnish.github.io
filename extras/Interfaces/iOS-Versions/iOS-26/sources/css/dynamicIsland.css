@@ -1,0 +1,330 @@
+div#iphoneDynamicIslandOverlay {
+    z-index: 10000;
+	background-image: url(../image/dynamicislandoverlay.png);
+}
+
+div#topBar > div#dynamicIslandSpace {
+    height: 42px;
+    align-items: baseline;
+}
+
+div#dynamicIsland {
+    z-index: 9999;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background: black;
+	background-size: contain;
+    border-radius: 50px;
+	height: 42px;
+	width: 142px;
+    transition: 
+        width 1s cubic-bezier(.68,-0.55,.11,1.29),
+        height 1s cubic-bezier(.68,-0.55,.11,1.29);
+}
+
+div#dynamicIsland.DYNAMIC_fullwidth_open_open,
+div#dynamicIsland.DYNAMIC_fullwidth_fat_open,
+div#dynamicIsland.DYNAMIC_fullwidth_thin_open {
+    transition: 
+        width 1s cubic-bezier(.68,-0.55,.11,1.29),
+        height 1s cubic-bezier(.68,-0.55,.11,1.29);
+}
+
+/* ! Open & Close Fix */
+
+div#dynamicIsland.DYNAMIC_newpopup_open {
+    transition: 
+        width 0.5s ease,
+        height 0.2s ease;
+}
+
+div#di_left, div#di_right {
+    height: 100%;
+    opacity: 0;
+    transition: 0.5s opacity ease-in-out;
+    aspect-ratio: 1;
+    padding: 5px;
+}
+
+div#di_left {
+    padding-left: 8px;
+}
+
+div#di_right {
+    padding-right: 8px;
+}
+
+div#di_left img, div#di_right img,
+div#di_left sf-symbol, div#di_right sf-symbol {
+    height: 100%;
+}
+
+div.topBar-time, div.topBar-right {
+    transition: 0.5s opacity ease-in-out, 0.5s width ease-in-out;
+}
+
+div.topBar-right div {
+    display: flex;
+    width: initial;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s opacity ease-in-out, 0.5s width ease-in-out;
+}
+
+div#dynamicIsland.DYNAMIC_newpopup_open {
+    width: 220px;
+}
+
+div#dynamicIsland.DYNAMIC_newpopup_open div#di_left,
+div#dynamicIsland.DYNAMIC_newpopup_open div#di_right {
+    height: 42px;
+    opacity: 1;
+    transition: 1.3s opacity ease-in-out;
+}
+
+div#dynamicIsland.DYNAMIC_fullwidth_thin_open {
+    width: 380px;
+}
+
+div#dynamicIsland.DYNAMIC_fullwidth_fat_open {
+    display: flex;
+    justify-content: space-between;
+    height: 90px;
+    width: 400px;
+    padding: 19px;
+}
+
+div#DYNAMIC_call_iconname, div#DYNAMIC_call_buttons {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    width: 50%;
+}
+
+div#DYNAMIC_call_buttons {
+    justify-content: right;
+}
+
+div#DYNAMIC_call_iconname img {
+    margin-right: 10px;
+    height: 100%;
+    aspect-ratio: 1;
+    border-radius: 100%;
+}
+
+div#DYNAMIC_call_iconname p {
+    margin-top: 5px;
+    font-size: 16px;
+}
+
+div#DYNAMIC_call_buttons button {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    aspect-ratio: 1;
+    border-radius: 100%;
+    border: none;
+}
+
+div#DYNAMIC_call_buttons button#DYNAMIC_call_decline {
+    background: #e22b28;
+    margin-right: 5px;
+}
+
+div#DYNAMIC_call_buttons button#DYNAMIC_call_accept {
+    background: #13dd00;
+    margin-right: 5px;
+}
+
+div#DYNAMIC_call_buttons button#DYNAMIC_call_decline sf-symbol {
+    scale: 0.8;
+}
+
+div#DYNAMIC_call_buttons button#DYNAMIC_call_accept sf-symbol {
+    scale: 1.4;
+}
+
+div#DYNAMIC_fullwidththin_items {
+    width: 100%;
+    height: 100%;
+    
+    display: flex;
+    padding: 0 14px;
+    align-items: center;
+    font-size: 18px;
+}
+
+div#DYNAMIC_fullwidththin_items p {
+    flex: 1 1 auto;
+}
+
+div#DYNAMIC_fullwidththin_icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    aspect-ratio: 1;
+    border-radius: 100%;
+    color: #bbffb4;
+}
+
+div#DYNAMIC_fullwidththin_icon_battery {
+    background: #42743c;
+    margin: 0 5px;
+    width: 40px;
+    border-radius: 9px;
+    height: 25px;
+    position: relative;
+}
+
+div#DYNAMIC_fullwidththin_icon_battery::before {
+    position: absolute;
+    content: '';
+    background: #42743c;
+    width: 3px;
+    height: 10px;
+    
+    border-top-right-radius: 9px;
+    border-bottom-right-radius: 9px;
+
+    top: 50%;
+    transform: translate(0, -50%);
+    right: -5px;
+}
+
+div#DYNAMIC_fullwidththin_icon_battery div {
+    border-top-left-radius: 9px;
+    border-bottom-left-radius: 9px;
+    background: #bbffb4;
+    height: 100%;
+}
+
+div#dynamicIsland.DYNAMIC_fullwidth_open_open {
+    display: flex;
+    flex-direction: column;
+    height: 230px;
+    width: 400px;
+    padding: 30px;
+}
+
+div#dynamicIsland.DYNAMIC_fullwidth_open_open div.dynamicIsland_musicTop {
+    width: 100%;
+    height: 70px;
+
+    display: flex;
+    flex-direction: row;
+}
+
+div#dynamicIsland.DYNAMIC_fullwidth_open_open div.dynamicIsland_musicTop div.dynamic_musicInfo {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    flex: 1 1 auto;
+}
+
+div#dynamicIsland.DYNAMIC_fullwidth_open_open div.dynamicIsland_musicTop div.dynamic_musicInfo img {
+    height: 100%;
+    aspect-ratio: 1;
+    border-radius: 15px;
+    margin-right: 15px;
+}
+
+div#dynamicIsland.DYNAMIC_fullwidth_open_open div.dynamicIsland_musicTop div.dynamic_musicInfo div.dynamic_musicText {
+    font-size: 18px;
+}
+
+div#dynamicIsland.DYNAMIC_fullwidth_open_open div.dynamicIsland_musicTop div.dynamic_musicInfo div.dynamic_musicText p:nth-of-type(1) {
+    font-weight: 600;
+}
+
+div#dynamicIsland.DYNAMIC_fullwidth_open_open div.dynamicIsland_musicTop div.dynamic_musicInfo div.dynamic_musicText p:nth-of-type(2) {
+    color: grey;
+    font-weight: 400;
+}
+
+div#dynamicIsland.DYNAMIC_fullwidth_open_open div.dynamicIsland_musicTop div.dynamicIsland_musicWaves {
+    aspect-ratio: 1;
+    height: 100%;
+
+    display: flex;
+    justify-content: end;
+    align-items: baseline;
+}
+
+div#dynamicIsland.DYNAMIC_fullwidth_open_open div.dynamicIsland_musicTop div.dynamicIsland_musicWaves sf-symbol {
+    aspect-ratio: 1;
+    height: 50%;
+}
+
+div#dynamicIsland.DYNAMIC_fullwidth_open_open div.dynamicIsland_musicProgress {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    color: #a0a0a0;
+    font-weight: 500;
+}
+
+div#dynamicIsland.DYNAMIC_fullwidth_open_open div.dynamicIsland_musicProgress div.dynamicIsland_musicProgressBarOuter {
+    width: 100%;
+    height: 10px;
+    margin: 0 10px;
+
+    background: #3a3a3a;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+div#dynamicIsland.DYNAMIC_fullwidth_open_open div.dynamicIsland_musicProgress div.dynamicIsland_musicProgressBarOuter div.dynamicIsland_musicProgressBarInner {
+    width: 75%;
+    height: 100%;
+
+    background: #ffffff;
+    border-radius: 999px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    overflow: hidden;
+}
+
+div#dynamicIsland.DYNAMIC_fullwidth_open_open div.dynamicIsland_musicControls {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+div#dynamicIsland.DYNAMIC_fullwidth_open_open div.dynamicIsland_musicControls button,
+div#dynamicIsland.DYNAMIC_fullwidth_open_open div.dynamicIsland_musicControls div.spacer {
+    background: none;
+    border: none;
+    width: 60px;
+    height: 40px;
+}
+
+div#dynamicIsland.DYNAMIC_fullwidth_open_open div.dynamicIsland_musicControls button:nth-of-type(2) {
+    margin: 0 20px;
+}
+
+div#dynamicIsland.DYNAMIC_fullwidth_open_open div.dynamicIsland_musicControls button:nth-of-type(1),
+div#dynamicIsland.DYNAMIC_fullwidth_open_open div.dynamicIsland_musicControls button:nth-of-type(3) {
+    width: auto;
+    height: 30px;
+}
+
+div#dynamicIsland.DYNAMIC_fullwidth_open_open div.dynamicIsland_musicControls button:nth-of-type(4) {
+    padding: 5px 2px;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: end;
+}
+
+div#dynamicIsland.DYNAMIC_fullwidth_open_open div.dynamicIsland_musicControls button sf-symbol {
+    height: 100%;
+}

@@ -1,0 +1,69 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+	font-family: 'SF Pro Display';
+}
+
+body {
+    background: black;
+    
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+#container {
+	margin: 0px auto;
+	width: 100%;
+	height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#videoElement {
+	height: 80%;
+	background-color: black;
+}
+
+#controls {
+    z-index: 10;
+    position: absolute;
+    bottom: 0;
+    height: 40%;
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: linear-gradient(to bottom, transparent 0%, black 50%);
+}
+
+button#takePhoto {
+    cursor: pointer;
+    width: 80px;
+    overflow: hidden;
+    aspect-ratio: 1;
+    border-radius: 100%;
+    border: none;
+    background: transparent;
+    border: 5px solid white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button#takePhoto div.innerButton {
+    border-radius: 100%;
+    width: 70px;
+    aspect-ratio: 1;
+    background: white;
+    border: 3px solid black;
+    transition: 0.1s ease-in-out width;
+}
+
+button#takePhoto:active div.innerButton {
+    width: 60px;
+}

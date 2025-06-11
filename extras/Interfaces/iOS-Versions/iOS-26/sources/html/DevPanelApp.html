@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="./sources/css/SettingsApp.css">
+        <link rel="stylesheet" href="../fonts/sf-pro-display.css">
+
+        <meta theme="light">
+
+        <script>
+            function scrollCheck() {
+                if(window.scrollY > 102) {
+                    document.getElementById('scrollTitle').style.opacity = '1';
+                } else {
+                    document.getElementById('scrollTitle').style.opacity = '0';
+                }
+            }
+        </script>
+
+    </head>
+    <body onscroll="scrollCheck()">
+        <div id="scrollTitle" style="opacity: 0;">
+            <p>Developer Panel</p>
+        </div>
+
+        <h1>Developer Panel</h1>
+        
+        <div id="userProfile">
+            <div class="picture">
+                <img src="../image/Profile Pictures/ljharnish.png" alt="">
+            </div>
+            <div class="text">
+                <p>Developed by</p>
+                <h1>ljharnish</h1>
+            </div>
+        </div>
+        
+        <div id="userProfile">
+            <div class="picture">
+                <img src="../image/apple_logo_intelligence.jpg" alt="">
+            </div>
+            <div class="text">
+                <p>Assets by</p>
+                <h1>Apple</h1>
+            </div>
+        </div>
+
+        <div id="settingsHolder">
+        </div>
+    </body>
+    
+	<script src="./sources/js/customElements.js"></script>
+    <script src="./sources/js/global-js-connections.js"></script>
+	<script src="./sources/js/DevPanelApp.js"></script>
+
+    
+</html>

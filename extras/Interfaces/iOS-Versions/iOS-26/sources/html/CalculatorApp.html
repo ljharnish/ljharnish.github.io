@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="../fonts/sf-pro-display.css">
+        <link rel="stylesheet" href="./sources/css/CalculatorApp.css">
+        
+        <meta theme="dark">
+
+        <script>
+            function appSpecificFunction() { return; }
+        </script>
+
+    </head>
+    <body>
+        <div class="numbers">
+            <p id="lastNum"></p>
+            <h1 id="currentNum">0</h1>
+        </div>
+
+        <div id="scientificButtons">
+            <button class="button" id="left_paren_btn">(</button>
+            <button class="button" id="left_paren_btn">)</button>
+            <button class="button" id="left_paren_btn">mc</button>
+            <button class="button" id="left_paren_btn">m+</button>
+            <button class="button" id="left_paren_btn">m-</button>
+            <button class="button" id="left_paren_btn">mr</button>
+            
+            <button class="button" id="left_paren_btn">2<sup>nd</sup></button>
+            <button class="button" id="left_paren_btn">x<sup>2</sup></button>
+            <button class="button" id="left_paren_btn">x<sup>3</sup></button>
+            <button class="button" id="left_paren_btn">x<sup>y</sup></button>
+            <button class="button" id="left_paren_btn">e<sup>x</sup></button>
+            <button class="button" id="left_paren_btn">10<sup>x</sup></button>
+            
+            <button class="button" id="left_paren_btn"><sup>1</sup>⁄<sub>x</sub></button>
+            <button class="button" id="left_paren_btn"><sup>2</sup>√x</button>
+            <button class="button" id="left_paren_btn"><sup>3</sup>√x</button>
+            <button class="button" id="left_paren_btn"><sup>y</sup>√x</button>
+            <button class="button" id="left_paren_btn">ln</button>
+            <button class="button" id="left_paren_btn">log<sub>10</sub></button>
+            
+            <button class="button" id="left_paren_btn">x!</button>
+            <button class="button" id="left_paren_btn">sin</button>
+            <button class="button" id="left_paren_btn">cos</button>
+            <button class="button" id="left_paren_btn">tan</button>
+            <button class="button" id="left_paren_btn">e</button>
+            <button class="button" id="left_paren_btn">EE</button>
+            
+            <button class="button" id="left_paren_btn">Rand</button>
+            <button class="button" id="left_paren_btn">sinh</button>
+            <button class="button" id="left_paren_btn">cosh</button>
+            <button class="button" id="left_paren_btn">tanh</button>
+            <button class="button" id="left_paren_btn">π</button>
+            <button class="button" id="left_paren_btn">Rad</button>
+        </div>
+
+        <div id="buttons">
+            <button class="button" id="ac_button">AC</button>
+            <button class="button" id="minus_plus_button"><sf-symbol glyph="plus.slash.minus" color="white"></sf-symbol></button>
+            <button class="button" id="percent_button" style="scale: 0.8;filter: opacity(0.2);" disabled><sf-symbol glyph="percent" color="white"></sf-symbol></button>
+            <button class="button" id="divide_button"><sf-symbol glyph="divide" color="white"></sf-symbol></button>
+            
+            <button class="button" id="7_button">7</button>
+            <button class="button" id="8_button">8</button>
+            <button class="button" id="9_button">9</button>
+            <button class="button" id="multiply_button"><sf-symbol glyph="multiply" color="white"></sf-symbol></button>
+            
+            <button class="button" id="4_button">4</button>
+            <button class="button" id="5_button">5</button>
+            <button class="button" id="6_button">6</button>
+            <button class="button" id="minus_button"><sf-symbol glyph="minus" color="white" style="scale: 0.3"></sf-symbol></button>
+            
+            <button class="button" id="1_button">1</button>
+            <button class="button" id="2_button">2</button>
+            <button class="button" id="3_button">3</button>
+            <button class="button" id="plus_button"><sf-symbol glyph="plus" color="white"></sf-symbol></button>
+            
+            <button class="button" id="calc_button" style="scale: 0.8;filter: opacity(0.2);" disabled><sf-symbol glyph="calculator" color="white"></sf-symbol></button>
+            <button class="button" id="0_button">0</button>
+            <button class="button" id="period_button">.</button>
+            <button class="button" id="equals_button"><sf-symbol glyph="equal" color="white" style="scale: 0.7"></sf-symbol></button>
+        </div>
+    </body>
+
+    <script src="./sources/js/customElements.js"></script>
+    <script src="./sources/js/CalculatorApp.js"></script>
+</html>

@@ -2,102 +2,228 @@
 	margin: 0px;
 	padding: 0px;
 	box-sizing: border-box;
-	font-family: 'Courier New', Courier, monospace;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 body {
 	width: 100vw;
-	height: 100vh;
-	background: #333;
+	height: auto;
+    background: linear-gradient(90deg, #73519b, #3f506f);
     color: white;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+    justify-content: start;
+	align-items: start;
     text-align: center;
+    padding: 150px 20px 30px 20px;
 }
 
-header {
-	width: 100%;
-	height: 60px;
-	background: #555;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-family: 'Courier New', Courier, monospace;
+div.header {
+    left: 0;
+    top: 0;
+    position: absolute;
+    padding: 10px 30px;
+    width: 100%;
+    height: 120px;
+    background: linear-gradient(90deg, #be54cc, #ffcd81);
+    color: black;
+    font-family: 'Ubuntu', sans-serif;
+    box-shadow: 0 0 10px black;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
 }
 
-header a {
-	cursor: pointer;
-	margin-left: 10px;
-	height: 100%;
-	transition: 0.2s ease-in-out scale, 0.5s ease-in-out rotate;
+div.header > h1 {
+    font-size: 60px;
+    color: black;
+    background: linear-gradient(270deg, #ab98ff, #81a3ff);
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    -webkit-text-stroke: 2px #0009;
 }
 
-header a img {
-	height: 100%;
-}
-
-header a:hover {
-	rotate: 360deg;
-	scale: 2;
+div.header > p {
+    margin-left: 50px;
+    font-size: 24px;
+    color: black;
 }
 
 body > h1 {
-	margin-top: 20px;
-	margin-bottom: 20px;
-	font-weight: bolder;
-	font-size: 60px;
-    background: #64cc54;
+    width: 100%;
+    font-size: 60px;
     color: black;
-    padding: 15px 30px;
-    border-radius: 10px;
+    background: linear-gradient(270deg, #ab98ff, #81a3ff);
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    -webkit-text-stroke: 2px #0009;
+    font-style: italic;
+    position: relative;
 }
 
-body > h2 {
+body > h1::after {
+    content: 'All my silly and goofy projects!';
+    width: 100%;
+    font-size: 60px;
+    color: black;
+    background: linear-gradient(270deg, #ab98ff, #81a3ff);
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    -webkit-text-stroke: 2px #0009;
+    font-style: italic;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    filter: blur(10px);
+}
+
+h2 {
     font-size: 40px;
-    margin-top: 20px;
-    margin-bottom: 10px;
     background: #64cc54;
     color: black;
     padding: 15px 30px;
     border-radius: 10px;
+    margin-bottom: 30px;
+    margin-top: 70px;
 }
 
-body > h2:last-of-type {
-    margin-top: 50px;
+h2:first-of-type {
+    margin-top: 0px;
 }
 
-body > a {
-	font-weight: bolder;
-	font-size: 30px;
-	color: #64cc54;
-	margin: 10px 0;
+h3.label {
+    font-size: 28px;
+    background: #64cc54;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    margin-left: 10px;
     display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
 }
 
-body > a:hover {
-	font-weight: bolder;
-	font-size: 30px;
-	color: #baffaf;
-	margin: 10px 0;
-}
-
-p {
-    margin-top: 30px;
-    margin-bottom: 10px;
-}
-
-a img {
-    height: 60px;
-    position: relative;
+h3.label img {
+    height: 30px;
+    aspect-ratio: 1;
     margin-right: 10px;
-    filter: grayscale(1);
-    transition: 0.1s ease-in-out filter;
 }
 
-a:hover img {
-    filter: grayscale(0);
+a.project {
+    color: white !important;
+    user-select: none;
+    align-self: center;
+    justify-self: center;
+    border: 2px solid #64cc54;
+    display: block;
+    overflow: hidden;
+    border-radius: 10px;
+    position: relative;
+    width: 500px;
+    max-width: 500px;
+    aspect-ratio: 4 / 3;
+    cursor: pointer;
+    box-shadow: 0 0 0 transparent;
+    transition: 0.2s ease-in-out scale, 0.2s ease-in-out box-shadow;
+}
+
+a.project:hover {
+    scale: 1.05;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.322);
+}
+
+a.project:active {
+    scale: 0.95;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.322);
+}
+
+a.project > img {
+    width: 100%;
+    pointer-events: none;
+    height: calc(100% - 80px);
+    object-fit: cover;
+    object-position: 50% 0%;
+    z-index: 1;
+}
+
+a.project > div.projectInfo {
+    background: #222;
+    z-index: 2;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 15px;
+    width: 100%;
+    height: 80px;
+    box-shadow: 0px -10px 10px rgba(0, 0, 0, 0.322);
+}
+
+a.project > div.projectInfo > div.details {
+    color: white !important;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: center;
+    flex: 1 1 auto;
+}
+
+a.project > div.projectInfo > div.details h3 {
+    color: inherit;
+    font-size: 24px;
+}
+
+a.project > div.projectInfo > img {
+    pointer-events: none;
+    height: 100%;
+    aspect-ratio: 1;
+    border-radius: 5px;
+    object-fit: contain;
+}
+
+div.gridOfProjects {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    gap: 20px;
+    width: 100%;
+}
+
+div.gridOfProjects.portrait {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+a.project.disabled {
+    pointer-events: none;
+    filter: brightness(1);
+}
+
+a.project.disabled::after {
+    content: "Coming Soon!";
+    position: absolute;
+    width: 90%;
+    padding: 15px 0;
+    z-index: 3;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: transparent;
+    border: 2px solid #cc5454;
+    backdrop-filter: blur(5px);
+    border-radius: 10px;
+    background: #fff3;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 48px;
+}
+
+a.project.portrait {
+    width: 250px;
+    aspect-ratio: 1 / 2;
 }

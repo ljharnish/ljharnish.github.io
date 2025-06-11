@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="./sources/css/AppleMusicApp.css">
+        <link rel="stylesheet" href="../fonts/sf-pro-display.css">
+
+        <meta theme="light">
+
+        <script>
+            function scrollCheck() {
+                if(window.scrollY > 80) {
+                    document.getElementById('scrollTitle').style.opacity = '1';
+                } else {
+                    document.getElementById('scrollTitle').style.opacity = '0';
+                }
+            }
+        </script>
+
+    </head>
+    <body onscroll="scrollCheck()">
+        <div id="scrollTitle" style="opacity: 0;"></div>
+
+        <div id="bottomUI">
+            <div id="bottomNowPlaying">
+                <div class="bottomNowPlayingImage">
+                    <img id="bottomNowPlayingImg" src="../image/Profile Pictures/ThugBob.webp" alt="">
+                </div>
+                <div class="bottomNowPlayingText">
+                    <p id="bottomNowPlayingP">ThugBob CripPants</p>
+                </div>
+                <div class="bottomNowPlayingControls">
+                    <button>
+                        <sf-symbol glyph="play.fill"></sf-symbol>
+                    </button>
+
+                    <button>
+                        <sf-symbol glyph="forward.fill"></sf-symbol>
+                    </button>
+                </div>
+            </div>
+            <div class="navigation">
+                <button class="navButton">
+                    <sf-symbol glyph="house.fill"></sf-symbol>
+                    <p>Home</p>
+                </button>
+                <button class="navButton">
+                    <sf-symbol glyph="square.grid.2x2.fill"></sf-symbol>
+                    <p>New</p>
+                </button>
+                <button class="navButton">
+                    <sf-symbol glyph="dot.radiowaves.left.and.right"></sf-symbol>
+                    <p>Radio</p>
+                </button>
+                <button class="navButton selected">
+                    <sf-symbol glyph="music.square.stack.fill"></sf-symbol>
+                    <p>Library</p>
+                </button>
+                <button class="navButton">
+                    <sf-symbol glyph="magnifyingglass"></sf-symbol>
+                    <p>Search</p>
+                </button>
+            </div>
+            <div class="background">
+                <div class="background"></div>
+            </div>
+        </div>
+
+        <div id="libraryPage">
+            <div class="header">
+                <h1>Library</h1>
+                <div class="userIcon">
+                    <img src="../image/Profile Pictures/ljharnish.png" alt="User Profile">
+                </div>
+            </div>
+
+            <div class="sortingCategories">
+                <div class="sortCategory">
+                    <div class="sortIcon">
+                        <sf-symbol glyph="music.note.list"></sf-symbol>
+                    </div>
+                    <div class="sortRightSide">
+                        <p>Playlists</p>
+                        <div class="sortCatArrow">
+                            <sf-symbol glyph="chevron.right"></sf-symbol>
+                        </div>
+                    </div>
+                </div>
+                <div class="sortCategory">
+                    <div class="sortIcon">
+                        <sf-symbol glyph="music.mic"></sf-symbol>
+                    </div>
+                    <div class="sortRightSide">
+                        <p>Artists</p>
+                        <div class="sortCatArrow">
+                            <sf-symbol glyph="chevron.right"></sf-symbol>
+                        </div>
+                    </div>
+                </div>
+                <div class="sortCategory">
+                    <div class="sortIcon">
+                        <sf-symbol glyph="square.stack"></sf-symbol>
+                    </div>
+                    <div class="sortRightSide">
+                        <p>Albums</p>
+                        <div class="sortCatArrow">
+                            <sf-symbol glyph="chevron.right"></sf-symbol>
+                        </div>
+                    </div>
+                </div>
+                <div class="sortCategory">
+                    <div class="sortIcon">
+                        <sf-symbol glyph="music.note"></sf-symbol>
+                    </div>
+                    <div class="sortRightSide">
+                        <p>Songs</p>
+                        <div class="sortCatArrow">
+                            <sf-symbol glyph="chevron.right"></sf-symbol>
+                        </div>
+                    </div>
+                </div>
+                <div class="sortCategory">
+                    <div class="sortIcon">
+                        <sf-symbol glyph="arrow.down.circle"></sf-symbol>
+                    </div>
+                    <div class="sortRightSide">
+                        <p>Downloaded</p>
+                        <div class="sortCatArrow">
+                            <sf-symbol glyph="chevron.right"></sf-symbol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recentlyAdded">
+                <div class="header">
+                    <h2>Recently Added</h2>
+                </div>
+
+                <div class="recentlyAddedMusic">
+                    <div class="recentlyAddedIcon" onclick="document.getElementById('musicUploadInput').click()">
+                        <img src="../image/unknown-file.png" alt="">
+                        <p class="title">Upload</p>
+                        <p class="artist">Play a song from your files.</p>
+
+                        <input type="file" name="" id="musicUploadInput" style="display: none;" accept="audio/mpeg">
+                    </div>
+                </div>
+            </div>
+        </div>
+	    <script src="./sources/js/jsmediatags.min.js"></script>
+        
+	    <script src="./sources/js/AppleMusicApp.js"></script>
+	    <script src="./sources/js/customElements.js"></script>
+    </body>
+</html>
