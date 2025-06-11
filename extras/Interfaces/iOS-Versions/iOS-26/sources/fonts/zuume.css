@@ -1,0 +1,55 @@
+@font-face {
+    font-family: 'Zuume';
+    src: url('./zuume/Zuume Black Italic.ttf');
+    font-weight: 900;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Zuume';
+    src: url('./zuume/Zuume Black.ttf');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Zuume';
+    src: url('./zuume/Zuume Bold Italic.ttf');
+    font-weight: 700;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Zuume';
+    src: url('./zuume/Zuume Bold.ttf');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Zuume';
+    src: url('./zuume/Zuume Italic.ttf');
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Zuume';
+    src: url('./zuume/Zuume Regular.ttf');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Zuume';
+    src: url('./zuume/Zuume Light Italic.ttf');
+    font-weight: 200;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Zuume';
+    src: url('./zuume/Zuume Light.ttf');
+    font-weight: 200;
+    font-style: normal;
+}

@@ -5,6 +5,13 @@
 	font-family: 'SF Pro Display';
 }
 
+/*? Base styles for glow */
+/*
+!	background: #fff3;
+!	filter: drop-shadow(1px 1px 0 #fff3) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff3) drop-shadow(1px -1px 0 #fff3);
+!	backdrop-filter: blur(10px);
+*/
+
 sf-symbol {
 	pointer-events: none;
 }
@@ -34,7 +41,7 @@ body.mobile div#iosHolder {
     padding: 0 !important;
 }
 
-body.mobile div#iosHolder div#ios18 {
+body.mobile div#iosHolder div#ios26 {
     width: 100%;	
 	height: 100%;
     border-radius: 0 !important;
@@ -48,7 +55,7 @@ div#iphoneOverlay, div#iphoneDynamicIslandOverlay {
 	position: absolute;
 	background-image: url(../image/iphoneoverlay.png);
 	background-size: contain;
-	height: 1000px;
+	height: 1100px;
 	aspect-ratio: 1/2;
 }
 
@@ -57,13 +64,13 @@ div#iosHolder {
 	position: relative;
 	padding: 32px;
 	padding-right: 35px;
-	width: 500px;
-	height: 1000px;
+	width: 550px;
+	height: 1100px;
 	aspect-ratio: 1/2;
 }
 
 
-div#ios18 {
+div#ios26 {
 	overflow: hidden;
 	position: relative;
 	border-radius: 50px;
@@ -76,7 +83,7 @@ div#topBar {
 	position: absolute;
 	color: white;
 	width: 100%;
-	height: 68px;
+	height: 75px;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -97,18 +104,11 @@ div#topBar > div {
 	align-items: center;
 }
 
-body:not(.dark) div#topBar div.topBar-right sf-symbol {
-	filter: invert(1);
-}
 
 div.topBar-time {
 	font-weight: 500;
 	color: white;
 	font-size: 20px;
-}
-
-body:not(.dark) div#topBar div.topBar-time {
-	color: black;
 }
 
 div#homeScreen {
@@ -118,12 +118,12 @@ div#homeScreen {
 	align-items: start;
 	width: 100%;
 	height: 100%;
-	background: url(../image/Backgrounds/449380-1280.avif);
+	background: url(../image/Backgrounds/light.jpg);
 	background-size: cover;
 }
 
 body.dark div#homeScreen {
-	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)) ,url(../image/Backgrounds/449381-1280.avif);
+	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)) ,url(../image/Backgrounds/dark.jpg);
 }
 
 div#HS_Pages {
@@ -144,8 +144,8 @@ div#HS_Pages ::-webkit-scrollbar {
 
 div.HS_Icons {
 	display: grid;
-	grid-template-columns: repeat(4, 100px);
-	grid-template-rows: repeat(7, 100px);
+	grid-template-columns: repeat(4, 112px);
+	grid-template-rows: repeat(7, 112px);
 }
 
 div#pageSelector {
@@ -178,9 +178,15 @@ div.homeIcon {
 	text-align: center;
 	align-items: center;
 	justify-content: center;
-	height: 100%;
+	height: 90px;
 	aspect-ratio: 1;
-	width: 100%;
+	width: 90px;
+	justify-self: center;
+	align-self: center;
+	border-radius: 21px;
+	backdrop-filter: blur(10px);
+	background: #fff3;
+	filter: drop-shadow(1px 1px 0 #fff3) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff3) drop-shadow(1px -1px 0 #fff3);
 }
 
 div.homeIcon p {
@@ -191,7 +197,7 @@ body.showHSLabels div.homeIcon p {
 	display: block !important;
 }
 
-div.homeIcon:not([app]),
+/* div.homeIcon:not([app]),
 div.homeIcon:not([app]) img {
 	cursor: not-allowed;
 }
@@ -206,13 +212,14 @@ body:not(.showInvalidIcons) div.homeIcon:not([app]) {
 	scale: 0.9;
 	opacity: 0.5;
 	filter: grayscale(1) brightness(0.5);
-}
+} */
 
 div.homeIcon > img {
+	opacity: 0.1;
 	pointer-events: all !important;
-	height: 80%;
+	height: 90px;
 	aspect-ratio: 1;
-	width: 80%;
+	width: 90px;
 	user-select: none;
 	object-fit: contain;
 }
@@ -220,7 +227,9 @@ div.homeIcon > img {
 div.HS_Icons div.widgetSmall {
 	overflow: hidden;
 	border-radius: 20px;
-	background: linear-gradient(to bottom, rgb(37, 45, 88), rgb(0, 0, 0));
+	background: #fff3;
+	filter: drop-shadow(1px 1px 0 #fff3) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff3) drop-shadow(1px -1px 0 #fff3);
+	backdrop-filter: blur(10px);
 	margin: 10px;
 	grid-column: span 2;
 	grid-row: span 2;
@@ -228,7 +237,7 @@ div.HS_Icons div.widgetSmall {
 
 div.HS_Page {
 	height: 100%;
-	width: 100%;
+	min-width: 450px;
 	margin: 0 16px;
 }
 
@@ -243,15 +252,17 @@ div#HS_Dock {
 div#HS_dockInner {
 	box-sizing: content-box;
 	display: flex;
-	justify-content: center;
+	justify-content: space-evenly;
 	align-items: center;
 	flex-direction: row;
 	border-radius: 35px;
-	width: 100%;
-	height: 100px;
+	height: 110px;
 	padding: 5px;
-	width: auto;
-	background: rgba(255, 255, 255, 0.6);
+	width: 450px;
+	background: #fff3;
+	filter: drop-shadow(1px 1px 0 #fff3) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff3) drop-shadow(1px -1px 0 #fff3);
+	backdrop-filter: blur(10px);
+	margin-top: 20px;
 }
 
 body.dark div#HS_dockInner {
@@ -340,7 +351,7 @@ div.homeIconShow img {
 div#lockScreen {
 	z-index: 100;
 	position: absolute;
-	background: url(../image/Backgrounds/449381-1280.avif);
+	background: url(../image/Backgrounds/dark.jpg);
 	background-size: cover;
 	width: 100%;
 	height: 100%;
@@ -358,17 +369,29 @@ div.lockTime {
 	left: 50%;
 	transform: translateX(-50%);
 	text-align: center;
+	z-index: 1;
 }
 
 p#lockDate {
-	font-size: 24px;
-	color: white;
+	font-size: 28px;
+	color: #fff6;
+	/* backdrop-filter: blur(5px); */
+	-webkit-text-stroke: 0.5px #fff6;
+	z-index: 2;
+	position: relative;
 }
 
 h1#lockTime {
 	font-size: 90px;
-	color: #fffb;
-	backdrop-filter: blur(5px);
+	color: #fff6;
+	/* backdrop-filter: blur(15px); */
+	-webkit-text-stroke: 1px #fff6;
+	font-family: 'Zuume';
+	font-weight: normal;
+	font-size: 280px;
+	scale: 1 1.1;
+	z-index: 1;
+	position: relative;
 }
 
 div#lockScreen div.otherButtons {
@@ -380,19 +403,22 @@ div#lockScreen div.otherButtons {
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
+	z-index: 3;
 }
 
 div#lockScreen div.otherButtons button {
-	background: #0007;
+	background: #fff3;
 	border: none;
 	border-radius: 100%;
-	backdrop-filter: blur(5px);
 	padding: 10px;
-	width: 50px;
-	height: 50px;
+	width: 70px;
+	height: 70px;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	background: #fff3;
+	filter: drop-shadow(1px 1px 0 #fff3) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff3) drop-shadow(1px -1px 0 #fff3);
+	backdrop-filter: blur(10px);
 }
 
 div#lockScreen div.otherButtons button:nth-of-type(2) {
@@ -400,8 +426,16 @@ div#lockScreen div.otherButtons button:nth-of-type(2) {
 }
 
 div#lockScreen div.otherButtons sf-symbol {
-	height: 100%;
+	height: 80%;
 	aspect-ratio: 1;
+}
+
+div#lockScreen img.lockScreenOverlay {
+	height: 100%;
+	width: calc(100% + 3px);
+	object-fit: cover;
+	position: relative;
+	z-index: 2;
 }
 
 button#controlCenterBar,

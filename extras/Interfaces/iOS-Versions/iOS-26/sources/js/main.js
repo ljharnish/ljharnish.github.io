@@ -92,11 +92,15 @@ function setDate() {
     return dateStr;
 }
 
+document.getElementById('topBarTimeP').innerText = setTime();
+document.getElementById('lockTime').innerText = setTime();
+document.getElementById('lockDate').innerText = setDate();
+
 const timeInterval = setInterval(() => { 
     document.getElementById('topBarTimeP').innerText = setTime();
-    document.getElementById('lockTime').innerText = setTime();
+    //document.getElementById('lockTime').innerText = setTime();
     document.getElementById('lockDate').innerText = setDate();
- });
+}, 1000);
 
 function iframeLoad() {
     let currentApp = document.getElementById('currentApp');
