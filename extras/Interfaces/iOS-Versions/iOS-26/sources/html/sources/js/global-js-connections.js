@@ -31,7 +31,7 @@ window.CONNECTIONVARIABLES = {
 
     battery: {
         charging: false,
-        level: 100,
+        level: 92,
         health: 'Good',
         voltage: 0,
         temperature: 0,

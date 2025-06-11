@@ -1,4 +1,12 @@
-document.querySelector('#HS_Pages').scrollTo(0, 0)
+document.querySelector('#HS_Pages').scrollTo(0, 0);
+
+if(window.innerHeight > window.innerWidth) {
+    document.body.classList.add('fullscreen');
+    function requestFullScreen() {
+        document.documentElement.requestFullscreen();
+    }
+    document.addEventListener('pointerdown', requestFullScreen, { once: true });
+}
 
 //! Random Call
 
@@ -108,7 +116,11 @@ function iframeLoad() {
     let currentApp = document.getElementById('currentApp');
     if(currentApp.children[0].attributes.src.value == '') return;    
 
-    let theme = currentApp.children[0].contentDocument.head.querySelector('meta[theme]').getAttribute('theme')
+    let theme = currentApp.children[0].contentDocument.head.querySelector('meta[theme]').getAttribute('theme');
+
+    if(document.body.classList.contains('dark')) {
+        theme = 'dark';
+    }
     
     currentApp.style.background = currentApp.children[0].contentWindow.getComputedStyle(currentApp.children[0].contentDocument.body).background;
 
@@ -334,10 +346,78 @@ CC_Bar.addEventListener('click', () => {
     if(!ccOpen) document.getElementById('topBar').classList.remove('ccOpen');
 });
 
-function lockPhone() {
+const canvas = document.getElementById('batteryLabelCanvas');
+const ctx = canvas.getContext('2d');
+const deg2FDeg = (degrees) => (degrees - 90) * (Math.PI / 180);
+const bP2Deg = (percent) => (360 / 100) * percent;
+
+function colorBP(percent) {
+    if(percent <= 10) {
+        return '#eb3137'
+    }
+    if(percent <= 20) {
+        return '#fecd0b'
+    }
+    return '#27cd41'
+}
+
+let batteryPercent = 23;
+
+const circleSize = 125;
+const thickness = 30;
+
+window.addEventListener('load', _ => {
+  canvas.width = 300;
+  canvas.height = 300; 
+  window.requestAnimationFrame(render);
+
+changeBattery(window.CONNECTIONVARIABLES.battery.level);
+});
+
+function render() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const step = 360 / 24;
+    
+    ctx.fillStyle = 'black';
+
+    for (let i = 0; i < 360; i+=step) {
+      const x = Math.cos(i * (Math.PI / 180)) * circleSize;
+      const y = Math.sin(i * (Math.PI / 180)) * circleSize;
+      
+      ctx.beginPath();
+      ctx.arc(canvas.width / 2, canvas.height / 2, circleSize, deg2FDeg(0), deg2FDeg(360));
+      ctx.strokeStyle = '#00000003';
+      ctx.lineWidth = thickness;
+      ctx.lineCap = 'round';
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.arc(canvas.width / 2, canvas.height / 2, circleSize, deg2FDeg(0), deg2FDeg(bP2Deg(batteryPercent)));
+      ctx.strokeStyle = colorBP(batteryPercent);
+      ctx.lineWidth = thickness;
+      ctx.lineCap = 'round';
+      ctx.stroke();
+    } 
+
+  window.requestAnimationFrame(render);
+}
+
+function changeBattery(percent) {
+    document.querySelector('div.widgetSmall.batteryWidget div.batteryText').innerHTML = `${percent}%`
+    batteryPercent = percent;
+}
+
+function toggleLockPhone() {
     document.getElementById('ios26').classList.toggle('locked');
 
     if(document.getElementById('ios26').classList.contains('locked')) {
         document.getElementById('lockScreen').classList.remove('closed');
     }
+}
+
+
+function unlockPhone() {
+    document.getElementById('lockScreen').classList.add('closed');
+    document.getElementById('homeScreen').classList.remove('animate');
+    setTimeout(() => { document.getElementById('homeScreen').classList.add('animate'); }, 50);
 }

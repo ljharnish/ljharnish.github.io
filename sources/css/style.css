@@ -120,7 +120,7 @@ a.project {
     justify-self: center;
     border: 2px solid #64cc54;
     display: block;
-    overflow: hidden;
+    overflow: visible;
     border-radius: 10px;
     position: relative;
     width: 500px;
@@ -148,9 +148,14 @@ a.project > img {
     object-fit: cover;
     object-position: 50% 0%;
     z-index: 1;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 a.project > div.projectInfo {
+    border-radius: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
     background: #222;
     z-index: 2;
     position: absolute;
@@ -226,4 +231,24 @@ a.project.disabled::after {
 a.project.portrait {
     width: 250px;
     aspect-ratio: 1 / 2;
+}
+
+a.project.new::after {
+    content: "New!";
+    position: absolute;
+    width: 90%;
+    padding: 15px 0;
+    z-index: 3;
+    top: -10%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    border-radius: 10px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 48px;
+    background: #f002;
+	filter: drop-shadow(1px 1px 0 #fff2) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff2) drop-shadow(1px -1px 0 #fff2);
+	backdrop-filter: blur(10px);
 }

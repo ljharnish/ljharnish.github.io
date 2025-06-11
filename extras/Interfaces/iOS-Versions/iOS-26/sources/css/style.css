@@ -10,6 +10,14 @@
 !	background: #fff2;
 !	filter: drop-shadow(1px 1px 0 #fff2) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff2) drop-shadow(1px -1px 0 #fff2);
 !	backdrop-filter: blur(10px);
+
+!	background: #1c1c1e22;
+?	DARK MODE BG
+
+!   box-shadow: 0px 0px 15px #0005;
+?	FOR SHADOWS AFTER THE GLOW
+
+!	border-radius: 30px;
 */
 
 sf-symbol {
@@ -117,6 +125,14 @@ div.topBar-time {
 	font-size: 20px;
 }
 
+div#homeScreenBG {
+	position: absolute;
+	background: url(../image/Backgrounds/light.jpg);
+	background-size: cover;
+	width: 100%;
+	height: 100%;
+}
+
 div#homeScreen {
 	display: flex;
   	flex-direction: column;
@@ -124,8 +140,34 @@ div#homeScreen {
 	align-items: start;
 	width: 100%;
 	height: 100%;
-	background: url(../image/Backgrounds/light.jpg);
-	background-size: cover;
+}
+
+div#homeScreen.animate {
+	animation: homeScreenOpen 0.5s ease-in-out 1 forwards;
+}
+
+div#homeScreen.animate div.homeIcon {
+	animation: homeScreenIconOpen 0.5s ease-in-out 1 forwards;
+}
+
+@keyframes homeScreenOpen {
+	0% {
+		scale: 2;
+	}
+
+	100% {
+		scale: 1;
+	}
+}
+
+@keyframes homeScreenIconOpen {
+	0% {
+		scale: var(--scaleVar);
+	}
+
+	100% {
+		scale: 1;
+	}
 }
 
 body.dark div#homeScreen {
@@ -134,7 +176,6 @@ body.dark div#homeScreen {
 
 div#HS_Pages {
 	width: 100%;
-	margin-top: 70px;
 	display: flex;
 	overflow-x: scroll;
 	min-height: 70%;
@@ -155,12 +196,13 @@ div.HS_Icons {
 }
 
 div#pageSelector {
+	height: 10px;
+	top: -20px;
 	display: flex;
 	flex-direction: row;
 	position: absolute;
-	bottom: 180px;
 	left: 50%;
-	transform: translate(-50%, 0);
+	transform: translate(-50%, -50%);
 }
 
 div.pageSelection {
@@ -189,10 +231,10 @@ div.homeIcon {
 	width: 90px;
 	justify-self: center;
 	align-self: center;
-	border-radius: 20px;
-	backdrop-filter: blur(10px);
+	  backdrop-filter: blur(10px);
 	background: #fff2;
 	filter: drop-shadow(1px 1px 0 #fff2) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff2) drop-shadow(1px -1px 0 #fff2);
+	border-radius: 25px;
 }
 
 div.homeIcon p {
@@ -206,6 +248,7 @@ body.showHSLabels div.homeIcon p {
 div.homeIcon:not([app]),
 div.homeIcon:not([app]) img {
 	cursor: not-allowed;
+	filter: grayscale(1) brightness(0.5);
 }
 
 div.homeIcon:not([app]):active,
@@ -221,6 +264,7 @@ body:not(.showInvalidIcons) div.homeIcon:not([app]) {
 }
 
 div.homeIcon > img {
+	clip-path: url(#homeIconSquircle);
 	opacity: 1;
 	pointer-events: all !important;
 	height: 90px;
@@ -231,13 +275,13 @@ div.homeIcon > img {
 	border-radius: 20px;
 	backdrop-filter: blur(10px);
 	background: #fff2;
-	filter: drop-shadow(1px 1px 0 #fff2) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff2) drop-shadow(1px -1px 0 #fff2);
 }
 
 div.HS_Icons div.widgetSmall {
 	overflow: hidden;
 	border-radius: 20px;
-	background: #fff2;
+	background: linear-gradient(180deg, #fff2, #fff9);
+  	box-shadow: inset 0px 0px 20px #fff9;
 	filter: drop-shadow(1px 1px 0 #fff2) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff2) drop-shadow(1px -1px 0 #fff2);
 	backdrop-filter: blur(10px);
 	margin: 10px;
@@ -245,8 +289,14 @@ div.HS_Icons div.widgetSmall {
 	grid-row: span 2;
 }
 
+body.dark div.HS_Icons div.widgetSmall {
+	background: linear-gradient(180deg, #0002, #0009);
+  	box-shadow: inset 0px 0px 20px #0009;
+}
+
 div.HS_Page {
 	height: 100%;
+	padding-top: 70px;
 	min-width: 450px;
 	margin: 0 16px;
 }
@@ -363,6 +413,7 @@ div#lockScreen {
 	position: absolute;
 	background: url(../image/Backgrounds/dark.jpg);
 	background-size: cover;
+	background-position: center;
 	width: 100%;
 	height: 100%;
 	bottom: 0;
@@ -379,13 +430,13 @@ div.lockTime {
 	width: 100%;
 	text-align: center;
 	z-index: 1;
-	filter: drop-shadow(1px 1px 0 #fff2) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff2) drop-shadow(1px -1px 0 #fff2);
+	filter: drop-shadow(1px 1px 0 #fff2) drop-shadow(-1px -1px 0 #fffa) drop-shadow(-1px 1px 0 #fff2) drop-shadow(1px -1px 0 #fff4);
   	backdrop-filter: blur(0);
 }
 
 p#lockDate {
 	font-size: 28px;
-	color: #fff6;
+	color: #fff4;
 	/* backdrop-filter: blur(5px); */
 	/* -webkit-text-stroke: 0.5px #fff6; */
 	z-index: 2;
@@ -451,7 +502,8 @@ div#lockScreen div.lockScreenOverlay {
 	height: 100%;
 	width: 100%;
 	background: url(../image/Backgrounds/crop/dark.png);
-	background-size: contain;
+	background-size: cover;
+	background-position: center;
 	pointer-events: none;
 	position: relative;
 	z-index: 2;
@@ -623,7 +675,7 @@ div#setupRegion div.topIcon img {
 div.setupChoose {
 	width: 100%;
 	background: #ddd;
-	border-radius: 10px;
+	border-radius: 30px;
 	overflow: hidden;
 }
 
@@ -669,12 +721,12 @@ div.setupChoose div.setupChoice::after {
 #lockButton {
 	cursor: pointer;
 	position: absolute;
-	height: 129px;
+	height: 130px;
 	width: 30px;
 	border: none;
 	right: 0;
-	top: 351px;
-	border-radius: 10px;
+	top: 350px;
+	border-radius: 30px;
 	background: #fff2;
 	filter: drop-shadow(1px 1px 0 #fff2) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff2) drop-shadow(1px -1px 0 #fff2);
 	backdrop-filter: blur(10px);
@@ -689,7 +741,174 @@ body.iconGlowOnly div.homeIcon img {
 	opacity: 0;
 }
 
-body.performanceMode *:not(#iosHolder):not(#ios26):not(.appCloseBar) {
+body.performanceMode *:not(#iosHolder):not(#ios26):not(.appCloseBar):not(.topBar-right *) {
 	backdrop-filter: none !important;
 	filter: none !important;
+}
+
+button.sideButton p {
+	rotate: -90deg;
+	color: #fff4;
+}
+
+div.HS_Icons div.widgetSmall.batteryWidget {
+	padding: 15px;
+	background: var(--white-bg);
+	backdrop-filter: blur(5px);
+}
+
+div.HS_Icons div.widgetSmall.batteryWidget div.batteryLabel {
+	position: relative;
+	width: 100%;
+	height: 50%;
+}
+
+div.HS_Icons div.widgetSmall.batteryWidget div.batteryLabel img {
+	width: 80px;
+	height: 80px;
+	position: absolute;
+	object-fit: contain;
+	padding: 20px;
+}
+
+div.HS_Icons div.widgetSmall.batteryWidget canvas {
+	width: 80px;
+	height: 80px;
+}
+
+div.HS_Icons div.widgetSmall.batteryWidget div.batteryText {
+	height: 50%;
+	color: black;
+	font-weight: 500;
+	font-size: 4em;
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-end;
+}
+
+body.dark div.HS_Icons div.widgetSmall.batteryWidget div.batteryText {
+	color: white;
+}
+
+body.dark div.HS_Icons div.widgetSmall.batteryWidget div.batteryLabel img {
+	filter: invert(1);
+}
+
+div.lockScreenNotifications {
+    position: absolute;
+    bottom: 150px;
+	padding: 30px;
+    width: 100%;
+    height: 350px;
+    background: transparent;
+	z-index: 2;
+}
+
+div.lockScreenNotification {
+	margin-bottom: 10px;
+	user-select: none;
+    width: 100%;
+    min-height: 80px;
+	padding: 10px 15px;
+	padding-left: 0;
+	background: #fff2;
+	border-radius: 30px;
+	filter: drop-shadow(1px 1px 0 #fff2) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff2) drop-shadow(1px -1px 0 #fff2);
+	backdrop-filter: blur(10px);
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+}
+
+/* div.lockScreenNotification::after {
+	cursor: pointer;
+	width: 40px;
+	aspect-ratio: 1;
+	content: '';
+	position: absolute;
+	top: -20px;
+	right: -20px;
+	border-radius: 100%;
+	background: url(../sf-symbols/glyphs_white/multiply.png) #fff2;
+	background-position: center;
+	background-size: 50% 45%;
+	background-repeat: no-repeat;
+	filter: drop-shadow(1px 1px 0 #fff2) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff2) drop-shadow(1px -1px 0 #fff2);
+	backdrop-filter: blur(10px);
+
+	scale: 1;
+	transition: 500ms cubic-bezier(.57,-0.56,.46,1.37) scale;
+}
+
+div.lockScreenNotification:hover::after {
+	scale: 1.1;
+} */
+
+div.lockScreenNotification div.image {
+	height: 100%;
+	width: 80px;
+	padding: 0 15px;
+	display: flex;
+	justify-content: center;
+	align-items: center
+}
+
+div.lockScreenNotification div.image img {
+	pointer-events: none;
+  	width: 100%;
+}
+
+div.lockScreenNotification div.info {
+	width: calc(100% - 80px);
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: start;
+}
+
+div.lockScreenNotification div.info div.header {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: start;
+}
+
+div.lockScreenNotification div.info div.header p.title {
+	flex: 1 1 auto;
+	color: white;
+	font-weight: 800;
+	font-size: 20px;
+}
+
+div.lockScreenNotification div.info div.header p.date {
+	color: #fff6;
+	font-weight: 500;
+	font-size: 20px;
+}
+
+div.lockScreenNotification div.info div.description {
+	color: white;
+	font-weight: 500;
+	font-size: 20px;
+}
+
+div.homeIcon.ios18::after {
+	content: 'iOS 18 App';
+	color: black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100px;
+	height: 40px;
+	position: absolute;
+	top: -20px;
+	left: -20px;
+	background: #fff6;
+	border-radius: 30px;
+	filter: drop-shadow(1px 1px 0 #fff2) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff2) drop-shadow(1px -1px 0 #fff2);
+	backdrop-filter: blur(10px);
 }

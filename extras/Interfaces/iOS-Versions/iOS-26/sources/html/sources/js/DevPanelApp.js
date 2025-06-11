@@ -2,7 +2,7 @@ const settingsTable = {
     categories: [
         [
             {
-                title: "Debug iOS 26 Features"
+                title: "Processing Settings"
             },
             {
                 name: "Performance Mode",
@@ -18,6 +18,14 @@ const settingsTable = {
                     type: 'switch',
                     toggleData: 'enabled'
                 }
+            },
+            {
+                subtitle: "Perfomance Mode will disable new iOS 26 features, such as icon glow, Liquid Glass, and more effects. This may need to be used to get the best performance on devices as HTML is not suited for this."
+            }
+        ],
+        [
+            {
+                title: "Debug iOS 26 Features"
             },
             {
                 name: "Circular Icons",
@@ -230,7 +238,7 @@ function loadSettings(table, outputdiv) {
             const categoryInner = document.createElement('div');
 
             if(setting.innerSettings) {
-                handleNewCategory(setting, categoryInner);
+                // handleNewCategory(setting, categoryInner);
             }
             
             if(setting.icon) {

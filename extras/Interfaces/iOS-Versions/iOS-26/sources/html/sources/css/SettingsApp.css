@@ -44,7 +44,7 @@ body.dark h1 {
 }
 
 body.dark #search {
-    background: #1c1c1e;
+    background: #1c1c1e22;
 }
 
 body.dark #userProfile,
@@ -129,12 +129,13 @@ h1 {
 }
 
 div#scrollTitle {
+    opacity: 0;
     z-index: 100;
     top: 0;
     left: 0;
     position: fixed;
-    height: 100px;
-    background: #0003;
+    height: 110px;
+    background: linear-gradient(180deg, #fff, transparent);
     backdrop-filter: blur(10px);
     width: 100%;
 
@@ -144,24 +145,64 @@ div#scrollTitle {
 
     font-size: 20px;
     padding-bottom: 10px;
-    color: white;
+    color: black;
     font-weight: 600;
 
     transition: 0.2s opacity ease-in-out;
 }
 
+body.dark div#scrollTitle {
+    background: linear-gradient(180deg, #000, transparent);
+    color: white;
+}
+
+div#scrollTitle p {
+    position: absolute;
+    top: 120%;
+    transform: translateY(-50%);
+    opacity: 0;
+    filter: blur(10px);
+
+    transition: 0.5s ease-in-out top, 0.5s ease-in-out opacity, 0.5s ease-in-out filter;
+}
+
+div#scrollTitle.show {
+    opacity: 1;
+}
+
+div#scrollTitle.show p  {
+    position: absolute;
+    top: 80%;
+    transform: translateY(-50%);
+    opacity: 1;
+    filter: blur(0px);
+}
+
 #search {
-    width: 100%;
+    width: calc(100% - 60px);
     background: #e3e3e8;
-    border-radius: 10px;
-    height: 40px;
+    border-radius: 999px;
+    height: 70px;
     display: flex;
+    align-items: center;
+    flex-direction: row;
+    padding: 0 15px;
+    position: fixed;
+    margin: 0 30px;
+    bottom: 30px;
+    left: 0;
+    z-index: 3;
+    background: #fff2;
+	filter: drop-shadow(1px 1px 0 #fff2) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff2) drop-shadow(1px -1px 0 #fff2);
+	backdrop-filter: blur(10px);
+    box-shadow: 0px 0px 15px #0005;
 }
 
 #search sf-symbol {
     display: block;
     margin: 5px;
     filter: brightness(0.5);
+    height: 30px;
 }
 
 #search #settingsSearch {
@@ -180,7 +221,7 @@ div#scrollTitle {
 
 #userProfile {
     margin-top: 15px;
-    border-radius: 10px;
+    border-radius: 30px;
     height: 90px;
     width: 100%;
     padding: 15px 20px;
@@ -218,21 +259,28 @@ div#scrollTitle {
 }
 
 div#settingsHolder {
+    margin-top: 30px;
+    padding-bottom: 80px;
     width: 100%;
+}
+
+div.settingsCategory:first-of-type {
+    margin-top: 0;
 }
 
 div.settingsCategory {
     margin: 30px 0;
-    border-radius: 10px;
+    border-radius: 30px;
     overflow: hidden;
 }
 
 div.setting {
     /* animation: 0.5s showSetting cubic-bezier(.68,-0.55,.11,1.29) forwards 1; */
     width: 100%;
-    height: 50px;
-    background: white;
+    height: 70px;
+    background: transparent;
     display: flex;
+    background: white;
     padding: 0 15px;
     flex-direction: row;
 }
@@ -246,18 +294,18 @@ div.setting:not(:has(div.appleSlider)) {
 } */
 
 div.setting:first-of-type {
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
 }
 
 div.setting:last-of-type {
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
 }
 
 div.setting:has(+ div.subtitle) {
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
 }
 
 @keyframes showSetting {
@@ -292,7 +340,6 @@ div.setting div.iconSide {
 }
 
 div.setting div.iconSide div.icon {
-    height: 100%;
     width: 34px !important;
     aspect-ratio: 1;
     display: flex;
@@ -350,8 +397,8 @@ div.setting div.textAndMore input[type="checkbox"] {
 
 div.appleSlider {
     cursor: pointer;
-    min-width: 60px;
-    height: 100%;
+    min-width: 100px;
+    height: 50px;
     padding: 6px 0;
 }
 
@@ -370,11 +417,10 @@ div.appleSliderValue {
     top: 3px;
     bottom: 3px;
     left: 3px;
-    aspect-ratio: 1;
     background: white;
     box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.158);
     border-radius: 999px;
-
+    width: 55px;
     transition: all 0.1s ease-in-out;
 }
 
@@ -383,7 +429,7 @@ div.appleSlider.active div.appleSliderInner {
 }
 
 div.appleSlider.active div.appleSliderValue {
-    left: 25px;
+    left: 42px;
 }
 
 div.categoryInner {
@@ -405,21 +451,27 @@ div.categoryInner.open {
 }
 
 div.categoryInner div.backButton button {
-    background: none;
     border: none;
     display: flex;
     font-size: 20px;
-    color: #1f7fde;
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    height: 25px;
+    background: #fff2;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    padding: 10px;
+    filter: drop-shadow(1px 1px 0 #fff2) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff2) drop-shadow(1px -1px 0 #fff2);
+    backdrop-filter: blur(10px);
+    box-shadow: 0px 0px 15px #0005;
 }
-
-
 div.categoryInner div.backButton button sf-symbol {
     height: 100%;
-    filter: invert(46%) sepia(46%) saturate(4261%) hue-rotate(192deg) brightness(91%) contrast(92%);
+}
+
+body.dark div.categoryInner div.backButton button sf-symbol {
+   filter: invert(1);
 }
 
 div.scrollTitleCategory {
@@ -427,8 +479,8 @@ div.scrollTitleCategory {
     top: 0;
     left: 0;
     position: sticky;
-    height: 100px;
-    background: #0003;
+    height: 110px;
+    background: linear-gradient(180deg, #fff, transparent);
     backdrop-filter: blur(10px);
     width: 100%;
 
@@ -436,10 +488,15 @@ div.scrollTitleCategory {
 
     font-size: 20px;
     padding-bottom: 10px;
-    color: white;
+    color: black;
     font-weight: 600;
 
     transition: 0.2s opacity ease-in-out;
+}
+
+body.dark div.scrollTitleCategory {
+    background: linear-gradient(180deg, #000, transparent);
+    color: white;
 }
 
 
@@ -469,7 +526,7 @@ div.categoryInnerElements {
 div.categoryHeader {
     padding: 20px;
     background: white;
-    border-radius: 10px;
+    border-radius: 30px;
 
     display: flex;
     flex-direction: column;

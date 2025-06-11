@@ -72,3 +72,15 @@ body.fullscreen iframe {
 		filter: contrast(0) brightness(2);
 	}
 } */
+
+body.fullscreen button#lockButton.sideButton {
+    right: -20px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+
+    transition: 0.3s ease-in-out right;
+}
+
+body.fullscreen button#lockButton.sideButton:hover {
+    right: 0px;
+}

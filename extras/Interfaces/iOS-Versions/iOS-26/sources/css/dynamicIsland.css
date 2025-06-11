@@ -17,7 +17,7 @@ div#dynamicIsland {
     background: black;
 	background-size: contain;
     border-radius: 50px;
-	height: 42px;
+	height: 46px;
 	width: 142px;
     transition: 
         width 1s cubic-bezier(.68,-0.55,.11,1.29),
@@ -45,7 +45,7 @@ div#di_left, div#di_right {
     opacity: 0;
     transition: 0.5s opacity ease-in-out;
     aspect-ratio: 1;
-    padding: 5px;
+    padding: 7px;
 }
 
 div#di_left {
@@ -74,25 +74,25 @@ div.topBar-right div {
 }
 
 div#dynamicIsland.DYNAMIC_newpopup_open {
-    width: 220px;
+    width: 240px;
 }
 
 div#dynamicIsland.DYNAMIC_newpopup_open div#di_left,
 div#dynamicIsland.DYNAMIC_newpopup_open div#di_right {
-    height: 42px;
+    height: 46px;
     opacity: 1;
     transition: 1.3s opacity ease-in-out;
 }
 
 div#dynamicIsland.DYNAMIC_fullwidth_thin_open {
-    width: 380px;
+    width: 400px;
 }
 
 div#dynamicIsland.DYNAMIC_fullwidth_fat_open {
     display: flex;
     justify-content: space-between;
-    height: 90px;
-    width: 400px;
+    height: 100px;
+    width: 430px;
     padding: 19px;
 }
 

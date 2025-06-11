@@ -64,10 +64,22 @@ div#debugOptions {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: #0002;
+    background: #fff2;
+	filter: drop-shadow(1px 1px 0 #fff2) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff2) drop-shadow(1px -1px 0 #fff2);
 	backdrop-filter: blur(10px);
     padding: 15px;
-    border-radius:10px;
+    border-radius: 30px;
+}
+
+div#debugOptions p {
+    color: white;
+    text-align: center;
+    font-weight: 900;
+    margin-top: 30px;
+}
+
+div#debugOptions p:first-of-type {
+    margin-top: 0;
 }
 
 div#debugOptions > div.sides {
@@ -88,8 +100,10 @@ div#debugOptions button {
     bottom: 5px;
     padding: 10px;
     border: none;
-    background: #188ef0;
-    border-radius: 10px;
+    background: #fff2;
+	filter: drop-shadow(1px 1px 0 #fff2) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff2) drop-shadow(1px -1px 0 #fff2);
+	backdrop-filter: blur(10px);
+    border-radius: 15px;
     cursor: pointer;
     padding: 10px;
     margin: 5px;

@@ -99,6 +99,7 @@ button.button {
     align-items: center;
     font-size: 40px;
     font-weight: 400;
+    filter: drop-shadow(1px 1px 0 #fff2) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff2) drop-shadow(1px -1px 0 #fff2);
     transition: 0.5s ease-in-out aspect-ratio, 0.5s ease-in-out font-size, 0.5s ease-in-out border-radius;
 }
 

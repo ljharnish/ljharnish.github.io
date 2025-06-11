@@ -9,16 +9,16 @@
         <script>
             function scrollCheck() {
                 if(window.scrollY > 102) {
-                    document.getElementById('scrollTitle').style.opacity = '1';
+                    document.getElementById('scrollTitle').classList.add('show');
                 } else {
-                    document.getElementById('scrollTitle').style.opacity = '0';
+                    document.getElementById('scrollTitle').classList.remove('show');
                 }
             }
         </script>
 
     </head>
     <body onscroll="scrollCheck()">
-        <div id="scrollTitle" style="opacity: 0;">
+        <div id="scrollTitle">
             <p>Settings</p>
         </div>
 

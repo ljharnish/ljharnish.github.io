@@ -1307,10 +1307,6 @@ function loadSettings(table, outputdiv) {
 
                 return;
             }
-
-            if(setting.innerSettings) {
-                handleNewCategory(setting, categoryInner);
-            }
             
             if(setting.icon) {
                 const iconInner = document.createElement("div");
@@ -1383,7 +1379,9 @@ function loadSettings(table, outputdiv) {
                     textAndMore.appendChild(rightDiv);
 
                     settingDiv.addEventListener('click', () => {
-                        categoryInner.classList.add('open');
+                        if(setting.innerSettings) {
+                            handleNewCategory(setting, categoryInner);
+                        }
                     });
                     
                 } else if (setting.right.type = 'button') {
@@ -1420,27 +1418,35 @@ function loadSettings(table, outputdiv) {
 function appSpecificFunction() {
     for (const [key, value] of Object.entries(CONNECTIONVARIABLES.settings)) {
         console.log(key)
-        if(value.enabled) {
-            let checkbox = document.getElementById(key + '-switch');
-            let slider = checkbox.parentElement.querySelector('.appleSlider');
+        try {
+            if(value.enabled) {
+                console.log(key)
+                let checkbox = document.getElementById(key + '-switch');
+                let slider = checkbox.parentElement.querySelector('.appleSlider');
 
-            checkbox.checked = value.enabled;
+                checkbox.checked = value.enabled;
 
-            if(slider && checkbox.checked) {
-                slider.classList.add("active");
+                if(slider && checkbox.checked) {
+                    slider.classList.add("active");
+                }
             }
-        }
 
-        if(key == 'display_brightness_appearance') {
-            if(value == 'light') {
-                document.querySelectorAll('.settingsCheckCircle')[0].classList.add('checked');
-                document.querySelectorAll('.settingsCheckCircle')[1].classList.remove('checked');
-                document.body.classList.remove('dark');
-            } else {
-                document.querySelectorAll('.settingsCheckCircle')[1].classList.add('checked');
-                document.querySelectorAll('.settingsCheckCircle')[0].classList.remove('checked');
-                document.body.classList.add('dark');
+            if(key == 'display_brightness_appearance') {
+                if(value == 'light') {
+                    try {
+                        document.querySelectorAll('.settingsCheckCircle')[0].classList.add('checked');
+                        document.querySelectorAll('.settingsCheckCircle')[1].classList.remove('checked');
+                    } catch(e){}
+                    document.body.classList.remove('dark');
+                } else {
+                    try {
+                        document.querySelectorAll('.settingsCheckCircle')[1].classList.add('checked');
+                        document.querySelectorAll('.settingsCheckCircle')[0].classList.remove('checked');
+                    } catch(e){}
+                    document.body.classList.add('dark');
+                }
             }
+        } catch (error) {
         }
     }
 }
@@ -1490,8 +1496,9 @@ function handleNewCategory(setting, categoryInner) {
     const backButtonButton = document.createElement('button');
     backButtonButton.addEventListener('click', () => {
         categoryInner.classList.remove('open');
+        setTimeout(() => { categoryInner.remove(); }, 500);
     });
-    backButtonButton.innerHTML = `<sf-symbol glyph='chevron.left'></sf-symbol>Settings`;
+    backButtonButton.innerHTML = `<sf-symbol glyph='chevron.left'></sf-symbol>`;
 
     backButton.appendChild(backButtonButton);
     titleBar.appendChild(backButton);
@@ -1537,4 +1544,6 @@ function handleNewCategory(setting, categoryInner) {
 
     categoryInner.appendChild(innerElements);
     document.body.appendChild(categoryInner);
+    appSpecificFunction();
+    setTimeout(() => { categoryInner.classList.add('open'); }, 200);
 }
