@@ -1,5 +1,11 @@
 window.CONNECTIONVARIABLES = {
     debug: {
+        clearIcons: {
+            enabled: false
+        },
+        tintedIcons: {
+            enabled: false
+        },
         iconCircles: {
             enabled: false
         },
@@ -29,12 +35,13 @@ window.CONNECTIONVARIABLES = {
         },
         showIconLabels: {
             enabled: false
-        }
+        },
+        iconTintOpacity: 0.5
     },
 
     battery: {
         charging: false,
-        level: 92,
+        level: 100,
         health: 'Good',
         voltage: 0,
         temperature: 0,

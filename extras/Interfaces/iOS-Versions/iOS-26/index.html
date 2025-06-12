@@ -34,15 +34,6 @@
 	<!--TODO: Clickable Side Buttons -->
 	
 	<body onload="handleNewVariables();">
-
-		<p style="color:white;position:absolute;top:15px;left:15px;font-size:20px;padding: 15px 20px;backdrop-filter:blur(10px);background:#fff2;border-radius:30px;filter:drop-shadow(1px 1px 0 #fff2) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff2) drop-shadow(1px -1px 0 #fff2);width: 800px;"><strong>iOS 26 | For The Web</strong> works best and it is highly recommended you use this site on Firefox for the best experience.<br><br>Better yet, using Firefox Nightly or Beta will guarantee it will work as intended.</p>
-		
-		<p style="color:white;position:absolute;top:160px;left:15px;font-size:20px;padding: 15px 20px;backdrop-filter:blur(10px);background:#fff2;border-radius:30px;filter:drop-shadow(1px 1px 0 #fff2) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff2) drop-shadow(1px -1px 0 #fff2);width: 800px;">Warning: <strong>iOS 26 | For The Web</strong> is <i style="font-size: 24px;"><strong>VERY</strong></i> resource intensive and may slow down or lag.<br>To mitigate this, there is an option in the Developer Panel app <img style="height: 30px; pointer-events: none;margin-bottom: -10px;" src="./sources/image/App Icons/DarkLight/AppleDeveloper.svg" alt="" draggable="false"> to enable "<strong>Performance Mode</strong>".<br><br>If you cannot make it to Developer Panel, use these buttons.</p>
-
-		<button style="color:white;border:none;cursor:pointer;position:absolute;top:330px;left:15px;font-size:20px;padding: 15px 20px;backdrop-filter:blur(10px);background:#fff2;border-radius:30px;filter:drop-shadow(1px 1px 0 #fff2) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff2) drop-shadow(1px -1px 0 #fff2);transition:0.2s ease-in-out scale;" onmouseover="this.style.scale='1.1';" onmouseout="this.style.scale='1'" onclick="window.CONNECTIONVARIABLES.debug.performanceMode.enabled=true;document.body.classList.add('performanceMode')">Enable Performance Mode</button>
-
-		<button style="color:white;border:none;cursor:pointer;position:absolute;top:400px;left:15px;font-size:20px;padding: 15px 20px;backdrop-filter:blur(10px);background:#fff2;border-radius:30px;filter:drop-shadow(1px 1px 0 #fff2) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff2) drop-shadow(1px -1px 0 #fff2);transition:0.2s ease-in-out scale;" onmouseover="this.style.scale='1.1';" onmouseout="this.style.scale='1'" onclick="window.CONNECTIONVARIABLES.debug.performanceMode.enabled=false;document.body.classList.remove('performanceMode')">Disable Performance Mode</button>
-
         <div id="debugOptions" class="hidden">
 			<div class="sides">
 				<p>Toggle<br>Layout</p>
@@ -269,7 +260,7 @@
 							</div>
 							<div class="info">
 								<div class="header">
-									<p class="title">Please read,</p>
+									<p class="title">Please read first:</p>
 									<p class="date">Now</p>
 								</div>
 								<div class="description">
@@ -352,15 +343,15 @@
 									<div class="batteryText">93%</div>
 								</div>
 								<div class="homeIcon">
-									<img src="./sources/image/App Icons/DarkLight/FaceTime.svg" alt="FaceTime">
+									<img src="./sources/image/App Icons/allVariants/FaceTime_2025.webp" alt="FaceTime">
 									<p>FaceTime</p>
 								</div>
 								<div class="homeIcon">
-									<img src="./sources/image/App Icons/DarkLight/Calendar.svg" alt="Calendar">
+									<img src="./sources/image/App Icons/DarkLight/SVGS/Calendar.svg" alt="Calendar">
 									<p>Calendar</p>
 								</div>
 								<div class="homeIcon">
-									<img src="./sources/image/App Icons/DarkLight/Photos.svg" alt="Photos">
+									<img src="./sources/image/App Icons/allVariants/Apple_Photos_2025.webp" alt="Photos">
 									<p>Photos</p>
 								</div>
 								<div class="homeIcon ios18" app='Camera'>
@@ -368,35 +359,35 @@
 									<p>Camera</p>
 								</div>
 								<div class="homeIcon">
-									<img src="./sources/image/App Icons/DarkLight/Mail.svg" alt="Mail">
+									<img src="./sources/image/App Icons/allVariants/Apple_Mail_2025.webp" alt="Mail">
 									<p>Mail</p>
 								</div>
 								<div class="homeIcon">
-									<img src="./sources/image/App Icons/DarkLight/Notes.svg" alt="Notes">
+									<img src="./sources/image/App Icons/allVariants/Apple_Notes_2025.webp" alt="Notes">
 									<p>Notes</p>
 								</div>
 								<div class="homeIcon">
-									<img src="./sources/image/App Icons/DarkLight/Reminders.svg" alt="Reminders">
-									<p>Reminders</p>
+									<img src="./sources/image/App Icons/allVariants/Apple_Home_2025.webp" alt="Home">
+									<p>Home</p>
 								</div>
 								<div class="homeIcon" app="Calculator">
-									<img src="./sources/image/App Icons/DarkLight/Calculator.svg" alt="Calculator">
+									<img src="./sources/image/App Icons/allVariants/Calculator_2025.webp" alt="Calculator">
 									<p>Calculator</p>
 								</div>
 								<div class="homeIcon">
-									<img src="./sources/image/App Icons/DarkLight/Podcasts.svg" alt="Podcasts">
+									<img src="./sources/image/App Icons/allVariants/Apple_Podcasts_2025.webp" alt="Podcasts">
 									<p>Podcasts</p>
 								</div>
 								<div class="homeIcon">
-									<img src="./sources/image/App Icons/DarkLight/AppStore.svg" alt="App Store">
+									<img src="./sources/image/App Icons/allVariants/App_Store_2025.webp" alt="App Store">
 									<p>App Store</p>
 								</div>
 								<div class="homeIcon">
-									<img src="./sources/image/App Icons/DarkLight/Maps.webp" alt="Maps">
+									<img src="./sources/image/App Icons/allVariants/Apple_Maps_2025.webp" alt="Maps">
 									<p>Maps</p>
 								</div>
 								<div class="homeIcon" app="Settings">
-									<img src="./sources/image/App Icons/DarkLight/Settings.svg" alt="Settings">
+									<img src="./sources/image/App Icons/allVariants/Settings_2025.webp" alt="Settings">
 									<p>Settings</p>
 								</div>
 							</div>
@@ -404,7 +395,7 @@
 						<div class="HS_Page">
 							<div class="HS_Icons">
 								<div class="homeIcon" app="DevPanel">
-									<img src="./sources/image/App Icons/DarkLight/AppleDeveloper.svg" alt="Developer Panel">
+									<img src="./sources/image/App Icons/DarkLight/SVGS/AppleDeveloper.svg" alt="Developer Panel">
 									<p>Developer Panel</p>
 								</div>
 								<div class="homeIcon" app="Info">
@@ -412,7 +403,7 @@
 									<p>Info</p>
 								</div>
 								<div class="homeIcon">
-									<img src="./sources/image/App Icons/DarkLight/AppleSupport.svg" alt="Support">
+									<img src="./sources/image/App Icons/DarkLight/SVGS/AppleSupport.svg" alt="Support">
 									<p>Support</p>
 								</div>
 							</div>
@@ -426,22 +417,22 @@
 								<div class="pageSelection" data-page="1"></div>
 							</div>
 							<div class="homeIcon">
-								<img src="./sources/image/App Icons/DarkLight/Phone.svg" alt="Phone">
+								<img src="./sources/image/App Icons/DarkLight/SVGS/Phone.svg" alt="Phone">
 								<p>Phone</p>
 							</div>
 						
 							<div class="homeIcon">
-								<img src="./sources/image/App Icons/DarkLight/Safari.svg" alt="Safari">
+								<img src="./sources/image/App Icons/allVariants/Safari_2025.webp" alt="Safari">
 								<p>Safari</p>
 							</div>
 	
 							<div class="homeIcon">
-								<img src="./sources/image/App Icons/DarkLight/Messages.svg" alt="Messages">
+								<img src="./sources/image/App Icons/DarkLight/SVGS/Messages.svg" alt="Messages">
 								<p>Messages</p>
 							</div>
 						
 							<div class="homeIcon ios18" app="AppleMusic">
-								<img src="./sources/image/App Icons/DarkLight/Music.svg" alt="Music">
+								<img src="./sources/image/App Icons/allVariants/Apple_Music_2025.webp" alt="Music">
 								<p>Music</p>
 							</div>
 						</div>
@@ -457,6 +448,20 @@
 				<div id="currentApp" class="noApp">
 					<iframe src="" frameborder="0"></iframe>
 				</div>
+
+				<div id="alertScreen">
+				</div>`
+
+				<div id="bootScreen" class="booting">
+
+				</div>
+
+				<script>
+					let randBootInterval = Math.floor(Math.random() * 1500) + 2000;
+					setTimeout(() => {
+						document.getElementById("bootScreen").classList.remove("booting");
+					}, randBootInterval);
+				</script>
 			</div>
 			<div id="flash"></div>
 

@@ -84,6 +84,12 @@ function handleNewVariables() {
     } else {
         if(document.body.classList.contains('performanceMode')) document.body.classList.remove('performanceMode');
     }
+    
+    if(window.CONNECTIONVARIABLES.debug.superPerformanceMode.enabled) {
+        document.body.classList.add('superPerformanceMode');
+    } else {
+        if(document.body.classList.contains('superPerformanceMode')) document.body.classList.remove('superPerformanceMode');
+    }
 }
 
 let playingAudio = {src:''};

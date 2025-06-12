@@ -37,3 +37,7 @@ body.performanceMode div.lockScreenNotification {
 body.performanceMode div.otherButtons button {
     border: 1px solid white !important;
 }
+
+body.performanceMode div#alertScreen.alertOpen div.alert {
+    border: 2px solid white;
+}

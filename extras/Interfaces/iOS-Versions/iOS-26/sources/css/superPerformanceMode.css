@@ -10,11 +10,11 @@ body.superPerformanceMode * {
 }
 
 body.superPerformanceMode #lockDate {
-    color: white;
+    color: white !important;
 }
 
 body.superPerformanceMode #lockTimeDiv {
-    color: white;
+    color: white !important;
 }
 
 body.superPerformanceMode #homeScreen.animate {
@@ -33,7 +33,7 @@ body.superPerformanceMode:not(.showInvalidIcons) div.homeIcon:not([app]) {
 }
 
 body.superPerformanceMode div.homeIcon.ios18::after {
-    display: none;
+    display: none !important;
 }
 
 body.superPerformanceMode div.homeIconShow {
@@ -58,13 +58,21 @@ body.superPerformanceMode div#lockScreen {
 }
 
 body.superPerformanceMode div#lockScreen div.lockScreenOverlay {
-    display: none;
+    display: none !important;
 }
 
 body.superPerformanceMode div#homeScreenBG {
-    background: black;
+    background: black !important;
 }
 
 body.superPerformanceMode .appCloseBar {
-    background: white;
+    background: white !important;
+}
+
+body.superPerformanceMode div#alertScreen.alertOpen {
+    background: black;
+}
+
+body.superPerformanceMode div#alertScreen.alertOpen div.alert {
+    background: #fff
 }

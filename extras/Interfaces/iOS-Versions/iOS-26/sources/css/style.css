@@ -5,6 +5,11 @@
 	font-family: 'SF Pro Display';
 }
 
+:root {
+	--iconTint: #0ff;
+	--iconTintOpacity: 0.5;
+}
+
 /*? Base styles for glow */
 /*
 !	background: #fff2;
@@ -156,7 +161,7 @@ div#homeScreen.animate {
 	}
 }
 
-body.dark div#homeScreen {
+body.dark div#homeScreenBG {
 	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)) ,url(../image/Backgrounds/dark.jpg);
 }
 
@@ -205,7 +210,16 @@ div.pageSelection.active {
 	opacity: 0.9;
 }
 
+body.clearIcons div.homeIcon,
+body.clearIcons div.homeIcon img {
+	backdrop-filter: none;
+	background: transparent;
+	filter: none;
+}
+
+
 div.homeIcon {
+	position: relative;
 	cursor: pointer;
 	display: flex;
 	flex-direction: column;
@@ -217,10 +231,22 @@ div.homeIcon {
 	width: 90px;
 	justify-self: center;
 	align-self: center;
-	  backdrop-filter: blur(10px);
-	background: #fff2;
-	filter: drop-shadow(1px 1px 0 #fff2) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff2) drop-shadow(1px -1px 0 #fff2);
 	border-radius: 25px;
+	backdrop-filter: blur(3px);
+}
+
+body.tintedIcons div.homeIcon::before {
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background: var(--iconTint);
+	opacity: var(--iconTintOpacity);
+	border-radius: 0;
+	clip-path: url(#homeIconSquircle);
+	pointer-events: none;
 }
 
 div.homeIcon p {
@@ -234,7 +260,6 @@ body.showHSLabels div.homeIcon p {
 div.homeIcon:not([app]),
 div.homeIcon:not([app]) img {
 	cursor: not-allowed;
-	filter: grayscale(1) brightness(0.5);
 }
 
 div.homeIcon:not([app]):active,
@@ -899,4 +924,167 @@ div.homeIcon.ios18::after {
 	border-radius: 30px;
 	filter: drop-shadow(1px 1px 0 #fff2) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff2) drop-shadow(1px -1px 0 #fff2);
 	backdrop-filter: blur(10px);
+}
+
+div#alertScreen {
+	pointer-events: none;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 30;
+	position: absolute;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: transparent;
+	transition: 0.2s background ease-in-out;
+}
+
+div#alertScreen.alertOpen {
+	pointer-events: all;
+	background: #0005;
+}
+
+div#alertScreen div.alert {
+	max-width: 330px;
+	border-radius: 30px;
+	padding: 10px;
+	padding-top: 30px;
+	background: #fff9;
+	filter: drop-shadow(1px 1px 0 #fff9) drop-shadow(-1px -1px 0 #fffb) drop-shadow(-1px 1px 0 #fff9) drop-shadow(1px -1px 0 #fff9);
+	backdrop-filter: blur(10px);
+	padding-bottom: 15px;
+}
+
+div#alertScreen div.alert div.text {
+	display: flex;
+	flex-direction: column;
+	text-align: c;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	padding: 0 15px;
+}
+
+div#alertScreen div.alert h1 {
+	width: 100%;
+	font-size: 24px;
+	margin-bottom: 10px;
+	font-weight: 900;
+}
+
+div#alertScreen div.alert p {
+	width: 100%;
+	font-size: 20px;
+	margin-bottom: 20px;
+}
+
+
+div#alertScreen div.horiButtons {
+	display: flex;
+	flex-direction: row;
+}
+
+div#alertScreen div.horiButtons button {
+	border: none;
+	padding: 10px 0px;
+	border-radius: 999px;
+	margin: 0 5px;
+	width: auto;
+	flex: 1 1 auto;
+}
+
+div#alertScreen div.vertButtons {
+	display: flex;
+	flex-direction: column;
+}
+
+div#alertScreen div.vertButtons button {
+	border: none;
+	border-radius: 999px;
+	width: 100%;
+	border: none;
+	padding: 10px 20px;
+	border-radius: 999px;
+	margin-bottom: 5px;
+}
+
+div#alertScreen div.vertButtons button:last-of-type {
+	margin-bottom: 0;
+}
+
+div#alertScreen button {
+	cursor: pointer;
+	font-size: 24px;
+}
+
+div#alertScreen button.alert_highlight {
+	font-weight: 900;
+	color: white;
+	background: rgb(42, 101, 211);
+}
+
+div#alertScreen button.alert_danger {
+	color: red;
+	background: #0002;
+}
+
+div#alertScreen button.alert_normal {
+	color: black;
+	background: #0001;
+}
+
+div#bootScreen { 
+	pointer-events: none;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 900;
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-size: cover;
+	transition: 0.2s background ease-in-out;
+}
+
+div#bootScreen.black {
+	background: black;
+}
+
+div#bootScreen.booting {
+	background: url(../image/boot/appleLogo.jpeg) black;
+	background-size: contain;
+}
+
+div#bootScreen.charging {
+	background: url(../image/boot/charging.jpeg) black;
+	background-size: contain;
+}
+
+div#bootScreen.criticalPower {
+	background: url(../image/boot/criticalPower.jpeg) black;
+	background-size: contain;
+}
+
+div#bootScreen.deadPhone {
+	background: url(../image/boot/deadPhone.jpeg) black;
+	background-size: contain;
+}
+
+div#bootScreen.recoveryMode {
+	background: url(../image/boot/recoveryMode.jpeg) black;
+	background-size: contain;
+}
+
+div#bootScreen.black,
+div#bootScreen.booting,
+div#bootScreen.charging, 
+div#bootScreen.criticalPower, 
+div#bootScreen.deadPhone,
+div#bootScreen.recoveryMode {
+	pointer-events: all;
 }

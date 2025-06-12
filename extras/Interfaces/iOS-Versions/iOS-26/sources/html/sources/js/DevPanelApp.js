@@ -152,6 +152,51 @@ const settingsTable = {
             {
                 title: "Home Screen"
             },
+            {  
+                name: "Enable Clear Icons",
+                id: "clearIcons",
+                data: {
+                    enabled: false
+                },
+                icon: {
+                    color: 'orange',
+                    glyph: 'app'
+                },
+                right: {
+                    type: 'switch',
+                    toggleData: 'enabled'
+                }
+            },
+            {  
+                name: "Enable Tinted Icons",
+                id: "tintedIcons",
+                data: {
+                    enabled: false
+                },
+                icon: {
+                    color: 'red',
+                    glyph: 'eyedropper.full'
+                },
+                right: {
+                    type: 'switch',
+                    toggleData: 'enabled'
+                }
+            },,
+            {  
+                name: "Icon Tint",
+                id: "iconTint",
+                icon: {
+                    color: 'rainbow',
+                    glyph: 'eyedropper.full'
+                },
+                right: {
+                    type: 'colorpicker'
+                }
+            },
+            {
+                id: "iconTint_slider",
+                type: 'slider'
+            },
             {
                 name: "Show Labels",
                 id: "showIconLabels",
@@ -282,44 +327,47 @@ function loadSettings(table, outputdiv) {
                 settingDiv.appendChild(circle);
 
                 const debugInput = document.createElement('input');
-                debugInput.style.opacity = '0.5';
-                debugInput.style.position = 'absolute';
-                debugInput.style.bottom = '-20px';
                 debugInput.type = 'range';
-                debugInput.id = 'asuh'
-
-                
-                setTimeout(() => { 
-                    sliderFill.style.width = CONNECTIONVARIABLES.battery.level + '%'; 
-                    circle.style.left = CONNECTIONVARIABLES.battery.level/100*370+15 + 'px';
-                    debugInput.value = CONNECTIONVARIABLES.battery.level;
-
-                    sliderFill.style.background = '#27cd41';
-                    if(Math.round(CONNECTIONVARIABLES.battery.level) <= 10) {
-                        sliderFill.style.background = '#eb3137';
-                    } else if(Math.round(CONNECTIONVARIABLES.battery.level) <= 20) {
-                        sliderFill.style.background = '#fecd0b';
-                    } else {
-                        sliderFill.style.background = '#27cd41';
-                    }
-                }, 240);
+                debugInput.style.display = 'none';
 
                 let callback = () => {};
 
-                switch(setting.id) {
-                    case 'battery_level_slider':
-                        callback = (n) => {
-                            window.CONNECTIONVARIABLES.battery.level = Math.round(parseInt(n));
-                        }
-                        break;
-                    default:
-                        break;
-                }
-
-                dragElement(circle, sliderFill, debugInput, callback, setting.id);
-
                 categoryDiv.appendChild(settingDiv);
                 settingDiv.appendChild(debugInput);
+
+                setTimeout(() => { 
+                    switch(setting.id) {
+                        case 'battery_level_slider':
+                            sliderFill.style.width = CONNECTIONVARIABLES.battery.level + '%'; 
+                            circle.style.left = CONNECTIONVARIABLES.battery.level/100*(settingDiv.offsetWidth-75)+15 + 'px';
+                            debugInput.value = CONNECTIONVARIABLES.battery.level;
+                            sliderFill.style.background = '#27cd41';
+                            if(Math.round(CONNECTIONVARIABLES.battery.level) <= 10) {
+                                sliderFill.style.background = '#eb3137';
+                            } else if(Math.round(CONNECTIONVARIABLES.battery.level) <= 20) {
+                                sliderFill.style.background = '#fecd0b';
+                            } else {
+                                sliderFill.style.background = '#27cd41';
+                            }
+                            callback = (n) => {
+                                window.CONNECTIONVARIABLES.battery.level = Math.round(parseInt(n));
+                            }
+                            break;
+                        case 'iconTint_slider':
+                            sliderFill.style.width = CONNECTIONVARIABLES.debug.iconTintOpacity*100 + '%'; 
+                            debugInput.value = CONNECTIONVARIABLES.debug.iconTintOpacity;
+                            circle.style.left = CONNECTIONVARIABLES.debug.iconTintOpacity*(settingDiv.offsetWidth-75)+15 + 'px';
+                            callback = (n) => {
+                                circle.innerText = Math.round(parseInt(n)) + '%';
+                                window.CONNECTIONVARIABLES.debug.iconTintOpacity = Math.round(parseInt(n))/100;
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+
+                    dragElement(circle, sliderFill, debugInput, callback, setting.id, settingDiv.offsetWidth);
+                }, 120);
 
                 return;
             }
@@ -402,7 +450,7 @@ function loadSettings(table, outputdiv) {
                         categoryInner.classList.add('open');
                     });
                     
-                } else if (setting.right.type = 'button') {
+                } else if (setting.right.type === 'button') {
                     const rightDiv = document.createElement("div");
                     rightDiv.className = "rightSide";
 
@@ -411,6 +459,32 @@ function loadSettings(table, outputdiv) {
                     button.className = "settingButton";
                     if(setting.right.text) button.innerText = `${setting.right.text}`;
                     rightDiv.appendChild(button);
+                    textAndMore.appendChild(rightDiv);
+
+                    settingDiv.addEventListener('click', () => {
+                        categoryInner.classList.add('open');
+                    });
+                } else if (setting.right.type === 'colorpicker') {
+                    const rightDiv = document.createElement("div");
+                    rightDiv.className = "rightSide";
+
+                    const picker = document.createElement("input");
+                    picker.type = 'color';
+    
+                    setTimeout(() => { 
+                        if(CONNECTIONVARIABLES.debug.iconTint) {
+                            picker.value = CONNECTIONVARIABLES.debug.iconTint;
+                        }
+                    }, 250);
+
+                    if(setting.id == 'iconTint') {
+                        picker.onchange = (e) => {
+                            CONNECTIONVARIABLES.debug.iconTint = picker.value;
+                            document.dispatchEvent(new CustomEvent('SyncVariables', { detail: window.CONNECTIONVARIABLES }))
+                        }
+                    }
+
+                    rightDiv.appendChild(picker);
                     textAndMore.appendChild(rightDiv);
 
                     settingDiv.addEventListener('click', () => {
@@ -466,7 +540,9 @@ function settingToggle(slider, setting, toggleData) {
 
 //! Slider Limits 0 - 370px (margin-left)
 
-function dragElement(elmnt, barFill, sliderInput, callback, id) {
+function dragElement(elmnt, barFill, sliderInput, callback, id, sliderLimit) {
+    console.log(sliderLimit-60)
+
     var pos1 = 0,
         pos3 = 0;
     elmnt.onmousedown = dragMouseDown;
@@ -484,9 +560,9 @@ function dragElement(elmnt, barFill, sliderInput, callback, id) {
         pos3 = e.clientX;
         elmnt.style.left = elmnt.offsetLeft - pos1 + "px";
         if(parseInt(elmnt.style.left.split('px')[0]) <= 15) elmnt.style.left = '15px';
-        if(parseInt(elmnt.style.left.split('px')[0]) >= 385) elmnt.style.left = '385px';
+        if(parseInt(elmnt.style.left.split('px')[0]) >= (sliderLimit-60)) elmnt.style.left = `${(sliderLimit - 60)}px`;
         
-        let percentage = ((parseInt(elmnt.style.left.split('px')[0])-15)/370)*100;
+        let percentage = ((parseInt(elmnt.style.left.split('px')[0])-15)/(sliderLimit-75))*100;
         
         if(id == 'battery_level_slider') {
             if(Math.round(percentage) <= 10) {

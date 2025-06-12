@@ -18,6 +18,16 @@ setInterval(() => {
     }
 }, 60_000)
 
+window.mobileCheck = function() {
+  let check = false;
+  (function(a){if(/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino/i.test(a)||/1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0,4))) check = true;})(navigator.userAgent||navigator.vendor||window.opera);
+  return check;
+};
+
+let mobileBrowser = window.mobileCheck();
+
+const firefox = window.navigator.userAgent.includes('Firefox');
+
 
 document.addEventListener('keyup', (key) => {
     if(key.key == 'Escape') closeApp();
@@ -198,16 +208,31 @@ function closeApp() {
 
 
 function switchAppearance() {
-    if(!window.CONNECTIONVARIABLES.settings.display_brightness_appearance) return;
+    //if(!window.CONNECTIONVARIABLES.settings.display_brightness_appearance) return;
+    if(window.CONNECTIONVARIABLES.debug.iconTint) {
+        document.documentElement.style.setProperty('--iconTint', window.CONNECTIONVARIABLES.debug.iconTint);
+    }
 
+    if(window.CONNECTIONVARIABLES.debug.iconTintOpacity) {
+        document.documentElement.style.setProperty('--iconTintOpacity', window.CONNECTIONVARIABLES.debug.iconTintOpacity);
+    }
+
+    let allVariantIcons = [];
     let darkVariantIcons = [];
 
     document.querySelectorAll('div.homeIcon > img').forEach((el) => {
         if(el.src.includes('DarkLight/')) {
-            console.log(`${el.alt} has a dark variant.`);
+            //console.log(`${el.alt} has a dark variant.`);
             darkVariantIcons.push(el);
         } else {
-            console.log(`${el.alt} does not have a dark variant.`);
+            //console.log(`${el.alt} does not have a dark variant.`);
+        }
+    });
+
+    document.querySelectorAll('div.homeIcon > img').forEach((el) => {
+        if(el.src.includes('allVariants/')) {
+            //console.log(`${el.alt} has all icon variants.`);
+            allVariantIcons.push(el);
         }
     });
 
@@ -217,12 +242,43 @@ function switchAppearance() {
         darkVariantIcons.forEach((icon) => {
             icon.src = icon.src.replace('DarkLight/', 'DarkLight/DarkMode/').replace('DarkMode/DarkMode/', 'DarkMode/');
         });
+        allVariantIcons.forEach((icon) => {
+            icon.src = icon.src.replace('allVariants/', 'allVariants/Dark/').replace('/Dark/Dark/','/Dark/').replace('/Clear', '');
+        });
     } else {
         document.body.classList.remove('dark');
 
         darkVariantIcons.forEach((icon) => {
             icon.src = icon.src.replace('DarkLight/DarkMode/', 'DarkLight/');
         });
+        allVariantIcons.forEach((icon) => {
+            icon.src = icon.src.replace('allVariants/Dark/', 'allVariants/');
+        });
+    }
+
+    if(window.CONNECTIONVARIABLES.debug.clearIcons.enabled == true) {
+        document.body.classList.add('clearIcons');
+
+        allVariantIcons.forEach((icon) => {
+            if(document.body.classList.contains('dark')) icon.src = icon.src.replace('allVariants/Dark/', 'allVariants/Clear/').replace('/Clear/Clear/','/Clear/');
+            else icon.src = icon.src.replace('allVariants/', 'allVariants/Clear/').replace('/Clear/Clear/','/Clear/');
+        });
+    } else {
+        if(document.body.classList.contains('dark')) {
+            allVariantIcons.forEach((icon) => {
+                icon.src = icon.src.replace('allVariants/Clear/', 'allVariants/Dark').replace('/Dark/Dark/','/Dark/');
+            });
+        } else {
+            allVariantIcons.forEach((icon) => {
+                icon.src = icon.src.replace('allVariants/Clear/', 'allVariants/');
+            });
+        }
+    }
+
+    if(window.CONNECTIONVARIABLES.debug.tintedIcons.enabled == true) {
+        document.body.classList.add('tintedIcons');
+    } else {
+        document.body.classList.remove('tintedIcons')
     }
 }
 
@@ -408,7 +464,6 @@ function changeBattery(percent) {
 }
 
 document.addEventListener('fullscreenchange', (e) => {
-    console.log(window.fullScreen)
     if(window.fullScreen == false && window.innerWidth > window.innerHeight) document.body.classList.remove('fullscreen');
 })
 
@@ -426,3 +481,134 @@ function unlockPhone() {
     document.getElementById('homeScreen').classList.remove('animate');
     setTimeout(() => { document.getElementById('homeScreen').classList.add('animate'); }, 50);
 }
+
+class Alert {
+    constructor(header='Header', description='Description', buttonsList=[
+        {text:'Close',type:'highlight',function:'close'},
+        {text:'Open Link',type:'highlight',link:'https://www.youtube.com',mobileLink:'https://m.youtube.com'},
+    ], buttonsType=1) {
+        this.header = header;
+        this.description = description;
+        this.buttonsList = buttonsList;
+        this.buttonsType = buttonsType;
+        
+        this.buildAlert();
+    }
+    
+    buildAlert() {
+        const alert = document.createElement('div');
+        alert.classList.add('alert');
+        alert.innerHTML = `<div class="text">
+							<h1>${this.header}</h1>
+							<p>${this.description}</p>
+						</div>`;
+
+        let buttonDiv;
+
+        if(this.buttonsType == 0) {
+            //! Horizontal Buttons
+            buttonDiv = document.createElement('div');
+            buttonDiv.classList.add('horiButtons');
+        } else {
+            //! Vertical Buttons
+            buttonDiv = document.createElement('div');
+            buttonDiv.classList.add('vertButtons');
+        }
+
+        if(this.buttonsList.length <= 0) return;
+        else {
+            this.buttonsList.forEach((btn) => {
+                const button = document.createElement('button');
+                button.classList.add('alert_'+btn.type);
+                button.innerText = btn.text;
+
+                if(btn.function == 'close') {
+                    button.addEventListener('click', ()=>{alert.remove();document.getElementById('alertScreen').classList.remove('alertOpen')});
+                } else if(btn.function) {
+                    if(typeof btn.function != 'function') return alert.remove();
+                    button.addEventListener('click', ()=>{btn.function()});
+                } else if(btn.link) {
+                    if(mobileBrowser) {
+                        button.addEventListener('click', ()=>{
+                            window.open(btn.mobileLink, '_blank');
+                        });
+                    } else {
+                        button.addEventListener('click', ()=>{
+                            window.open(btn.link, '_blank');
+                        });
+                    }
+                }
+
+                buttonDiv.appendChild(button)
+            });
+        }
+
+        alert.appendChild(buttonDiv);
+        document.getElementById('alertScreen').classList.add('alertOpen');
+        document.getElementById('alertScreen').appendChild(alert);
+    }
+}
+
+if(firefox == false) {
+    new Alert(
+        'Browser Detection',
+        'We detected you are running a browser this site is not designed for. For the best experience, switch to Firefox or Firefox Nightly.',
+        [
+            {
+                text: 'Get Firefox',
+                type: 'highlight',
+                link:'https://www.mozilla.org/en-US/firefox/new/',
+                mobileLink: 'https://www.mozilla.org/en-US/firefox/browsers/mobile/android'
+            },
+
+            {
+                text: 'Get Firefox Nightly',
+                type: 'highlight',
+                link: 'https://www.mozilla.org/en-US/firefox/channel/desktop/',
+                mobileLink: 'https://www.mozilla.org/en-US/firefox/channel/android/'
+            },
+
+            {
+                text: 'Proceed Anyway',
+                type: 'normal',
+                function: 'close'
+            }
+], 1)
+}
+
+
+let batteryInterval = setInterval(() => {
+    CONNECTIONVARIABLES.battery.level -= 1;
+    changeBattery(CONNECTIONVARIABLES.battery.level)
+
+    if(CONNECTIONVARIABLES.battery.level == 20) { 
+        new Alert(
+            'Low Battery',
+            '20% battery remaining.',
+            [
+                {
+                    text: 'Low Power Mode',
+                    type: 'highlight',
+                    function: 'close'
+                },
+                {
+                    text: 'Close',
+                    type: 'normal',
+                    function: 'close'
+                }
+        ], 1)
+    }
+
+    if(CONNECTIONVARIABLES.battery.level == 0) { 
+        clearInterval(batteryInterval);
+        document.getElementById("bootScreen").classList.add("black");
+        setTimeout(()=>{
+            document.getElementById("bootScreen").classList.remove("black");
+            document.getElementById("bootScreen").classList.add("deadPhone");
+
+            setTimeout(()=>{
+                document.getElementById("ios26").classList.add("locked");
+            }, 1500)
+        }, 1500)
+    }
+}, 10000)
