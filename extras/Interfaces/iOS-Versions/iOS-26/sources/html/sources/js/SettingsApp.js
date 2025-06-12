@@ -43,6 +43,67 @@ const settingsTable = {
                                     toggleData: 'enabled'
                                 }
                             }
+                        ],
+                        [
+                            {  
+                                name: "Ask to Join Networks",
+                                id: "wifi_setting_asktojoin",
+                                right: {
+                                    text: "Notify",
+                                    type: 'arrow'
+                                },
+                                innerSettings: {
+                                    categories: [
+                                        [
+                                            {
+                                                name: 'Off'
+                                            },
+                                            {
+                                                name: 'Notify',
+                                                checked: true
+                                            },
+                                            {
+                                                name: 'Ask'
+                                            },
+                                            {
+                                                subtitle: 'Known netowrks will be joined automatically. If no known networks are available, you will be notified of available networks.'
+                                            }
+                                        ]
+                                    ]
+                                }
+                            },
+                            {
+                                subtitle: 'Known netowrks will be joined automatically. If no known networks are available, you will be notified of available networks.'
+                            }
+                        ],
+                        [
+                            {  
+                                name: "Auto-Join Hotspot",
+                                id: "wifi_setting_joinhotspot",
+                                right: {
+                                    text: "Automatic",
+                                    type: 'arrow'
+                                },
+                                innerSettings: {
+                                    categories: [
+                                        [
+                                            {
+                                                name: 'Never'
+                                            },
+                                            {
+                                                name: 'Ask to Join'
+                                            },
+                                            {
+                                                name: 'Automatic',
+                                                checked: true
+                                            }
+                                        ]
+                                    ]
+                                }
+                            },
+                            {
+                                subtitle: 'Allow this device to automatically discover nearby personal hotspots when no Wi-Fi netowrk is available.'
+                            }
                         ]
                     ]
                 }
@@ -202,6 +263,180 @@ const settingsTable = {
                                 },
                                 right: {
                                     type: 'arrow'
+                                },
+                                innerSettings: {
+                                    categories: [
+                                        [
+                                            {  
+                                                name: "Name",
+                                                id: "general_about_name",
+                                                right: {
+                                                    text: "ljharnish's iPhone",
+                                                    type: 'arrow'
+                                                },
+                                                innerSettings: {
+                                                    categories: [
+                                                        [
+                                                            {
+                                                                name: "ljharnish's iPhone (unchangable yet)",
+                                                            }
+                                                        ]
+                                                    ]
+                                                }
+                                            },
+                                            {  
+                                                name: "iOS Version",
+                                                id: "general_about_version",
+                                                right: {
+                                                    text: "26.0",
+                                                    type: 'arrow'
+                                                },
+                                                innerSettings: {
+                                                    categories: [
+                                                        [
+                                                            {
+                                                                title: "iOS Version"
+                                                            },
+                                                            {
+                                                                id: "general_about_version_big",
+                                                                type: 'iosVersionBig'
+                                                            }
+                                                        ]
+                                                    ]
+                                                }
+                                            },
+                                            {  
+                                                name: "Model Name",
+                                                id: "general_about_model_name",
+                                                right: {
+                                                    text: "iPhone 16 Pro Max",
+                                                },
+                                            },
+                                            {  
+                                                name: "Model Number",
+                                                id: "general_about_model_number",
+                                                right: {
+                                                    text: "A3084",
+                                                },
+                                            },
+                                            {  
+                                                name: "Serial Number",
+                                                id: "general_about_serial",
+                                                right: {
+                                                    text: "1234567890"
+                                                },
+                                            }
+                                        ],
+                                        [
+                                            {  
+                                                name: "Songs",
+                                                id: "general_about_songs",
+                                                right: {
+                                                    text: "0"
+                                                },
+                                            },
+                                            {  
+                                                name: "Videos",
+                                                id: "general_about_videos",
+                                                right: {
+                                                    text: "0"
+                                                },
+                                            },
+                                            {  
+                                                name: "Photos",
+                                                id: "general_about_photos",
+                                                right: {
+                                                    text: "0"
+                                                },
+                                            },
+                                            {  
+                                                name: "Applications",
+                                                id: "general_about_apps",
+                                                right: {
+                                                    text: "19"
+                                                },
+                                            },
+                                            {  
+                                                name: "Capacity",
+                                                id: "general_about_capacity",
+                                                right: {
+                                                    text: "1 TB"
+                                                },
+                                            },
+                                            {  
+                                                name: "Available",
+                                                id: "general_about_capacity_free",
+                                                right: {
+                                                    text: "869.01 GB"
+                                                },
+                                            }
+                                        ],
+                                        [
+                                            {  
+                                                name: "Wi-Fi Address",
+                                                id: "general_about_wifi_mac",
+                                                right: {
+                                                    text: "01:23:45:67:89:10"
+                                                },
+                                            },
+                                            {  
+                                                name: "Bluetooth",
+                                                id: "general_about_bluetooth_mac",
+                                                right: {
+                                                    text: "01:23:45:67:89:10"
+                                                },
+                                            },
+                                            {  
+                                                name: "SEID",
+                                                id: "general_about_seid",
+                                                right: {
+                                                    type: 'arrow'
+                                                },
+                                                innerSettings: {
+                                                    categories: [
+                                                        [
+                                                            {
+                                                                name: "000000000000000000000000000000000000000000000000",
+                                                                id: "general_about_seid_number",
+                                                            }
+                                                        ]
+                                                    ]
+                                                }
+                                            }
+                                        ],
+                                        [
+                                            {  
+                                                name: "Cerificate Trust Settings",
+                                                id: "general_about_certificate_trust",
+                                                right: {
+                                                    type: 'arrow'
+                                                },
+                                                innerSettings: {
+                                                    categories: [
+                                                        [
+                                                            {  
+                                                                name: "Trust Store Version",
+                                                                id: "general_about_certificate_trust_store_version",
+                                                                right: {
+                                                                    text: "2025041600"
+                                                                },
+                                                            },
+                                                            {  
+                                                                name: "Trust Asset Version",
+                                                                id: "general_about_certificate_trust_store_version",
+                                                                right: {
+                                                                    text: "1006"
+                                                                },
+                                                            },
+                                                            {  
+                                                                subtitle: '<a href="https://support.apple.com/en-us/103272" target="_blank">Learn more about trusted certificates</a>'
+                                                            },
+                                                        ]
+                                                    ]
+                                                }
+                                            }
+                                        ]
+                                    ]
                                 }
                             },
                             {  
@@ -213,6 +448,70 @@ const settingsTable = {
                                 },
                                 right: {
                                     type: 'arrow'
+                                },
+                                innerSettings: {
+                                    categories: [
+                                        [
+                                            {  
+                                                name: "Automatic Updates",
+                                                id: "general_about_update_automatic",
+                                                right: {
+                                                    text: "On",
+                                                    type: 'arrow'
+                                                },
+                                                innerSettings: {
+                                                    categories: [
+                                                        [
+                                                            {
+                                                                name: "Automatically Install",
+                                                                id: "general_about_update_automatic_enabled",
+                                                                data: {
+                                                                    enabled: false,
+                                                                },
+                                                                right: {
+                                                                    type: 'switch',
+                                                                    toggleData: 'enabled'
+                                                                }
+                                                            },
+                                                            {
+                                                                subtitle: 'Automatically download and install iOS software updates and system files when this iPhone is connected to Wi-Fi, charging, and locked.'
+                                                            }
+                                                        ]
+                                                    ]
+                                                }
+                                            },
+                                            {  
+                                                name: "Beta Updates",
+                                                id: "general_about_update_beta",
+                                                right: {
+                                                    text: "iOS 26 Developer Beta",
+                                                    type: 'arrow'
+                                                },
+                                                innerSettings: {
+                                                    categories: [
+                                                        [
+                                                            {
+                                                                name: "Off"
+                                                            },
+                                                            {
+                                                                name: "iOS 26 Developer Beta",
+                                                                checked: true
+                                                            },
+                                                            {
+                                                                subtitle: 'Recieve beta updates to this iPhone to test-drive pre-release versions of iOS and provide feedback to help make Apple software even better.<br><a href="https://beta.apple.com" target="_blank">Learn More...</a>'
+                                                            }
+                                                        ]
+                                                    ]
+                                                }
+                                            },
+                                            {
+                                                title: "iOS is up to date."
+                                            },
+                                            {
+                                                subtitle: "iOS 26.0"
+                                            }
+                                        ]
+                                    ]
                                 }
                             },
                             {  
@@ -252,6 +551,25 @@ const settingsTable = {
                                 },
                                 right: {
                                     type: 'arrow'
+                                },
+                                innerSettings: {
+                                    categories: [
+                                        [
+                                            {
+                                                name: "Recieving Off"
+                                            },
+                                            {
+                                                name: "Contacts Only",
+                                                checked: true
+                                            },
+                                            {
+                                                name: "Everyone for 10 Minutes"
+                                            },
+                                            {
+                                                subtitle: 'AirDrop lets you share instantly with people nearby. You can be discoverable in AirDrop to recieve from everyone or only people in your contacts. <a href="https://www.apple.com/privacy" target="_blank">About AirDrop & Privacy...</a>'
+                                            }
+                                        ]
+                                    ]
                                 }
                             },
                             {  
@@ -667,7 +985,7 @@ const settingsTable = {
                         ],
                         [
                             {
-                                title: "SPEECH"
+                                title: "Speech"
                             },
                             {  
                                 name: "Live Speech",
@@ -925,7 +1243,7 @@ const settingsTable = {
                     categories: [
                         [
                             {
-                                title: 'appearance'
+                                title: 'Appearance'
                             },
                             {
                                 id: 'display_brightness_appearance',
@@ -1034,15 +1352,6 @@ const settingsTable = {
                 },
                 right: {
                     type: 'arrow'
-                },
-                innerSettings: {
-                    categories: [
-                        [
-                            {
-                                type: 'wallpaper_customization'
-                            }
-                        ],
-                    ]
                 }
             }
         ],
@@ -1136,9 +1445,6 @@ const settingsTable = {
                     color: 'grey',
                     glyph: 'camera.fill'
                 },
-                right: {
-                    type: 'arrow'
-                }
             },
             {  
                 name: "Code by ljharnish",
@@ -1147,20 +1453,14 @@ const settingsTable = {
                     color: 'grey',
                     glyph: 'command'
                 },
-                right: {
-                    type: 'arrow'
-                }
             },
             {  
                 name: "Thanks for coming!",
 
                 icon: {
-                    color: 'grey',
+                    color: 'pink',
                     glyph: 'heart.circle.fill'
                 },
-                right: {
-                    type: 'arrow'
-                }
             }
         ]
     ]
@@ -1184,7 +1484,7 @@ function loadSettings(table, outputdiv) {
             if(setting.subtitle) {
                 const subtitle = document.createElement('p');
                 subtitle.className = 'subtitle';
-                subtitle.innerText = setting.subtitle;
+                subtitle.innerHTML = setting.subtitle;
                 categoryDiv.appendChild(subtitle);
                 return;
             }
@@ -1310,6 +1610,16 @@ function loadSettings(table, outputdiv) {
             } else if(setting.type == 'wallpaper_customization') {
 
                 return;
+            } else if(setting.type == 'iosVersionBig') {
+                const iosVersion = document.createElement('div');
+                iosVersion.classList.add('iosVersion');
+
+                iosVersion.innerHTML = '<strong>iOS 26.0 (23A5260n)</strong><br><p>iOS beta gives you an early preview of upcoming apps, features, and technologies. Please back up your iPhone before you install the beta.<br><br>For more information, please visit one of the following programs:<br><ul><li>Apple Beta Software Program at <a href="https://beta.apple.com" target="_blank">beta.apple.com</a></li><li>Apple Developer Program at <a href="https://developer.apple.com" target="_blank">beta.apple.com</a></li></ul>'
+
+                settingDiv.appendChild(iosVersion);
+                categoryDiv.appendChild(settingDiv);
+
+                return;
             }
             
             if(setting.icon) {
@@ -1387,8 +1697,12 @@ function loadSettings(table, outputdiv) {
                             handleNewCategory(setting, categoryInner);
                         }
                     });
+
+                    if(!setting.innerSettings) {
+                        settingDiv.classList.add('unfinished');
+                    }
                     
-                } else if (setting.right.type = 'button') {
+                } else if (setting.right.type === 'button') {
                     const rightDiv = document.createElement("div");
                     rightDiv.className = "rightSide";
 
@@ -1402,7 +1716,29 @@ function loadSettings(table, outputdiv) {
                     settingDiv.addEventListener('click', () => {
                         categoryInner.classList.add('open');
                     });
+                } else if(!setting.right.type && setting.right.text) {
+                    const rightDiv = document.createElement("div");
+                    rightDiv.className = "rightSide";
+
+                    const text = document.createElement("div");
+                    text.className = "textArrow";
+                    if(setting.right.text) text.innerHTML = `<p>${setting.right.text}</p>`;
+
+                    rightDiv.appendChild(text);
+                    textAndMore.appendChild(rightDiv);
                 }
+            } else if(!setting.right && setting.checked) {
+                const rightDiv = document.createElement("div");
+                rightDiv.className = "rightSide";
+
+                const textArrow = document.createElement("div");
+                textArrow.className = "textArrow";
+                const arrowIcon = document.createElement("sf-symbol");
+                arrowIcon.setAttribute("glyph", "checkmark");
+                arrowIcon.style.filter = 'invert(45%) sepia(90%) saturate(5221%) hue-rotate(199deg) brightness(101%) contrast(108%)';
+                textArrow.appendChild(arrowIcon);
+                rightDiv.appendChild(textArrow);
+                textAndMore.appendChild(rightDiv);
             }
 
             if(setting.disabled) {
@@ -1491,6 +1827,8 @@ function handleNewCategory(setting, categoryInner) {
     categoryInner.classList.add('categoryInner');
     categoryInner.id = 'category-' + setting.id;
 
+    categoryInner.replaceChildren(); //? Bug fix for closing and opening categories.
+
     const titleBar = document.createElement('div');
     titleBar.classList.add('scrollTitleCategory');
 
@@ -1545,7 +1883,6 @@ function handleNewCategory(setting, categoryInner) {
     console.log(setting.innerSettings);
 
     loadSettings(setting.innerSettings, innerElements);
-
     categoryInner.appendChild(innerElements);
     document.body.appendChild(categoryInner);
     appSpecificFunction();

@@ -22,11 +22,7 @@
 		<link rel="manifest" href="/site.webmanifest">
 
 		<script>
-		if ("paintWorklet" in CSS) {
-			CSS.paintWorklet.addModule(
-			"https://www.unpkg.com/css-houdini-squircle/squircle.min.js"
-			);
-		}
+			history.scrollRestoration = "manual"
 		</script>
 	</head>
 
@@ -264,7 +260,7 @@
 									<p class="date">Now</p>
 								</div>
 								<div class="description">
-									Performance Mode can be enabled below, check out the "Info" app for more details.
+									Performance Mode can be enabled with the buttons below, check out the "Info" app for more details.
 								</div>
 							</div>
 						</div>
@@ -274,7 +270,7 @@
 							</div>
 							<div class="info">
 								<div class="header">
-									<p class="title">What do the Buttons do?</p>
+									<p class="title">What <i>are</i> the buttons below?</p>
 									<p class="date">Now</p>
 								</div>
 								<div class="description">
@@ -286,7 +282,7 @@
 						</div>
 						<div class="lockScreenNotification">
 							<div class="image">
-								<img src="./sources/image/ios-26-logo.png">
+								<img src="./sources/image/ios-26-logo.webp">
 							</div>
 							<div class="info">
 								<div class="header">
@@ -355,7 +351,7 @@
 									<p>Photos</p>
 								</div>
 								<div class="homeIcon ios18" app='Camera'>
-									<img src="./sources/image/App Icons/DarkLight/camera.webp" alt="Camera">
+									<img src="./sources/image/App Icons/WIP/Camera_2025.webp" alt="Camera">
 									<p>Camera</p>
 								</div>
 								<div class="homeIcon">
@@ -408,13 +404,23 @@
 								</div>
 							</div>
 						</div>
+						<div class="HS_Page">
+							<div class="HS_Icons">
+								<div class="homeIcon" app="iOS-18">
+									<img src="./sources/image/ios-18-logo.webp" alt="iOS 18">
+									<p>iOS 18</p>
+								</div>
+								<div class="homeIcon" app="iOS-26">
+									<img src="./sources/image/ios-26-logo.webp" alt="iOS 26">
+									<p>iOS 26</p>
+								</div>
+							</div>
+						</div>
 					</div>
 
 					<div id="HS_Dock">
 						<div id="HS_dockInner">
 							<div id="pageSelector">
-								<div class="pageSelection active" data-page="0"></div>
-								<div class="pageSelection" data-page="1"></div>
 							</div>
 							<div class="homeIcon">
 								<img src="./sources/image/App Icons/DarkLight/SVGS/Phone.svg" alt="Phone">
@@ -450,7 +456,7 @@
 				</div>
 
 				<div id="alertScreen">
-				</div>`
+				</div>
 
 				<div id="bootScreen" class="booting">
 

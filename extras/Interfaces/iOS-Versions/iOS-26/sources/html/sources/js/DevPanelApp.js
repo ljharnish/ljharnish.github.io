@@ -71,7 +71,31 @@ const settingsTable = {
                     type: 'switch',
                     toggleData: 'enabled'
                 }
-            }
+            },
+            {  
+                name: "Test Alert (Horizontal)",
+                icon: {
+                    color: 'orange',
+                    glyph: 'app.badge'
+                },
+                right: {
+                    type: 'button',
+                    text: 'Show Alert',
+                    onclick: "document.dispatchEvent(new CustomEvent('DebugAlert', {detail:{type:0}}))"
+                }
+            },
+            {  
+                name: "Test Alert (Vertical)",
+                icon: {
+                    color: 'orange',
+                    glyph: 'app.badge'
+                },
+                right: {
+                    type: 'button',
+                    text: 'Show Alert',
+                    onclick: "document.dispatchEvent(new CustomEvent('DebugAlert', {detail:{type:1}}))"
+                }
+            },
         ],
         [
             {
@@ -248,7 +272,6 @@ const settingsTable = {
 
 function appSpecificFunction() {
     for (const [key, value] of Object.entries(CONNECTIONVARIABLES.debug)) {
-        console.log(key)
         if(value.enabled) {
             let checkbox = document.getElementById(key + '-switch');
             let slider = checkbox.parentElement.querySelector('.appleSlider');
@@ -274,11 +297,9 @@ const settingsHolder = document.getElementById("settingsHolder");
 loadSettings(settingsTable, settingsHolder);
 
 function loadSettings(table, outputdiv) {
-    console.log("Loading settings...");
 
     table.categories.forEach(category => {
         if(category.length == 0) return; // Skip empty categories
-        console.log(category)
 
         const categoryDiv = document.createElement("div");
         categoryDiv.className = "settingsCategory";
@@ -454,11 +475,16 @@ function loadSettings(table, outputdiv) {
                     const rightDiv = document.createElement("div");
                     rightDiv.className = "rightSide";
 
+                    const buttonDiv = document.createElement('div');
+                    buttonDiv.classList.add('rightButtonDiv');
+
                     const button = document.createElement("button");
                     button.setAttribute('onclick', setting.right.onclick);
                     button.className = "settingButton";
                     if(setting.right.text) button.innerText = `${setting.right.text}`;
-                    rightDiv.appendChild(button);
+
+                    buttonDiv.appendChild(button);
+                    rightDiv.appendChild(buttonDiv);
                     textAndMore.appendChild(rightDiv);
 
                     settingDiv.addEventListener('click', () => {
@@ -508,10 +534,7 @@ function loadSettings(table, outputdiv) {
 }
 
 function setSlider(slider, set, toggleData) {
-    console.log(slider)
-
     slider.parentElement.querySelector("input").checked = set[toggleData];
-    console.log(set[toggleData])
     
     if(slider.parentElement.querySelector("input").checked) {
         slider.classList.add("active");
@@ -522,8 +545,6 @@ function setSlider(slider, set, toggleData) {
 }
 
 function settingToggle(slider, setting, toggleData) {
-    console.log("Toggling setting: " + setting.id + " to " + !slider.parentElement.querySelector("input").checked);
-
     slider.parentElement.querySelector("input").checked = !slider.parentElement.querySelector("input").checked;
 
     setting.data[toggleData] = slider.parentElement.querySelector("input").checked;
@@ -537,12 +558,7 @@ function settingToggle(slider, setting, toggleData) {
     slider.classList.remove("active");
 }
 
-
-//! Slider Limits 0 - 370px (margin-left)
-
 function dragElement(elmnt, barFill, sliderInput, callback, id, sliderLimit) {
-    console.log(sliderLimit-60)
-
     var pos1 = 0,
         pos3 = 0;
     elmnt.onmousedown = dragMouseDown;

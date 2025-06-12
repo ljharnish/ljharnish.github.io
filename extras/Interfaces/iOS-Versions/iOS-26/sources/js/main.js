@@ -1,3 +1,11 @@
+const skipBoot = 1;
+
+if(skipBoot == 1) {
+    document.getElementById('bootScreen').style.display = 'none';
+    document.getElementById('bootScreen').style.pointerEvents = 'none';
+    document.getElementById('bootScreen').style.opacity = '0';
+}
+
 document.querySelector('#HS_Pages').scrollTo(0, 0);
 
 if(window.innerHeight > window.innerWidth) {
@@ -40,18 +48,28 @@ document.querySelectorAll('img').forEach((el) => {
 });
 
 document.querySelectorAll('div.homeIcon').forEach((el) => { 
-    el.children[0].addEventListener('click', () => {
+    el.addEventListener('click', () => {
         el.classList.add('homeIconClick');
 
         let newApp = document.createElement('div');
         newApp.classList.add('homeIconShow');
         newApp.innerHTML = `<img src="${el.querySelector('img').src}" alt="">`;
-        newApp.style.top = el.offsetTop + 'px';
-        newApp.style.left = el.offsetLeft + 'px';
+        //newApp.style.top = el.offsetTop + 'px';
+        //newApp.style.left = el.offsetLeft + 'px';
     
-        el.appendChild(newApp);
+        document.getElementById('ios26').appendChild(newApp);
 
-        openNewApp('./sources/html/' + el.getAttribute('app') + 'App.html');
+        switch(el.getAttribute('app')) {
+            case 'iOS-26':
+                openNewApp('https://ljharnish.github.io/extras/Interfaces/iOS-Versions/iOS-26', 0.95);
+                break;
+            case 'iOS-18':
+                openNewApp('https://ljharnish.github.io/extras/Interfaces/iOS-Versions/iOS-18', 0.95);
+                break;
+            default:
+                openNewApp('./sources/html/' + el.getAttribute('app') + 'App.html');
+                break;
+        }
 
         setTimeout(() => {
             newApp.remove();
@@ -158,9 +176,30 @@ function iframeLoad() {
     currentApp.children[0].contentDocument.addEventListener('SyncVariables', (variables) => {
         syncVariables(variables.detail);
     });
+
+    currentApp.children[0].contentDocument.addEventListener('DebugAlert', (vars) => {
+        new Alert(
+            "Debug Alert",
+            "This is a test of <strong>iOS 26 | FTW</strong>'s Alert System.<br>If this came up, it was successful.",
+            [
+                {
+                    text: 'Close',
+                    type: 'highlight',
+                    function: 'close'
+                },
+                {
+                    text: 'Open Link',
+                    type: 'normal',
+                    link: 'https://google.com',
+                    mobileLink: 'https://google.com',
+                }
+            ],
+            vars.detail.type
+        );
+    });
 }
 
-function openNewApp(link) {
+function openNewApp(link, scale) {
     let currentApp = document.getElementById('currentApp');
     currentApp.children[0].src = link;
 
@@ -168,6 +207,8 @@ function openNewApp(link) {
 
     currentApp.children[0].addEventListener('load', iframeLoad, true);
 
+    if(scale) currentApp.children[0].style.scale = scale, currentApp.style.background = 'black';
+    else currentApp.children[0].style.scale = 1, currentApp.style.background = 'transparent';
 
     setTimeout(()=> { 
         if(currentApp.children[0].contentDocument.body.innerText.includes('Cannot GET') || currentApp.children[0].contentDocument.body.innerText.includes('404')) {
@@ -230,7 +271,7 @@ function switchAppearance() {
     });
 
     document.querySelectorAll('div.homeIcon > img').forEach((el) => {
-        if(el.src.includes('allVariants/')) {
+        if(el.src.includes('allVariants/') || el.src.includes('WIP/')) {
             //console.log(`${el.alt} has all icon variants.`);
             allVariantIcons.push(el);
         }
@@ -245,6 +286,9 @@ function switchAppearance() {
         allVariantIcons.forEach((icon) => {
             icon.src = icon.src.replace('allVariants/', 'allVariants/Dark/').replace('/Dark/Dark/','/Dark/').replace('/Clear', '');
         });
+        allVariantIcons.forEach((icon) => {
+            icon.src = icon.src.replace('WIP/', 'WIP/Dark/').replace('/Dark/Dark/','/Dark/').replace('/Clear', '');
+        });
     } else {
         document.body.classList.remove('dark');
 
@@ -253,6 +297,9 @@ function switchAppearance() {
         });
         allVariantIcons.forEach((icon) => {
             icon.src = icon.src.replace('allVariants/Dark/', 'allVariants/');
+        });
+        allVariantIcons.forEach((icon) => {
+            icon.src = icon.src.replace('WIP/Dark/', 'WIP/');
         });
     }
 
@@ -263,14 +310,25 @@ function switchAppearance() {
             if(document.body.classList.contains('dark')) icon.src = icon.src.replace('allVariants/Dark/', 'allVariants/Clear/').replace('/Clear/Clear/','/Clear/');
             else icon.src = icon.src.replace('allVariants/', 'allVariants/Clear/').replace('/Clear/Clear/','/Clear/');
         });
+
+        allVariantIcons.forEach((icon) => {
+            if(document.body.classList.contains('dark')) icon.src = icon.src.replace('WIP/Dark/', 'WIP/Clear/').replace('/Clear/Clear/','/Clear/');
+            else icon.src = icon.src.replace('WIP/', 'WIP/Clear/').replace('/Clear/Clear/','/Clear/');
+        });
     } else {
         if(document.body.classList.contains('dark')) {
             allVariantIcons.forEach((icon) => {
                 icon.src = icon.src.replace('allVariants/Clear/', 'allVariants/Dark').replace('/Dark/Dark/','/Dark/');
             });
+            allVariantIcons.forEach((icon) => {
+                icon.src = icon.src.replace('WIP/Clear/', 'WIP/Dark').replace('/Dark/Dark/','/Dark/');
+            });
         } else {
             allVariantIcons.forEach((icon) => {
                 icon.src = icon.src.replace('allVariants/Clear/', 'allVariants/');
+            });
+            allVariantIcons.forEach((icon) => {
+                icon.src = icon.src.replace('WIP/Clear/', 'WIP/');
             });
         }
     }
@@ -286,6 +344,25 @@ function switchAppearance() {
 //! HomeScreen Scrolling
 
 let HS_page = 0;
+
+document.querySelectorAll('div.HS_Page').forEach((v,i) => {
+
+    const newPageSel = document.createElement('div');
+    newPageSel.classList.add('pageSelection');
+    newPageSel.dataset.page = i;
+    
+    newPageSel.addEventListener('click', () => {
+        document.querySelectorAll('div.pageSelection').forEach((e) => { e.classList.remove('active')});
+        document.querySelector(`div.pageSelection[data-page="${newPageSel.dataset.page}"]`).classList.add('active');
+        HS_page = newPageSel.dataset.page;
+        fixHSScroll()
+    });
+
+    if(newPageSel.dataset.page == HS_page) newPageSel.classList.add('active');
+    document.getElementById('pageSelector').appendChild(newPageSel);
+    
+});
+
 
 document.getElementById('HS_Pages').addEventListener('wheel', (e) => {
     e.preventDefault()
@@ -360,15 +437,6 @@ HomeScreen.addEventListener('pointermove', move, false);
 HomeScreen.addEventListener('pointerdown', startDragging, false);
 HomeScreen.addEventListener('pointerup', stopDragging, false);
 HomeScreen.addEventListener('pointerleave', stopDragging, false);
-
-document.querySelectorAll('div.pageSelection').forEach((pageSel) => {
-    pageSel.addEventListener('click', () => {
-        document.querySelectorAll('div.pageSelection').forEach((e) => { e.classList.remove('active')});
-        document.querySelector(`div.pageSelection[data-page="${pageSel.dataset.page}"]`).classList.add('active');
-        HS_page = pageSel.dataset.page;
-        fixHSScroll()
-    });
-});
 
 function fixHSScroll() {
     document.querySelector('#HS_Pages').scrollTo({
@@ -465,6 +533,7 @@ function changeBattery(percent) {
 
 document.addEventListener('fullscreenchange', (e) => {
     if(window.fullScreen == false && window.innerWidth > window.innerHeight) document.body.classList.remove('fullscreen');
+    if(window.fullScreen) document.body.scrollTo(0, 0)
 })
 
 function toggleLockPhone() {
@@ -475,17 +544,29 @@ function toggleLockPhone() {
     }
 }
 
+let showedBeginningAlerts = false;
+let alertQueue = [];
+let alertOpen = false;
 
-function unlockPhone() {
-    document.getElementById('lockScreen').classList.add('closed');
-    document.getElementById('homeScreen').classList.remove('animate');
-    setTimeout(() => { document.getElementById('homeScreen').classList.add('animate'); }, 50);
+function tryAlert(alertObj) {
+    if(!alertOpen && alertQueue.length > 0) {
+        document.getElementById('alertScreen').classList.add('alertOpen');
+        document.getElementById('alertScreen').appendChild(alertQueue[0]);
+        alertQueue.splice(alertQueue.indexOf(alertObj), 1);
+        alertOpen = true;
+    }
+}
+
+function closeAlert(alertObj) {
+    alertObj.remove();
+    document.getElementById('alertScreen').classList.remove('alertOpen');
+    alertOpen = false;
+    setTimeout(() => {tryAlert(); }, 500);
 }
 
 class Alert {
     constructor(header='Header', description='Description', buttonsList=[
-        {text:'Close',type:'highlight',function:'close'},
-        {text:'Open Link',type:'highlight',link:'https://www.youtube.com',mobileLink:'https://m.youtube.com'},
+        {text:'Close',type:'highlight',function:'close'}
     ], buttonsType=1) {
         this.header = header;
         this.description = description;
@@ -523,9 +604,11 @@ class Alert {
                 button.innerText = btn.text;
 
                 if(btn.function == 'close') {
-                    button.addEventListener('click', ()=>{alert.remove();document.getElementById('alertScreen').classList.remove('alertOpen')});
+                    button.addEventListener('click', ()=>{closeAlert(alert)});
+                } else if(btn.function == 'backpage') {
+                    button.addEventListener('click', ()=>{history.back()})
                 } else if(btn.function) {
-                    if(typeof btn.function != 'function') return alert.remove();
+                    if(typeof btn.function != 'function') return closeAlert(alert);
                     button.addEventListener('click', ()=>{btn.function()});
                 } else if(btn.link) {
                     if(mobileBrowser) {
@@ -544,38 +627,10 @@ class Alert {
         }
 
         alert.appendChild(buttonDiv);
-        document.getElementById('alertScreen').classList.add('alertOpen');
-        document.getElementById('alertScreen').appendChild(alert);
+        alertQueue.push(alert);
+        tryAlert(alert);
     }
 }
-
-if(firefox == false) {
-    new Alert(
-        'Browser Detection',
-        'We detected you are running a browser this site is not designed for. For the best experience, switch to Firefox or Firefox Nightly.',
-        [
-            {
-                text: 'Get Firefox',
-                type: 'highlight',
-                link:'https://www.mozilla.org/en-US/firefox/new/',
-                mobileLink: 'https://www.mozilla.org/en-US/firefox/browsers/mobile/android'
-            },
-
-            {
-                text: 'Get Firefox Nightly',
-                type: 'highlight',
-                link: 'https://www.mozilla.org/en-US/firefox/channel/desktop/',
-                mobileLink: 'https://www.mozilla.org/en-US/firefox/channel/android/'
-            },
-
-            {
-                text: 'Proceed Anyway',
-                type: 'normal',
-                function: 'close'
-            }
-], 1)
-}
-
 
 let batteryInterval = setInterval(() => {
     CONNECTIONVARIABLES.battery.level -= 1;
@@ -611,4 +666,62 @@ let batteryInterval = setInterval(() => {
             }, 1500)
         }, 1500)
     }
-}, 10000)
+}, 10000);
+
+
+function unlockPhone() {
+    if(!showedBeginningAlerts) {
+        if(firefox == false) {
+            new Alert(
+                'Browser Detection',
+                'We detected you are running a browser this site is not designed for. For the best experience, switch to Firefox or Firefox Nightly.',
+                [
+                    {
+                        text: 'Get Firefox',
+                        type: 'highlight',
+                        link:'https://www.mozilla.org/en-US/firefox/new/',
+                        mobileLink: 'https://www.mozilla.org/en-US/firefox/browsers/mobile/android'
+                    },
+
+                    {
+                        text: 'Get Firefox Nightly',
+                        type: 'highlight',
+                        link: 'https://www.mozilla.org/en-US/firefox/channel/desktop/',
+                        mobileLink: 'https://www.mozilla.org/en-US/firefox/channel/android/'
+                    },
+
+                    {
+                        text: 'Proceed Anyway',
+                        type: 'normal',
+                        function: 'close'
+                    }
+                ],
+                1
+            );
+        }
+
+        new Alert(
+            'Not affiliated with Apple.',
+            'This site is NOT, I repeat <strong>NOT</strong>, an official <strong>Apple</strong> site. This is a passion project made to show off my skills and to have fun while doing so. If you assumed this was an official <strong>Apple</strong> site or was sent this thinking it was, it is not.',
+            [
+                {
+                    text: 'Okay',
+                    type: 'highlight',
+                    function: 'close'
+                },
+
+                {
+                    text: 'Go back',
+                    type: 'normal',
+                    function: 'backpage'
+                }
+            ],
+            1
+        );
+        showedBeginningAlerts = true;
+    }
+
+    document.getElementById('lockScreen').classList.add('closed');
+    document.getElementById('homeScreen').classList.remove('animate');
+    setTimeout(() => { document.getElementById('homeScreen').classList.add('animate'); }, 50);
+}

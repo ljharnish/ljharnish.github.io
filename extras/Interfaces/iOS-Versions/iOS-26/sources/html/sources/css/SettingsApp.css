@@ -304,7 +304,8 @@ div.setting {
     flex-direction: row;
 }
 
-div.setting:not(:has(div.appleSlider)) {
+div.setting:has(div.appleSlider),
+div.setting:has(div.textArrow > sf-symbol) {
     cursor: pointer;
 }
 
@@ -360,6 +361,7 @@ div.setting div.iconSide {
 
 div.setting div.iconSide div.icon {
     width: 34px !important;
+    height: 34px !important;
     aspect-ratio: 1;
     display: flex;
     justify-content: center;
@@ -396,6 +398,29 @@ div.setting:last-of-type div.textAndMore {
 div.setting:has(+ div.subtitle) div.textAndMore {
     border-bottom: none;
 }
+
+div#general_about_seid_number.setting div.textAndMore {
+    max-width: 100%;
+}
+
+div#general_about_seid_number.setting div.textAndMore p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+p.subtitle a {
+    text-decoration: none;
+    cursor: pointer;
+    font-weight: 500;
+    color: #007aff;
+}
+
+p.subtitle a:visited {
+    text-decoration: none;
+    color: #007aff;
+}
+
 
 div.setting div.textAndMore div.textArrow {
     display: flex;
@@ -470,6 +495,9 @@ div.categoryInner.open {
 }
 
 div.categoryInner div.backButton button {
+    position: absolute;
+    left: 15px;
+    bottom: 3px;
     border: none;
     display: flex;
     font-size: 20px;
@@ -595,9 +623,8 @@ div.categoryHeader p {
 
 p.title {
     font-size: 18px;
-    text-transform: uppercase;
     color: #777;
-    font-weight: 400;
+    font-weight: 600;
     padding: 10px 15px;
 }
 
@@ -702,14 +729,16 @@ div.circle {
 }
 
 div.circle,
-div.appleSliderValue {
+div.appleSliderValue,
+button.settingButton {
     scale: 1;
     transition: 0.5s cubic-bezier(.57,-0.56,.15,.99) scale;
 }
 
 div.circle:active,
-div.appleSliderValue:active {
-    background: #fff7;
+div.appleSliderValue:active,
+button.settingButton:active {
+    background: #fff7 !important;
     box-shadow: 2px 1px 5px rgba(0, 0, 0, 0.25), inset -2px -2px 5px #0004, inset 2px 2px 5px #fff4,inset 0px 0px 5px #fff2;
     scale: 1.7;
 }
@@ -789,11 +818,7 @@ div.homeScreenCustomize img {
 }
 
 div.lockScreenCustomize {
-    background: url(../../../image/Backgrounds/449380-1280.avif);
-}
-
-div.homeScreenCustomize {
-    background: url(../../../image/Backgrounds/449380-1280.avif);
+    background: url(../../../image/Backgrounds/light.jpg);
 }
 
 div.lockScreenCustomize button,
@@ -834,4 +859,91 @@ div.wallpaperCustomizerNavDot {
 
 div.wallpaperCustomizerNavDot.active {
     background: black;
+}
+
+div#general_about_version_big {
+    height: auto;
+}
+
+div.iosVersion {
+    user-select: none;
+    width: 100%;
+    padding: 15px 0;
+    padding-bottom: 30px;
+    font-size: 18px;
+}
+
+div.iosVersion strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+div.iosVersion ul {
+    margin-left: 20px;
+}
+
+div.iosVersion a {
+    color: #007aff;
+    text-decoration: none;
+}
+
+div.iosVersion a:visited {
+    color: #007aff;
+    text-decoration: none;
+}
+
+div.setting * {
+    user-select: none;
+}
+
+div.setting.unfinished {
+    position: relative;
+    cursor: not-allowed !important;
+    background: #fafafa;
+}
+
+div.setting.unfinished::after {
+    content: 'UNFINISHED';
+    color: #000a;
+    font-style: italic;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: calc(100% - 15px);
+    border-radius: 100px;
+    height: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+
+    background: #fff2;
+	filter: drop-shadow(1px 1px 0 #fff2) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff2) drop-shadow(1px -1px 0 #fff2);
+	backdrop-filter: blur(10px);
+}
+
+body.dark div.setting.unfinished::after {
+    color: #fffa;
+}
+
+div.rightSide div.rightButtonDiv {
+    position: relative;
+    width: 100px;
+    height: 38px;
+    border: none;
+    background: var(--slider-grey);
+    border-radius: 999px;
+    padding: 3%;
+}
+
+div.rightSide button.settingButton {
+    cursor: pointer;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: white;
+    border-radius: 999px;
 }
