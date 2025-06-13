@@ -17,11 +17,11 @@ function syncVariables(variables) {
     console.log('Variables synced:', window.CONNECTIONVARIABLES);
 
     if(window.CONNECTIONVARIABLES.media.audio.playing) handleAudioPlaying(window.CONNECTIONVARIABLES.media.audio);
+    localStorage.setItem('savedVars', JSON.stringify(window.CONNECTIONVARIABLES));
     handleNewVariables();
 }
 
 function handleNewVariables() {
-    changeBattery(window.CONNECTIONVARIABLES.battery.level)
     switchAppearance();
 
     if(window.CONNECTIONVARIABLES.debug.showDebug.enabled) {

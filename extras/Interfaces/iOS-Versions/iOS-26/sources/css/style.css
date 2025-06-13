@@ -189,7 +189,15 @@ div#homeScreen.animate {
 }
 
 body.dark div#homeScreenBG {
-	background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)) ,url(../image/Backgrounds/dark.jpg);
+	background-image: url(../image/Backgrounds/dark.jpg);
+}
+
+body.dark div#homeScreenBG::after {
+	content: '';
+	display: block;
+	width: 100%;
+	height: 100%;
+	background: #000a;
 }
 
 div#HS_Pages {
@@ -207,9 +215,11 @@ div#HS_Pages ::-webkit-scrollbar {
 }
 
 div.HS_Icons {
+	height: calc(100% - 212px);
+  	overflow: hidden;
 	display: grid;
 	grid-template-columns: repeat(4, 112px);
-	grid-template-rows: repeat(7, 112px);
+	grid-template-rows: repeat(auto-fill, 112px);
 }
 
 div#pageSelector {
@@ -783,6 +793,10 @@ div.setupChoose div.setupChoice::after {
 	right: 20px;
 }
 
+body:has(#bootScreen.booting) #lockButton {
+	display: none;
+}
+
 #lockButton {
 	cursor: pointer;
 	position: absolute;
@@ -1005,7 +1019,7 @@ div#alertScreen div.alert {
 	border-radius: 30px;
 	padding: 10px;
 	padding-top: 30px;
-	background: #fff9;
+	background: #fff4;
 	filter: drop-shadow(1px 1px 0 #fff9) drop-shadow(-1px -1px 0 #fffb) drop-shadow(-1px 1px 0 #fff9) drop-shadow(1px -1px 0 #fff9);
 	backdrop-filter: blur(10px);
 	padding-bottom: 15px;
@@ -1107,7 +1121,7 @@ div#bootScreen {
 	height: 100%;
 	top: 0;
 	left: 0;
-	z-index: 900;
+	z-index: 1200;
 	position: absolute;
 	display: flex;
 	justify-content: center;
@@ -1123,26 +1137,31 @@ div#bootScreen.black {
 div#bootScreen.booting {
 	background: url(../image/boot/appleLogo.jpeg) black;
 	background-size: contain;
+  	background-position: center;
 }
 
 div#bootScreen.charging {
 	background: url(../image/boot/charging.jpeg) black;
 	background-size: contain;
+  	background-position: center;
 }
 
 div#bootScreen.criticalPower {
 	background: url(../image/boot/criticalPower.jpeg) black;
 	background-size: contain;
+  	background-position: center;
 }
 
 div#bootScreen.deadPhone {
 	background: url(../image/boot/deadPhone.jpeg) black;
 	background-size: contain;
+  	background-position: center;
 }
 
 div#bootScreen.recoveryMode {
 	background: url(../image/boot/recoveryMode.jpeg) black;
 	background-size: contain;
+  	background-position: center;
 }
 
 div#bootScreen.black,

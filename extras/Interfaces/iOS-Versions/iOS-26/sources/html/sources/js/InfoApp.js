@@ -2,18 +2,34 @@ const settingsTable = {
     categories: [
         [
             {
-                title: "Recommended Browser"
+                title: "Patch Notes:"
             },
             {
-                subtitle: "iOS 26 | For The Web works best and it is highly recommended you use this site on Firefox for the best experience.\n\nBetter yet, using Firefox Nightly or Beta will guarantee it will work as intended."
+                subtitle: "Version v6.13.2025 Brings some well deserved updates to the site.\n\nThese changes include:<strong>\nPatch Notes,\nSetting Saving,\nAll icon types and images,\nA more Dynamic Home Screen,\nFixed Bugs,\nand basic support for custom icons.</strong>"
             }
         ],
         [
             {
-                title: "Processing Info"
+                title: "Disclaimer"
             },
             {
-                subtitle: "Warning:\n\nAs HTML and websites are not meant to be full operating systems, rendering every little detail with new effects and such, iOS 26 | For The Web is VERY resource intensive and may / WILL slow down or lag.\n\nTo mitigate this, options called \"Super Performance Mode\" and regular \"Performance Mode\" were created. These can be accessed from your lock screen and the Developer Panel app anytime."
+                subtitle: "This site is NOT, I repeat <strong>NOT</strong>, an official <strong>Apple</strong> site. This is a passion project made to show off my skills and to have fun while doing so. If you assumed this was an official <strong>Apple</strong> site or was sent this thinking it was, it is not. This message also shows up on startup when you boot the phone."
+            }
+        ],
+        [
+            {
+                title: "Recommended Browser"
+            },
+            {
+                subtitle: "iOS 26 | For The Web works best <i>(and it is highly recommended you use this)</i> on <strong>Firefox</strong> for the best experience.\n\nBetter yet, using Firefox <i>Nightly</i> or Beta will guarantee it will work as intended."
+            }
+        ],
+        [
+            {
+                title: "Processing Warning"
+            },
+            {
+                subtitle: "<strong>Warning</strong>:\n\nAs HTML and websites are not meant to be full operating systems, rendering every little detail with new effects and such, iOS 26 | For The Web is <strong>VERY</strong> resource intensive and may slow down or lag.\n\nTo mitigate this, options called <strong>\"Super Performance Mode\"</strong> and regular <strong>\"Performance Mode\"</strong> were created. These can be accessed from your lock screen and the Developer Panel app anytime."
             }
         ],
         [
@@ -21,7 +37,7 @@ const settingsTable = {
                 title: "Q & A"
             },
             {
-                subtitle: "Q: Why does this everything look off and not work on my browser?\nA: This was built in Firefox to be used on Firefox, and it may not work on other browsers, as it utilizes features other browsers may not yet have.\n\nQ: Why can't I exit fullscreen on mobile?\nA: Mobile devices are forced into fullscreen. This is because the website is only the phone, and it does not always fit on every display so forcing fullscreen is the only way to ensure it works properly on mobile devices."
+                subtitle: "Q: <i>Why does this everything look off and not work on my browser?</i>\n\n<strong>A: This was built in Firefox to be used on Firefox and it may not work on other browsers as it utilizes features other browsers may not yet have, and it uses bugs to its advantage in some parts of the styling.</strong>\n\n\nQ: <i>Why can't I exit fullscreen on mobile?</i>\n\n<strong>A: Mobile devices are forced into fullscreen. This is because the website is only the phone, and it does not always fit on every display so forcing fullscreen is the only way to ensure it works properly on mobile devices.</strong>"
             }
         ]
     ]
@@ -64,7 +80,7 @@ function loadSettings(table, outputdiv) {
             if(setting.subtitle) {
                 const subtitle = document.createElement('p');
                 subtitle.className = 'subtitle';
-                subtitle.innerText = setting.subtitle;
+                subtitle.innerHTML = setting.subtitle.replaceAll('\n', '<br>');
                 categoryDiv.appendChild(subtitle);
                 return;
             }

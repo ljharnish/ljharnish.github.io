@@ -1,4 +1,4 @@
-const skipBoot = 1;
+const skipBoot = 0;
 
 if(skipBoot == 1) {
     document.getElementById('bootScreen').style.display = 'none';
@@ -46,36 +46,6 @@ document.querySelectorAll('img').forEach((el) => {
     el.draggable = false;
     el.style.pointerEvents = 'none';
 });
-
-document.querySelectorAll('div.homeIcon').forEach((el) => { 
-    el.addEventListener('click', () => {
-        el.classList.add('homeIconClick');
-
-        let newApp = document.createElement('div');
-        newApp.classList.add('homeIconShow');
-        newApp.innerHTML = `<img src="${el.querySelector('img').src}" alt="">`;
-        //newApp.style.top = el.offsetTop + 'px';
-        //newApp.style.left = el.offsetLeft + 'px';
-    
-        document.getElementById('ios26').appendChild(newApp);
-
-        switch(el.getAttribute('app')) {
-            case 'iOS-26':
-                openNewApp('https://ljharnish.github.io/extras/Interfaces/iOS-Versions/iOS-26', 0.95);
-                break;
-            case 'iOS-18':
-                openNewApp('https://ljharnish.github.io/extras/Interfaces/iOS-Versions/iOS-18', 0.95);
-                break;
-            default:
-                openNewApp('./sources/html/' + el.getAttribute('app') + 'App.html');
-                break;
-        }
-
-        setTimeout(() => {
-            newApp.remove();
-        }, 500);
-    });
-})
 
 function setTime() {
     let time = new Date(Date.now());
@@ -247,23 +217,6 @@ function closeApp() {
     setTimeout(() => { iframe.src = ''; }, 450);
 }
 
-document.querySelectorAll('div.homeIcon > img').forEach((e) => {
-    e.addEventListener('error', () => {
-        
-        if(document.body.classList.contains('clearIcons')) {
-            e.src = './sources/image/App Icons/Clear/Blank.webp';
-            return;
-        }
-
-        if(document.body.classList.contains('dark')) {
-            e.src = './sources/image/App Icons/Dark/Blank.webp';
-            return;
-        }
-        
-        e.src = './sources/image/App Icons/Blank.webp';
-    })
-});
-
 function switchAppearance() {
     //if(!window.CONNECTIONVARIABLES.settings.display_brightness_appearance) return;
     if(window.CONNECTIONVARIABLES.debug.iconTint) {
@@ -278,21 +231,21 @@ function switchAppearance() {
         document.body.classList.add('dark');
 
         document.querySelectorAll('div.homeIcon > img').forEach((e) => {
-            e.src = `./sources/image/App Icons/Dark/${e.alt}.webp`
+            if(e.getAttribute('custom') != 'true') e.src = `./sources/image/App Icons/Dark/${e.alt}.webp`
         });
     } else {
         document.body.classList.remove('dark');
 
         document.querySelectorAll('div.homeIcon > img').forEach((e) => {
-            e.src = `./sources/image/App Icons/${e.alt}.webp`
+            if(e.getAttribute('custom') != 'true') e.src = `./sources/image/App Icons/${e.alt}.webp`
         });
     }
 
     if(window.CONNECTIONVARIABLES.debug.clearIcons.enabled == true) {
         document.body.classList.add('clearIcons');
-
+        
         document.querySelectorAll('div.homeIcon > img').forEach((e) => {
-            e.src = `./sources/image/App Icons/Clear/${e.alt}.webp`
+            if(e.getAttribute('custom') != 'true') e.src = `./sources/image/App Icons/Clear/${e.alt}.webp`
         });
     } else {
         document.body.classList.remove('tintedIcons');
@@ -309,25 +262,6 @@ function switchAppearance() {
 //! HomeScreen Scrolling
 
 let HS_page = 0;
-
-document.querySelectorAll('div.HS_Page').forEach((v,i) => {
-
-    const newPageSel = document.createElement('div');
-    newPageSel.classList.add('pageSelection');
-    newPageSel.dataset.page = i;
-    
-    newPageSel.addEventListener('click', () => {
-        document.querySelectorAll('div.pageSelection').forEach((e) => { e.classList.remove('active')});
-        document.querySelector(`div.pageSelection[data-page="${newPageSel.dataset.page}"]`).classList.add('active');
-        HS_page = parseInt(newPageSel.dataset.page);
-        fixHSScroll()
-    });
-
-    if(newPageSel.dataset.page == HS_page) newPageSel.classList.add('active');
-    document.getElementById('pageSelector').appendChild(newPageSel);
-    
-});
-
 
 document.getElementById('HS_Pages').addEventListener('wheel', (e) => {
     e.preventDefault()
@@ -367,18 +301,22 @@ const stopDragging = (e) => {
     if(!mouseDown) return;
     mouseDown = false;
 
+    let tolerance = 200;
+
     if(directionL) {
-        if(HomeScreen.scrollLeft < (((parseInt(getComputedStyle(document.querySelector('.HS_Page')).width.replace('px', '')) + 32)/2) * HS_page)) {
+        if(HomeScreen.scrollLeft < (((parseInt(getComputedStyle(document.querySelector('.HS_Page')).width.replace('px', '')) + 32)/2) * HS_page) + tolerance) {
             HS_page -= 1;
+            if(HS_page < 0) HS_page = 0;
             fixHSScroll();
         } else {
             fixHSScroll();
         }
     } else {
-        if(HomeScreen.scrollLeft > (((parseInt(getComputedStyle(document.querySelector('.HS_Page')).width.replace('px', '')) + 32)/2) * (HS_page + 1))) {
+        if(HomeScreen.scrollLeft > (((parseInt(getComputedStyle(document.querySelector('.HS_Page')).width.replace('px', '')) + 32)/2) * (HS_page + 1)) - tolerance) {
             HS_page += 1;
+            if(HS_page > (document.querySelectorAll('.HS_Page').length - 1)) HS_page = (document.querySelectorAll('.HS_Page').length - 1);
             fixHSScroll();
-        } else {
+        } else { 
             fixHSScroll();
         }
     }
@@ -435,25 +373,29 @@ CC_Bar.addEventListener('click', () => {
     if(!ccOpen) document.getElementById('topBar').classList.remove('ccOpen');
 });
 
-const canvas = document.getElementById('batteryLabelCanvas');
-const ctx = canvas.getContext('2d');
-const deg2FDeg = (degrees) => (degrees - 90) * (Math.PI / 180);
-const bP2Deg = (percent) => (360 / 100) * percent;
+/*function setupBatteryWidget(canvas) {
 
-function colorBP(percent) {
-    if(percent <= 10) {
-        return '#eb3137'
+    const ctx = canvas.getContext('2d');
+    const deg2FDeg = (degrees) => (degrees - 90) * (Math.PI / 180);
+    const bP2Deg = (percent) => (360 / 100) * percent;
+
+    function colorBP(percent) {
+        if(percent <= 10) {
+            return '#eb3137'
+        }
+        if(percent <= 20) {
+            return '#fecd0b'
+        }
+        return '#27cd41'
     }
-    if(percent <= 20) {
-        return '#fecd0b'
-    }
-    return '#27cd41'
+
+    let batteryPercent = 23;
+
+    const circleSize = 125;
+    const thickness = 30;
+
 }
 
-let batteryPercent = 23;
-
-const circleSize = 125;
-const thickness = 30;
 
 window.addEventListener('load', _ => {
   canvas.width = 300;
@@ -463,38 +405,38 @@ window.addEventListener('load', _ => {
 changeBattery(window.CONNECTIONVARIABLES.battery.level);
 });
 
-function render() {
+function render(canvas) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     const step = 360 / 24;
     
     ctx.fillStyle = 'black';
 
     for (let i = 0; i < 360; i+=step) {
-      const x = Math.cos(i * (Math.PI / 180)) * circleSize;
-      const y = Math.sin(i * (Math.PI / 180)) * circleSize;
-      
-      ctx.beginPath();
-      ctx.arc(canvas.width / 2, canvas.height / 2, circleSize, deg2FDeg(0), deg2FDeg(360));
-      ctx.strokeStyle = '#00000003';
-      ctx.lineWidth = thickness;
-      ctx.lineCap = 'round';
-      ctx.stroke();
+        const x = Math.cos(i * (Math.PI / 180)) * circleSize;
+        const y = Math.sin(i * (Math.PI / 180)) * circleSize;
+        
+        ctx.beginPath();
+        ctx.arc(canvas.width / 2, canvas.height / 2, circleSize, deg2FDeg(0), deg2FDeg(360));
+        ctx.strokeStyle = '#00000003';
+        ctx.lineWidth = thickness;
+        ctx.lineCap = 'round';
+        ctx.stroke();
 
-      ctx.beginPath();
-      ctx.arc(canvas.width / 2, canvas.height / 2, circleSize, deg2FDeg(0), deg2FDeg(bP2Deg(batteryPercent)));
-      ctx.strokeStyle = colorBP(batteryPercent);
-      ctx.lineWidth = thickness;
-      ctx.lineCap = 'round';
-      ctx.stroke();
+        ctx.beginPath();
+        ctx.arc(canvas.width / 2, canvas.height / 2, circleSize, deg2FDeg(0), deg2FDeg(bP2Deg(batteryPercent)));
+        ctx.strokeStyle = colorBP(batteryPercent);
+        ctx.lineWidth = thickness;
+        ctx.lineCap = 'round';
+        ctx.stroke();
     } 
 
-  window.requestAnimationFrame(render);
+    window.requestAnimationFrame(render);
 }
 
 function changeBattery(percent) {
     document.querySelector('div.widgetSmall.batteryWidget div.batteryText').innerHTML = `${percent}%`
     batteryPercent = percent;
-}
+}*/
 
 document.addEventListener('fullscreenchange', (e) => {
     if(window.fullScreen == false && window.innerWidth > window.innerHeight) document.body.classList.remove('fullscreen');
@@ -597,6 +539,7 @@ class Alert {
     }
 }
 
+/*
 let batteryInterval = setInterval(() => {
     CONNECTIONVARIABLES.battery.level -= 1;
     changeBattery(CONNECTIONVARIABLES.battery.level)
@@ -631,7 +574,7 @@ let batteryInterval = setInterval(() => {
             }, 1500)
         }, 1500)
     }
-}, 10000);
+}, 10000);*/
 
 
 function unlockPhone() {
@@ -670,15 +613,15 @@ function unlockPhone() {
             'This site is NOT, I repeat <strong>NOT</strong>, an official <strong>Apple</strong> site. This is a passion project made to show off my skills and to have fun while doing so. If you assumed this was an official <strong>Apple</strong> site or was sent this thinking it was, it is not.',
             [
                 {
-                    text: 'Okay',
+                    text: 'Acknowledge',
                     type: 'highlight',
                     function: 'close'
                 },
 
                 {
-                    text: 'Go back',
+                    text: 'Close Tab',
                     type: 'normal',
-                    function: 'backpage'
+                    function: 'closetab'
                 }
             ],
             1
@@ -698,3 +641,363 @@ let fixedScale = (window.innerHeight + 144) / 1440;
 if(window.innerHeight < window.innerWidth) document.getElementById('iosHolder').style.scale = fixedScale;
 
 if(screen.height == 1440) document.getElementById('iosHolder').style.scale = 1;
+
+
+let HS_pageArray = [
+    [
+        {
+            name: 'FaceTime',
+            icon: 'FaceTime'
+        },
+        {
+            name: 'Calendar',
+            icon: 'Calendar'
+        },
+        {
+            name: 'Photos',
+            icon: 'Photos'
+        },
+        {
+            name: 'Camera',
+            icon: 'Camera',
+            app: 'Camera'
+        },
+        {
+            name: 'Mail',
+            icon: 'Mail'
+        },
+        {
+            name: 'Notes',
+            icon: 'Notes'
+        },
+        {
+            name: 'Reminders',
+            icon: 'Reminders'
+        },
+        {
+            name: 'Clock',
+            icon: 'Clock'
+        },
+        {
+            name: 'News',
+            icon: 'News',
+        },
+        {
+            name: 'Apple TV',
+            icon: 'Apple TV'
+        },
+        {
+            name: 'Podcasts',
+            icon: 'Podcasts'
+        },
+        {
+            name: 'App Store',
+            icon: 'App Store'
+        },
+        {
+            name: 'Maps',
+            icon: 'Maps'
+        },
+        {
+            name: 'Health',
+            icon: 'Health'
+        },
+        {
+            name: 'Wallet',
+            icon: 'Wallet'
+        },
+        {
+            name: 'Settings',
+            icon: 'Settings',
+            app: 'Settings'
+        }
+    ],
+    [
+        {
+            type: 'widget',
+            widgetSize: 'small',
+            widgetType: 'batteryWidget'
+        },
+        {
+            name: 'Developer Panel',
+            icon: 'Xcode',
+            app: 'DevPanel'
+        },
+        {
+            name: 'Info',
+            icon: 'Feedback Assistant',
+            app: 'Info'
+        },
+        {
+            name: 'Calculator',
+            icon: 'Calculator'
+        },
+        {
+            name: 'Support',
+            icon: 'Support'
+        },
+        {
+            name: 'Google',
+            customIcon: 'https://static.wikia.nocookie.net/logopedia/images/2/27/Google_icon_2025_%28iOS%29.svg',
+            app: 'https://www.google.com/webhp?igu=1'
+        }
+    ]
+];
+
+const dockArray = [
+    {
+        name: 'Phone',
+        icon: 'Phone'
+    },
+    {
+        name: 'Safari',
+        icon: 'Safari'
+    },
+    {
+        name: 'Messages',
+        icon: 'Messages'
+    },
+    {
+        name: 'Apple Music',
+        icon: 'Apple Music',
+        app: 'AppleMusic'
+    }
+]
+
+//? there HAS to be a better way for this
+
+function updateHomeScreen() {
+
+    document.getElementById('HS_Pages').innerHTML = '';
+    document.getElementById('pageSelector').innerHTML = '';
+    document.querySelectorAll('div#HS_dockInner div.homeIcon').forEach((i)=>i.remove());
+
+    let rowAmount = Math.floor((window.innerHeight - 282)/112);
+
+    console.log(`A home screen page can hold ${rowAmount * 4} icons at this height.`);
+
+    HS_pageArray.forEach((page) => {
+        if(page.length > (rowAmount * 4)) {
+            //? Put extras on new page,
+            const extras = HS_pageArray[HS_pageArray.indexOf(page)].splice(rowAmount * 4);
+            const nextPage = HS_pageArray.indexOf(page) + 1;
+            if(HS_pageArray[nextPage] == undefined) {
+                HS_pageArray[nextPage] = extras;
+            } else {
+                extras.forEach((extra) => HS_pageArray[nextPage].unshift(extra));
+            }
+        }
+    })
+
+    HS_pageArray.forEach((page) => {
+        if(page.length == 0) return;
+        const HS_Page = document.createElement('div');
+        HS_Page.className = 'HS_Page';
+        const HS_Icons = document.createElement('div');
+        HS_Icons.className = 'HS_Icons';
+
+        HS_Page.appendChild(HS_Icons);
+
+        page.forEach((icon) => {
+            if(icon.type === 'widget') {
+                //? Exceptions for widgets.
+                const widgetEl = document.createElement('div');
+
+                //? allow for easy sizing
+
+                switch(icon.widgetSize) {
+                    case 'small':
+                        widgetEl.classList.add('widgetSmall');
+                        break;
+                    default:
+                        widgetEl.classList.add('widgetSmall');
+                        break;
+                }
+
+                widgetEl.classList.add(icon.widgetType);
+
+                switch(icon.widgetType) {
+                    case 'batteryWidget':
+                        widgetEl.innerHTML = `<div class="batteryLabel"><img src="./sources/image/UI_Elements/phone-icon.png" alt="iPhone Battery Icon"><canvas id="batteryLabelCanvas" width="110" height="110"></canvas></div><div class="batteryText">100%</div>`
+                        break;
+                }
+                
+                HS_Icons.appendChild(widgetEl);
+            }
+            
+            if(icon.icon) {
+                //? Exception for apps with different icons.
+                const iconEl = document.createElement('div');
+                iconEl.className = 'homeIcon';
+                if(icon.app) {
+                    iconEl.setAttribute('app', icon.app);
+
+                    iconEl.addEventListener('click', () => {
+                        iconEl.classList.add('homeIconClick');
+
+                        let newApp = document.createElement('div');
+                        newApp.classList.add('homeIconShow');
+                        newApp.innerHTML = `<img src="${iconEl.querySelector('img').src}" alt="">`;
+                        //newApp.style.top = el.offsetTop + 'px';
+                        //newApp.style.left = el.offsetLeft + 'px';
+                    
+                        document.getElementById('ios26').appendChild(newApp);
+
+                        openNewApp('./sources/html/' + iconEl.getAttribute('app') + 'App.html');
+
+                        setTimeout(() => {
+                            newApp.remove();
+                        }, 500);
+                    });
+                }
+
+                const iconImg = document.createElement('img');
+                iconImg.src = `./sources/image/App Icons/${icon.icon}.webp`;
+                iconImg.alt = icon.icon;
+
+                const iconLabel = document.createElement('p');
+                iconLabel.innerText = icon.name;
+
+                iconEl.appendChild(iconImg);
+                iconEl.appendChild(iconLabel);
+
+                HS_Icons.appendChild(iconEl);
+
+                return;
+            }
+            
+            if(icon.customIcon) {
+                //? Exception for custom icon URLs, tested with the Spotify app.
+                const iconEl = document.createElement('div');
+                iconEl.className = 'homeIcon';
+                if(icon.app) {
+                    iconEl.setAttribute('app', icon.app);
+
+                    iconEl.addEventListener('click', () => {
+                        iconEl.classList.add('homeIconClick');
+
+                        let newApp = document.createElement('div');
+                        newApp.classList.add('homeIconShow');
+                        newApp.innerHTML = `<img src="${iconEl.querySelector('img').src}" alt="">`;
+                        //newApp.style.top = el.offsetTop + 'px';
+                        //newApp.style.left = el.offsetLeft + 'px';
+                    
+                        document.getElementById('ios26').appendChild(newApp);
+                        openNewApp(icon.app);
+
+                        setTimeout(() => {
+                            newApp.remove();
+                        }, 500);
+                    });
+                }
+
+                const iconImg = document.createElement('img');
+                iconImg.setAttribute('custom', true);
+                iconImg.src = icon.customIcon;
+                iconImg.alt = icon.name;
+
+                const iconLabel = document.createElement('p');
+                iconLabel.innerText = icon.name;
+
+                iconEl.appendChild(iconImg);
+                iconEl.appendChild(iconLabel);
+
+                HS_Icons.appendChild(iconEl);
+
+                return;
+            }
+        });
+
+        document.getElementById('HS_Pages').appendChild(HS_Page);
+
+        const newPageSel = document.createElement('div');
+        newPageSel.classList.add('pageSelection');
+        newPageSel.dataset.page = HS_pageArray.indexOf(page);
+        
+        newPageSel.addEventListener('click', () => {
+            document.querySelectorAll('div.pageSelection').forEach((e) => { e.classList.remove('active')});
+            document.querySelector(`div.pageSelection[data-page="${newPageSel.dataset.page}"]`).classList.add('active');
+            HS_page = parseInt(newPageSel.dataset.page);
+            fixHSScroll()
+        });
+
+        if(newPageSel.dataset.page == HS_page) newPageSel.classList.add('active');
+        document.getElementById('pageSelector').appendChild(newPageSel);
+    });
+
+    dockArray.forEach((icon) => {
+        if(icon.icon) {
+            //? Exception for apps with different icons.
+            const iconEl = document.createElement('div');
+            iconEl.className = 'homeIcon';
+            if(icon.app) {
+                iconEl.setAttribute('app', icon.app);
+
+                iconEl.addEventListener('click', () => {
+                    iconEl.classList.add('homeIconClick');
+
+                    let newApp = document.createElement('div');
+                    newApp.classList.add('homeIconShow');
+                    newApp.innerHTML = `<img src="${iconEl.querySelector('img').src}" alt="">`;
+                    //newApp.style.top = el.offsetTop + 'px';
+                    //newApp.style.left = el.offsetLeft + 'px';
+                
+                    document.getElementById('ios26').appendChild(newApp);
+
+                    switch(iconEl.getAttribute('app')) {
+                        case 'iOS-26':
+                            openNewApp('https://ljharnish.github.io/extras/Interfaces/iOS-Versions/iOS-26', 0.95);
+                            break;
+                        case 'iOS-18':
+                            openNewApp('https://ljharnish.github.io/extras/Interfaces/iOS-Versions/iOS-18', 0.95);
+                            break;
+                        default:
+                            openNewApp('./sources/html/' + iconEl.getAttribute('app') + 'App.html');
+                            break;
+                    }
+
+                    setTimeout(() => {
+                        newApp.remove();
+                    }, 500);
+                });
+            }
+
+            const iconImg = document.createElement('img');
+            iconImg.src = `./sources/image/App Icons/${icon.icon}.webp`;
+            iconImg.alt = icon.icon;
+
+            const iconLabel = document.createElement('p');
+            iconLabel.innerText = icon.name;
+
+            iconEl.appendChild(iconImg);
+            iconEl.appendChild(iconLabel);
+
+            document.getElementById('HS_dockInner').appendChild(iconEl);
+
+            return;
+        }
+        
+        if(icon.customIcon) {
+            //? Exception for custom icon URLs, tested with the Spotify app.
+        }
+    });
+}
+
+updateHomeScreen();
+
+document.querySelectorAll('div.homeIcon > img').forEach((e) => {
+    e.addEventListener('error', () => {
+        
+        if(document.body.classList.contains('clearIcons')) {
+            e.src = './sources/image/App Icons/Clear/Blank.webp';
+            return;
+        }
+
+        if(document.body.classList.contains('dark')) {
+            e.src = './sources/image/App Icons/Dark/Blank.webp';
+            return;
+        }
+        
+        e.src = './sources/image/App Icons/Blank.webp';
+    })
+});

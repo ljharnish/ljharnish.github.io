@@ -86,3 +86,5 @@ window.CONNECTIONVARIABLES = {
         }
     }
 }
+
+if(localStorage.getItem('savedVars')) window.CONNECTIONVARIABLES = JSON.parse(localStorage.getItem('savedVars'));

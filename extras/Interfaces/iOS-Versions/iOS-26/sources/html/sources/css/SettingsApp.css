@@ -938,6 +938,11 @@ div.rightSide div.rightButtonDiv {
     padding: 3%;
 }
 
+body.dark div.rightSide div.rightButtonDiv {
+    background: #444;
+}
+
+
 div.rightSide button.settingButton {
     cursor: pointer;
     position: relative;
