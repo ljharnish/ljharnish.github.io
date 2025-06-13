@@ -29,12 +29,6 @@ function handleNewVariables() {
     } else {
         if(!document.getElementById('debugOptions').classList.contains('hidden')) document.getElementById('debugOptions').classList.add('hidden');
     }
-    
-    if(window.CONNECTIONVARIABLES.debug.showDebugScreenshots.enabled) {
-        document.getElementById('iphoneScreenshots').classList.remove('hidden');
-    } else {
-        if(!document.getElementById('iphoneScreenshots').classList.contains('hidden')) document.getElementById('iphoneScreenshots').classList.add('hidden');
-    }
 
     if(window.CONNECTIONVARIABLES.debug.experiment_controlCenter.enabled) {
         document.body.classList.add('showControlBtns');

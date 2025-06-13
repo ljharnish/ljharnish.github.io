@@ -116,22 +116,7 @@ const settingsTable = {
                     //? Toggle the data[toggleData] value if a boolean
                     toggleData: 'enabled'
                 }
-            },
-            {  
-                name: "Show Layout Screenshots",
-                id: "showDebugScreenshots",
-                data: {
-                    enabled: false
-                },
-                icon: {
-                    color: 'blue',
-                    glyph: 'photo.fill.on.rectangle.fill'
-                },
-                right: {
-                    type: 'switch',
-                    toggleData: 'enabled'
-                }
-            },
+            }
 
         ],
         [

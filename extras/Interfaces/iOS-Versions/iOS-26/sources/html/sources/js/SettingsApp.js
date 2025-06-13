@@ -581,6 +581,38 @@ const settingsTable = {
                                 },
                                 right: {
                                     type: 'arrow'
+                                },
+                                innerSettings: {
+                                    categories: [
+                                        [
+                                            {
+                                                name: 'Automatically AirPlay',
+                                                right: {
+                                                    text: 'Automatic',
+                                                    type: 'arrow'
+                                                },
+                                                innerSettings: {
+                                                    categories: [
+                                                        [
+                                                            {
+                                                                name: "Never"
+                                                            },
+                                                            {
+                                                                name: "Ask"
+                                                            },
+                                                            {
+                                                                name: "Automatic",
+                                                                checked: true
+                                                            },
+                                                            {
+                                                                subtitle: 'iPhone can speak to AirPlay, or when able to Automatically AirPlay, connect to nearby speakers and TVs when plying content from apps you regularly use with AirPlay.'
+                                                            }
+                                                        ]
+                                                    ]
+                                                }
+                                            }
+                                        ]
+                                    ]
                                 }
                             },
                             {  

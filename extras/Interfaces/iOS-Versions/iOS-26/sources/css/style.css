@@ -33,16 +33,27 @@ sf-symbol {
 body {
 	width: 100vw;
 	height: 100vh;
-overflow: hidden;
+	overflow: hidden;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background: #999;
-	transition: 0.3s ease-in-out background;
+	background: url(../image/Backgrounds/Desktop/light.jpg);
+	background-size: cover;
+	background-position: center;
+}
+
+body::before {
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: #0007;
 }
 
 body.dark {
-	background: #111 !important;
+	background: url(../image/Backgrounds/Desktop/dark.jpg);
+	background-size: cover;
+	background-position: center;
 }
 
 body.mobile div#iphoneOverlay {
@@ -71,6 +82,21 @@ div#iphoneOverlay, div#iphoneDynamicIslandOverlay {
 	background-size: contain;
 	height: 1100px;
 	aspect-ratio: 1/2;
+}
+
+div#iphoneShadow {
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 0;
+	pointer-events: none;
+	position: absolute;
+	border: 5px solid black;
+	border-radius: 100px;
+	box-shadow: 0px 0px 50px 20px black;
+	background-size: contain;
+	height: 1050px;
+	width: 500px;
 }
 
 div#iosHolder {
@@ -249,6 +275,17 @@ body.tintedIcons div.homeIcon::before {
 	pointer-events: none;
 }
 
+body.tintedIcons div.widgetSmall::before {
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background: var(--iconTint);
+	opacity: var(--iconTintOpacity);
+}
+
 div.homeIcon p {
 	display: none !important;
 }
@@ -299,6 +336,10 @@ div.HS_Icons div.widgetSmall {
 	margin: 10px;
 	grid-column: span 2;
 	grid-row: span 2;
+}
+
+div.HS_Icons div.widgetSmall * {
+	position: relative;
 }
 
 body.dark div.HS_Icons div.widgetSmall {
@@ -754,6 +795,11 @@ div.setupChoose div.setupChoice::after {
 	background: #fff2;
 	filter: drop-shadow(1px 1px 0 #fff2) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff2) drop-shadow(1px -1px 0 #fff2);
 	backdrop-filter: blur(10px);
+    transition: 0.3s ease-in-out right;
+}
+
+#lockButton:hover {
+	right: -20px;
 }
 
 body.iconCircles div.homeIcon,
@@ -1106,4 +1152,71 @@ div#bootScreen.criticalPower,
 div#bootScreen.deadPhone,
 div#bootScreen.recoveryMode {
 	pointer-events: all;
+}
+
+div.welcome {
+	top: 40px;
+	left: 50px;
+	position: absolute;
+	z-index: 0;
+}
+
+div.welcome p {
+	font-size: 48px;
+}
+
+div.welcome a {
+	color: #fff2;
+	text-shadow: 1px 1px 0 #fff2, -1px -1px 0 #fff6, -1px 1px 0 #fff2, 1px -1px 0 #fff2;
+}
+
+div.welcome a:visited {
+	color: #fff2
+}
+
+body.dark div.welcome {
+	color: white;
+}
+
+div.welcome div.welcomeIOS {
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	justify-content: start;
+	align-items: center;
+}
+
+div.welcome div.welcomeIOS > div, 
+div.welcome div.welcomeIOS > img {
+	backdrop-filter: blur();
+	filter: drop-shadow(1px 1px 0 #fff6) drop-shadow(-1px -1px 0 #ffff) drop-shadow(-1px 1px 0 #fff6) drop-shadow(1px -1px 0 #fff6);
+}
+
+body.dark div.welcome div.welcomeIOS > div > div {
+	background: url(../image/Backgrounds/Desktop/dark.jpg);
+	background-size: cover;
+	background-position: center;
+}
+
+div.welcome div.welcomeIOS > div > div {
+	background: url(../image/Backgrounds/Desktop/light.jpg);
+	background-size: cover;
+	background-position: center;
+	backdrop-filter: blur(10px);
+	color: transparent;
+	font-size: 84px;
+	margin-right: 20px;
+	clip-path: url(#svgiOSTextPath);
+	font-weight: 700;
+}
+
+div.welcome div.welcomeIOS img {
+	height: 64px;
+	position: absolute;
+	top: 18px;
+	left: 150px;
+}
+
+body.dark div.welcome p img {
+	filter: invert(1);
 }

@@ -21,9 +21,6 @@ window.CONNECTIONVARIABLES = {
         showDebug: {
             enabled: false
         },
-        showDebugScreenshots: {
-            enabled: false
-        },
         experiment_fullscreen: {
             enabled: false
         },
@@ -36,7 +33,7 @@ window.CONNECTIONVARIABLES = {
         showIconLabels: {
             enabled: false
         },
-        iconTintOpacity: 0.5
+        iconTintOpacity: 0.2
     },
 
     battery: {

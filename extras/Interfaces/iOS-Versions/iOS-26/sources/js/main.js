@@ -247,6 +247,22 @@ function closeApp() {
     setTimeout(() => { iframe.src = ''; }, 450);
 }
 
+document.querySelectorAll('div.homeIcon > img').forEach((e) => {
+    e.addEventListener('error', () => {
+        
+        if(document.body.classList.contains('clearIcons')) {
+            e.src = './sources/image/App Icons/Clear/Blank.webp';
+            return;
+        }
+
+        if(document.body.classList.contains('dark')) {
+            e.src = './sources/image/App Icons/Dark/Blank.webp';
+            return;
+        }
+        
+        e.src = './sources/image/App Icons/Blank.webp';
+    })
+});
 
 function switchAppearance() {
     //if(!window.CONNECTIONVARIABLES.settings.display_brightness_appearance) return;
@@ -258,79 +274,28 @@ function switchAppearance() {
         document.documentElement.style.setProperty('--iconTintOpacity', window.CONNECTIONVARIABLES.debug.iconTintOpacity);
     }
 
-    let allVariantIcons = [];
-    let darkVariantIcons = [];
-
-    document.querySelectorAll('div.homeIcon > img').forEach((el) => {
-        if(el.src.includes('DarkLight/')) {
-            //console.log(`${el.alt} has a dark variant.`);
-            darkVariantIcons.push(el);
-        } else {
-            //console.log(`${el.alt} does not have a dark variant.`);
-        }
-    });
-
-    document.querySelectorAll('div.homeIcon > img').forEach((el) => {
-        if(el.src.includes('allVariants/') || el.src.includes('WIP/')) {
-            //console.log(`${el.alt} has all icon variants.`);
-            allVariantIcons.push(el);
-        }
-    });
-
     if(window.CONNECTIONVARIABLES.settings.display_brightness_appearance == 'dark') {
         document.body.classList.add('dark');
 
-        darkVariantIcons.forEach((icon) => {
-            icon.src = icon.src.replace('DarkLight/', 'DarkLight/DarkMode/').replace('DarkMode/DarkMode/', 'DarkMode/');
-        });
-        allVariantIcons.forEach((icon) => {
-            icon.src = icon.src.replace('allVariants/', 'allVariants/Dark/').replace('/Dark/Dark/','/Dark/').replace('/Clear', '');
-        });
-        allVariantIcons.forEach((icon) => {
-            icon.src = icon.src.replace('WIP/', 'WIP/Dark/').replace('/Dark/Dark/','/Dark/').replace('/Clear', '');
+        document.querySelectorAll('div.homeIcon > img').forEach((e) => {
+            e.src = `./sources/image/App Icons/Dark/${e.alt}.webp`
         });
     } else {
         document.body.classList.remove('dark');
 
-        darkVariantIcons.forEach((icon) => {
-            icon.src = icon.src.replace('DarkLight/DarkMode/', 'DarkLight/');
-        });
-        allVariantIcons.forEach((icon) => {
-            icon.src = icon.src.replace('allVariants/Dark/', 'allVariants/');
-        });
-        allVariantIcons.forEach((icon) => {
-            icon.src = icon.src.replace('WIP/Dark/', 'WIP/');
+        document.querySelectorAll('div.homeIcon > img').forEach((e) => {
+            e.src = `./sources/image/App Icons/${e.alt}.webp`
         });
     }
 
     if(window.CONNECTIONVARIABLES.debug.clearIcons.enabled == true) {
         document.body.classList.add('clearIcons');
 
-        allVariantIcons.forEach((icon) => {
-            if(document.body.classList.contains('dark')) icon.src = icon.src.replace('allVariants/Dark/', 'allVariants/Clear/').replace('/Clear/Clear/','/Clear/');
-            else icon.src = icon.src.replace('allVariants/', 'allVariants/Clear/').replace('/Clear/Clear/','/Clear/');
-        });
-
-        allVariantIcons.forEach((icon) => {
-            if(document.body.classList.contains('dark')) icon.src = icon.src.replace('WIP/Dark/', 'WIP/Clear/').replace('/Clear/Clear/','/Clear/');
-            else icon.src = icon.src.replace('WIP/', 'WIP/Clear/').replace('/Clear/Clear/','/Clear/');
+        document.querySelectorAll('div.homeIcon > img').forEach((e) => {
+            e.src = `./sources/image/App Icons/Clear/${e.alt}.webp`
         });
     } else {
-        if(document.body.classList.contains('dark')) {
-            allVariantIcons.forEach((icon) => {
-                icon.src = icon.src.replace('allVariants/Clear/', 'allVariants/Dark').replace('/Dark/Dark/','/Dark/');
-            });
-            allVariantIcons.forEach((icon) => {
-                icon.src = icon.src.replace('WIP/Clear/', 'WIP/Dark').replace('/Dark/Dark/','/Dark/');
-            });
-        } else {
-            allVariantIcons.forEach((icon) => {
-                icon.src = icon.src.replace('allVariants/Clear/', 'allVariants/');
-            });
-            allVariantIcons.forEach((icon) => {
-                icon.src = icon.src.replace('WIP/Clear/', 'WIP/');
-            });
-        }
+        document.body.classList.remove('tintedIcons');
     }
 
     if(window.CONNECTIONVARIABLES.debug.tintedIcons.enabled == true) {
@@ -354,7 +319,7 @@ document.querySelectorAll('div.HS_Page').forEach((v,i) => {
     newPageSel.addEventListener('click', () => {
         document.querySelectorAll('div.pageSelection').forEach((e) => { e.classList.remove('active')});
         document.querySelector(`div.pageSelection[data-page="${newPageSel.dataset.page}"]`).classList.add('active');
-        HS_page = newPageSel.dataset.page;
+        HS_page = parseInt(newPageSel.dataset.page);
         fixHSScroll()
     });
 
@@ -725,3 +690,11 @@ function unlockPhone() {
     document.getElementById('homeScreen').classList.remove('animate');
     setTimeout(() => { document.getElementById('homeScreen').classList.add('animate'); }, 50);
 }
+
+//? Fix smaller displays like tablets or 1080p
+
+let fixedScale = (window.innerHeight + 144) / 1440;
+
+if(window.innerHeight < window.innerWidth) document.getElementById('iosHolder').style.scale = fixedScale;
+
+if(screen.height == 1440) document.getElementById('iosHolder').style.scale = 1;
