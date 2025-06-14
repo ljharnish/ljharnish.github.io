@@ -59,17 +59,21 @@ const settingsTable = {
                                     categories: [
                                         [
                                             {
-                                                name: 'Off'
+                                                name: 'Off',
+                                                type: 'radio',
                                             },
                                             {
                                                 name: 'Notify',
+                                                type: 'radio',
                                                 checked: true
                                             },
                                             {
-                                                name: 'Ask'
+                                                name: 'Ask',
+                                                type: 'radio',                                                type: 'radio',
+
                                             },
                                             {
-                                                subtitle: 'Known netowrks will be joined automatically. If no known networks are available, you will be notified of available networks.'
+                                                subtitle: 'Known networks will be joined automatically. If no known networks are available, you will be notified of available networks.'
                                             }
                                         ]
                                     ]
@@ -1479,7 +1483,7 @@ const settingsHolder = document.getElementById("settingsHolder");
 
 loadSettings(settingsTable, settingsHolder);
 
-function loadSettings(table, outputdiv) {
+function loadSettings(table, outputdiv, mainSetting) {
     console.log("Loading settings...");
 
     table.categories.forEach(category => {
@@ -1626,6 +1630,31 @@ function loadSettings(table, outputdiv) {
                 iosVersion.innerHTML = '<strong>iOS 26.0 (23A5260n)</strong><br><p>iOS beta gives you an early preview of upcoming apps, features, and technologies. Please back up your iPhone before you install the beta.<br><br>For more information, please visit one of the following programs:<br><ul><li>Apple Beta Software Program at <a href="https://beta.apple.com" target="_blank">beta.apple.com</a></li><li>Apple Developer Program at <a href="https://developer.apple.com" target="_blank">beta.apple.com</a></li></ul>'
 
                 settingDiv.appendChild(iosVersion);
+                categoryDiv.appendChild(settingDiv);
+
+                return;
+            } else if(setting.type == 'radio') {
+                settingDiv.onclick = () => { window.CONNECTIONVARIABLES.settings[mainSetting.id] = setting.name };
+
+                const textAndMore = document.createElement("div");
+                textAndMore.className = "textAndMore";
+                textAndMore.innerHTML = `<p>${setting.name}</p>`;
+
+                if(setting.checked) {
+                    const rightDiv = document.createElement("div");
+                    rightDiv.className = "rightSide";
+
+                    const textArrow = document.createElement("div");
+                    textArrow.className = "textArrow";
+                    const arrowIcon = document.createElement("sf-symbol");
+                    arrowIcon.setAttribute("glyph", "checkmark");
+                    arrowIcon.style.filter = 'invert(45%) sepia(90%) saturate(5221%) hue-rotate(199deg) brightness(101%) contrast(108%)';
+                    textArrow.appendChild(arrowIcon);
+                    rightDiv.appendChild(textArrow);
+                    textAndMore.appendChild(rightDiv);
+                }
+
+                settingDiv.appendChild(textAndMore);
                 categoryDiv.appendChild(settingDiv);
 
                 return;
@@ -1891,7 +1920,7 @@ function handleNewCategory(setting, categoryInner) {
 
     console.log(setting.innerSettings);
 
-    loadSettings(setting.innerSettings, innerElements);
+    loadSettings(setting.innerSettings, innerElements, setting);
     categoryInner.appendChild(innerElements);
     document.body.appendChild(categoryInner);
     appSpecificFunction();

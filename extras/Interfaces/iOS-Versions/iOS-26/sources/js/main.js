@@ -10,10 +10,10 @@ document.querySelector('#HS_Pages').scrollTo(0, 0);
 
 if(window.innerHeight > window.innerWidth) {
     document.body.classList.add('fullscreen');
-    function requestFullScreen() {
+    /*function requestFullScreen() {
         document.documentElement.requestFullscreen();
     }
-    document.addEventListener('pointerdown', requestFullScreen, { once: true });
+    document.addEventListener('pointerdown', requestFullScreen, { once: true });*/
 }
 
 //! Random Call

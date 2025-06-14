@@ -612,7 +612,7 @@ body.showControlBtns button#controlCenterBar:hover {
 	backdrop-filter: blur(5px);
 }
 
-body.showControlBtns div#controlCenter {
+div#controlCenter {
     position: absolute;
     bottom: 100%;
     width: 100%;
@@ -624,7 +624,7 @@ body.showControlBtns div#controlCenter {
 	transition: 0.5s ease-in-out bottom;
 }
 
-body.showControlBtns div#controlCenter.open {
+div#controlCenter.open {
     bottom: 0%;
 }
 
@@ -1286,7 +1286,7 @@ div#controlCenter sf-symbol {
 }
 
 div.controlCenterGrid {
-	padding: 70px 5%;
+	padding-top: 70px;
 	display: grid;
 	grid-template-columns: repeat(4, 112px);
 	grid-template-rows: repeat(8, 112px);

@@ -547,12 +547,15 @@ function dragElement(elmnt, barFill, sliderInput, callback, id, sliderLimit) {
     var pos1 = 0,
         pos3 = 0;
     elmnt.onmousedown = dragMouseDown;
+    elmnt.onpointerdown = dragMouseDown;
     function dragMouseDown(e) {
         e = e || window.event;
         //e.preventDefault();
         pos3 = e.clientX;
         document.onmouseup = closeDragElement;
+        document.onpointerup = closeDragElement;
         document.onmousemove = elementDrag;
+        document.onpointermove = elementDrag;
     }
     function elementDrag(e) {
         e = e || window.event;
@@ -581,6 +584,8 @@ function dragElement(elmnt, barFill, sliderInput, callback, id, sliderLimit) {
     }
     function closeDragElement() {
         document.onmouseup = null;
+        document.onpointerup = null;
         document.onmousemove = null;
+        document.onpointermove = null;
     }
 }
