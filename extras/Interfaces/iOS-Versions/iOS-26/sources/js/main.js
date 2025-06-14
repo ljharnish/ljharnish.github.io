@@ -288,13 +288,17 @@ document.addEventListener('keydown', (e) => {
 
 let mouseDown = false;
 let directionL = false; //Right
-let startX, scrollLeft;
+let directionU = false; // Down
+let startX, startY, scrollX, scrollY, scrollLeft;
 const HomeScreen = document.querySelector('#HS_Pages');
 
 const startDragging = (e) => {
     mouseDown = true;
     startX = e.pageX - HomeScreen.offsetLeft;
+    startY = e.pageY - HomeScreen.offsetTop;
     scrollLeft = HomeScreen.scrollLeft;
+    scrollX = 0;
+    scrollY = 0;
 }
 
 const stopDragging = (e) => {
@@ -320,19 +324,35 @@ const stopDragging = (e) => {
             fixHSScroll();
         }
     }
+
+    if(!directionU) {
+        if(scrollY > 100) {
+            //? open spotlight
+        }
+    }
+
+    fixHSScroll();
 }
 
 const move = (e) => {
     e.preventDefault();
     if(!mouseDown) { return; }
     const x = e.pageX - HomeScreen.offsetLeft;
-    const scroll = x - startX;
-    HomeScreen.scrollLeft = scrollLeft - scroll;
+    const y = e.pageY - HomeScreen.offsetTop;
+    scrollX = x - startX;
+    scrollY = y - startY;
+    HomeScreen.scrollLeft = scrollLeft - scrollX;
 
-    if(scroll > 0) {
+    if(scrollX > 0) {
         directionL = true;
     } else {
         directionL = false;
+    }
+
+    if(scrollY < 0) { 
+        directionU = true;
+    } else {
+        directionU = false;
     }
 }
 
@@ -488,7 +508,7 @@ class Alert {
         alert.classList.add('alert');
         alert.innerHTML = `<div class="text">
 							<h1>${this.header}</h1>
-							<p>${this.description}</p>
+							<p>${this.description.replaceAll('\n', '<br>')}</p>
 						</div>`;
 
         let buttonDiv;
@@ -515,8 +535,8 @@ class Alert {
                 } else if(btn.function == 'backpage') {
                     button.addEventListener('click', ()=>{history.back()})
                 } else if(btn.function) {
-                    if(typeof btn.function != 'function') return closeAlert(alert);
-                    button.addEventListener('click', ()=>{btn.function()});
+                    if(btn.closeAfterFunc) button.addEventListener('click', ()=>{btn.function();closeAlert(alert)});
+                    else button.addEventListener('click', ()=>{btn.function();});
                 } else if(btn.link) {
                     if(mobileBrowser) {
                         button.addEventListener('click', ()=>{
@@ -730,7 +750,8 @@ let HS_pageArray = [
         },
         {
             name: 'Calculator',
-            icon: 'Calculator'
+            icon: 'Calculator',
+            app: 'Calculator'
         },
         {
             name: 'Support',
@@ -747,7 +768,8 @@ let HS_pageArray = [
 const dockArray = [
     {
         name: 'Phone',
-        icon: 'Phone'
+        icon: 'Phone',
+        app: 'Phone'
     },
     {
         name: 'Safari',
@@ -848,6 +870,21 @@ function updateHomeScreen() {
                         setTimeout(() => {
                             newApp.remove();
                         }, 500);
+                    });
+                } else {
+                    iconEl.addEventListener('click', () => {
+                        new Alert(
+                            `"${icon.name}" App`,
+                            `The "${icon.name}" App has not yet been implemented.`,
+                            [
+                                {
+                                    text:'Close',
+                                    type:'highlight',
+                                    function:'close'
+                                }
+                            ],
+                            1
+                        )
                     });
                 }
 
@@ -959,6 +996,21 @@ function updateHomeScreen() {
                     setTimeout(() => {
                         newApp.remove();
                     }, 500);
+                });
+            } else {
+                iconEl.addEventListener('click', () => {
+                    new Alert(
+                        `"${icon.name}" App`,
+                        `The "${icon.name}" App has not yet been implemented.`,
+                        [
+                            {
+                                text:'Close',
+                                type:'highlight',
+                                function:'close'
+                            }
+                        ],
+                        1
+                    )
                 });
             }
 

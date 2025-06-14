@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="./sources/css/PhoneApp.css">
+        <link rel="stylesheet" href="../fonts/sf-pro-display.css">
+
+        <meta theme="light">
+
+        <script>
+            function appSpecificFunction() {
+                if(CONNECTIONVARIABLES.settings.display_brightness_appearance == 'dark') document.body.classList.add('dark');
+                else document.body.classList.remove('dark');
+            }
+        </script>
+
+
+    </head>
+    <body>
+
+        <h1 id="phoneNumber">+1 (012)-345-6789</h1>
+
+        <div id="keypadButtons">
+            <button class="keypadButton">1<p> </p></button>
+            <button class="keypadButton">2<p>ABC</p></button>
+            <button class="keypadButton">3<p>DEF</p></button>
+            <button class="keypadButton">4<p>GHI</p></button>
+            <button class="keypadButton">5<p>JKL</p></button>
+            <button class="keypadButton">6<p>MNO</p></button>
+            <button class="keypadButton">7<p>PQRS</p></button>
+            <button class="keypadButton">8<p>TUV</p></button>
+            <button class="keypadButton">9<p>WXYZ</p></button>
+            <button class="keypadButton">*</button>
+            <button class="keypadButton">0</button>
+            <button class="keypadButton">#</button>
+            <div></div>
+            <button class="keypadButton phone">
+                <sf-symbol glyph="phone.fill" color="white"></sf-symbol>
+            </button>
+        </div>
+
+        <div class="bottomBarBoth">
+            <div class="bottomBar">
+                <div class="iconName">
+                    <sf-symbol glyph="clock.fill"></sf-symbol>
+                    Calls
+                </div>
+                <div class="iconName">
+                    <sf-symbol glyph="person.crop.circle.fill"></sf-symbol>
+                    Contacts
+                </div>
+                <div class="iconName active">
+                    <sf-symbol glyph="circle.grid.3x3.fill"></sf-symbol>
+                    Keypad
+                </div>
+            </div>
+            <div class="searchButton">
+                <sf-symbol glyph="magnifyingglass"></sf-symbol>
+            </div>
+        </div>
+    </body>
+
+    <script src="./sources/js/global-js-connections.js"></script>
+	<script src="./sources/js/customElements.js"></script>
+</html>

@@ -240,8 +240,58 @@
 						Open CC
 					</button>	
 				</div>
-                <div id="controlCenter">
-                    
+                <div id="controlCenter" class="">
+                    <div class="controlCenterGrid">
+						<div class="cc1x4"></div>
+
+						<div class="cc2x1">
+							<div class="fill" style="--height:10%">
+
+							</div>
+							<div class="icon">
+								<sf-symbol glyph="airplane" color="white"></sf-symbol>
+							</div>
+						</div>
+
+						<div class="cc2x2">
+							<div class="cc2x2Grid">
+								<div class="ccSmallIcon">
+									<sf-symbol glyph="airplane" color="white"></sf-symbol>
+								</div>
+								<div class="ccSmallIcon blue">
+									<sf-symbol glyph="airdrop" color="white"></sf-symbol>
+								</div>
+								<div class="ccSmallIcon blue">
+									<sf-symbol glyph="wifi" color="white"></sf-symbol>
+								</div>
+								<div class="cc2x2Grid">
+									<div class="ccSmallIcon">
+										<sf-symbol glyph="chart.bar.fill" color="white"></sf-symbol>
+									</div>
+									<div class="ccSmallIcon blue">
+										<sf-symbol glyph="bluetooth" color="white"></sf-symbol>
+									</div>
+									<div class="ccSmallIcon">
+										<sf-symbol glyph="personalhotspot" color="white"></sf-symbol>
+									</div>
+									<div class="ccSmallIcon">
+										<sf-symbol glyph="globe" color="white"></sf-symbol>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="cc2x1">
+							<div class="fill" style="--height:10%">
+
+							</div>
+							<div class="icon">
+								<sf-symbol glyph="sun.max.fill" color="white"></sf-symbol>
+							</div>
+						</div>
+
+						<div class="cc1x2"></div>
+					</div>
                 </div>
 
 				<div id="lockScreen">
@@ -375,6 +425,18 @@
 			</div>
 			<div id="flash"></div>
 
+			<button id="actionButton" class="sideButton" onclick="new Alert('Action Button','The Action Button is not yet linked to a function yet.\n\nIf you would like, this can be linked to the Developer Panel app.\n\nOtherwise, please try again in a future update.',[{text:'Link to Developer Panel',type:'highlight',closeAfterFunc:true,function:(function(){document.getElementById(`actionButton`).setAttribute(`onclick`,`openNewApp('./sources/html/DevPanelApp.html')`)})}, {text:'Close',type:'normal',function:'close'}],1)">
+				<p>ACT</p>
+			</button>
+
+			<button id="volUpButton" class="sideButton" onclick="new Alert('Volume Up Button','The Volume Up Button is not yet linked to a function yet.\n\nPlease try again in a future update.',[{text:'Close',type:'highlight',function:'close'}],1)">
+				<p>VOL+</p>
+			</button>
+
+			<button id="volDownButton" class="sideButton" onclick="new Alert('Volume Down Button','The Volume Down Button is not yet linked to a function yet.\n\nPlease try again in a future update.',[{text:'Close',type:'highlight',function:'close'}],1)">
+				<p>VOL-</p>
+			</button>
+
 			<button id="lockButton" class="sideButton" onclick="toggleLockPhone()">
 				<p>PWR</p>
 			</button>
@@ -402,6 +464,6 @@
 		//<!--? Use this for Debugging
 
 		//DynamicIslandStyle('full-width-open');
-		//openNewApp('./sources/html/OldYouTubeApp.html');
+		//openNewApp('./sources/html/PhoneApp.html');
 	</script>
 </html>

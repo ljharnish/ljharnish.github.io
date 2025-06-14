@@ -2,10 +2,7 @@ const settingsTable = {
     categories: [
         [
             {
-                title: "Patch Notes:"
-            },
-            {
-                subtitle: "Version v6.13.2025 Brings some well deserved updates to the site.\n\nThese changes include:<strong>\nPatch Notes,\nSetting Saving,\nAll icon types and images,\nA more Dynamic Home Screen,\nFixed Bugs,\nand basic support for custom icons.</strong>"
+                title: 'Patch Notes at the bottom!'
             }
         ],
         [
@@ -39,7 +36,21 @@ const settingsTable = {
             {
                 subtitle: "Q: <i>Why does this everything look off and not work on my browser?</i>\n\n<strong>A: This was built in Firefox to be used on Firefox and it may not work on other browsers as it utilizes features other browsers may not yet have, and it uses bugs to its advantage in some parts of the styling.</strong>\n\n\nQ: <i>Why can't I exit fullscreen on mobile?</i>\n\n<strong>A: Mobile devices are forced into fullscreen. This is because the website is only the phone, and it does not always fit on every display so forcing fullscreen is the only way to ensure it works properly on mobile devices.</strong>"
             }
-        ]
+        ],
+        [
+            {
+                title: "Patch Notes (v6.14.2025):"
+            },
+            {
+                subtitle: "Version v6.14.2025 brings some quality-of-life updates.<strong>\n\nWork on the Control Center has begun,\nMore Side Buttons were added,\nAlerts are now shown for unavailable apps,\nWork on the \"Phone\" app has begun,\nA \"Google\" app has been added to test functionality of 3rd-party applications,\nWork has begun on Spotlight for the Home Screen.</strong>"
+            },
+            {
+                title: "Patch Notes (v6.13.2025):"
+            },
+            {
+                subtitle: "Version v6.13.2025 Brings some well deserved updates to the site.\n\nThese changes include:<strong>\nPatch Notes,\nSetting Saving,\nAll icon types and images,\nA more Dynamic Home Screen,\nFixed Bugs,\nand basic support for custom icons.</strong>"
+            }
+        ],
     ]
 };
 

@@ -305,14 +305,10 @@ body.showHSLabels div.homeIcon p {
 }
 
 div.homeIcon:not([app]),
-div.homeIcon:not([app]) img {
-	cursor: not-allowed;
-}
-
+div.homeIcon:not([app]) img,
 div.homeIcon:not([app]):active,
-div.homeIcon:not([app]) img:active {
+div.homeIcon:not([app]) img:active  {
 	cursor: not-allowed;
-	pointer-events: none !important;
 }
 
 body:not(.showInvalidIcons) div.homeIcon:not([app]) {
@@ -564,10 +560,6 @@ div#lockScreen div.otherButtons button:nth-of-type(4) {
 	width: 60px;
 }
 
-div#lockScreen div.otherButtons button:nth-of-type(5) {
-	padding: 15px;
-}
-
 div#lockScreen div.otherButtons sf-symbol {
 	height: 80%;
 	aspect-ratio: 1;
@@ -625,8 +617,8 @@ body.showControlBtns div#controlCenter {
     bottom: 100%;
     width: 100%;
     height: 100%;
-    background: #fff4;
-    backdrop-filter: blur(20px);
+    background: #0004;
+    backdrop-filter: blur(3px);
 
     z-index: 60;
 	transition: 0.5s ease-in-out bottom;
@@ -793,28 +785,49 @@ div.setupChoose div.setupChoice::after {
 	right: 20px;
 }
 
-body:has(#bootScreen.booting) #lockButton {
-	display: none;
-}
-
 #lockButton {
-	cursor: pointer;
-	position: absolute;
 	height: 130px;
 	width: 30px;
-	border: none;
 	right: 0;
 	top: 350px;
-	border-radius: 30px;
-	background: #fff2;
-	filter: drop-shadow(1px 1px 0 #fff2) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff2) drop-shadow(1px -1px 0 #fff2);
-	backdrop-filter: blur(10px);
     transition: 0.3s ease-in-out right;
 }
 
 #lockButton:hover {
 	right: -20px;
 }
+
+#actionButton {
+	height: 60px;
+	width: 30px;
+	left: 0;
+	top: 230px;
+    transition: 0.3s ease-in-out left;
+}
+
+#volUpButton {
+	height: 90px;
+	width: 30px;
+	left: 0;
+	top: 318px;
+    transition: 0.3s ease-in-out left;
+}
+
+#volDownButton {
+	height: 90px;
+	width: 30px;
+	left: 0;
+	top: 422px;
+    transition: 0.3s ease-in-out left;
+}
+
+
+#actionButton:hover,
+#volUpButton:hover,
+#volDownButton:hover {
+	left: -20px;
+}
+
 
 body.iconCircles div.homeIcon,
 body.iconCircles div.homeIcon img {
@@ -823,6 +836,16 @@ body.iconCircles div.homeIcon img {
 
 body.iconGlowOnly div.homeIcon img {
 	opacity: 0;
+}
+
+button.sideButton {
+	cursor: pointer;
+	position: absolute;
+	border: none;
+	border-radius: 30px;
+	background: #fff2;
+	filter: drop-shadow(1px 1px 0 #fff2) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff2) drop-shadow(1px -1px 0 #fff2);
+	backdrop-filter: blur(10px);
 }
 
 button.sideButton p {
@@ -1013,6 +1036,10 @@ div#alertScreen.alertOpen {
 	background: #0005;
 }
 
+body.dark div#alertScreen div.alert {
+	color: white;
+}
+
 div#alertScreen div.alert {
 	min-width: 300px;
 	max-width: 400px;
@@ -1097,6 +1124,7 @@ div#alertScreen div.vertButtons button:last-of-type {
 div#alertScreen button {
 	cursor: pointer;
 	font-size: 24px;
+	color: white;
 }
 
 div#alertScreen button.alert_highlight {
@@ -1113,6 +1141,11 @@ div#alertScreen button.alert_danger {
 div#alertScreen button.alert_normal {
 	color: black;
 	background: #0001;
+}
+
+body.dark div#alertScreen button.alert_normal {
+	color: white;
+	color: white;
 }
 
 div#bootScreen { 
@@ -1238,4 +1271,130 @@ div.welcome div.welcomeIOS img {
 
 body.dark div.welcome p img {
 	filter: invert(1);
+}
+
+div#controlCenter {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+div#controlCenter sf-symbol {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+div.controlCenterGrid {
+	padding: 70px 5%;
+	display: grid;
+	grid-template-columns: repeat(4, 112px);
+	grid-template-rows: repeat(8, 112px);
+}
+
+div.cc1x4,
+div.cc1x2,
+div.cc2x1,
+div.cc2x2 {
+	overflow: hidden;
+	border-radius: 900px;
+	margin: 10px;
+	background: #fff2;
+	box-shadow: 1px 1px 0 #fff5, -1px -1px 0 #fff, -1px 1px 0 #fff5, 1px -1px 0 #fff5;
+
+	height: calc(100% - 20px);
+	width: calc(100% - 20px);
+	justify-self: center;
+	align-self: center;
+}
+
+div.cc1x4 {
+	grid-row: span 1;
+	grid-column: span 4;
+}
+
+div.cc1x2 {
+	aspect-ratio: 2 / 1;
+	grid-row: span 1;
+	grid-column: span 2;
+}
+
+div.cc2x1 {
+	display: flex;
+	justify-content: center;
+	aspect-ratio: 1 / 2;
+	align-items: end;
+	position: relative;
+	grid-row: span 2;
+	grid-column: span 1;
+}
+
+div.cc2x2 {
+	aspect-ratio: 2 / 2;
+	border-radius: 45px;
+	grid-row: span 2;
+	grid-column: span 2;
+}
+
+div.cc2x2Grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: repeat(2, 1fr);
+
+	padding: 10px;
+	width: 100%;
+	height: 100%;
+}
+
+div.ccSmallIcon {
+	aspect-ratio: 1;
+	justify-self: center;
+	align-self: center;
+	width: 80%;
+	height: 80%;
+	border-radius: 100%;
+
+	background: #fff3;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+div.ccSmallIcon sf-symbol {
+	width: 100%;
+	height: 100%;
+	padding: 15px;
+}
+
+div.cc2x2Grid > div.cc2x2Grid div.ccSmallIcon sf-symbol {
+	padding: 3px;
+}
+
+div.ccSmallIcon.blue {
+	background: #007aff;
+}
+
+
+
+div.cc2x1 div.icon {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	width: 100%;
+	aspect-ratio: 1;
+	bottom: 0;
+	z-index: 2;
+}
+
+div.cc2x1 div.icon sf-symbol {
+	width: 60%;
+	aspect-ratio: 1;
+}
+
+div.cc2x1 div.fill {
+	z-index: 1;
+	background: white;
+	width: 100%;
+	height: var(--height);
 }

@@ -82,3 +82,17 @@ body.fullscreen button#lockButton.sideButton {
 body.fullscreen button#lockButton.sideButton:hover {
     right: 0px;
 }
+
+body.fullscreen button#actionButton.sideButton,
+body.fullscreen button#volUpButton.sideButton,
+body.fullscreen button#volDownButton.sideButton {
+    left: -10px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+body.fullscreen button#actionButton.sideButton:hover,
+body.fullscreen button#volUpButton.sideButton:hover,
+body.fullscreen button#volDownButton.sideButton:hover {
+    left: 0px;
+}

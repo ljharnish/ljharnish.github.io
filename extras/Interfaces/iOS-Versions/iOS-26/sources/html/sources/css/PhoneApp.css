@@ -1,0 +1,160 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+	font-family: 'SF Pro Display';
+    user-select: none;
+}
+
+html {
+	scrollbar-width: none;
+}
+
+sf-symbol {
+    display: flex;
+}
+
+::-webkit-scrollbar {
+	display: none;
+}
+
+body.dark {
+    background: black;
+}
+
+body.dark #bottomBar {
+    background: #1c1c1e22;
+}
+
+body {
+	width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    overflow-y: scroll;
+    background: #f2f2f7;
+    display: block;
+    padding: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+div.bottomBarBoth {
+    width: 100%;
+    border-radius: 999px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    padding: 0 20px;
+    position: fixed;
+    bottom: 30px;
+    left: 0;
+}
+
+div.bottomBar {
+    width: calc(100% - 60px);
+    border-radius: 999px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    left: 0;
+    z-index: 3;
+    background: #fff2;
+	filter: drop-shadow(1px 1px 0 #fff2) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff2) drop-shadow(1px -1px 0 #fff2);
+	backdrop-filter: blur(10px);
+    box-shadow: 0px 0px 15px #0005;
+}
+
+div.bottomBar sf-symbol {
+    display: block;
+    height: 30px;
+}
+
+body.dark div.iconName:not(.active) {
+    filter: invert(1);
+}
+
+div.bottomBar div.iconName {
+    cursor: pointer;
+    flex: 1 1 auto;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #444;
+    font-weight: 500;
+}
+
+div.bottomBar div.iconName.active {
+    filter: invert(50%) sepia(71%) saturate(3498%) hue-rotate(187deg) brightness(99%) contrast(90%);;
+}
+
+div.searchButton {
+    cursor: pointer;
+    padding: 20px;
+    margin-left: 20px;
+    height: 100%;
+    border-radius: 100%;
+    aspect-ratio: 1;
+    background: #fff2;
+	filter: drop-shadow(1px 1px 0 #fff2) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff2) drop-shadow(1px -1px 0 #fff2);
+	backdrop-filter: blur(10px);
+    box-shadow: 0px 0px 15px #0005;
+}
+
+body.dark div.searchButton * {
+    filter: invert(1);
+}
+
+#keypadButtons {
+    width: min-content;
+    display: grid;
+    grid-template-columns: repeat(3, 90px);
+    grid-template-rows: repeat(5, 90px);
+    gap: 30px;
+}
+
+body.dark button.keypadButton {
+    background: #333;
+    color: white;
+}
+
+button.keypadButton {
+    cursor: pointer;
+    width: 90px;
+    height: 90px;
+    font-size: 40px;
+    border: none;
+    border-radius: 100%;
+    background: #E5E5E5;
+}
+
+button.keypadButton p {
+    white-space: pre;
+    font-size: 12px;
+    font-weight: 600;
+    color: #666;
+    letter-spacing: 3px;
+}
+
+button.keypadButton.phone {
+    background: #35D061 !important;
+    padding: 20px;
+}
+
+button.keypadButton:active {
+    filter: brightness(0.8);
+}
+
+h1#phoneNumber {
+    font-size: 40px;
+}
+
+body.dark h1#phoneNumber {
+    color: white;
+}

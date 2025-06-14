@@ -42,6 +42,9 @@ const settingsTable = {
                                     type: 'switch',
                                     toggleData: 'enabled'
                                 }
+                            },
+                            {  
+                                name: "GeniusBar-Guest",
                             }
                         ],
                         [
@@ -120,7 +123,7 @@ const settingsTable = {
                     glyph: 'bluetooth'
                 },
                 right: {
-                    text: "On",
+                    text: "Off",
                     type: 'arrow'
                 },
                 innerSettings: {
@@ -1468,32 +1471,6 @@ const settingsTable = {
                     type: 'arrow'
                 }
             }
-        ],
-        [
-            {  
-                name: "Assets by Apple",
-
-                icon: {
-                    color: 'grey',
-                    glyph: 'camera.fill'
-                },
-            },
-            {  
-                name: "Code by ljharnish",
-
-                icon: {
-                    color: 'grey',
-                    glyph: 'command'
-                },
-            },
-            {  
-                name: "Thanks for coming!",
-
-                icon: {
-                    color: 'pink',
-                    glyph: 'heart.circle.fill'
-                },
-            }
         ]
     ]
 };
@@ -1661,7 +1638,7 @@ function loadSettings(table, outputdiv) {
                 if(!setting.icon.image) { 
 
                     const iconSymbol = document.createElement("sf-symbol");
-                    if(setting.icon.fixedHeight) iconSymbol.style.height = setting.icon.fixedHeight + "%";
+                    //if(setting.icon.fixedHeight) iconSymbol.style.height = setting.icon.fixedHeight + "%";
                     iconSymbol.setAttribute("glyph", setting.icon.glyph);
                     iconSymbol.setAttribute("color", "white");
 
