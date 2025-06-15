@@ -99,9 +99,23 @@ div#iphoneShadow {
 	width: 500px;
 }
 
+body.showOffPhone div#iosHolder {
+	animation: rotatePhone 5s linear infinite forwards;
+}
+
+@keyframes rotatePhone {
+	from {
+		transform: perspective(1440px) rotateY(0deg);
+	}
+	to {
+		transform: perspective(1440px) rotateY(360deg);
+	}
+}
+
 div#iosHolder {
-	transform: perspective(50em);
+	transform-style: preserve-3d;
 	position: relative;
+	z-index: 1;
 	padding: 32px;
 	padding-right: 35px;
 	width: 550px;
@@ -109,6 +123,19 @@ div#iosHolder {
 	aspect-ratio: 1/2;
 }
 
+
+div#iosHolder::before {
+	transform: translateZ(-1px) scaleX(-1);
+	content: '';
+	z-index: -1;
+	background: url(../image/iphoneBack.png);
+	background-position: center;
+	background-size: cover;
+	position: absolute;
+	width: calc(100% - 64px);
+	height: calc(100% - 64px);
+	border-radius: 70px;
+}
 
 div#ios26 {
 	overflow: hidden;
