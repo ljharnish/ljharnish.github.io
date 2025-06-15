@@ -415,70 +415,12 @@ CC_Bar.addEventListener('click', () => {
     if(!ccOpen) document.getElementById('topBar').classList.remove('ccOpen');
 });
 
-/*function setupBatteryWidget(canvas) {
-
-    const ctx = canvas.getContext('2d');
-    const deg2FDeg = (degrees) => (degrees - 90) * (Math.PI / 180);
-    const bP2Deg = (percent) => (360 / 100) * percent;
-
-    function colorBP(percent) {
-        if(percent <= 10) {
-            return '#eb3137'
-        }
-        if(percent <= 20) {
-            return '#fecd0b'
-        }
-        return '#27cd41'
-    }
-
-    let batteryPercent = 23;
-
-    const circleSize = 125;
-    const thickness = 30;
-
-}
-
-
-window.addEventListener('load', _ => {
-  canvas.width = 300;
-  canvas.height = 300; 
-  window.requestAnimationFrame(render);
-
-changeBattery(window.CONNECTIONVARIABLES.battery.level);
-});
-
-function render(canvas) {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    const step = 360 / 24;
-    
-    ctx.fillStyle = 'black';
-
-    for (let i = 0; i < 360; i+=step) {
-        const x = Math.cos(i * (Math.PI / 180)) * circleSize;
-        const y = Math.sin(i * (Math.PI / 180)) * circleSize;
-        
-        ctx.beginPath();
-        ctx.arc(canvas.width / 2, canvas.height / 2, circleSize, deg2FDeg(0), deg2FDeg(360));
-        ctx.strokeStyle = '#00000003';
-        ctx.lineWidth = thickness;
-        ctx.lineCap = 'round';
-        ctx.stroke();
-
-        ctx.beginPath();
-        ctx.arc(canvas.width / 2, canvas.height / 2, circleSize, deg2FDeg(0), deg2FDeg(bP2Deg(batteryPercent)));
-        ctx.strokeStyle = colorBP(batteryPercent);
-        ctx.lineWidth = thickness;
-        ctx.lineCap = 'round';
-        ctx.stroke();
-    } 
-
-    window.requestAnimationFrame(render);
-}
-
 function changeBattery(percent) {
-    document.querySelector('div.widgetSmall.batteryWidget div.batteryText').innerHTML = `${percent}%`
+    document.querySelectorAll('div.widgetSmall.batteryWidget div.batteryText').forEach((e) => {
+        e.innerHTML = `${percent}%`;
+    });
     batteryPercent = percent;
-}*/
+}
 
 document.addEventListener('fullscreenchange', (e) => {
     if(window.fullScreen == false && window.innerWidth > window.innerHeight) document.body.classList.remove('fullscreen');
@@ -757,7 +699,7 @@ let HS_pageArray = [
     [
         {
             type: 'widget',
-            widgetSize: 'small',
+            widgetSize: {x:2,y:2},
             widgetType: 'batteryWidget'
         },
         {
@@ -808,6 +750,96 @@ const dockArray = [
     }
 ]
 
+class Widget {
+    constructor(type="", size={x:0,y:0}, hs_icons) {
+        this.type = type;
+        this.size = size;
+        this.hs_icons = hs_icons;
+        
+        this.buildWidget();
+    }
+    
+    buildWidget() {
+        const widgetDiv = document.createElement('div');
+
+        const sizeStr = `${this.size.x}x${this.size.y}`;
+
+        switch(sizeStr) {
+            case '2x2':
+                widgetDiv.classList.add('widgetSmall');
+                break;
+            case '4x2':
+                break;
+            case '4x4':
+                break;
+            default:
+                break;
+        }
+
+        switch(this.type) {
+            case 'batteryWidget':
+                if(this.size.x == 2 && this.size.y == 2) {
+                    widgetDiv.classList.add('batteryWidget');
+                    widgetDiv.innerHTML = `<div class="batteryLabel"><img src="./sources/image/UI_Elements/phone-icon.png" alt="iPhone Battery Icon"><canvas width="110" height="110"></canvas></div><div class="batteryText">100%</div>`;
+                    
+
+                    const canv = widgetDiv.querySelector('canvas');
+
+                    setupSmallBatteryWidget(canv);
+
+                    function setupSmallBatteryWidget(canvas) {
+                        canvas.width = 300;
+                        canvas.height = 300; 
+                        const ctx = canvas.getContext('2d');
+                        const deg2FDeg = (degrees) => (degrees - 90) * (Math.PI / 180);
+                        const bP2Deg = (percent) => (360 / 100) * percent;
+
+                        function colorBP(percent) {
+                            if(percent <= 10) {
+                                return '#eb3137'
+                            }
+                            if(percent <= 20) {
+                                return '#fecd0b'
+                            }
+                            return '#27cd41'
+                        }
+
+                        const circleSize = 125;
+                        const thickness = 30;
+
+                        function render(canvas) {
+                            ctx.clearRect(0, 0, canvas.width, canvas.height);
+                            const step = 360 / 24;
+                            ctx.fillStyle = 'black';
+                            for (let i = 0; i < 360; i+=step) {
+                                ctx.beginPath();
+                                ctx.arc(canvas.width / 2, canvas.height / 2, circleSize, deg2FDeg(0), deg2FDeg(360));
+                                ctx.strokeStyle = '#00000003';
+                                ctx.lineWidth = thickness;
+                                ctx.lineCap = 'round';
+                                ctx.stroke();
+
+                                ctx.beginPath();
+                                ctx.arc(canvas.width / 2, canvas.height / 2, circleSize, deg2FDeg(0), deg2FDeg(bP2Deg(window.CONNECTIONVARIABLES.battery.level)));
+                                ctx.strokeStyle = colorBP(window.CONNECTIONVARIABLES.battery.level);
+                                ctx.lineWidth = thickness;
+                                ctx.lineCap = 'round';
+                                ctx.stroke();
+                            } 
+                        }
+                        render(canvas);
+                        setInterval(()=>{render(canvas)},1000);
+                    }
+                }
+                break;
+            default:
+                console.log('Undefined Type of Widget');
+        }
+
+        this.hs_icons.appendChild(widgetDiv);
+    }
+}
+
 //? there HAS to be a better way for this
 
 function updateHomeScreen() {
@@ -845,28 +877,7 @@ function updateHomeScreen() {
         page.forEach((icon) => {
             if(icon.type === 'widget') {
                 //? Exceptions for widgets.
-                const widgetEl = document.createElement('div');
-
-                //? allow for easy sizing
-
-                switch(icon.widgetSize) {
-                    case 'small':
-                        widgetEl.classList.add('widgetSmall');
-                        break;
-                    default:
-                        widgetEl.classList.add('widgetSmall');
-                        break;
-                }
-
-                widgetEl.classList.add(icon.widgetType);
-
-                switch(icon.widgetType) {
-                    case 'batteryWidget':
-                        widgetEl.innerHTML = `<div class="batteryLabel"><img src="./sources/image/UI_Elements/phone-icon.png" alt="iPhone Battery Icon"><canvas id="batteryLabelCanvas" width="110" height="110"></canvas></div><div class="batteryText">100%</div>`
-                        break;
-                }
-                
-                HS_Icons.appendChild(widgetEl);
+                new Widget(icon.widgetType, icon.widgetSize, HS_Icons);
             }
             
             if(icon.icon) {

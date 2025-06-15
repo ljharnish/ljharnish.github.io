@@ -6,6 +6,7 @@
 //?     - Thus (HOPEFULLY) allowing the app to work with the main window variables.
 
 function syncVariables(variables) {
+    
     let appVariables = variables;
     
     for (const [key, value] of Object.entries(appVariables)) {
@@ -22,6 +23,7 @@ function syncVariables(variables) {
 
 function handleNewVariables() {
     localStorage.setItem('savedVars', JSON.stringify(window.CONNECTIONVARIABLES));
+    changeBattery(window.CONNECTIONVARIABLES.battery.level)
     switchAppearance();
 
     if(window.CONNECTIONVARIABLES.debug.showDebug.enabled) {
