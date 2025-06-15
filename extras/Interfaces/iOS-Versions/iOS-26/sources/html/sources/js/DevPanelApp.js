@@ -2,6 +2,23 @@ const settingsTable = {
     categories: [
         [
             {
+                title: 'Dangerous Options'
+            },
+            {  
+                name: "Reset Saved Settings",
+                icon: {
+                    color: 'red',
+                    glyph: 'gear'
+                },
+                right: {
+                    type: 'button',
+                    text: 'Reset',
+                    onclick: "setTimeout(()=>{localStorage.removeItem('savedVars');document.dispatchEvent(new CustomEvent('ReloadPage'))},150)"
+                }
+            }
+        ],
+        [
+            {
                 title: "Processing Settings"
             },
             {
@@ -42,36 +59,6 @@ const settingsTable = {
             {
                 title: "Debug iOS 26 Features"
             },
-            {
-                name: "Circular Icons",
-                id: "iconCircles",
-                data: {
-                    enabled: false
-                },
-                icon: {
-                    color: 'blue',
-                    glyph: '26.circle.fill'
-                },
-                right: {
-                    type: 'switch',
-                    toggleData: 'enabled'
-                }
-            },
-            {
-                name: "Show Icon Glow Only (Hide Icon)",
-                id: "iconGlowOnly",
-                data: {
-                    enabled: false
-                },
-                icon: {
-                    color: 'orange',
-                    glyph: 'burst.fill'
-                },
-                right: {
-                    type: 'switch',
-                    toggleData: 'enabled'
-                }
-            },
             {  
                 name: "Test Alert (Horizontal)",
                 icon: {
@@ -95,7 +82,7 @@ const settingsTable = {
                     text: 'Show Alert',
                     onclick: "document.dispatchEvent(new CustomEvent('DebugAlert', {detail:{type:1}}))"
                 }
-            },
+            }
         ],
         [
             {
@@ -121,76 +108,43 @@ const settingsTable = {
         ],
         [
             {
-                title: "Experiments"
-            },
-            {
-                name: "Show Control Center Button",
-                id: "experiment_controlCenter",
-                data: {
-                    enabled: false
-                },
-                icon: {
-                    color: 'black',
-                    glyph: 'control.center'
-                },
-                right: {
-                    type: 'switch',
-                    toggleData: 'enabled'
-                }
-            },
-            {
-                name: "Enable Fullscreen",
-                id: "experiment_fullscreen",
-                data: {
-                    enabled: false
-                },
-                icon: {
-                    color: 'black',
-                    glyph: 'rectangle.expand.vertical'
-                },
-                right: {
-                    type: 'switch',
-                    toggleData: 'enabled'
-                }
-            },
-            {
-                subtitle: 'These are experimental beta features. They will not have perfect support across all platforms, nor are they guaranteed to work in all apps.'
-            }
-        ],
-        [
-            {
                 title: "Home Screen"
             },
             {  
-                name: "Enable Clear Icons",
-                id: "clearIcons",
-                data: {
-                    enabled: false
-                },
+                name: "Home Screen Icon Type",
+                id: "debug_hs_icons",
                 icon: {
                     color: 'orange',
-                    glyph: 'app'
+                    glyph: 'app.badge'
                 },
                 right: {
-                    type: 'switch',
-                    toggleData: 'enabled'
+                    text: "",
+                    type: 'arrow'
+                },
+                innerSettings: {
+                    categories: [
+                        [
+                            {
+                                name: 'Light',
+                                type: 'radio',
+                                checked: true
+                            },
+                            {
+                                name: 'Dark',
+                                type: 'radio',
+                            },
+                            {
+                                name: 'Clear',
+                                type: 'radio',
+                            },
+                            {
+                                name: 'Tinted',
+                                type: 'radio',
+                            }
+                        ]
+                    ]
                 }
             },
-            {  
-                name: "Enable Tinted Icons",
-                id: "tintedIcons",
-                data: {
-                    enabled: false
-                },
-                icon: {
-                    color: 'red',
-                    glyph: 'eyedropper.full'
-                },
-                right: {
-                    type: 'switch',
-                    toggleData: 'enabled'
-                }
-            },,
             {  
                 name: "Icon Tint",
                 id: "iconTint",
@@ -281,7 +235,7 @@ const settingsHolder = document.getElementById("settingsHolder");
 
 loadSettings(settingsTable, settingsHolder);
 
-function loadSettings(table, outputdiv) {
+function loadSettings(table, outputDiv, mainSetting) {
 
     table.categories.forEach(category => {
         if(category.length == 0) return; // Skip empty categories
@@ -376,10 +330,51 @@ function loadSettings(table, outputdiv) {
                 }, 120);
 
                 return;
-            }
+            } else if(setting.type == 'radio') {
+                settingDiv.onclick = () => { 
+                    window.CONNECTIONVARIABLES.debug[mainSetting.id] = category.indexOf(setting);
 
-            if(setting.innerSettings) {
-                // handleNewCategory(setting, categoryInner);
+                    Array.from(settingDiv.parentElement.children).forEach((e) => {
+                        if(e.classList.contains('setting') && e.querySelector('div.rightSide')) e.querySelector('div.rightSide').remove();
+                    });
+
+                    const rightDiv = document.createElement("div");
+                    rightDiv.className = "rightSide";
+
+                    const textArrow = document.createElement("div");
+                    textArrow.className = "textArrow";
+                    const arrowIcon = document.createElement("sf-symbol");
+                    arrowIcon.setAttribute("glyph", "checkmark");
+                    arrowIcon.style.filter = 'invert(45%) sepia(90%) saturate(5221%) hue-rotate(199deg) brightness(101%) contrast(108%)';
+                    textArrow.appendChild(arrowIcon);
+                    rightDiv.appendChild(textArrow);
+                    textAndMore.appendChild(rightDiv);
+                };
+
+                const textAndMore = document.createElement("div");
+                textAndMore.className = "textAndMore";
+                textAndMore.innerHTML = `<p>${setting.name}</p>`;
+
+                let set = (typeof window.CONNECTIONVARIABLES.debug[mainSetting.id] == "number");
+
+                if(window.CONNECTIONVARIABLES.debug[mainSetting.id] == category.indexOf(setting) || (!set && setting.checked)) {
+                    const rightDiv = document.createElement("div");
+                    rightDiv.className = "rightSide";
+
+                    const textArrow = document.createElement("div");
+                    textArrow.className = "textArrow";
+                    const arrowIcon = document.createElement("sf-symbol");
+                    arrowIcon.setAttribute("glyph", "checkmark");
+                    arrowIcon.style.filter = 'invert(45%) sepia(90%) saturate(5221%) hue-rotate(199deg) brightness(101%) contrast(108%)';
+                    textArrow.appendChild(arrowIcon);
+                    rightDiv.appendChild(textArrow);
+                    textAndMore.appendChild(rightDiv);
+                }
+
+                settingDiv.appendChild(textAndMore);
+                categoryDiv.appendChild(settingDiv);
+
+                return;
             }
             
             if(setting.icon) {
@@ -453,7 +448,9 @@ function loadSettings(table, outputdiv) {
                     textAndMore.appendChild(rightDiv);
 
                     settingDiv.addEventListener('click', () => {
-                        categoryInner.classList.add('open');
+                        if(setting.innerSettings) {
+                            handleNewCategory(setting, categoryInner);
+                        }
                     });
                     
                 } else if (setting.right.type === 'button') {
@@ -514,7 +511,7 @@ function loadSettings(table, outputdiv) {
             categoryDiv.appendChild(settingDiv);
         });
 
-        outputdiv.appendChild(categoryDiv);
+        outputDiv.appendChild(categoryDiv);
     });
 }
 
@@ -588,4 +585,70 @@ function dragElement(elmnt, barFill, sliderInput, callback, id, sliderLimit) {
         document.onmousemove = null;
         document.onpointermove = null;
     }
+}
+
+function handleNewCategory(setting, categoryInner) {
+    categoryInner.classList.add('categoryInner');
+    categoryInner.id = 'category-' + setting.id;
+
+    categoryInner.replaceChildren(); //? Bug fix for closing and opening categories.
+
+    const titleBar = document.createElement('div');
+    titleBar.classList.add('scrollTitleCategory');
+
+    const backButton = document.createElement('div');
+    backButton.classList.add('backButton');
+
+    const backButtonButton = document.createElement('button');
+    backButtonButton.addEventListener('click', () => {
+        categoryInner.classList.remove('open');
+        setTimeout(() => { categoryInner.remove(); }, 500);
+    });
+    backButtonButton.innerHTML = `<sf-symbol glyph='chevron.left'></sf-symbol>`;
+
+    backButton.appendChild(backButtonButton);
+    titleBar.appendChild(backButton);
+
+    const titleText = document.createElement('div');
+    titleText.innerHTML = `<p>${setting.name}</p>`;
+    titleBar.appendChild(titleText);
+
+    const titleSpace = document.createElement('div');
+    titleSpace.classList.add('spacer');
+    titleBar.appendChild(titleSpace);
+    categoryInner.appendChild(titleBar);
+
+    const innerElements = document.createElement('div');
+    innerElements.classList.add('categoryInnerElements');
+    categoryInner.appendChild(innerElements);
+
+    if(setting.description) {
+        const categoryHeader = document.createElement('div');
+        categoryHeader.classList.add('categoryHeader');
+
+        const categoryHeaderIcon = document.createElement('div');
+        categoryHeaderIcon.classList.add('icon');
+        categoryHeaderIcon.classList.add(setting.icon.color + '-icon');
+        categoryHeaderIcon.innerHTML = `<sf-symbol glyph="${setting.icon.glyph}" color="white"></sf-symbol>`
+
+        const headerTitle = document.createElement('h1');
+        headerTitle.innerText = setting.name;
+
+        const headerDesc = document.createElement('p');
+        headerDesc.innerHTML = setting.description;
+
+        categoryHeader.appendChild(categoryHeaderIcon);
+        categoryHeader.appendChild(headerTitle);
+        categoryHeader.appendChild(headerDesc);
+
+        innerElements.appendChild(categoryHeader);
+    }
+
+    console.log(setting.innerSettings);
+
+    loadSettings(setting.innerSettings, innerElements, setting);
+    categoryInner.appendChild(innerElements);
+    document.body.appendChild(categoryInner);
+    appSpecificFunction();
+    setTimeout(() => { categoryInner.classList.add('open'); }, 200);
 }

@@ -1,30 +1,12 @@
 window.CONNECTIONVARIABLES = {
     debug: {
-        clearIcons: {
-            enabled: false
-        },
-        tintedIcons: {
-            enabled: false
-        },
-        iconCircles: {
-            enabled: false
-        },
         performanceMode: {
             enabled: false
         },
         superPerformanceMode: {
             enabled: false
         },
-        iconGlowOnly: {
-            enabled: false
-        },
         showDebug: {
-            enabled: false
-        },
-        experiment_fullscreen: {
-            enabled: false
-        },
-        experiment_controlCenter: {
             enabled: false
         },
         showInvalidIcons: {
@@ -33,6 +15,7 @@ window.CONNECTIONVARIABLES = {
         showIconLabels: {
             enabled: false
         },
+        debug_actionButton: 0,
         iconTintOpacity: 0.2
     },
 

@@ -17,23 +17,17 @@ function syncVariables(variables) {
     console.log('Variables synced:', window.CONNECTIONVARIABLES);
 
     if(window.CONNECTIONVARIABLES.media.audio.playing) handleAudioPlaying(window.CONNECTIONVARIABLES.media.audio);
-    localStorage.setItem('savedVars', JSON.stringify(window.CONNECTIONVARIABLES));
     handleNewVariables();
 }
 
 function handleNewVariables() {
+    localStorage.setItem('savedVars', JSON.stringify(window.CONNECTIONVARIABLES));
     switchAppearance();
 
     if(window.CONNECTIONVARIABLES.debug.showDebug.enabled) {
         document.getElementById('debugOptions').classList.remove('hidden');
     } else {
         if(!document.getElementById('debugOptions').classList.contains('hidden')) document.getElementById('debugOptions').classList.add('hidden');
-    }
-
-    if(window.CONNECTIONVARIABLES.debug.experiment_controlCenter.enabled) {
-        document.body.classList.add('showControlBtns');
-    } else {
-        if(document.body.classList.contains('showControlBtns')) document.body.classList.remove('showControlBtns');
     }
     
     if(!window.innerHeight > window.innerWidth) {
@@ -60,19 +54,6 @@ function handleNewVariables() {
         if(document.body.classList.contains('showHSLabels')) document.body.classList.remove('showHSLabels');
     }
     
-
-    if(window.CONNECTIONVARIABLES.debug.iconCircles.enabled) {
-        document.body.classList.add('iconCircles');
-    } else {
-        if(document.body.classList.contains('iconCircles')) document.body.classList.remove('iconCircles');
-    }
-    
-    if(window.CONNECTIONVARIABLES.debug.iconGlowOnly.enabled) {
-        document.body.classList.add('iconGlowOnly');
-    } else {
-        if(document.body.classList.contains('iconGlowOnly')) document.body.classList.remove('iconGlowOnly');
-    }
-    
     if(window.CONNECTIONVARIABLES.debug.performanceMode.enabled) {
         document.body.classList.add('performanceMode');
     } else {
@@ -83,6 +64,30 @@ function handleNewVariables() {
         document.body.classList.add('superPerformanceMode');
     } else {
         if(document.body.classList.contains('superPerformanceMode')) document.body.classList.remove('superPerformanceMode');
+    }
+
+    switch(window.CONNECTIONVARIABLES.settings.actionButtonFunction) {
+        case 0: //? Open Developer Panel
+            document.getElementById('actionButton').setAttribute('onclick', "openNewApp('./sources/html/DevPanelApp.html')");
+            break;
+        case 1:
+            document.getElementById('actionButton').setAttribute('onclick', "if(window.CONNECTIONVARIABLES.settings.display_brightness_appearance=='dark')window.CONNECTIONVARIABLES.settings.display_brightness_appearance='light';else window.CONNECTIONVARIABLES.settings.display_brightness_appearance='dark';handleNewVariables();");
+            break;
+        case 2:
+            document.getElementById('actionButton').setAttribute('onclick', "window.CONNECTIONVARIABLES.debug.debug_hs_icons+=1;if(window.CONNECTIONVARIABLES.debug.debug_hs_icons > 3)window.CONNECTIONVARIABLES.debug.debug_hs_icons=0;handleNewVariables();");
+            break;
+        case 3:
+            document.getElementById('actionButton').setAttribute('onclick', "window.CONNECTIONVARIABLES.debug.performanceMode.enabled=!window.CONNECTIONVARIABLES.debug.performanceMode.enabled;handleNewVariables();");
+            break;
+        case 4: 
+            document.getElementById('actionButton').setAttribute('onclick', "window.CONNECTIONVARIABLES.debug.superPerformanceMode.enabled=!window.CONNECTIONVARIABLES.debug.superPerformanceMode.enabled;handleNewVariables();");
+            break;
+        case 5: 
+            document.getElementById('actionButton').setAttribute('onclick', "document.getElementById('controlCenter').classList.toggle('open');");
+            break;
+        default:
+            document.getElementById('actionButton').setAttribute('onclick', "openNewApp('./sources/html/DevPanelApp.html')");
+            break;
     }
 }
 

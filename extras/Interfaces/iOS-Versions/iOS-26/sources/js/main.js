@@ -167,6 +167,10 @@ function iframeLoad() {
             vars.detail.type
         );
     });
+
+    currentApp.children[0].contentDocument.addEventListener('ReloadPage', () => {
+        location.reload();
+    });
 }
 
 function openNewApp(link, scale) {
@@ -227,35 +231,38 @@ function switchAppearance() {
         document.documentElement.style.setProperty('--iconTintOpacity', window.CONNECTIONVARIABLES.debug.iconTintOpacity);
     }
 
-    if(window.CONNECTIONVARIABLES.settings.display_brightness_appearance == 'dark') {
-        document.body.classList.add('dark');
+    document.body.classList.remove('tintedIcons');
+    document.body.classList.remove('clearIcons');
+    document.body.classList.remove('dark');
 
-        document.querySelectorAll('div.homeIcon > img').forEach((e) => {
-            if(e.getAttribute('custom') != 'true') e.src = `./sources/image/App Icons/Dark/${e.alt}.webp`
-        });
-    } else {
-        document.body.classList.remove('dark');
-
-        document.querySelectorAll('div.homeIcon > img').forEach((e) => {
-            if(e.getAttribute('custom') != 'true') e.src = `./sources/image/App Icons/${e.alt}.webp`
-        });
+    switch(window.CONNECTIONVARIABLES.debug.debug_hs_icons) {
+        case 0: //? Light Icons
+            document.querySelectorAll('div.homeIcon > img').forEach((e) => {
+                if(e.getAttribute('custom') != 'true') e.src = `./sources/image/App Icons/${e.alt}.webp`
+            });
+            break;
+        case 1: //? Dark Icons
+            document.querySelectorAll('div.homeIcon > img').forEach((e) => {
+                if(e.getAttribute('custom') != 'true') e.src = `./sources/image/App Icons/Dark/${e.alt}.webp`
+            });
+            break;
+        case 2: //? Clear Icons
+            document.querySelectorAll('div.homeIcon > img').forEach((e) => {
+                if(e.getAttribute('custom') != 'true') e.src = `./sources/image/App Icons/Clear/${e.alt}.webp`
+            });
+            break;
+        case 3: //? Tinted Icons
+            document.body.classList.add('tintedIcons');
+            document.querySelectorAll('div.homeIcon > img').forEach((e) => {
+                if(e.getAttribute('custom') != 'true') e.src = `./sources/image/App Icons/Clear/${e.alt}.webp`
+            });
+            break;
+        default: //? Error - resort to Light Icons
+            window.CONNECTIONVARIABLES.debug.debug_hs_icons = 0;
+            break;
     }
 
-    if(window.CONNECTIONVARIABLES.debug.clearIcons.enabled == true) {
-        document.body.classList.add('clearIcons');
-        
-        document.querySelectorAll('div.homeIcon > img').forEach((e) => {
-            if(e.getAttribute('custom') != 'true') e.src = `./sources/image/App Icons/Clear/${e.alt}.webp`
-        });
-    } else {
-        document.body.classList.remove('tintedIcons');
-    }
-
-    if(window.CONNECTIONVARIABLES.debug.tintedIcons.enabled == true) {
-        document.body.classList.add('tintedIcons');
-    } else {
-        document.body.classList.remove('tintedIcons')
-    }
+    if(window.CONNECTIONVARIABLES.settings.display_brightness_appearance == 'dark') document.body.classList.add('dark');
 }
 
 
@@ -289,16 +296,31 @@ document.addEventListener('keydown', (e) => {
 let mouseDown = false;
 let directionL = false; //Right
 let directionU = false; // Down
-let startX, startY, scrollX, scrollY, scrollLeft;
+let startX, 
+    startY, 
+    scrollX, 
+    scrollY, 
+    scrollLeft,
+    startTime,
+    endTime;
 const HomeScreen = document.querySelector('#HS_Pages');
 
 const startDragging = (e) => {
     mouseDown = true;
+    startTime = new Date(Date.now());
     startX = e.pageX - HomeScreen.offsetLeft;
     startY = e.pageY - HomeScreen.offsetTop;
     scrollLeft = HomeScreen.scrollLeft;
     scrollX = 0;
     scrollY = 0;
+    
+    setTimeout(function() {
+    if(mouseDown && (Math.abs(scrollX) < 100)) {
+        document.querySelector('div#homeScreen').classList.add('edit');
+        function unEdit(e){if(e.target.classList.contains('HS_Icons')||e.target.classList.contains('HS_Page'))document.querySelector('div#homeScreen').classList.remove('edit');document.querySelector('div#homeScreen').removeEventListener('pointerdown', unEdit, false)}
+        document.querySelector('div#homeScreen').addEventListener('pointerdown', unEdit);
+    }
+  }, 1250);
 }
 
 const stopDragging = (e) => {

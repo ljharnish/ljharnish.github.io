@@ -69,7 +69,7 @@ const settingsTable = {
                                             },
                                             {
                                                 name: 'Ask',
-                                                type: 'radio',                                                type: 'radio',
+                                                type: 'radio',
 
                                             },
                                             {
@@ -95,13 +95,16 @@ const settingsTable = {
                                     categories: [
                                         [
                                             {
-                                                name: 'Never'
+                                                name: 'Never',
+                                                type: 'radio',
                                             },
                                             {
-                                                name: 'Ask to Join'
+                                                name: 'Ask to Join',
+                                                type: 'radio',
                                             },
                                             {
                                                 name: 'Automatic',
+                                                type: 'radio',
                                                 checked: true
                                             }
                                         ]
@@ -498,10 +501,12 @@ const settingsTable = {
                                                     categories: [
                                                         [
                                                             {
-                                                                name: "Off"
+                                                                name: "Off",
+                                                                type: 'radio',
                                                             },
                                                             {
                                                                 name: "iOS 26 Developer Beta",
+                                                                type: 'radio',
                                                                 checked: true
                                                             },
                                                             {
@@ -563,14 +568,17 @@ const settingsTable = {
                                     categories: [
                                         [
                                             {
-                                                name: "Recieving Off"
+                                                name: "Recieving Off",
+                                                type: 'radio',
                                             },
                                             {
                                                 name: "Contacts Only",
+                                                type: 'radio',
                                                 checked: true
                                             },
                                             {
-                                                name: "Everyone for 10 Minutes"
+                                                name: "Everyone for 10 Minutes",
+                                                type: 'radio',
                                             },
                                             {
                                                 subtitle: 'AirDrop lets you share instantly with people nearby. You can be discoverable in AirDrop to recieve from everyone or only people in your contacts. <a href="https://www.apple.com/privacy" target="_blank">About AirDrop & Privacy...</a>'
@@ -602,13 +610,16 @@ const settingsTable = {
                                                     categories: [
                                                         [
                                                             {
-                                                                name: "Never"
+                                                                name: "Never",
+                                                                type: 'radio',
                                                             },
                                                             {
-                                                                name: "Ask"
+                                                                name: "Ask",
+                                                                type: 'radio',
                                                             },
                                                             {
                                                                 name: "Automatic",
+                                                                type: 'radio',
                                                                 checked: true
                                                             },
                                                             {
@@ -1140,6 +1151,49 @@ const settingsTable = {
                     ]
                 }
             },
+            {
+                name: 'Action Button',
+                id: 'actionButtonFunction',
+                right: {
+                    type: 'arrow'
+                },
+                innerSettings: {
+                    categories: [
+                        [
+                            {
+                                title: 'THESE ARE NOT FINAL.'
+                            }
+                        ],
+                        [
+                            {
+                                name: 'Open Developer Panel',
+                                type: 'radio',
+                                checked: true
+                            },
+                            {
+                                name: 'Toggle Dark Mode',
+                                type: 'radio',
+                            },
+                            {
+                                name: 'Cycle Home Screen Icons',
+                                type: 'radio',
+                            },
+                            {
+                                name: 'Toggle Performance Mode',
+                                type: 'radio',
+                            },
+                            {
+                                name: 'Toggle Super Performance Mode',
+                                type: 'radio',
+                            },
+                            {
+                                name: 'Toggle Control Center',
+                                type: 'radio',
+                            }
+                        ]
+                    ]
+                }
+            },
             {  
                 name: "Camera", 
                 id: 'camera',
@@ -1479,16 +1533,51 @@ const settingsTable = {
     ]
 };
 
+
+function appSpecificFunction() {
+    for (const [key, value] of Object.entries(CONNECTIONVARIABLES.settings)) {
+        console.log(key)
+        try {
+            if(value.enabled) {
+                console.log(key)
+                let checkbox = document.getElementById(key + '-switch');
+                let slider = checkbox.parentElement.querySelector('.appleSlider');
+
+                checkbox.checked = value.enabled;
+
+                if(slider && checkbox.checked) {
+                    slider.classList.add("active");
+                }
+            }
+
+            if(key == 'display_brightness_appearance') {
+                if(value == 'light') {
+                    try {
+                        document.querySelectorAll('.settingsCheckCircle')[0].classList.add('checked');
+                        document.querySelectorAll('.settingsCheckCircle')[1].classList.remove('checked');
+                    } catch(e){}
+                    document.body.classList.remove('dark');
+                } else {
+                    try {
+                        document.querySelectorAll('.settingsCheckCircle')[1].classList.add('checked');
+                        document.querySelectorAll('.settingsCheckCircle')[0].classList.remove('checked');
+                    } catch(e){}
+                    document.body.classList.add('dark');
+                }
+            }
+        } catch (error) {
+        }
+    }
+}
+
 const settingsHolder = document.getElementById("settingsHolder");
 
 loadSettings(settingsTable, settingsHolder);
 
 function loadSettings(table, outputdiv, mainSetting) {
-    console.log("Loading settings...");
 
     table.categories.forEach(category => {
         if(category.length == 0) return; // Skip empty categories
-        console.log(category)
 
         const categoryDiv = document.createElement("div");
         categoryDiv.className = "settingsCategory";
@@ -1597,27 +1686,32 @@ function loadSettings(table, outputdiv, mainSetting) {
                 categoryDiv.appendChild(settingDiv);
                 return;
             } else if(setting.type == 'slider') {
-                const sunMin = document.createElement('div');
-                sunMin.classList.add('sunicon');
-                sunMin.innerHTML = '<sf-symbol glyph="sun.min.fill" color="white"></sf-symbol>';
-
                 const slider = document.createElement('div');
                 slider.classList.add('slider');
-                slider.innerHTML = '<div class="bar"><div class="barFill"></div></div>';
+                slider.innerHTML = '<div class="bar"></div>';
 
-                const sunMax = document.createElement('div');
-                sunMax.classList.add('sunicon');
-                sunMax.innerHTML = '<sf-symbol glyph="sun.max.fill" color="white"></sf-symbol>';
+                const sliderFill = document.createElement('div');
+                sliderFill.classList.add('barFill');
+                slider.children[0].appendChild(sliderFill);
+
 
                 const circle = document.createElement('div');
                 circle.classList.add('circle');
 
-                settingDiv.appendChild(sunMin);
+                settingDiv.style.position = 'relative';
                 settingDiv.appendChild(slider);
                 settingDiv.appendChild(circle);
-                settingDiv.appendChild(sunMax);
+
+                const debugInput = document.createElement('input');
+                debugInput.type = 'range';
+                debugInput.style.display = 'none';
+
+                let callback = () => {};
 
                 categoryDiv.appendChild(settingDiv);
+                settingDiv.appendChild(debugInput);
+                
+                dragElement(circle, sliderFill, debugInput, callback, setting.id, settingDiv.offsetWidth);
 
                 return;
             } else if(setting.type == 'wallpaper_customization') {
@@ -1634,13 +1728,35 @@ function loadSettings(table, outputdiv, mainSetting) {
 
                 return;
             } else if(setting.type == 'radio') {
-                settingDiv.onclick = () => { window.CONNECTIONVARIABLES.settings[mainSetting.id] = setting.name };
+                settingDiv.onclick = () => { 
+                    window.CONNECTIONVARIABLES.settings[mainSetting.id] = category.indexOf(setting);
+
+                    Array.from(settingDiv.parentElement.children).forEach((e) => {
+                        if(e.classList.contains('setting') && e.querySelector('div.rightSide')) e.querySelector('div.rightSide').remove();
+                    });
+
+                    const rightDiv = document.createElement("div");
+                    rightDiv.className = "rightSide";
+
+                    const textArrow = document.createElement("div");
+                    textArrow.className = "textArrow";
+                    const arrowIcon = document.createElement("sf-symbol");
+                    arrowIcon.setAttribute("glyph", "checkmark");
+                    arrowIcon.style.filter = 'invert(45%) sepia(90%) saturate(5221%) hue-rotate(199deg) brightness(101%) contrast(108%)';
+                    textArrow.appendChild(arrowIcon);
+                    rightDiv.appendChild(textArrow);
+                    textAndMore.appendChild(rightDiv);
+                };
 
                 const textAndMore = document.createElement("div");
                 textAndMore.className = "textAndMore";
                 textAndMore.innerHTML = `<p>${setting.name}</p>`;
 
-                if(setting.checked) {
+                let set = (typeof window.CONNECTIONVARIABLES.settings[mainSetting.id] == "number");
+
+                console.log(set);
+
+                if(window.CONNECTIONVARIABLES.settings[mainSetting.id] == category.indexOf(setting) || (!set && setting.checked)) {
                     const rightDiv = document.createElement("div");
                     rightDiv.className = "rightSide";
 
@@ -1744,11 +1860,16 @@ function loadSettings(table, outputdiv, mainSetting) {
                     const rightDiv = document.createElement("div");
                     rightDiv.className = "rightSide";
 
+                    const buttonDiv = document.createElement('div');
+                    buttonDiv.classList.add('rightButtonDiv');
+
                     const button = document.createElement("button");
                     button.setAttribute('onclick', setting.right.onclick);
                     button.className = "settingButton";
                     if(setting.right.text) button.innerText = `${setting.right.text}`;
-                    rightDiv.appendChild(button);
+
+                    buttonDiv.appendChild(button);
+                    rightDiv.appendChild(buttonDiv);
                     textAndMore.appendChild(rightDiv);
 
                     settingDiv.addEventListener('click', () => {
@@ -1765,18 +1886,6 @@ function loadSettings(table, outputdiv, mainSetting) {
                     rightDiv.appendChild(text);
                     textAndMore.appendChild(rightDiv);
                 }
-            } else if(!setting.right && setting.checked) {
-                const rightDiv = document.createElement("div");
-                rightDiv.className = "rightSide";
-
-                const textArrow = document.createElement("div");
-                textArrow.className = "textArrow";
-                const arrowIcon = document.createElement("sf-symbol");
-                arrowIcon.setAttribute("glyph", "checkmark");
-                arrowIcon.style.filter = 'invert(45%) sepia(90%) saturate(5221%) hue-rotate(199deg) brightness(101%) contrast(108%)';
-                textArrow.appendChild(arrowIcon);
-                rightDiv.appendChild(textArrow);
-                textAndMore.appendChild(rightDiv);
             }
 
             if(setting.disabled) {
@@ -1791,42 +1900,6 @@ function loadSettings(table, outputdiv, mainSetting) {
 
         outputdiv.appendChild(categoryDiv);
     });
-}
-
-function appSpecificFunction() {
-    for (const [key, value] of Object.entries(CONNECTIONVARIABLES.settings)) {
-        console.log(key)
-        try {
-            if(value.enabled) {
-                console.log(key)
-                let checkbox = document.getElementById(key + '-switch');
-                let slider = checkbox.parentElement.querySelector('.appleSlider');
-
-                checkbox.checked = value.enabled;
-
-                if(slider && checkbox.checked) {
-                    slider.classList.add("active");
-                }
-            }
-
-            if(key == 'display_brightness_appearance') {
-                if(value == 'light') {
-                    try {
-                        document.querySelectorAll('.settingsCheckCircle')[0].classList.add('checked');
-                        document.querySelectorAll('.settingsCheckCircle')[1].classList.remove('checked');
-                    } catch(e){}
-                    document.body.classList.remove('dark');
-                } else {
-                    try {
-                        document.querySelectorAll('.settingsCheckCircle')[1].classList.add('checked');
-                        document.querySelectorAll('.settingsCheckCircle')[0].classList.remove('checked');
-                    } catch(e){}
-                    document.body.classList.add('dark');
-                }
-            }
-        } catch (error) {
-        }
-    }
 }
 
 function setSlider(slider, set, toggleData) {
@@ -1925,4 +1998,52 @@ function handleNewCategory(setting, categoryInner) {
     document.body.appendChild(categoryInner);
     appSpecificFunction();
     setTimeout(() => { categoryInner.classList.add('open'); }, 200);
+}
+
+
+function dragElement(elmnt, barFill, sliderInput, callback, id, sliderLimit) {
+    var pos1 = 0,
+        pos3 = 0;
+    elmnt.onmousedown = dragMouseDown;
+    elmnt.onpointerdown = dragMouseDown;
+    function dragMouseDown(e) {
+        e = e || window.event;
+        //e.preventDefault();
+        pos3 = e.clientX;
+        document.onmouseup = closeDragElement;
+        document.onpointerup = closeDragElement;
+        document.onmousemove = elementDrag;
+        document.onpointermove = elementDrag;
+    }
+    function elementDrag(e) {
+        e = e || window.event;
+        e.preventDefault();
+        pos1 = pos3 - e.clientX;
+        pos3 = e.clientX;
+        elmnt.style.left = elmnt.offsetLeft - pos1 + "px";
+        if(parseInt(elmnt.style.left.split('px')[0]) <= 15) elmnt.style.left = '15px';
+        if(parseInt(elmnt.style.left.split('px')[0]) >= (sliderLimit-60)) elmnt.style.left = `${(sliderLimit - 60)}px`;
+        
+        let percentage = ((parseInt(elmnt.style.left.split('px')[0])-15)/(sliderLimit-75))*100;
+        
+        if(id == 'battery_level_slider') {
+            if(Math.round(percentage) <= 10) {
+                barFill.style.background = '#eb3137';
+            } else if(Math.round(percentage) <= 20) {
+                barFill.style.background = '#fecd0b';
+            } else {
+                barFill.style.background = '#27cd41';
+            }
+        }
+
+        barFill.style.width = `${percentage}%`;
+        sliderInput.value = Math.round(percentage);
+        callback(percentage);
+    }
+    function closeDragElement() {
+        document.onmouseup = null;
+        document.onpointerup = null;
+        document.onmousemove = null;
+        document.onpointermove = null;
+    }
 }

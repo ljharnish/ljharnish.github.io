@@ -388,6 +388,16 @@
 
 				<div id="homeScreen">
 
+					<div id="HS_EditBtns">
+						<button>
+							Edit
+						</button>
+						<div></div>
+						<button onclick="document.querySelector('#homeScreen').classList.remove('edit');">
+							Done
+						</button>
+					</div>
+
 					<div id="HS_Pages">
 
 					</div>
@@ -425,15 +435,15 @@
 			</div>
 			<div id="flash"></div>
 
-			<button id="actionButton" class="sideButton" onclick="new Alert('Action Button','The Action Button is not yet linked to a function yet.\n\nIf you would like, this can be linked to the Developer Panel app.\n\nOtherwise, please try again in a future update.',[{text:'Link to Developer Panel',type:'highlight',closeAfterFunc:true,function:(function(){document.getElementById(`actionButton`).setAttribute(`onclick`,`openNewApp('./sources/html/DevPanelApp.html')`)})}, {text:'Close',type:'normal',function:'close'}],1)">
+			<button id="actionButton" class="sideButton" onclick="">
 				<p>ACT</p>
 			</button>
 
-			<button id="volUpButton" class="sideButton" onclick="new Alert('Volume Up Button','The Volume Up Button is not yet linked to a function yet.\n\nPlease try again in a future update.',[{text:'Close',type:'highlight',function:'close'}],1)">
+			<button id="volUpButton" class="sideButton" onclick="new Alert('Volume Up Button','The Volume Up Button is not yet linked to a function.\n\nPlease try again in a future update.',[{text:'Close',type:'highlight',function:'close'}],1)">
 				<p>VOL+</p>
 			</button>
 
-			<button id="volDownButton" class="sideButton" onclick="new Alert('Volume Down Button','The Volume Down Button is not yet linked to a function yet.\n\nPlease try again in a future update.',[{text:'Close',type:'highlight',function:'close'}],1)">
+			<button id="volDownButton" class="sideButton" onclick="new Alert('Volume Down Button','The Volume Down Button is not yet linked to a function.\n\nPlease try again in a future update.',[{text:'Close',type:'highlight',function:'close'}],1)">
 				<p>VOL-</p>
 			</button>
 
@@ -464,6 +474,6 @@
 		//<!--? Use this for Debugging
 
 		//DynamicIslandStyle('full-width-open');
-		//openNewApp('./sources/html/PhoneApp.html');
+		//openNewApp('./sources/html/DevPanelApp.html');
 	</script>
 </html>
