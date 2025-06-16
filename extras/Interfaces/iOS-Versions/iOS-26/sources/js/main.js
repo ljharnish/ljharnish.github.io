@@ -425,6 +425,12 @@ function changeBattery(percent) {
 document.addEventListener('fullscreenchange', (e) => {
     if(window.fullScreen == false && window.innerWidth > window.innerHeight) document.body.classList.remove('fullscreen');
     if(window.fullScreen) document.body.scrollTo(0, 0)
+
+    if(window.fullScreen && window.innerWidth > window.innerHeight) {
+        document.getElementById('ios26').classList.add('tablet');
+    } else {
+        document.getElementById('ios26').classList.remove('tablet');
+    }
 })
 
 function toggleLockPhone() {

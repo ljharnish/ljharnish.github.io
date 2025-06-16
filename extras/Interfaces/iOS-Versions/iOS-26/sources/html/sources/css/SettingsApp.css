@@ -588,7 +588,8 @@ div.categoryHeader:has(+ div.setting) {
     border-bottom: 1px solid #eee;
 }
 
-div.categoryHeader div.icon {
+div.categoryHeader div.icon,
+div.categoryHeader img.icon {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -898,8 +899,6 @@ div.setting * {
 
 div.setting.unfinished {
     position: relative;
-    cursor: not-allowed !important;
-    background: #fafafa;
 }
 
 div.setting.unfinished::after {
@@ -910,14 +909,13 @@ div.setting.unfinished::after {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: calc(100% - 15px);
+    padding: 5px 10px;
     border-radius: 100px;
     height: 20px;
     position: absolute;
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
+    transform: translate(0, -50%);
+    right: 50px;
 
     background: #fff2;
 	filter: drop-shadow(1px 1px 0 #fff2) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff2) drop-shadow(1px -1px 0 #fff2);

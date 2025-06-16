@@ -23,6 +23,8 @@ function syncVariables(variables) {
 
 function handleNewVariables() {
     localStorage.setItem('savedVars', JSON.stringify(window.CONNECTIONVARIABLES));
+    window.CONNECTIONVARIABLES.media.audio = { playing: false };
+    window.CONNECTIONVARIABLES.media.video = { playing: false };
     changeBattery(window.CONNECTIONVARIABLES.battery.level)
     switchAppearance();
 

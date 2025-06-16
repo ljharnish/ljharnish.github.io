@@ -756,6 +756,71 @@ const settingsTable = {
                                 },
                                 right: {
                                     type: 'arrow'
+                                },
+                                innerSettings: {
+                                    categories: [
+                                        [
+                                            {
+                                                title: 'Watch TV shows and movies from apps included in your TV subscription. Select your TV provider to get started.'
+                                            },
+                                            {
+                                                name: 'AT&T U-verse'
+                                            },
+                                            {
+                                                name: 'CenturyLink Prism'
+                                            },
+                                            {
+                                                name: 'Cox'
+                                            },
+                                            {
+                                                name: 'DIRECTV'
+                                            },
+                                            {
+                                                name: 'DIRECTV STREAM'
+                                            },
+                                            {
+                                                name: 'DISH'
+                                            },
+                                            {
+                                                name: 'Frontier'
+                                            },
+                                            {
+                                                name: 'Hulu'
+                                            },
+                                            {
+                                                name: 'Mediacom'
+                                            },
+                                            {
+                                                name: 'Optimum'
+                                            },
+                                            {
+                                                name: 'Optimum TV'
+                                            },
+                                            {
+                                                name: 'Sling TV'
+                                            },
+                                            {
+                                                name: 'Spectrum'
+                                            },
+                                            {
+                                                name: 'Verizon Fios'
+                                            },
+                                            {
+                                                name: 'Xfinity'
+                                            }
+                                        ],
+                                        [
+                                            { subtitle: 'ill add more here soon' }
+                                        ],
+                                        [
+                                            {
+                                                name: 'Other TV Provider Regions...'
+                                            },
+                                            {
+                                                subtitle: "If you don't see your TV provider, sign in directly from the app you want to use."
+                                            }
+                                        ]
+                                    ]
                                 }
                             }
                         ],
@@ -1154,6 +1219,10 @@ const settingsTable = {
             {
                 name: 'Action Button',
                 id: 'actionButtonFunction',
+                icon: {
+                    color: 'blue',
+                    glyph: 'actionButton'
+                },
                 right: {
                     type: 'arrow'
                 },
@@ -1416,6 +1485,53 @@ const settingsTable = {
                 },
                 right: {
                     type: 'arrow'
+                },
+                innerSettings: {
+                    categories: [
+                        [
+                            {
+                                title: 'Home Screen'
+                            },
+                            {
+                                name: 'Use Large App Icons',
+                                id: "homescreen_large_icons",
+                                data: {
+                                    enabled: true
+                                },
+                                right: {
+                                    type: 'switch',
+                                    toggleData: 'enabled'
+                                }
+                            }
+                        ],
+                        [
+                            {
+                                title: 'Newly Downloaded Apps'
+                            },
+                            {
+                                name: 'Add to Home Screen',
+                            },
+                            {
+                                name: 'App Library Only',
+                            }
+                        ],
+                        [
+                            {
+                                title: 'Notification Badges'
+                            },
+                            {
+                                name: 'Show in App Library',
+                                id: "homescreen_noti_show_in_library",
+                                data: {
+                                    enabled: false
+                                },
+                                right: {
+                                    type: 'switch',
+                                    toggleData: 'enabled'
+                                }
+                            }
+                        ]
+                    ]
                 }
             },
             {  
@@ -1429,12 +1545,172 @@ const settingsTable = {
                 }
             },
             {  
-                name: "Siri", 
+                name: "Siri",
+                description: "Siri is an intelligent assistant that helps you find information and get things done.",
                 icon: {
                     image: '../image/Siri-Square.jpg',
                 },
                 right: {
                     type: 'arrow'
+                },
+                innerSettings: {
+                    categories: [
+                        [
+                            {
+                                title: 'Siri Requests'
+                            },
+                            {
+                                name: 'Language',
+                                right: {
+                                    text: 'English (United States)',
+                                    type: 'arrow'
+                                }
+                            },
+                            {
+                                name: 'Talk to Siri',
+                                right: {
+                                    type: 'arrow'
+                                }
+                            },
+                            {
+                                name: 'Allow Siri When Locked',
+                                id: "allow_locked_siri",
+                                data: {
+                                    enabled: true
+                                },
+                                right: {
+                                    type: 'switch',
+                                    toggleData: 'enabled'
+                                }
+                            },
+                            {
+                                name: 'Voice',
+                                right: {
+                                    text: 'American (Voice 1)',
+                                    type: 'arrow'
+                                }
+                            },
+                            {
+                                name: 'Siri Responses',
+                                right: {
+                                    type: 'arrow'
+                                }
+                            },
+                            {
+                                name: 'Announce Calls',
+                                right: {
+                                    type: 'arrow'
+                                }
+                            },
+                            {
+                                name: 'Announce Notifications',
+                                right: {
+                                    type: 'arrow'
+                                }
+                            },
+                            {
+                                name: 'Messaging with Siri',
+                                right: {
+                                    type: 'arrow'
+                                }
+                            },
+                            {
+                                name: 'Siri & Dictation History',
+                                right: {
+                                    type: 'arrow'
+                                }
+                            },
+                            {
+                                name: 'My Information',
+                                right: {
+                                    type: 'arrow'
+                                }
+                            },
+                            {
+                                subtitle: 'Voice input is processed on iPhone, but transcripts of your requests are sent to Apple.'
+                            }
+                        ],
+                        [
+                            {
+                                title: "Suggestions"
+                            },
+                            {
+                                name: 'Suggest Apps Before Searching',
+                                id: "siri_suggest_apps",
+                                data: {
+                                    enabled: true
+                                },
+                                right: {
+                                    type: 'switch',
+                                    toggleData: 'enabled'
+                                }
+                            },
+                            {
+                                name: 'Allow Notifications',
+                                id: "siri_allow_notifs",
+                                data: {
+                                    enabled: true
+                                },
+                                right: {
+                                    type: 'switch',
+                                    toggleData: 'enabled'
+                                }
+                            },
+                            {
+                                name: 'Show in App Library',
+                                id: "siri_app_library",
+                                data: {
+                                    enabled: true
+                                },
+                                right: {
+                                    type: 'switch',
+                                    toggleData: 'enabled'
+                                }
+                            },
+                            {
+                                name: 'Show When Sharing',
+                                id: "siri_show_sharing",
+                                data: {
+                                    enabled: true
+                                },
+                                right: {
+                                    type: 'switch',
+                                    toggleData: 'enabled'
+                                }
+                            },
+                            {
+                                name: 'Show Listening Suggestions',
+                                id: "siri_suggest_listen",
+                                data: {
+                                    enabled: true
+                                },
+                                right: {
+                                    type: 'switch',
+                                    toggleData: 'enabled'
+                                }
+                            },
+                            {
+                                subtitle: 'Apple can make suggestions in Search, on Home Screen and Lock Screen, when sharing, or when you may want to listen to media.'
+                            }
+                        ],
+                        [
+                            {
+                                title: 'Siri App Access'
+                            },
+                            {
+                                name: 'App Clips',
+                                right: {
+                                    type: 'arrow'
+                                }
+                            },
+                            {
+                                name: 'Apps',
+                                right: {
+                                    type: 'arrow'
+                                }
+                            }
+                        ]
+                    ]
                 }
             },
             {
@@ -1972,11 +2248,18 @@ function handleNewCategory(setting, categoryInner) {
     if(setting.description) {
         const categoryHeader = document.createElement('div');
         categoryHeader.classList.add('categoryHeader');
+        let categoryHeaderIcon = '';
 
-        const categoryHeaderIcon = document.createElement('div');
-        categoryHeaderIcon.classList.add('icon');
-        categoryHeaderIcon.classList.add(setting.icon.color + '-icon');
-        categoryHeaderIcon.innerHTML = `<sf-symbol glyph="${setting.icon.glyph}" color="white"></sf-symbol>`
+        if(setting.icon.image) {
+            categoryHeaderIcon = document.createElement('img');
+            categoryHeaderIcon.classList.add('icon');
+            categoryHeaderIcon.src = setting.icon.image;
+        } else {
+            categoryHeaderIcon = document.createElement('div');
+            categoryHeaderIcon.classList.add('icon');
+            categoryHeaderIcon.classList.add(setting.icon.color + '-icon');
+            categoryHeaderIcon.innerHTML = `<sf-symbol glyph="${setting.icon.glyph}" color="white"></sf-symbol>`
+        }
 
         const headerTitle = document.createElement('h1');
         headerTitle.innerText = setting.name;

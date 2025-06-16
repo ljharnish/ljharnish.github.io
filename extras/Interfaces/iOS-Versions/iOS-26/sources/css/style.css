@@ -1079,7 +1079,7 @@ div#alertScreen div.alert {
 	padding: 10px;
 	padding-top: 30px;
 	background: #fff4;
-	filter: drop-shadow(1px 1px 0 #fff9) drop-shadow(-1px -1px 0 #fffb) drop-shadow(-1px 1px 0 #fff9) drop-shadow(1px -1px 0 #fff9);
+	filter: drop-shadow(1px 1px 0 #fff6) drop-shadow(-1px -1px 0 #fffb) drop-shadow(-1px 1px 0 #fff6) drop-shadow(1px -1px 0 #fff6);
 	backdrop-filter: blur(10px);
 	padding-bottom: 15px;
 	animation: 0.4s alertFadeIn ease-in-out 1 forwards;
@@ -1520,4 +1520,14 @@ div#HS_EditBtns > button {
 	background: #fff2;
 	filter: drop-shadow(1px 1px 0 #fff2) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff2) drop-shadow(1px -1px 0 #fff2);
 	backdrop-filter: blur(10px);
+}
+
+div#ios26.tablet div#HS_dockInner {
+	padding: 5px 15px;
+	gap: 20px;
+	width: max-content;
+}
+
+div#ios26.tablet div.HS_Icons {
+	grid-template-columns: repeat(auto-fill, 112px);
 }

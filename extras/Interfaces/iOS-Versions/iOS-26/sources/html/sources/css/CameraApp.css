@@ -22,6 +22,7 @@ body {
 }
 
 #videoElement {
+    transform: scaleX(-1);
 	height: 80%;
 	background-color: black;
 }
