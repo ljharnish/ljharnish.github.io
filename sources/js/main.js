@@ -1,7 +1,9 @@
-window.addEventListener('keydown', (e) => {
-    if(e.key === 'q' && e.ctrlKey) {
-        document.querySelectorAll('a.project.disabled').forEach((el) => {
-            el.classList.remove('disabled');
-        })
+window.addEventListener('scroll', () => {
+    if(window.scrollY > 110) {
+        document.getElementById('scrollUp').classList.remove('hidden');
+        document.getElementsByTagName('header')[0].classList.add('topScroll');
+    } else {
+        document.getElementById('scrollUp').classList.add('hidden');
+        document.getElementsByTagName('header')[0].classList.remove('topScroll');
     }
 });
