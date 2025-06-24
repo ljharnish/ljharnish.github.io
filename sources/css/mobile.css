@@ -1,0 +1,161 @@
+@media screen and (orientation: portrait), (max-width:1080px){
+    body {
+        padding: 0;
+    }
+
+    header {
+        display: none;
+    }
+
+    div.categoryHolder {
+        width: 95%;
+        margin-bottom: 50px;
+    }
+
+    button#mobileNavBtn {
+        position: sticky;
+        top: 20px;
+        left: 20px;
+
+        width: 50px;
+        height: 50px;
+        filter: invert(1);
+        border: none;
+        background: none;
+        cursor: pointer;
+
+        display: block;
+
+        z-index: 100;
+    }
+
+    h1#mobileHeader {
+        filter: drop-shadow(0 0 15px black);
+        position: sticky;
+        top: 20px;
+        right: 20px;
+        
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        padding: 0 15px;
+
+        font-size: 30px;
+        width: unset;
+        background: linear-gradient(270deg, #ab98ff, #81a3ff);
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-style: italic;
+        color: transparent;
+        -webkit-text-stroke: unset;
+        border: 2px solid #989dff;
+        border-radius: 10px;
+        z-index: 100;
+        margin-left: auto;
+        margin-top: -30px;
+    }
+
+    div#mobileNav {
+        width: 100vw;
+        height: 100vh;
+        background: #0009;
+        backdrop-filter: blur(5px);
+        top: 0;
+        left: -100%;
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: start;
+
+        transition: 0.3s ease-in-out left;
+
+        z-index: 90;
+        padding: 20px;
+        padding-top: 90px;
+    }
+
+    h2 {
+        letter-spacing: 0;
+        font-size: 40px;
+    }
+
+    h2.small {
+        margin: 50px 0;
+        width: 100%;
+        font-size: 20px;
+        text-align: center;
+        background: linear-gradient(270deg, #ab98ff75, #81a3ff63);
+        border: 2px solid #989dff;
+    }
+
+    div.gridOfProjects {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    a.project {
+        width: 100%;
+    }
+
+    a.project div.projectInfo p {
+        text-align: left;
+    }
+
+    div.gridOfProjects.portrait {
+        width: 100%;
+        display: grid;
+    }
+
+    div#mobileNav.open {
+        left: 0;
+    }
+
+    div#mobileNav ul {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: start;
+    }
+
+    div#mobileNav li {
+        margin-bottom: 10px;
+        height: 50px;
+        padding: 0 15px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        font-size: 30px;
+
+        background: linear-gradient(270deg, #ab98ff, #81a3ff);
+        background-clip: text;
+        font-style: italic;
+        -webkit-text-stroke: unset;
+        border: 2px solid #989dff55;
+        border-radius: 10px;
+
+        color: white;
+    }
+
+    div#mobileNav h1 {
+        font-size: 40px;
+
+        background: linear-gradient(270deg, #ab98ff, #81a3ff);
+        background-clip: text;
+        font-style: italic;
+        -webkit-text-stroke: unset;
+        color: transparent;
+        width: min-content;
+        padding: 0 15px;
+        border: 2px solid #989dff22;
+        border-radius: 10px;
+
+        margin: 0 auto;
+        margin-bottom: 20px;
+    }
+}

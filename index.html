@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1">
 		<title>ljharnish</title>
 		<!-- CSS -->
 
@@ -13,6 +13,7 @@
 		<link rel="manifest" href="./sources/favicon/site.webmanifest">
 	
 		<link rel="stylesheet" href="./sources/css/style.css">
+		<link rel="stylesheet" href="./sources/css/mobile.css">
 		<link rel="stylesheet" href="./sources/fonts/sf-pro-display.css">
 		<link rel="stylesheet" href="./sources/fonts/zuume.css">
 
@@ -31,10 +32,27 @@
 			<ul>
 				<li><a href="#about">About</a></li>
 				<li><a href="#projects">Projects</a></li>
-				<li><a href="#comms">Commission Info</a></li>
+				<li><a href="#comms">Commissions</a></li>
 				<li><a href="#socials">Socials</a></li>
 			</ul>
 		</header>
+
+		<button id="mobileNavBtn" onclick="document.getElementById('mobileNav').classList.toggle('open')">
+			<img src="./sources/image/menu-outline.svg" alt="">
+		</button>
+
+		<h1 id="mobileHeader">ljharnish</h1>
+
+		<div id="mobileNav">
+			<h1>Links</h1>
+
+			<ul>
+				<li><a href="#about">About</a></li>
+				<li><a href="#projects">Projects</a></li>
+				<li><a href="#comms">Commissions</a></li>
+				<li><a href="#socials">Socials</a></li>
+			</ul>
+		</div>
 
 		<div class="categoryHolder u" id="about">
 
@@ -55,7 +73,7 @@
 			<h2 class="small">Regular Projects <p>Projects made with actual purpose.</p></h2>
 
 			<div class="gridOfProjects">
-				<a class="project" href="./extras/DevExcusesV2/" target="_blank">
+				<a class="project" href="./projects/DevExcusesV2/" target="_blank">
 					<img src="./sources/image/Screenshots/devexcusesv2.png" alt="DevExcusesV2">
 					<div class="projectInfo">
 						<div class="details">
@@ -65,14 +83,14 @@
 						<img src="./sources/image/devexcuses.png" alt="DevExcusesV2 Logo">
 					</div>
 				</a>
-				<a class="project" href="./extras/Developer-Toolkit/" target="_blank">
+				<a class="project" href="./projects/Developer-Toolkit/" target="_blank">
 					<img src="./sources/image/Screenshots/devtoolkit.png" alt="Web Developer Toolkit">
 					<div class="projectInfo">
 						<div class="details">
 							<h3>Web Developer Toolkit</h3>
 							<p>A learning experience for beginners and pros.</p>
 						</div>
-						<img style="filter: invert(1);" src="./sources/image/webdevtoolkit.png" alt="Ubuntu Logo">
+						<img style="filter: invert(1);" src="./sources/image/webdevtoolkit.png" alt="Web Developer Toolkit Logo">
 					</div>
 				</a>
 			</div>
@@ -82,12 +100,12 @@
 			<h3 class="label"><img src="./sources/image/Microsoft_logo.svg.png">Windows</h3>
 
 			<div class="gridOfProjects">
-				<a class="project disabled" href="./extras/Interfaces/Windows98/" target="_blank">
+				<a class="project disabled" href="./projects/Desktop-OS-Replicas/Windows/Windows-98/" target="_blank">
 					<img src="./sources/image/Screenshots/windows98.png" alt="Windows 98 | For The Web">
 					<div class="projectInfo">
 						<div class="details">
 							<h3>Windows 98</h3>
-							<p>A replica of Windows 98 for Web.</p>
+							<p>Where do you want to go today?</p>
 						</div>
 						<img src="./sources/image/1019c8091693ef5c5f55970346633f92.png" alt="Windows 98 Logo">
 					</div>
@@ -97,14 +115,24 @@
 			<h3 class="label"><img src="./sources/image/apple.png">macOS</h3>
 
 			<div class="gridOfProjects">
-				<a class="project" href="./extras/Interfaces/macOS-BigSur/" target="_blank">
+				<a class="project" href="./projects/Desktop-OS-Replicas/macOS/macOS-11-BigSur/" target="_blank">
 					<img src="./sources/image/Screenshots/macos-big-sur.png" alt="macOS | For The Web">
 					<div class="projectInfo">
 						<div class="details">
 							<h3>macOS 11 Big Sur</h3>
-							<p>A replica of macOS 11 Big Sur for Web.</p>
+							<p>Doing it all, in new ways.</p>
 						</div>
 						<img src="./sources/image/macos-big-sur-2020-11-19.webp" alt="macOS Big Sur Logo">
+					</div>
+				</a>
+				<a class="project disabled" target="_blank">
+					<img src="./sources/image/sequoia.webp" alt="macOS | For The Web">
+					<div class="projectInfo">
+						<div class="details">
+							<h3>macOS 15 Sequoia</h3>
+							<p>Sharp as a Mac.</p>
+						</div>
+						<img src="./sources/image/MacOS_Sequoia_Icon.webp" alt="macOS Sequoia Logo">
 					</div>
 				</a>
 				<a class="project disabled" target="_blank">
@@ -112,9 +140,9 @@
 					<div class="projectInfo">
 						<div class="details">
 							<h3>macOS 26 Tahoe</h3>
-							<p>A replica of macOS 26 Tahoe for Web.</p>
+							<p>Fresh faced. Timelessly Mac.</p>
 						</div>
-						<img src="./sources/image/taoe.png" alt="macOS Big Sur Logo">
+						<img src="./sources/image/Tahoe.webp" alt="macOS Tahoe Logo">
 					</div>
 				</a>
 			</div>
@@ -122,12 +150,12 @@
 			<h3 class="label"><img src="./sources/image/linux.svg">Linux</h3>
 
 			<div class="gridOfProjects">
-				<a class="project" href="./extras/Interfaces/Ubuntu/" target="_blank">
+				<a class="project" href="./projects/Desktop-OS-Replicas/Linux/Ubuntu-24.04/" target="_blank">
 					<img src="./sources/image/Screenshots/ubuntu.png" alt="Ubuntu | For The Web">
 					<div class="projectInfo">
 						<div class="details">
 							<h3>Ubuntu 24.04</h3>
-							<p>A replica of Ubuntu 24.04 LTS for Web.</p>
+							<p>Ubuntu: Linux for human beings.</p>
 						</div>
 						<img src="./sources/image/bgrt-fallback.png" alt="Ubuntu Logo">
 					</div>
@@ -139,22 +167,22 @@
 			<h3 class="label"><img src="./sources/image/apple.png">iOS </h3>
 
 			<div class="gridOfProjects portrait">
-				<a class="project portrait" href="./extras/Interfaces/iOS-Versions/iOS-18/" target="_blank">
+				<a class="project portrait" href="./projects/Mobile-OS-Replicas/iOS/iOS-18/" target="_blank">
 					<img src="./sources/image/Screenshots/iOS/ios18Mobile.png" alt="iOS 18 | For The Web">
 					<div class="projectInfo">
 						<div class="details">
 							<h3>iOS 18</h3>
-							<p>Built For Web.</p>
+							<p>Yours. Truly.</p>
 						</div>
 						<img src="./sources/image/ios-18-logo.webp" alt="iOS 18 Logo">
 					</div>
 				</a>
-				<a class="project portrait" href="./extras/Interfaces/iOS-Versions/iOS-26/" target="_blank">
+				<a class="project portrait" href="./projects/Mobile-OS-Replicas/iOS/iOS-26/" target="_blank">
 					<img src="./sources/image/Screenshots/iOS/ios26Mobile.png" alt="iOS 26 | For The Web">
 					<div class="projectInfo">
 						<div class="details">
 							<h3>iOS 26 Beta</h3>
-							<p>Reworked, revamped.</p>
+							<p>New look. Even more magic.</p>
 						</div>
 						<img src="./sources/image/ios-26-logo.webp" alt="iOS 26 Logo">
 					</div>
@@ -167,7 +195,8 @@
 				<a class="project portrait disabled" target="_blank">
 					<div class="projectInfo">
 						<div class="details">
-							<h3>None yet.</h3>
+							<h3>OneUI 5.1</h3>
+							<p>Your Galaxy. Your Way.</p>
 						</div>
 					</div>
 				</a>
@@ -176,7 +205,7 @@
 
 		<div class="categoryHolder u" id="comms">
 
-			<h2>Commision Info</h2>
+			<h2>Commisions</h2>
 
 			<h2 class="small">unfinished<p>unfinished 2</p></h2>
 
@@ -204,7 +233,7 @@
 		</footer>
 
 		<button class="up hidden" id="scrollUp" onclick="window.scrollTo({top:0,left:0,behavior:'smooth'});">
-			<img src="./sources/image/arrow-up.svg" alt="">
+			<img src="./sources/image/arrow-up.svg" alt="Scroll Up">
 		</button>
 	</body>
 	<!-- JS -->

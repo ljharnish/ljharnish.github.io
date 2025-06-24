@@ -47,7 +47,6 @@ header.topScroll {
 	z-index: 100;
 	height: 50px;
 	top: 10px;
-	background: #000a;
 	backdrop-filter: blur(10px);
 	position: sticky;
 	border-radius: 10px;
@@ -135,6 +134,10 @@ header li {
 	transform-origin: top center;
 
 	transition: 0.2s ease-in-out background, 0.2s ease-in-out transform;
+}
+
+li {
+	list-style: none;
 }
 
 header li:hover {
@@ -343,6 +346,7 @@ a.project > div.projectInfo > div.details {
     align-items: baseline;
     justify-content: center;
     flex: 1 1 auto;
+	text-align: start;
 }
 
 a.project > div.projectInfo > div.details h3 {
@@ -420,9 +424,8 @@ img.emoji {
    vertical-align: -0.1em;
 }
 
-.u * {
-	opacity: 0.5;
-	filter: grayscale(0.75);
+.u {
+	display: none !important;
 }
 
 button.up {
@@ -480,4 +483,10 @@ button.up:hover {
 button.up.hidden {
 	opacity: 0;
 	pointer-events: none;
+}
+
+button#mobileNavBtn,
+h1#mobileHeader,
+div#mobileNav {
+	display: none;
 }
