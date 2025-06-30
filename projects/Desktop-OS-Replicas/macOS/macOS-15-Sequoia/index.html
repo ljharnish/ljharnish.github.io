@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initipal-scale=1" />
+        <title>macOS Sequoia | For The Web</title>
+        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+        <script src="./sources/js/cursors.js"></script>
+        <script src="./sources/js/creation.js"></script>
+        <script src="./sources/js/apps.js"></script>
+        <script src="./sources/js/loading.js"></script>
+        <script src="./sources/js/canvases.js" defer></script>
+
+        <link rel="stylesheet" href="./sources/fonts/sf-pro-display.css" />
+        <link rel="stylesheet" href="./sources/css/styles/aboutThisMac.css" />
+        <link rel="stylesheet" href="./sources/css/styles/finder.css" />
+        <link rel="stylesheet" href="./sources/css/styles/preferences.css" />
+        <link rel="stylesheet" href="./sources/css/debugging.css" />
+        <link rel="stylesheet" href="./sources/css/widgets.css" />
+        <link rel="stylesheet" href="./sources/css/style.css" />
+
+        <link rel="apple-touch-icon" sizes="180x180" href="./favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="./favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="./favicon/favicon-16x16.png">
+        <link rel="manifest" href="/site.webmanifest">
+    </head>
+    <body class="disablecursor dark">
+    
+        <div id="cursor">
+            <img src="./sources/image/cursors/left_ptr.svg" alt="Mouse Cursor">
+        </div>
+
+        <div id="bootScreen">
+            <img src="./sources/image/logos/Apple_logo_black.svg" alt="Apple Logo" style="filter: invert(1);">
+            <div id="bootLoadingBar">
+                <div></div>
+            </div>
+        </div>
+
+        <div id="lockScreen">
+			<div class="lockTimeDate">
+				<p id="lockDate">Tuesday, June 24</p>
+				<h1 id="lockTime">10:56</h1>
+			</div>
+			<div class="login">
+				<img src="./sources/image/user-icons/Sports/8ball.png" alt="">
+				<p>Landon</p>
+				<input type="password" name="" id="lockPassword" placeholder="Enter Password" onkeydown="if(event.key=='Enter')document.getElementById('lockScreen').classList.add('unlocked')">
+			</div>
+		</div>
+
+        <img src="./sources/image/Diagrams/Screenshot 2025-06-28 at 12.10.45 AM.png" alt="" class="layout">
+
+        <div class="homeScreen">
+            <div id="buttonNoFunction">
+                <p>Sorry, this item has no function yet.</p>
+            </div>
+    
+            <div id="desktop">
+                <div id="widgets">
+                    <div id="bigbattery" class="widgetRectangle batteryWidget">
+                    </div>
+
+                    <div class="widgetRectangle doubleWidget">
+                        <div class="widgetSquareSmall squareClockWidget">
+                            <div class="clockCircle">
+                                <div class="circle"></div>
+                                <div class="hourHand"></div>
+                                <div class="minuteHand"></div>
+                                <div class="secondHand"></div>
+                            </div>
+                        </div>
+                        <div class="widgetSquareSmall weatherWidget">
+                            <p>-</p>
+                            <h1>--°</h1>
+
+                            <img src="./sources/image/icons/symbols/cloud.fill.png" alt="">
+                            <p>-</p>
+                            <p>H:--° L:--°</p>
+                        </div>
+                    </div>
+
+                    <div class="widgetRectangle photosWidget">
+                        <p>No photos available</p>
+                    </div>
+
+                    <div class="widgetRectangle doubleWidget">
+                        <div class="widgetSquareSmall nullWidget"></div>
+                        <div class="widgetSquareSmall noteWidget">
+                            <div class="noteTop"></div>
+                            <div class="noteText">
+                                <p class="header">TODO:</p>
+                                <p>PC Interface<br>Status Updates<br>Task Manager...</p>
+                            </div>
+                            <p class="date">Thursday</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div id="launchpad">
+            </div>
+
+            <div id="appleMenu">
+                <button class="appleMenuButton" onclick="darkMode(this)">Try Dark Mode</button>
+                <div class="appleDivider"></div>
+                <button onclick="newWindow('aboutThisMac')">About This Mac</button>
+                <div class="appleDivider"></div>
+                <button class="appleMenuButton" onclick="newWindow('settings')">System Settings...</button>
+                <button class="appleMenuButton">App Store...</button>
+                <div class="appleDivider"></div>
+                <button class="appleMenuButton">Recent Items</button>
+                <div class="appleDivider"></div>
+                <button class="appleMenuButton" onclick="openClose('patchNotes')">Patch Notes...</button>
+                <button class="appleMenuButton" onclick="openClose('credits')">Credits...</button>
+                <div class="appleDivider"></div>
+                <button class="appleMenuButton">Sleep...</button>
+                <button class="appleMenuButton">Restart...</button>
+                <button class="appleMenuButton">Shut Down...</button>
+                <div class="appleDivider"></div>
+                <button class="appleMenuButton">Lock Screen</button>
+                <button class="appleMenuButton">Log Out...</button>
+            </div>
+    
+            <div id="finder">
+                <div class="functions">
+                    <button id="applebutton" onclick="openClose('appleMenu')">
+                        <img draggable="false" src="./sources/image/icons/settings/appleicon.png">
+                    </button>
+                    <button class="boldAppName">
+                        Finder
+                    </button>
+                    <button>
+                        File
+                    </button>
+                    <button>
+                        Edit
+                    </button>
+                    <button>
+                        View
+                    </button>
+                    <button>
+                        Go
+                    </button>
+                    <button>
+                        Window
+                    </button>
+                    <button>
+                        Help
+                    </button>
+                </div>
+    
+                <div class="finderShowcase">
+                    <button onclick="openClose('controlCenter')">
+                        <img draggable="false" src="./sources/image/icons/settings/controlcenter.png">
+                    </button>
+                    <button data-noinvert="true" style="margin-right: 0;">
+                        <img draggable="false" src="./sources/image/icons/siriorb.png">
+                    </button>
+                    <p id="finderDate">Thurs Feb 20</p>
+                    <p id="finderTime">8:19 AM</p>
+                </div>
+            </div>
+    
+            <div id="controlCenter">
+                <div class="bigStuff">
+                    <div class="onebyone">
+                        <div class="controlSetting">
+                            <div class="icon selected">
+                                <img draggable='false' src="./sources/image/icons/settings/wifi.png" alt="Wi-Fi Control Center Icon" style="width: 100%;scale: 1.25;filter: brightness(0) invert(1);">
+                            </div>
+                            <div class="text">
+                                <h1>Wi-Fi</h1>
+                                <p>YTECH-Win</p>
+                            </div>
+                        </div>
+                        <div class="controlSetting">
+                            <div class="icon">
+                                <img draggable='false' src="./sources/image/icons/settings/bluetooth.png" alt="Bluetooth Control Center Icon" style="height: 60%;filter: brightness(0) invert(1);">
+                            </div>
+                            <div class="text">
+                                <h1>Bluetooth</h1>
+                                <p>Off</p>
+                            </div>
+                        </div>
+                        <div class="controlSetting">
+                            <div class="icon">
+                                <img draggable='false' src="./sources/image/icons/settings/airdrop.png" alt="AirDrop Control Center Icon" style="width: 60%;filter: brightness(0) invert(1);">
+                            </div>
+                            <div class="text">
+                                <h1>AirDrop</h1>
+                                <p>Off</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ontop">
+                        <div class="donotdisturb">
+                            <div class="controlSetting">
+                                <div class="icon">
+                                    <img draggable='false' src="./sources/image/icons/settings/donotdisturb.png" alt="Do Not Disturb Control Center Icon" style="height: 60%;filter: brightness(0) invert(1);">
+                                </div>
+                                <div class="text">
+                                    <h1>Do Not</h1>
+                                    <h1>Disturb</h1>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="smallWidgets">
+                            <div class="keyboard">
+                                <img src="./sources/image/icons/settings/brightness-keyboard.svg" alt="Keyboard Control Center Icon">
+                                <h1>Keyboard Brightness</h1>
+                            </div>
+                            <div class="mirroring">
+                                <img src="./sources/image/icons/settings/screen-mirroring.png" alt="Screen Mirroring Control Center Icon">
+                                <h1>Screen Mirroring</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="smallWidget"></div>
+                <div class="smallWidget"></div>
+                <div class="smallWidget"></div>-->
+            </div>
+    
+            <div id="debugSettings" style="display: none;">
+                <h1>Debug Settings</h1>
+                <div class="setting">
+                    <p>Custom Cursor Enabled</p>
+                    <input type="checkbox" name="Custom Cursor Enabled" id="debug_cursorEnabled" checked="true" autocomplete="off">
+                </div>
+                <div class="setting">
+                    <p>Cursor Size (Buggy)</p>
+                    <input type="range" name="Cursor Size" id="debug_cursorSize" value="24" max="100" autocomplete="off">
+                </div>
+                <div class="setting">
+                    <p>Battery Percentage</p>
+                    <input type="range" name="Battery Percent" id="debug_batteryPercentVal" value="93" autocomplete="off">
+                </div>
+                <div class="setting">
+                    <p>Dock Multiplier</p>
+                    <input type="range" name="Dock Multiplier" id="debug_dockMagnify" value="2" max="4" autocomplete="off">
+                </div>
+            </div>
+
+            <div id="dock">
+            </div>
+        </div>
+
+        <div id="patchNotes">
+            <button class="leave" onclick="openClose('patchNotes')">
+                <ion-icon name="exit-outline" style="rotate: 180deg"></ion-icon>
+            </button>
+            <h1>Patch Notes</h1>
+
+            <h2>Version 1.0</h2>
+
+            <ul>
+                <li>Lock Screen Added.</li>
+                <li>Copied Assets over from Big Sur.</li>
+                <li>Cleaned up functions and items to begin Sequoia work.</li>
+            </ul>
+        </div>
+
+        <div id="credits">
+            <button class="leave" onclick="openClose('credits')">
+                <ion-icon name="exit-outline" style="rotate: 180deg"></ion-icon>
+            </button>
+            <h1>Credits</h1>
+
+            <ul>
+                <li>Main Developer - Landon Harnish</li>
+                <li>Everything else - Landon Harnish</li>
+            </ul>
+        </div>
+	</body>
+    <!-- JS -->
+
+    <script src="./sources/js/main.js"></script>
+</html>

@@ -238,23 +238,23 @@ function switchAppearance() {
     switch(window.CONNECTIONVARIABLES.debug.debug_hs_icons) {
         case 0: //? Light Icons
             document.querySelectorAll('div.homeIcon > img').forEach((e) => {
-                if(e.getAttribute('custom') != 'true') e.src = `./sources/image/App Icons/${e.alt}.webp`
+                if(e.getAttribute('custom') != 'true') e.src = `./sources/image/App Icons/${e.alt}.png`
             });
             break;
         case 1: //? Dark Icons
             document.querySelectorAll('div.homeIcon > img').forEach((e) => {
-                if(e.getAttribute('custom') != 'true') e.src = `./sources/image/App Icons/Dark/${e.alt}.webp`
+                if(e.getAttribute('custom') != 'true') e.src = `./sources/image/App Icons/Dark/${e.alt}.png`
             });
             break;
         case 2: //? Clear Icons
             document.querySelectorAll('div.homeIcon > img').forEach((e) => {
-                if(e.getAttribute('custom') != 'true') e.src = `./sources/image/App Icons/Clear/${e.alt}.webp`
+                if(e.getAttribute('custom') != 'true') e.src = `./sources/image/App Icons/Clear/${e.alt}.png`
             });
             break;
         case 3: //? Tinted Icons
             document.body.classList.add('tintedIcons');
             document.querySelectorAll('div.homeIcon > img').forEach((e) => {
-                if(e.getAttribute('custom') != 'true') e.src = `./sources/image/App Icons/Clear/${e.alt}.webp`
+                if(e.getAttribute('custom') != 'true') e.src = `./sources/image/App Icons/Clear/${e.alt}.png`
             });
             break;
         default: //? Error - resort to Light Icons
@@ -928,7 +928,7 @@ function updateHomeScreen() {
                 }
 
                 const iconImg = document.createElement('img');
-                iconImg.src = `./sources/image/App Icons/${icon.icon}.webp`;
+                iconImg.src = `./sources/image/App Icons/${icon.icon}.png`;
                 iconImg.alt = icon.icon;
 
                 const iconLabel = document.createElement('p');
@@ -1054,7 +1054,7 @@ function updateHomeScreen() {
             }
 
             const iconImg = document.createElement('img');
-            iconImg.src = `./sources/image/App Icons/${icon.icon}.webp`;
+            iconImg.src = `./sources/image/App Icons/${icon.icon}.png`;
             iconImg.alt = icon.icon;
 
             const iconLabel = document.createElement('p');
@@ -1080,15 +1080,15 @@ document.querySelectorAll('div.homeIcon > img').forEach((e) => {
     e.addEventListener('error', () => {
         
         if(document.body.classList.contains('clearIcons')) {
-            e.src = './sources/image/App Icons/Clear/Blank.webp';
+            e.src = './sources/image/App Icons/Clear/Blank.png';
             return;
         }
 
         if(document.body.classList.contains('dark')) {
-            e.src = './sources/image/App Icons/Dark/Blank.webp';
+            e.src = './sources/image/App Icons/Dark/Blank.png';
             return;
         }
         
-        e.src = './sources/image/App Icons/Blank.webp';
+        e.src = './sources/image/App Icons/Blank.png';
     })
 });
