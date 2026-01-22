@@ -160,7 +160,7 @@ div#scrollTitle {
 
     display: flex;
     justify-content: center;
-    align-items: end;
+    align-items: flex-end;
 
     font-size: 20px;
     padding-bottom: 10px;
@@ -362,7 +362,6 @@ div.setting div.iconSide {
 div.setting div.iconSide div.icon {
     width: 34px !important;
     height: 34px !important;
-    aspect-ratio: 1;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -374,7 +373,7 @@ div.setting div.iconSide div.icon {
 
 div.setting div.iconSide div.icon sf-symbol {
     height: 100%;
-    aspect-ratio: 1;
+    width: 100%;
     display: flex;
     align-content: center;
     justify-content: center;
@@ -561,7 +560,7 @@ div.scrollTitleCategory div p {
     min-width: 100px;
     display: flex;
     justify-content: center;
-    align-items: end;
+    align-items: flex-end;
 }
 
 div.categoryInnerElements {
@@ -808,7 +807,7 @@ div.homeScreenCustomize {
     background-size: cover !important;
     position: relative;
     height: 300px;
-    aspect-ratio: 0.25;
+    width: 75px;
     margin: 5px;
 }
 
@@ -852,7 +851,7 @@ div.wallpaperCustomizerNavDots {
 
 div.wallpaperCustomizerNavDot {
     height: 100%;
-    aspect-ratio: 1;
+    width: 8px;
     border-radius: 100%;
     background: #c5c5c5;
     margin: 0 5px;

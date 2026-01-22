@@ -13,7 +13,7 @@ body {
 
     display: flex;
     justify-content: center;
-    align-items: end;
+    align-items: flex-end;
     padding: 70px 0 40px 0;
 
     flex-direction: column;
@@ -26,8 +26,8 @@ div.numbers {
     padding: 10px;
     display: flex;
     flex-direction: column;
-    justify-content: end;
-    align-items: end;
+    justify-content: flex-end;
+    align-items: flex-end;
 }
 
 div.numbers p {
@@ -36,7 +36,7 @@ div.numbers p {
     font-weight: 400;
     font-size: 40px;
     display: flex;
-    justify-content: right;
+    justify-content: flex-end;
     align-items: center;
 }
 
@@ -44,7 +44,7 @@ div.numbers p sf-symbol {
     display: flex;
     justify-content: center;
     align-items: center;
-    aspect-ratio: 1;
+    width: 25px;
     height: 25px;
     filter: brightness(0.5);
 }
@@ -54,7 +54,7 @@ div.numbers h1 {
     font-size: 80px !important;
     font-weight: 400;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: center;
 }
 
@@ -90,7 +90,6 @@ button.button {
 	cursor: pointer;
     overflow: hidden;
     width: 100%;
-    aspect-ratio: 1;
     color: white;
     background: #2a2a2c;
     border-radius: 100%;
@@ -100,11 +99,16 @@ button.button {
     font-size: 40px;
     font-weight: 400;
     filter: drop-shadow(1px 1px 0 #fff2) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff2) drop-shadow(1px -1px 0 #fff2);
-    transition: 0.5s ease-in-out aspect-ratio, 0.5s ease-in-out font-size, 0.5s ease-in-out border-radius;
+    transition: 0.5s ease-in-out font-size, 0.5s ease-in-out border-radius;
+}
+
+button.button::before {
+    content: '';
+    padding-top: 100%; /* 1:1 aspect ratio fallback */
 }
 
 button.button sf-symbol {
-    aspect-ratio: 1;
+    width: 40px;
     height: 40px;
 }
 
@@ -127,7 +131,10 @@ button.button:nth-child(20) {
 body.scientific div#buttons button.button {
     border-radius: 999px;
     font-size: 30px;
-    aspect-ratio: 1.75 / 1 !important;
+}
+
+body.scientific div#buttons button.button::before {
+    padding-top: 57.14%; /* 1.75:1 aspect ratio fallback */
 }
 
 body.scientific div#buttons button.button sf-symbol {
@@ -154,7 +161,10 @@ body.scientific div#scientificButtons button.button {
     background: #1c1c1e;
     border-radius: 999px;
     font-size: 20px;
-    aspect-ratio: 1.2 / 1 !important;
+}
+
+body.scientific div#scientificButtons button.button::before {
+    padding-top: 83.33%; /* 1.2:1 aspect ratio fallback */
 }
 
 body.scientific div#scientificButtons button.button sf-symbol {

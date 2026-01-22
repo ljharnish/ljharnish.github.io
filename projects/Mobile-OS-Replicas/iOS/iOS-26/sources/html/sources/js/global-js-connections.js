@@ -71,3 +71,32 @@ window.CONNECTIONVARIABLES = {
 }
 
 if(localStorage.getItem('savedVars')) window.CONNECTIONVARIABLES = JSON.parse(localStorage.getItem('savedVars'));
+
+// Helper function to sync variables back to parent (works even when nested in iframes)
+function syncToParent() {
+    // Try postMessage (works across iframe boundaries)
+    if (window.parent && window.parent !== window) {
+        window.parent.postMessage({ type: 'SyncVariables', variables: window.CONNECTIONVARIABLES }, '*');
+    }
+    // Also try custom event (works when contentDocument is accessible)
+    document.dispatchEvent(new CustomEvent('SyncVariables', { detail: window.CONNECTIONVARIABLES }));
+}
+
+// Auto-sync on clicks
+document.addEventListener('click', syncToParent);
+
+// Helper to trigger debug alert via postMessage
+function triggerDebugAlert(alertType) {
+    if (window.parent && window.parent !== window) {
+        window.parent.postMessage({ type: 'DebugAlert', alertType: alertType }, '*');
+    }
+    document.dispatchEvent(new CustomEvent('DebugAlert', { detail: { type: alertType } }));
+}
+
+// Helper to reload parent page
+function reloadParentPage() {
+    if (window.parent && window.parent !== window) {
+        window.parent.postMessage({ type: 'ReloadPage' }, '*');
+    }
+    document.dispatchEvent(new CustomEvent('ReloadPage'));
+}

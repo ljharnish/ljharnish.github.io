@@ -2214,7 +2214,7 @@ function handleNewCategory(setting, categoryInner) {
     categoryInner.classList.add('categoryInner');
     categoryInner.id = 'category-' + setting.id;
 
-    categoryInner.replaceChildren(); //? Bug fix for closing and opening categories.
+    while (categoryInner.firstChild) { categoryInner.removeChild(categoryInner.firstChild); } //? Bug fix for closing and opening categories.
 
     const titleBar = document.createElement('div');
     titleBar.classList.add('scrollTitleCategory');

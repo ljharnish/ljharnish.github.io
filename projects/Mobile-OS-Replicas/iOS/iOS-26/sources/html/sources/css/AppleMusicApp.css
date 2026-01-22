@@ -35,7 +35,7 @@ div#scrollTitle {
 
     display: flex;
     justify-content: center;
-    align-items: end;
+    align-items: flex-end;
 
     font-size: 20px;
     padding-bottom: 10px;
@@ -76,7 +76,7 @@ div#bottomUI div.navigation {
 
     display: flex;
     justify-content: space-around;
-    align-items: end;
+    align-items: flex-end;
     padding-bottom: 30px;
 }
 
@@ -135,13 +135,13 @@ div#bottomNowPlaying.open {
 
 div#bottomNowPlaying div.bottomNowPlayingImage {
     height: 100%;
-    aspect-ratio: 1;
+    width: 65px;
 }
 
 div#bottomNowPlaying img {
     border-radius: 10px;
     height: 100%;
-    aspect-ratio: 1;
+    width: auto;
 }
 
 div#bottomNowPlaying div.bottomNowPlayingText {
@@ -253,9 +253,14 @@ body.dark div#libraryPage div.header {
 
 div#libraryPage div.header div.userIcon {
     height: 70%;
-    aspect-ratio: 1;
+    width: auto;
     border-radius: 100%;
     overflow: hidden;
+}
+
+div#libraryPage div.header div.userIcon::before {
+    content: '';
+    padding-top: 100%;
 }
 
 div#libraryPage div.header div.userIcon img {
@@ -368,15 +373,20 @@ div.recentlyAddedIcon.doubleSpace {
 }
 
 div.recentlyAddedIcon img {
-    aspect-ratio: 1;
     border-radius: 10px;
     width: 100%;
+    height: auto;
     margin-bottom: 5px;
 }
 
+div.recentlyAddedIcon img::before {
+    content: '';
+    display: block;
+    padding-top: 100%;
+}
+
 div.recentlyAddedIcon.doubleSpace img {
-    aspect-ratio: 2;
-    object-fit: cover; 
+    height: auto;
 } 
 
 div.recentlyAddedIcon p.title {

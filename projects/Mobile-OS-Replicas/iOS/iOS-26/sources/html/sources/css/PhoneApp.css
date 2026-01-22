@@ -100,11 +100,16 @@ div.searchButton {
     margin-left: 20px;
     height: 100%;
     border-radius: 100%;
-    aspect-ratio: 1;
+    width: auto;
     background: #fff2;
 	filter: drop-shadow(1px 1px 0 #fff2) drop-shadow(-1px -1px 0 #fff6) drop-shadow(-1px 1px 0 #fff2) drop-shadow(1px -1px 0 #fff2);
 	backdrop-filter: blur(10px);
     box-shadow: 0px 0px 15px #0005;
+}
+
+div.searchButton::before {
+    content: '';
+    padding-top: 100%;
 }
 
 body.dark div.searchButton * {
@@ -116,7 +121,10 @@ body.dark div.searchButton * {
     display: grid;
     grid-template-columns: repeat(3, 90px);
     grid-template-rows: repeat(5, 90px);
-    gap: 30px;
+}
+
+#keypadButtons > * {
+    margin: 15px;
 }
 
 body.dark button.keypadButton {

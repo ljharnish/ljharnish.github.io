@@ -5,6 +5,36 @@
 //?     - If they are different, it will update the main window variables.
 //?     - Thus (HOPEFULLY) allowing the app to work with the main window variables.
 
+// Listen for postMessage events from child iframes (works even when nested in another iframe)
+window.addEventListener('message', function(event) {
+    if (event.data && event.data.type === 'SyncVariables') {
+        syncVariables(event.data.variables);
+    }
+    if (event.data && event.data.type === 'DebugAlert') {
+        new Alert(
+            "Debug Alert",
+            "This is a test of <strong>iOS 26 | FTW</strong>'s Alert System.<br>If this came up, it was successful.",
+            [
+                {
+                    text: 'Close',
+                    type: 'highlight',
+                    function: 'close'
+                },
+                {
+                    text: 'Open Link',
+                    type: 'normal',
+                    link: 'https://google.com',
+                    mobileLink: 'https://google.com',
+                }
+            ],
+            event.data.alertType
+        );
+    }
+    if (event.data && event.data.type === 'ReloadPage') {
+        location.reload();
+    }
+});
+
 function syncVariables(variables) {
     
     let appVariables = variables;

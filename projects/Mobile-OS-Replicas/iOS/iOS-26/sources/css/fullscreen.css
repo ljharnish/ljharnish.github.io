@@ -50,7 +50,7 @@ body.fullscreen div#HS_dockInner {
 body.fullscreen div.widgetSmall {
     align-self: center;
     height: calc(100% - 20px);
-    aspect-ratio: 1;
+    width: calc(100% - 20px);
 }
 body.fullscreen div#pageSelector {
     bottom: 20%;

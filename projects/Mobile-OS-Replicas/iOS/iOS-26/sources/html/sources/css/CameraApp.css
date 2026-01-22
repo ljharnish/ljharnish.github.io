@@ -45,7 +45,7 @@ button#takePhoto {
     cursor: pointer;
     width: 80px;
     overflow: hidden;
-    aspect-ratio: 1;
+    height: 80px;
     border-radius: 100%;
     border: none;
     background: transparent;
@@ -59,7 +59,7 @@ button#takePhoto {
 button#takePhoto div.innerButton {
     border-radius: 100%;
     width: 70px;
-    aspect-ratio: 1;
+    height: 70px;
     background: white;
     border: 3px solid black;
     transition: 0.1s ease-in-out width;

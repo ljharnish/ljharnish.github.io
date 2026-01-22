@@ -114,7 +114,10 @@ function iframeLoad() {
     let currentApp = document.getElementById('currentApp');
     if(currentApp.children[0].attributes.src.value == '') return;    
 
-    let theme = currentApp.children[0].contentDocument.head.querySelector('meta[theme]').getAttribute('theme');
+    // Check if contentDocument is accessible (may be null due to cross-origin restrictions)
+    if(!currentApp.children[0].contentDocument) return;
+
+    let theme = currentApp.children[0].contentDocument.head?.querySelector('meta[theme]')?.getAttribute('theme');
 
     if(document.body.classList.contains('dark')) {
         theme = 'dark';
@@ -139,16 +142,23 @@ function iframeLoad() {
     //? Check `syncVars.js` for more info.
 
     currentApp.children[0].contentWindow.CONNECTIONVARIABLES = window.CONNECTIONVARIABLES;
-    currentApp.children[0].contentWindow.appSpecificFunction();
+    
+    // Try to call appSpecificFunction if it exists
+    if (typeof currentApp.children[0].contentWindow.appSpecificFunction === 'function') {
+        currentApp.children[0].contentWindow.appSpecificFunction();
+    }
 
-    currentApp.children[0].contentDocument.body.setAttribute('onclick', "document.dispatchEvent(new CustomEvent('SyncVariables', { detail: window.CONNECTIONVARIABLES }))");
+    // Setup syncing - use both methods for maximum compatibility
+    // Method 1: Direct event listener (only works if contentDocument is accessible)
+    if (currentApp.children[0].contentDocument) {
+        currentApp.children[0].contentDocument.body.setAttribute('onclick', "document.dispatchEvent(new CustomEvent('SyncVariables', { detail: window.CONNECTIONVARIABLES })); window.parent.postMessage({ type: 'SyncVariables', variables: window.CONNECTIONVARIABLES }, '*');");
 
-    currentApp.children[0].contentDocument.addEventListener('SyncVariables', (variables) => {
-        syncVariables(variables.detail);
-    });
+        currentApp.children[0].contentDocument.addEventListener('SyncVariables', (variables) => {
+            syncVariables(variables.detail);
+        });
 
-    currentApp.children[0].contentDocument.addEventListener('DebugAlert', (vars) => {
-        new Alert(
+        currentApp.children[0].contentDocument.addEventListener('DebugAlert', (vars) => {
+            new Alert(
             "Debug Alert",
             "This is a test of <strong>iOS 26 | FTW</strong>'s Alert System.<br>If this came up, it was successful.",
             [
@@ -171,6 +181,7 @@ function iframeLoad() {
     currentApp.children[0].contentDocument.addEventListener('ReloadPage', () => {
         location.reload();
     });
+    } // Close the contentDocument check block
 }
 
 function openNewApp(link, scale) {
@@ -185,7 +196,8 @@ function openNewApp(link, scale) {
     else currentApp.children[0].style.scale = 1, currentApp.style.background = 'transparent';
 
     setTimeout(()=> { 
-        if(currentApp.children[0].contentDocument.body.innerText.includes('Cannot GET') || currentApp.children[0].contentDocument.body.innerText.includes('404')) {
+        const doc = currentApp.children[0].contentDocument;
+        if(doc?.body?.innerText?.includes('Cannot GET') || doc?.body?.innerText?.includes('404')) {
             closeApp();
         } 
     }, 300)
