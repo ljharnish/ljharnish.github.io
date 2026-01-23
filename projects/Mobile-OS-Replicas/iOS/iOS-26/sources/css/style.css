@@ -1530,3 +1530,8 @@ div#ios26.tablet div#HS_dockInner {
 div#ios26.tablet div.HS_Icons {
 	grid-template-columns: repeat(auto-fill, 112px);
 }
+
+iframe.webApp {
+	padding: 70px 0;
+	background: black;
+}

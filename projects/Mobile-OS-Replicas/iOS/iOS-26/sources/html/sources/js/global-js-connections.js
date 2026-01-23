@@ -84,6 +84,7 @@ function syncToParent() {
 
 // Auto-sync on clicks
 document.addEventListener('click', syncToParent);
+document.addEventListener('load', syncToParent);
 
 // Helper to trigger debug alert via postMessage
 function triggerDebugAlert(alertType) {

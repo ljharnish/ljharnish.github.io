@@ -2176,6 +2176,8 @@ function loadSettings(table, outputdiv, mainSetting) {
 
         outputdiv.appendChild(categoryDiv);
     });
+
+    syncToParent();
 }
 
 function setSlider(slider, set, toggleData) {

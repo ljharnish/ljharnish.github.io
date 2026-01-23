@@ -414,7 +414,7 @@ const CC_Bar = document.getElementById('controlCenterBar');
 
 let ccOpen = false;
 
-CC_Bar.addEventListener('click', () => {
+CC_Bar && CC_Bar.addEventListener('click', () => {
     ccOpen = !ccOpen;
 
     if(ccOpen) document.getElementById('controlCenter').classList.add('open'); 

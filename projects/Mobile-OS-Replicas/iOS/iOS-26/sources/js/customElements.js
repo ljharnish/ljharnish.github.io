@@ -3,7 +3,7 @@ class SFSymbol extends HTMLElement {
 
     constructor() {
         super();
-    }WS
+    }
 
     connectedCallback() {
         const shadow = this.attachShadow({ mode: "open" });

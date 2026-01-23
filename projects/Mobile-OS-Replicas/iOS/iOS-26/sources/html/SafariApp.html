@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="./sources/css/SafariApp.css">
+        <link rel="stylesheet" href="../fonts/sf-pro-display.css">
+
+        <meta theme="light">
+
+        <script>
+            function appSpecificFunction() {
+                if(CONNECTIONVARIABLES.settings.display_brightness_appearance == 'dark') document.body.classList.add('dark');
+                else document.body.classList.remove('dark');
+            }
+        </script>
+
+
+    </head>
+    <body>
+
+        <iframe height="100%" width="100%" src="https://www.example.com" id="iframe"></iframe>
+
+        <div class="bottomBarBoth">
+            <div class="bottomBar">
+                <input type="text" id="safariAddressBar" value="https://www.example.com" placeholder="Search or enter URL" onchange="document.getElementById('iframe').src = this.value;">
+            </div>
+        </div>
+    </body>
+
+</html>

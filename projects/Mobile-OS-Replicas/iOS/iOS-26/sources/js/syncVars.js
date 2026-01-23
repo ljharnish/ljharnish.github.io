@@ -55,13 +55,13 @@ function handleNewVariables() {
     localStorage.setItem('savedVars', JSON.stringify(window.CONNECTIONVARIABLES));
     window.CONNECTIONVARIABLES.media.audio = { playing: false };
     window.CONNECTIONVARIABLES.media.video = { playing: false };
-    changeBattery(window.CONNECTIONVARIABLES.battery.level)
+    if(typeof changeBattery === "function") changeBattery(window.CONNECTIONVARIABLES.battery.level);
     switchAppearance();
 
     if(window.CONNECTIONVARIABLES.debug.showDebug.enabled) {
-        document.getElementById('debugOptions').classList.remove('hidden');
+        if(document.getElementById('debugOptions')) document.getElementById('debugOptions').classList.remove('hidden');
     } else {
-        if(!document.getElementById('debugOptions').classList.contains('hidden')) document.getElementById('debugOptions').classList.add('hidden');
+        if(document.getElementById('debugOptions') && !document.getElementById('debugOptions').classList.contains('hidden')) document.getElementById('debugOptions').classList.add('hidden');
     }
     
     if(!window.innerHeight > window.innerWidth) {
