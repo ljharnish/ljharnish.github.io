@@ -535,8 +535,9 @@ const dockArray = [
         app: 'Safari'
     },
     {
-        name: 'Messages',
-        icon: 'Messages'
+        name: 'Settings',
+        icon: 'Settings',
+		app: "Settings"
     },
     {
         name: 'Apple Music',
